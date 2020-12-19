@@ -1,0 +1,35 @@
+<div class="container mt-50 mb-75" style="margin-top: 200px;">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2 mx-auto">
+        <!-- login_wrapper -->
+        <div class="login_wrapper">
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-xs-12 col-sm-6"> <a href="/loginfb" class="btn btn-primary facebook"> <span>Login with Facebook</span> <i class="fab fa-facebook-f"></i> </a> </div>
+            <div class="col-lg-6 col-md-6 col-xs-12 col-sm-6"> <a href="#" class="btn btn-primary google-plus"> Login with Google <i class="fab fa-google"></i> </a> </div>
+          </div>
+          <h2>or</h2>
+          <form action="/login" method="POST">
+            <div class="formsix-pos">
+              <div class="form-group i-email"> <input type="email" name="email" class="form-control" required="" id="email2" placeholder="Email Address *"> </div>
+            </div>
+            <div class="formsix-e">
+              <div class="form-group i-password"> <input type="password" name="password" class="form-control" required="" id="password2" placeholder="Password *"> </div>
+            </div>
+            <div class="login_remember_box"> <label class="control control--checkbox"> </label> <a href="#" class="forget_password"> Did you forget your password ?</a> </div>
+            <div class="login_btn_wrapper"> <button type="submit" class="btn btn-success col"> Login </button> </div>
+          </form>
+          <div class="login_message">
+            <p>Don’t have an account ? <a href="/register"> Register </a> </p>
+          </div>
+        </div> <!-- /.login_wrapper-->
+      </div>
+    </div>
+  </div>
+</div>
+
+{{#section 'css'}}
+<link rel="stylesheet" type="text/css" href="/styles/main_styles.css">
+<link rel="stylesheet" type="text/css" href="/styles/responsive.css">
+<link rel="stylesheet" type="text/css" href="/styles/login.css">
+{{/section}}
