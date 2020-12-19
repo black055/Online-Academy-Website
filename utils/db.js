@@ -8,6 +8,7 @@ const user = new Schema({
     fbID: String,
     ggID: String,
     isValidated: Boolean,
+    OTP: Number,
     bthday: Date,
     courses: Array,
     userType: String,

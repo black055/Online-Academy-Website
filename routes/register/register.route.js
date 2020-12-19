@@ -28,12 +28,14 @@ router.post('/', async (req, res) => {
                 console.log(err);
             }
         });
+        otp = Math.floor(Math.random() * 999999) + 100000;
         const user = new User({
             email: email, 
             name: name, 
             password: hash, 
             fbID: '', 
             isValidated: false,
+            OTP: otp,
             bthday: null,
             ggID: '',
             courses: [],
@@ -41,8 +43,7 @@ router.post('/', async (req, res) => {
             watchList: [],
         });
         user.save();
-        console.log(user._id);
-        otp = Math.floor(Math.random() * 999999) + 100000;
+        req.session.user_invalidated = user;
         let mailOptions = {
             from: 'verifycourseonline@gmail.com',
             to: email,
@@ -62,11 +63,25 @@ router.get('/OTP', (req, res) => {
     res.render('OTP');
 })
 
-router.post('/OTP', (req, res) => {
-    if (req.body.otp == otp) {
-        res.redirect('/login');
-    } else {
-        res.redirect('/register/OTP');
+router.post('/OTP',async (req, res) => {
+    if (req.session.user_invalidated) {
+        const user = await User.findOne({'email': req.session.user_invalidated.email});
+        if (req.body.otp == user.OTP) {
+            await User.updateOne({'email': user.email}, {OTP: null, isValidated: true});
+            res.redirect('/login');
+        } else {
+            res.redirect('/register/OTP');
+        }
+    } else if (req.user) {
+        const user = await User.findOne({'email': req.user.email});
+        if (req.body.otp == user.OTP) {
+            await User.updateOne({'email': user.email}, {OTP: null, isValidated: true});
+            req.user.isValidated = true;
+            req.user.OTP = null;
+            res.redirect('/');
+        } else {
+            res.redirect('/register/OTP');
+        }
     }
 });
 

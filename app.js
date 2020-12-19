@@ -7,8 +7,9 @@ const session = require('express-session');
 const passport = require('passport');
 const hbs = require('express-handlebars');
 const MongoStore = require('connect-mongo')(session);
-const hbs_section = require('express-handlebars-sections')
-require('./auth')
+const hbs_section = require('express-handlebars-sections');
+const mdwIsValidated = require('./middlewares/validation.mdw');
+require('./auth');
 
 // Connect to database
 mongoose.connect('mongodb://localhost:27017/mydb', { useNewUrlParser: true, useUnifiedTopology: true});
@@ -47,36 +48,38 @@ app.engine('hbs', hbs({
 // Static resources
 app.use(express.static(__dirname + '/public'));
 
-app.get('/', (req, res) => {
-    if ((typeof req.user) !== 'undefined') {
-        req.session.user = req.user;
-    }
+app.get('/', mdwIsValidated, (req, res) => {
+    req.session.user = req.user;
     res.render('index');
 })
 
-app.get('/about', (req, res) => {
+app.get('/about', mdwIsValidated, (req, res) => {
     res.render('about/about');
 })
 
-app.get('/courses', (req, res) => {
+app.get('/courses', mdwIsValidated, (req, res) => {
     res.render('courses/courses');
 })
 
-app.get('/course', (req, res) => {
+app.get('/course', mdwIsValidated, (req, res) => {
     res.render('courses/course');
 })
 
-app.get('/contact', (req, res) => {
+app.get('/contact', mdwIsValidated, (req, res) => {
     res.render('contact/contact')
 })
 
-app.get('/login', (req, res) => {res.render('login') });
+app.get('/login', mdwIsValidated, (req, res) => {res.render('login') });
 
 app.post('/login', passport.authenticate('local', {failureRedirect: '/login', successRedirect: '/'}));
 
 app.get('/loginfb', passport.authenticate('facebook'));
 
-app.get('/facebook', passport.authenticate('facebook', {successRedirect: '/', failureRedirect: '/login'}))
+app.get('/facebook', passport.authenticate('facebook', {successRedirect: '/', failureRedirect: '/login'}));
+
+app.get('/logingg', passport.authenticate('google'));
+
+app.get('/google', passport.authenticate('google', {successRedirect: '/', failureRedirect: '/login'}));
 
 app.get('/logout', (req, res) => {
     req.logOut();
