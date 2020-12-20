@@ -34,6 +34,7 @@ const course = new Schema({
     group: String,
     chapters: Array,
     rate: Array,
+    rating: Number,
     price: Number,
     teacher: String,
     students: Number,

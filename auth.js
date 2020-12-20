@@ -6,7 +6,6 @@ const LogcalStrategy = require('passport-local').Strategy;
 const FacebookStrategy = require('passport-facebook').Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
-
 passport.use(new LogcalStrategy({ usernameField: 'email',passwordField: 'password'}, async (username, password, done) => {
     const user = await User.findOne({'email': username});
     if (user) {
