@@ -4,6 +4,8 @@ const Schema = mongoose.Schema;
 const user = new Schema({
     email: String,
     name: String,
+    phone: String,
+    gender: String,
     password: String,
     fbID: String,
     ggID: String,
@@ -42,6 +44,7 @@ const course = new Schema({
     description: String,
     views: Number,
     saleOff: Number,
+    avatar: String,
 })
 
 module.exports = {

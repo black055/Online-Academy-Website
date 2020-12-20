@@ -10,60 +10,29 @@ const MongoStore = require('connect-mongo')(session);
 const hbs_section = require('express-handlebars-sections');
 const mdwIsValidated = require('./middlewares/validation.mdw');
 const {User, Teacher, Admin, Course} = require('./utils/db');
+const {user_data, course_data} = require('./utils/insert');
 require('./auth');
-
-// Insert data sample
-let names = ['Lê Thành Việt', 'Võ Trọng Gia Vinh', 'Nguyễn Văn Trường', 'Nguyễn Trần Trung', 'Lê Huỳnh Quang Trường'
-, 'Bùi Thanh Uy', 'Phạm Hồng Vinh', 'Đặng Thị Hồng Xuyên', 'Lê Nhật Tuấn', 'Nguyễn Tân Vinh'];
-let emails = ['lethanhviet@gmail.com', 'giavinh@gmail.com', 'vangtruong@gmail.com', 'trantrung@gmail.com', 'quantruong@gmail.com'
-, 'thanhuy@gmail.com', 'hongvinh@gmail.com', 'hongxuyen@gmail.com', 'nhattuan@gmail.com', 'tanvinhgmail.com'];
-
-// (async function insert() {
-//     for(let index = 0; index < names.length; ++index) {
-//         let hash = bcrypt.hashSync('22102000',10);
-//         let user = await User.findOne({'email': emails[index]});
-//         if (!user) {
-//             user = new User({
-//                 email: emails[index],
-//                 name: names[index],
-//                 password: hash,
-//                 fbID: '',
-//                 isValidated: true,
-//                 OTP: null,
-//                 ggID: '',
-//                 userType: 'Student',
-//                 bthday: new Date(2000,10,22),
-//                 course:[],
-//                 watchList: []
-//             });
-//             user.save();
-//         }
-//     }
-// })();
-
-// (async function course() {
-//     for (let index = 0; index < 10; ++index) {
-//         let course = new Course({
-//             name: 'Khóa học chuyên sau NodeJS',
-//             tags: [],
-//             group: '',
-//             chapters: [],
-//             rate: [],
-//             rating: 5,
-//             price: 200,
-//             teacher: 'Võ Trọng Gia Vinh',
-//             students: 450,
-//             comments: [],
-//             description: 'Giáo Viên ngu lắm đừng học',
-//             views: 1200,
-//             saleOff: 0,
-//         });
-//         course.save();
-//     }
-// })();
 
 // Connect to database
 mongoose.connect('mongodb://localhost:27017/mydb', { useNewUrlParser: true, useUnifiedTopology: true});
+
+// Insert data user
+(async function b() {
+    for (let i = 0; i < user_data.length; i++) {
+        let user = await User.findOne({'email': user_data[i].email});
+        if (!user) {
+            user = new User(user_data[i]);
+            user.save();
+        }
+    }
+
+    for (let i = 0; i < course_data.length; i++) {
+        let course = new Course(course_data[i]);
+        course.save();
+    }
+})();
+
+
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
