@@ -72,6 +72,7 @@ app.engine('hbs', hbs({
 // Static resources
 app.use(express.static(__dirname + '/public'));
 
+
 app.get('/', mdwIsValidated, (req, res) => {
     req.session.user = req.user;
     res.render('index', {isHome: true});
@@ -85,6 +86,10 @@ app.use('/courses',mdwIsValidated, require('./routes/courses/courses.route'));
 
 app.get('/course', mdwIsValidated, (req, res) => {
     res.render('courses/course');
+})
+
+app.get('/profile', mdwIsValidated, (req, res) => {
+    res.render('profile/profile')
 })
 
 app.get('/contact', mdwIsValidated, (req, res) => {
