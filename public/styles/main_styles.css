@@ -20,7 +20,7 @@
 8. Courses
 9. Counter
 10. Events
-11. Team
+11. category
 12. News
 13. Newsletter
 14. Footer
@@ -1441,16 +1441,16 @@ section
 }
 
 /*********************************
-11. Team
+11. category
 *********************************/
 
-.team
+.category
 {
 	width: 100%;
 	padding-top: 93px;
 	padding-bottom: 60px;
 }
-.team_background
+.category_background
 {
 	position: absolute;
 	top: 0;
@@ -1458,19 +1458,19 @@ section
 	width: 100%;
 	height: 100%;
 }
-.team_row
+.category_row
 {
 	margin-top: 43px;
 }
-.team_col
+.category_col
 {
 	margin-bottom: 40px;
 }
-.team_item
+.category_item
 {
 	width: 100%;
 }
-.team_image
+.category_image
 {
 	width: 180px;
 	height: 160px;
@@ -1481,11 +1481,11 @@ section
 	margin-bottom: -86px;
 	z-index: 5;
 }
-.team_image img
+.category_image img
 {
 	max-width: 100%;
 }
-.team_body
+.category_body
 {
 	width: 100%;
 	padding-top: 108px;
@@ -1500,11 +1500,11 @@ section
 	-o-transition: all 200ms ease;
 	transition: all 200ms ease;
 }
-.team_item:hover .team_body
+.category_item:hover .category_body
 {
 	box-shadow: 0px 5px 40px rgba(29,34,47,0.15);
 }
-.team_title a
+.category_title a
 {
 	font-family: 'Roboto Slab', serif;
 	font-size: 20px;
@@ -1516,11 +1516,11 @@ section
 	-o-transition: all 200ms ease;
 	transition: all 200ms ease;
 }
-.team_title a:hover
+.category_title a:hover
 {
 	color: #14bdee;
 }
-.team_subtitle
+.category_subtitle
 {
 	font-size: 14px;
 	font-weight: 400;
@@ -1553,17 +1553,17 @@ section
 {
 	color: #14bdee;
 }
-.team_col .team_item
+.category_col .category_item
 {
 	padding-left: 6px;
 	padding-right: 6px;
 }
-.team_col:first-child .team_item
+.category_col:first-child .category_item
 {
 	padding-left: 0;
 	padding-right: 6px;
 }
-.team_col:nth-child(4n) .team_item
+.category_col:nth-child(4n) .category_item
 {
 	padding-left: 6px;
 	padding-right: 0;

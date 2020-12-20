@@ -13,6 +13,7 @@ require('./auth');
 
 // Connect to database
 mongoose.connect('mongodb://localhost:27017/mydb', { useNewUrlParser: true, useUnifiedTopology: true});
+
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -90,3 +91,4 @@ app.get('/logout', (req, res) => {
 app.use('/register', require('./routes/register/register.route'));
 
 app.listen(3000);
+console.log('App listening at http://localhost:3000');

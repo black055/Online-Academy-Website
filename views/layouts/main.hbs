@@ -33,7 +33,7 @@
                                 <div class="top_bar_content d-flex flex-row align-items-center justify-content-start">
                                     <ul class="top_bar_contact_list">
                                         <li>
-                                            <div class="question">Have any questions?</div>
+                                            <div class="question">Liên hệ với chúng tôi?</div>
                                         </li>
                                         <li>
                                             <i class="fa fa-phone" aria-hidden="true"></i>
@@ -49,8 +49,8 @@
                                         <div class="login_button" style="margin-right: 10px;"><a href="#"><i class="fas fa-user" style="margin-right: 10px;"></i>{{session.user.name}}</a></div>
                                         <div class="login_button" style="margin-right: 10px;"><a href="/logout"><i class="fas fa-sign-out-alt" style="margin-right: 10px;"></i></a></div>
                                         {{else}}
-                                        <div class="login_button" style="margin-right: 30px;"><a href="/register"><i class="fas fa-user-plus" style="margin-right: 10px;"></i>Register</a></div>
-                                        <div class="login_button" style="margin-right: 10px;"><a href="/login"><i class="fas fa-lock" style="margin-right: 10px;"></i>Login</a></div>
+                                        <div class="login_button" style="margin-right: 30px;"><a href="/register"><i class="fas fa-user-plus" style="margin-right: 10px;"></i>Đăng ký</a></div>
+                                        <div class="login_button" style="margin-right: 10px;"><a href="/login"><i class="fas fa-lock" style="margin-right: 10px;"></i>Đăng nhập</a></div>
                                         {{/if}}
                                     </div>
                                 </div>
@@ -73,10 +73,17 @@
                                 </div>
                                 <nav class="main_nav_contaner ml-auto">
                                     <ul class="main_nav">
-                                        <li class="active"><a href="/">Home</a></li>
-                                        <li><a href="/about">About</a></li>
-                                        <li><a href="/courses">Courses</a></li>
-                                        <li><a href="/contact">Contact</a></li>
+                                        <li class="active"><a href="/">Trang chủ</a></li>
+                                        <li><a href="/courses">Khóa học</a></li>
+                                        <li class="dropdown" id="categoriesDropdown" 
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <a href="/contact" onclick="return false;">Lĩnh vực</a>
+                                        </li>
+                                        <div class="dropdown-menu" aria-labelledby="categoriesDropdown">
+                                            <a class="dropdown-item" href="#">Lập trình ứng dụng di động</a>
+                                            <a class="dropdown-item" href="#">Lập trình Web</a>
+                                        </div>
+                                        <li><a href="/about">Về chúng tôi</a></li>
                                     </ul>
                                     <div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>
 
@@ -164,7 +171,7 @@
                                             </a>
                                         </div>
                                         <div class="footer_about_text">
-                                            <p>Lorem ipsum dolor sit ametium, consectetur adipiscing elit.</p>
+                                            <p>Website cung cấp khóa học hàng đầu Việt Nam.</p>
                                         </div>
                                         <div class="footer_social">
                                             <ul>
@@ -182,12 +189,12 @@
 
                                     <!-- Footer Contact -->
                                     <div class="footer_section footer_contact">
-                                        <div class="footer_title">Contact Us</div>
+                                        <div class="footer_title">Liên hệ</div>
                                         <div class="footer_contact_info">
                                             <ul>
                                                 <li>Email: Info.deercreative@gmail.com</li>
-                                                <li>Phone: +(88) 111 555 666</li>
-                                                <li>40 Baria Sreet 133/2 New York City, United States</li>
+                                                <li>Điện thoại: +(88) 111 555 666</li>
+                                                <li>227 Nguyễn Văn Cừ, Phường 4, Quận 5, Thành phố Hồ Chí Minh</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -198,16 +205,16 @@
 
                                     <!-- Footer links -->
                                     <div class="footer_section footer_links">
-                                        <div class="footer_title">Contact Us</div>
+                                        <div class="footer_title">Liên hệ</div>
                                         <div class="footer_links_container">
                                             <ul>
-                                                <li><a href="/">Home</a></li>
-                                                <li><a href="/about">About</a></li>
-                                                <li><a href="/contact">Contact</a></li>
-                                                <li><a href="#">Features</a></li>
-                                                <li><a href="/courses">Courses</a></li>
-                                                <li><a href="#">Events</a></li>
-                                                <li><a href="#">Gallery</a></li>
+                                                <li><a href="/">Trang chủ</a></li>
+                                                <li><a href="/about">Về chúng tôi</a></li>
+                                                <li><a href="/contact">Liên hệ</a></li>
+                                                <li><a href="#">Tính năng</a></li>
+                                                <li><a href="/courses">Khóa học</a></li>
+                                                <li><a href="#">Sự kiện</a></li>
+                                                <li><a href="#">Bộ sưu tập</a></li>
                                                 <li><a href="#">FAQs</a></li>
                                             </ul>
                                         </div>
@@ -219,7 +226,7 @@
 
                                     <!-- Footer links -->
                                     <div class="footer_section footer_mobile">
-                                        <div class="footer_title">Mobile</div>
+                                        <div class="footer_title">Các nền tảng</div>
                                         <div class="footer_mobile_content">
                                             <div class="footer_image"><a href="#"><img src="/images/mobile_1.png" alt=""></a></div>
                                             <div class="footer_image"><a href="#"><img src="/images/mobile_2.png" alt=""></a></div>
