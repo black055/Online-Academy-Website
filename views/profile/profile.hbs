@@ -1,141 +1,202 @@
 <div class="container emp-profile pt-5">
-   <form method="post">
-      <div class="row">
-         <div class="col-md-4">
-            <div class="profile-img">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
-                <h4 class="mt-2">
-                    {{user.name}}
-                </h4>
-                <h5 class="mt-2">
-                    {{#if isStudent}}
+    <form method="post">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-img">
+                    <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
+                        alt="" />
+                    <h4 class="mt-2">
+                        {{user.name}}
+                    </h4>
+                    <h5 class="mt-2">
+                        {{#ifEquals user.userType "Student"}}
                         Học sinh
-                    {{else}}
+                        {{else}}
                         Giáo viên
-                    {{/if}}
-                </h5>
-                <input type="submit" class="profile-edit-btn col-6 mt-2" name="btnAddMore" value="Chỉnh sửa" />
-                {{#if isStudent}}
-                    <input type="submit" class="profile-add-btn col-6 mt-2" name="btnAddCourse" value="Thêm khóa học"/>
-                {{/if}}
-            </div>
-         </div>
-         <div class="col-md-8">
-            <div class="profile-head">
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="info-tab"
-                            data-toggle="tab" href="#info" role="tab"
-                            aria-controls="info" aria-selected="true">Thông tin</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="statistic-tab"
-                            data-toggle="tab" href="#statistic" role="tab"
-                            aria-controls="statistic" aria-selected="false">Thống kê</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="myCourses-tab"
-                            data-toggle="tab" href="#myCourses" role="tab"
-                            aria-controls="myCourses" aria-selected="false">Khóa học của tôi</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="watchList-tab"
-                            data-toggle="tab" href="#watchList" role="tab"
-                            aria-controls="watchList" aria-selected="false">Khóa học yêu thích</a>
-                    </li>
-                </ul>
-                <div class="tab-content" id="myTabContent">
-
-                    <!-- Infomation pane -->
-                    <div class="tab-pane fade show active" id="info" role="tabpanel" aria-labelledby="info-tab">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Tên người dùng</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>{{user.name}}</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Giới tính</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>{{user.gender}}</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Email</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>{{user.email}}</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Ngày sinh</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>{{user.bthday}}</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Điện thoại</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>{{user.phone}}</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Statistic pane -->
-                    <div class="tab-pane fade" id="statistic" role="tabpanel" aria-labelledby="statistic-tab">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Khóa học đã tham gia</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>{{user.courses.length}}</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Khóa học yêu thích</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>{{user.watchList.length}}</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Tổng số tiền đã chi</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p><!-- Tổng số tiền đã chi --> 12,000,000 đồng</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- My courses pane -->
-                    <div class="tab-pane fade" id="myCourses" role="tabpanel" aria-labelledby="myCourses-tab">
-                        
-                    </div>
-
-                    <!-- Watch list pane -->
-                    <div class="tab-pane fade" id="watchList" role="tabpanel" aria-labelledby="watchList-tab">
-                        
-                    </div>
-
+                        {{/ifEquals}}
+                    </h5>
+                    <button type="button" class="profile-edit-btn col-6 mt-2">
+                        <i class="fa fa-cog" aria-hidden="true"></i>
+                        Chỉnh sửa
+                    </button>
+                    {{#ifEquals user.userType "Student"}}
+                    {{else}}
+                    <button type="button" class="profile-add-btn col-6 mt-2">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        Thêm khóa học
+                    </button>
+                    {{/ifEquals}}
                 </div>
             </div>
-         </div>
-      </div>
-   </form>
+            <div class="col-md-8">
+                <div class="profile-head">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="info-tab"
+                                data-toggle="tab" href="#info" role="tab"
+                                aria-controls="info" aria-selected="true">Thông
+                                tin</a>
+                        </li>
+                        {{#ifEquals user.userType "Student"}}
+                        <li class="nav-item">
+                            <a class="nav-link" id="statistic-tab"
+                                data-toggle="tab" href="#statistic" role="tab"
+                                aria-controls="statistic" aria-selected="false">Thống
+                                kê</a>
+                        </li>
+                        {{/ifEquals}}
+                        <li class="nav-item">
+                            <a class="nav-link" id="myCourses-tab"
+                                data-toggle="tab" href="#myCourses" role="tab"
+                                aria-controls="myCourses" aria-selected="false">Khóa
+                                học của tôi</a>
+                        </li>
+                        {{#ifEquals user.userType "Student"}}
+                        <li class="nav-item">
+                            <a class="nav-link" id="watchList-tab"
+                                data-toggle="tab" href="#watchList" role="tab"
+                                aria-controls="watchList" aria-selected="false">Khóa
+                                học yêu thích</a>
+                        </li>
+                        {{/ifEquals}}
+                        <li class="nav-item">
+                            <a class="nav-link" id="changePassword-tab"
+                                data-toggle="tab" href="#changePassword"
+                                role="tab"
+                                aria-controls="changePassword"
+                                aria-selected="false">Đổi mật khẩu</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+
+                        <!-- Infomation pane -->
+                        <div class="tab-pane fade show active" id="info"
+                            role="tabpanel" aria-labelledby="info-tab">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Tên người dùng</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{user.name}}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Giới tính</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{user.gender}}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Email</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{user.email}}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Ngày sinh</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{user.bthday}}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Điện thoại</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{user.phone}}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{#ifEquals user.userType "Student"}}
+                        <!-- Student's tatistic pane -->
+                        <div class="tab-pane fade" id="statistic"
+                            role="tabpanel" aria-labelledby="statistic-tab">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Khóa học đã tham gia</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{user.courses.length}}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Khóa học yêu thích</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{user.watchList.length}}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Tổng số tiền đã chi</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><!-- Tổng số tiền đã chi --> 12,000,000
+                                        đồng</p>
+                                </div>
+                            </div>
+                        </div>
+                        {{/ifEquals}}
+
+
+                        <!-- My courses pane -->
+                        <div class="tab-pane fade" id="myCourses"
+                            role="tabpanel" aria-labelledby="myCourses-tab">
+                            {{#ifEquals user.userType "Student"}}
+                            <!-- Student's courses here -->
+                            {{else}}
+                            <!-- Teacher's courses here -->
+                            {{/ifEquals}}
+
+                        </div>
+
+                        {{#ifEquals user.userType "Student"}}
+                        <!-- Student's watch list pane -->
+                        <div class="tab-pane fade" id="watchList"
+                            role="tabpanel" aria-labelledby="watchList-tab">
+                        </div>
+                        {{/ifEquals}}
+
+                        <div class="tab-pane fade" id="changePassword"
+                            role="tabpanel" aria-labelledby="changePassword-tab">
+                            <form action="#">
+
+                                <div class="form-group">
+                                    <input type="password" id="newPass" class="form-control" 
+                                    placeholder="Mật khẩu mới" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="password" id="newPassConfirm" class="form-control" 
+                                    placeholder="Nhập lại mật khẩu mới" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="password" id="oldPass" class="form-control" 
+                                    placeholder="Mật khẩu cũ" required>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary mb-4">Đổi mật khẩu</button>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 </div>
 
 {{#section 'css'}}
-    <link rel="stylesheet" type="text/css" href="/styles/profile.css">
-    <link rel="stylesheet" type="text/css" href="/styles/main_styles.css">
+<link rel="stylesheet" type="text/css" href="/styles/profile.css">
+<link rel="stylesheet" type="text/css" href="/styles/main_styles.css">
 {{/section}}
