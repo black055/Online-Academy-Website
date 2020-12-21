@@ -9,15 +9,16 @@ const hbs = require('express-handlebars');
 const MongoStore = require('connect-mongo')(session);
 const hbs_section = require('express-handlebars-sections');
 const mdwIsValidated = require('./middlewares/validation.mdw');
+const studentModel = require('./models/student.module.js');
 const {User, Teacher, Admin, Course} = require('./utils/db');
-const {user_data, course_data} = require('./utils/insert');
+//const {user_data, course_data} = require('./utils/insert');
 require('./auth');
 
 // Connect to database
 mongoose.connect('mongodb://localhost:27017/mydb', { useNewUrlParser: true, useUnifiedTopology: true});
 
 // Insert data user
-(async function b() {
+/*(async function b() {
     for (let i = 0; i < user_data.length; i++) {
         let user = await User.findOne({'email': user_data[i].email});
         if (!user) {
@@ -30,7 +31,7 @@ mongoose.connect('mongodb://localhost:27017/mydb', { useNewUrlParser: true, useU
         let course = new Course(course_data[i]);
         course.save();
     }
-})();
+})();*/
 
 
 const app = express();
@@ -88,8 +89,19 @@ app.get('/course', mdwIsValidated, (req, res) => {
     res.render('courses/course');
 })
 
-app.get('/profile', mdwIsValidated, (req, res) => {
-    res.render('profile/profile')
+app.get('/profile', mdwIsValidated, async (req, res) => {
+    if (req.user.userType == 'Student') {
+        totalMoney = await studentModel.getTotalMoney(req.user.id);
+        console.log(totalMoney);
+        res.render('profile/profile', {
+            isStudent: 'true',
+            user: req.user
+        });
+    } else {
+        res.render('profile/profile', {
+            user: req.user
+        });
+    }
 })
 
 app.get('/contact', mdwIsValidated, (req, res) => {

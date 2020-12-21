@@ -3,28 +3,30 @@
       <div class="row">
          <div class="col-md-4">
             <div class="profile-img">
-               <img
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
-                  alt="" />
-               <div class="file btn btn-lg btn-primary">
-                  Change Photo
-                  <input type="file" name="file" />
-               </div>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
+                <h4 class="mt-2">
+                    {{user.name}}
+                </h4>
+                <h5 class="mt-2">
+                    {{#if isStudent}}
+                        Học sinh
+                    {{else}}
+                        Giáo viên
+                    {{/if}}
+                </h5>
+                <input type="submit" class="profile-edit-btn col-6 mt-2" name="btnAddMore" value="Chỉnh sửa" />
+                {{#if isStudent}}
+                    <input type="submit" class="profile-add-btn col-6 mt-2" name="btnAddCourse" value="Thêm khóa học"/>
+                {{/if}}
             </div>
          </div>
-         <div class="col-md-6">
+         <div class="col-md-8">
             <div class="profile-head">
-                <h5>
-                    Tên user
-                </h5>
-                <h6>
-                    Loại user
-                </h6>
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="home-tab"
-                            data-toggle="tab" href="#home" role="tab"
-                            aria-controls="home" aria-selected="true">Thông tin</a>
+                        <a class="nav-link active" id="info-tab"
+                            data-toggle="tab" href="#info" role="tab"
+                            aria-controls="info" aria-selected="true">Thông tin</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="statistic-tab"
@@ -44,14 +46,14 @@
                 </ul>
                 <div class="tab-content" id="myTabContent">
 
-                    <!-- Home pane -->
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <!-- Infomation pane -->
+                    <div class="tab-pane fade show active" id="info" role="tabpanel" aria-labelledby="info-tab">
                         <div class="row">
                             <div class="col-md-6">
                                 <label>Tên người dùng</label>
                             </div>
                             <div class="col-md-6">
-                                <p><!-- Tên người dùng --> Tên người dùng</p>
+                                <p>{{user.name}}</p>
                             </div>
                         </div>
                         <div class="row">
@@ -59,7 +61,7 @@
                                 <label>Giới tính</label>
                             </div>
                             <div class="col-md-6">
-                                <p><!-- Giới tính -->Nam</p>
+                                <p>{{user.gender}}</p>
                             </div>
                         </div>
                         <div class="row">
@@ -67,7 +69,7 @@
                                 <label>Email</label>
                             </div>
                             <div class="col-md-6">
-                                <p><!-- Email --> mail@gmail.com</p>
+                                <p>{{user.email}}</p>
                             </div>
                         </div>
                         <div class="row">
@@ -75,7 +77,7 @@
                                 <label>Ngày sinh</label>
                             </div>
                             <div class="col-md-6">
-                                <p><!-- Ngày sinh --> 31/12/2000</p>
+                                <p>{{user.bthday}}</p>
                             </div>
                         </div>
                         <div class="row">
@@ -83,7 +85,7 @@
                                 <label>Điện thoại</label>
                             </div>
                             <div class="col-md-6">
-                                <p><!-- Điện thoại --> Điện thoại</p>
+                                <p>{{user.phone}}</p>
                             </div>
                         </div>
                     </div>
@@ -95,15 +97,15 @@
                                 <label>Khóa học đã tham gia</label>
                             </div>
                             <div class="col-md-6">
-                                <p><!-- Khóa học đã tham gia -->10</p>
+                                <p>{{user.courses.length}}</p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <label>Khóa học đã đánh giá</label>
+                                <label>Khóa học yêu thích</label>
                             </div>
                             <div class="col-md-6">
-                                <p><!-- Khóa học đã đánh giá -->5</p>
+                                <p>{{user.watchList.length}}</p>
                             </div>
                         </div>
                         <div class="row">
@@ -128,10 +130,6 @@
 
                 </div>
             </div>
-         </div>
-         <div class="col-md-2">
-            <input type="submit" class="profile-edit-btn" name="btnAddMore"
-               value="Edit Profile" />
          </div>
       </div>
    </form>
