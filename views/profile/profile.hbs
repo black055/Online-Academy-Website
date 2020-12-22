@@ -3,9 +3,11 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-img">
-                    <img
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
-                        alt="" />
+                    {{#ifEquals user.userType "Student"}}
+                    <img src="images/user_avatar/student.png" alt="" />
+                    {{else}}
+                    <img src="images/user_avatar/teacher.png" alt="" />
+                    {{/ifEquals}}
                     <h4 class="mt-2">
                         {{user.name}}
                     </h4>
@@ -63,8 +65,7 @@
                         <li class="nav-item">
                             <a class="nav-link" id="changePassword-tab"
                                 data-toggle="tab" href="#changePassword"
-                                role="tab"
-                                aria-controls="changePassword"
+                                role="tab" aria-controls="changePassword"
                                 aria-selected="false">Đổi mật khẩu</a>
                         </li>
                     </ul>
@@ -140,8 +141,7 @@
                                     <label>Tổng số tiền đã chi</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p><!-- Tổng số tiền đã chi --> 12,000,000
-                                        đồng</p>
+                                    <p>{{totalMoney}} $</p>
                                 </div>
                             </div>
                         </div>
@@ -153,6 +153,104 @@
                             role="tabpanel" aria-labelledby="myCourses-tab">
                             {{#ifEquals user.userType "Student"}}
                             <!-- Student's courses here -->
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="border-0
+                                                bg-light">
+                                                <div class="p-2 px-3
+                                                    text-uppercase">THÔNG TIN
+                                                    KHÓA HỌC</div>
+                                            </th>
+                                            <th scope="col" class="border-0
+                                                bg-light">
+                                                <div class="py-2
+                                                    text-uppercase">GIÁ TIỀN</div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row" class="border-0">
+                                                <div class="p-2">
+                                                    <img
+                                                        src="images/courses_avatar/1.jpg"
+                                                        alt="" width="70"
+                                                        class="img-fluid rounded
+                                                        shadow-sm">
+                                                    <div class="ml-3
+                                                        d-inline-block
+                                                        align-middle">
+                                                        <h5 class="mb-0"> <a
+                                                                href="#"
+                                                                class="text-dark
+                                                                d-inline-block
+                                                                align-middle">Khóa
+                                                                học NodeJs</a></h5>
+                                                        <span class="text-muted
+                                                            font-weight-normal
+                                                            font-italic
+                                                            d-block">Lập trình
+                                                            web</span>
+                                                    </div>
+                                                </div>
+                                            </th>
+                                            <td class="border-0 align-middle"><strong>$79.00</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">
+                                                <div class="p-2">
+                                                    <img
+                                                        src="images/courses_avatar/2.jpg"
+                                                        alt="" width="70"
+                                                        class="img-fluid rounded
+                                                        shadow-sm">
+                                                    <div class="ml-3
+                                                        d-inline-block
+                                                        align-middle">
+                                                        <h5 class="mb-0"><a
+                                                                href="#"
+                                                                class="text-dark
+                                                                d-inline-block">Khóa
+                                                                học làm giàu</a></h5>
+                                                        <span class="text-muted
+                                                            font-weight-normal
+                                                            font-italic">Kỹ năng
+                                                            sống</span>
+                                                    </div>
+                                                </div>
+                                            </th>
+                                            <td class="align-middle"><strong>$79.00</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">
+                                                <div class="p-2">
+                                                    <img
+                                                        src="images/courses_avatar/3.jpg"
+                                                        alt="" width="70"
+                                                        class="img-fluid rounded
+                                                        shadow-sm">
+                                                    <div class="ml-3
+                                                        d-inline-block
+                                                        align-middle">
+                                                        <h5 class="mb-0"> <a
+                                                                href="#"
+                                                                class="text-dark
+                                                                d-inline-block">Khóa
+                                                                học NodeJs</a></h5>
+                                                        <span class="text-muted
+                                                            font-weight-normal
+                                                            font-italic">Lập
+                                                            trình web</span>
+                                                    </div>
+                                                </div>
+                                            </th>
+                                            <td class="align-middle"><strong>$79.00</strong></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                             {{else}}
                             <!-- Teacher's courses here -->
                             {{/ifEquals}}
@@ -163,40 +261,173 @@
                         <!-- Student's watch list pane -->
                         <div class="tab-pane fade" id="watchList"
                             role="tabpanel" aria-labelledby="watchList-tab">
-                        </div>
-                        {{/ifEquals}}
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="border-0
+                                                bg-light">
+                                                <div class="p-2 px-3
+                                                    text-uppercase">THÔNG TIN
+                                                    KHÓA HỌC</div>
+                                            </th>
+                                            <th scope="col" class="border-0
+                                                bg-light">
+                                                <div class="py-2
+                                                    text-uppercase">GIÁ TIỀN</div>
+                                            </th>
+                                            <th scope="col" class="border-0
+                                                bg-light">
+                                                <div class="py-2
+                                                    text-uppercase">XÓA</div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row" class="border-0">
+                                                <div class="p-2">
+                                                    <img
+                                                        src="images/courses_avatar/1.jpg"
+                                                        alt="" width="70"
+                                                        class="img-fluid rounded
+                                                        shadow-sm">
+                                                    <div class="ml-3
+                                                        d-inline-block
+                                                        align-middle">
+                                                        <h5 class="mb-0"> <a
+                                                                href="#"
+                                                                class="text-dark
+                                                                d-inline-block
+                                                                align-middle">Khóa
+                                                                học NodeJs</a></h5>
+                                                        <span class="text-muted
+                                                            font-weight-normal
+                                                            font-italic
+                                                            d-block">Lập trình
+                                                            web</span>
+                                                    </div>
+                                                </div>
+                                            </th>
+                                            <td class="border-0 align-middle"><strong>$79.00</strong></td>
+                                            <td class="align-middle"><a href="#"
+                                                    class="text-dark"><i
+                                                        class="fa fa-trash"></i></a>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">
+                                                    <div class="p-2">
+                                                        <img
+                                                            src="images/courses_avatar/2.jpg"
+                                                            alt="" width="70"
+                                                            class="img-fluid
+                                                            rounded shadow-sm">
+                                                        <div class="ml-3
+                                                            d-inline-block
+                                                            align-middle">
+                                                            <h5 class="mb-0"><a
+                                                                    href="#"
+                                                                    class="text-dark
+                                                                    d-inline-block">Khóa
+                                                                    học làm giàu</a></h5>
+                                                            <span
+                                                                class="text-muted
+                                                                font-weight-normal
+                                                                font-italic">Kỹ
+                                                                năng sống</span>
+                                                        </div>
+                                                    </div>
+                                                </th>
+                                                <td class="align-middle"><strong>$79.00</strong></td>
+                                                <td class="align-middle"><a
+                                                        href="#"
+                                                        class="text-dark"><i
+                                                            class="fa fa-trash"></i></a>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <div class="p-2">
+                                                            <img
+                                                                src="images/courses_avatar/3.jpg"
+                                                                alt=""
+                                                                width="70"
+                                                                class="img-fluid
+                                                                rounded
+                                                                shadow-sm">
+                                                            <div class="ml-3
+                                                                d-inline-block
+                                                                align-middle">
+                                                                <h5
+                                                                    class="mb-0">
+                                                                    <a href="#"
+                                                                        class="text-dark
+                                                                        d-inline-block">Khóa
+                                                                        học
+                                                                        NodeJs</a>
+                                                                </h5>
+                                                                <span
+                                                                    class="text-muted
+                                                                    font-weight-normal
+                                                                    font-italic">Lập
+                                                                    trình web</span>
+                                                            </div>
+                                                        </div>
+                                                    </th>
+                                                    <td class="align-middle"><strong>$79.00</strong></td>
+                                                    <td class="align-middle"><a
+                                                            href="#"
+                                                            class="text-dark"><i
+                                                                class="fa
+                                                                fa-trash"></i></a>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    {{/ifEquals}}
 
-                        <div class="tab-pane fade" id="changePassword"
-                            role="tabpanel" aria-labelledby="changePassword-tab">
-                            <form action="#">
+                                    <div class="tab-pane fade"
+                                        id="changePassword" role="tabpanel"
+                                        aria-labelledby="changePassword-tab">
+                                        <form action="#">
 
-                                <div class="form-group">
-                                    <input type="password" id="newPass" class="form-control" 
-                                    placeholder="Mật khẩu mới" required>
+                                            <div class="form-group">
+                                                <input type="password"
+                                                    id="newPass"
+                                                    class="form-control"
+                                                    placeholder="Mật khẩu mới"
+                                                    required>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <input type="password"
+                                                    id="newPassConfirm"
+                                                    class="form-control"
+                                                    placeholder="Nhập lại mật
+                                                    khẩu mới" required>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <input type="password"
+                                                    id="oldPass"
+                                                    class="form-control"
+                                                    placeholder="Mật khẩu cũ"
+                                                    required>
+                                            </div>
+
+                                            <button type="submit" class="btn
+                                                btn-primary mb-4">Đổi mật khẩu</button>
+                                        </form>
+                                    </div>
                                 </div>
-
-                                <div class="form-group">
-                                    <input type="password" id="newPassConfirm" class="form-control" 
-                                    placeholder="Nhập lại mật khẩu mới" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <input type="password" id="oldPass" class="form-control" 
-                                    placeholder="Mật khẩu cũ" required>
-                                </div>
-
-                                <button type="submit" class="btn btn-primary mb-4">Đổi mật khẩu</button>
-
-                            </form>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
-        </div>
-    </form>
-</div>
 
-{{#section 'css'}}
-<link rel="stylesheet" type="text/css" href="/styles/profile.css">
-<link rel="stylesheet" type="text/css" href="/styles/main_styles.css">
-{{/section}}
+            {{#section 'css'}}
+            <link rel="stylesheet" type="text/css" href="/styles/profile.css">
+            <link rel="stylesheet" type="text/css"
+                href="/styles/main_styles.css">
+            {{/section}}
