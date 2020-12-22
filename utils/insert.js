@@ -1208,11 +1208,16 @@ const course_data = [
         views: 0,
         saleOff: 0,
         avatar: '/images/courses_avatar/1.jpg',
-        desDeep: 'Khóa học NodeJS cho người mới bắt đầu. Đây là khóa học cơ bản toàn diện nhất, cung cấp cho người học những hiểu biết cơ bản về server, internet protocol, kiến thức cơ bản nhất về lập trình web với NodeJS. NodeJS là một mội trường thực thi phổ biến và được lựa chọn hàng đầu cho các Web developer.',
+        desDeep: `NodeJS là một mã nguồn mở, được dùng để xây dựng các ứng dụng mạng, đặc biệt các ứng đòi hỏi real time (thời gian thực) & khối lượng request lớn. Chúng ta có thể lập trình NodeJS với ngôn ngữ JavaScript. NodeJS có thể được dùng để xây dựng hoàn chỉnh một trang web, ngoài ra, NodeJS còn có thể tích hợp để xây dựng các ứng dụng real time trên iOS, Android, Game online với Unity, Cocos2dx.
+                Về tốc độ thực thi, Node.js có thể nói là nhanh nhất hiện nay, hơn cả java. Bởi lẽ node.js kế thừa công nghệ V8 của google, khả năng tự build server bằng ngôn ngữ client giúp cho việc trung chuyển dữ liệu diễn ra nhanh hơn. Đồng thời giảm khả năng rủi ro bị ngắt (interupt). Ngoài ra nhờ cơ chế Non I/O Blocking, tận dụng tối đa tài nguyên của server, không tạo ra độ trễ như các ngôn ngữ phía server khác.
+                NodeJS thực sự tỏa sáng trong việc xây dựng RESTful API (JSON). Gần như không có ngôn ngữ nào xử lý JSON dễ dàng hơn Javascript, chưa kể các API server thường không phải thực hiện những xử lý nặng nề nhưng lượng concurrent request thì rất cao. Mà Node.js thì xử lý non-blocking. Chẳng còn gì thích hợp hơn Node.js trong trường hợp này!
+                NodeJS sinh ra là để xây dựng các ứng dụng thời gian thực (Real time) như ứng dụng chat, các dịch vụ mạng xã hội như Facebook, Twitter,…
+                Đối với thiết kế web: NodeJS xử lý mọi request trên cùng một process giúp cho việc xây dựng các bộ nhớ đệm chưa bao giờ đơn giản đến thế: Node.js có thể handle hàng nghìn kết nối đồng thời với chi phí tối thiểu trên 1 quá trình duy nhất.
+                NodeJS sử dụng ngôn ngữ JavaScript - một ngôn ngữ phổ biến, và chính điều này đã giúp node.js trở nên quen thuộc và dễ dàng được áp dụng rộng rãi hơn.`,
         commands: ['Có hiểu biết cơ bản về lập trình', 
         'Hiểu biết cơ bản về cấu trúc dữ liệu và giải thuật, các kiểu dữ liệu đơn giản',
         'Có khả năng đọc hiểu tài liệu tiếng anh sẽ được cung cấp trong khóa học'],
-        target: 'Sau khi kết thúc khóa học bạn sẽ có những kiến thức cơ bản nhất về NodeJS là nền tản để tiếp tục học tập lập trình BE.',
+        target: 'Sau khi kết thúc khóa học bạn sẽ có những kiến thức cơ bản nhất về NodeJS, đủ kiến thức để xây dựng những web thương mại điện tử bằng NodeJS và ứng tuyển thực tập về NodeJS ở các công ty.',
     },{
         name: 'Khóa học Full-stack web developer',
         tags: [],
@@ -1223,15 +1228,22 @@ const course_data = [
         teacher: '',
         students: 0,
         comments: [],
-        description: 'Khóa học bao gồm nhiều kỹ năng cả về FE và BE',
+        description: 'Khóa học bao gồm nhiều kỹ năng cả về FE và BE : HTML, CSS, JS, NodeJS, AngularJS,...',
         views: 0,
         saleOff: 0,
         avatar: '/images/courses_avatar/2.jpg',
-        desDeep: 'Khóa học cung cấp những kiến thức và nền tảng cơ bản nhất cả về Front-end lẫn Back-end cho học viên. Về FE, các bạn sẽ được học cơ bản từ HTML, CSS, ... tiếp đến và JS và ES6,ES7, ES2020,... Về Back-end, các bạn sẽ được học cách tạo server, sử dụng CSDL, deploy, CICD,...',
+        desDeep: `Khóa học cung cấp những kiến thức và nền tảng cơ bản nhất cả về Front-end lẫn Back-end cho học viên.
+         Về front-end, các bạn sẽ được học cơ bản từ HTML, CSS, responsive,... tiếp đến là JS và ES6,ES7, ES2020,...
+         Ngoài ra khóa học còn cung cấp kiến thức về các frameword của JavaScript như ReactJS, AngularJS, VueJS hỗ trợ
+         lập trình về client-side. Về Back-end, các bạn sẽ được học cách tạo server, sử dụng CSDL, deploy, CICD,...Trong khóa học này
+         chúng ta sẽ sử dụng NodeJS ở server-side và Express là chủ yếu, về Cơ sở dũ liệu, bạn học sẽ được hướng dẫn sử dụng MySQL,
+         và No-SQL MongoDB. Ngoài ra khóa học cũng sẽ hướng dẫn hoàn thành một Project hoàn chỉnh về một trang thương mại điện tử, đồng
+         thời cũng hướng dẫn bạn học deploy website của mình lên Heroku.`,
         commands: ['Có hiểu biết cơ bản về lập trình', 
         'Hiểu biết cơ bản về cấu trúc dữ liệu và giải thuật, các kiểu dữ liệu đơn giản',
         'Có khả năng đọc hiểu tài liệu tiếng anh sẽ được cung cấp trong khóa học'],
-        target: 'Sau khi kết thúc khóa học các bạn sẽ có một nền tảng vững chắc để trở thành một Full-stack developer.',
+        target: `Sau khi kết thúc khóa học các bạn sẽ có một nền tảng vững chắc để trở thành một Full-stack developer.
+        Có đầy đủ kiến thức về Front-end và Back-end để ứng tuyển thực tập ở các công ty.`,
     },{
         name: 'Khóa học NodeJS chuyên sâu',
         tags: [],
@@ -1246,11 +1258,19 @@ const course_data = [
         views: 0,
         saleOff: 0,
         avatar: '/images/courses_avatar/3.jpg',
-        desDeep: 'Đây là khóa học nối tiếp của khóa học NodeJS cho người mới bắt đầu, sau khi đã có những kiến thức cơ bản chúng ta sẽ tiếp tục tìm hiểu những kiến thức nâng cao hơn về NodeJS. Trong khóa học này bạn sẽ được học về Filesystem, Module, Deloy, Authentication,...',
+        desDeep: `NodeJS là một mã nguồn mở, được dùng để xây dựng các ứng dụng mạng, đặc biệt các ứng đòi hỏi real time (thời gian thực) & khối lượng request lớn. Chúng ta có thể lập trình NodeJS với ngôn ngữ JavaScript. NodeJS có thể được dùng để xây dựng hoàn chỉnh một trang web, ngoài ra, NodeJS còn có thể tích hợp để xây dựng các ứng dụng real time trên iOS, Android, Game online với Unity, Cocos2dx.
+        Về tốc độ thực thi, Node.js có thể nói là nhanh nhất hiện nay, hơn cả java. Bởi lẽ node.js kế thừa công nghệ V8 của google, khả năng tự build server bằng ngôn ngữ client giúp cho việc trung chuyển dữ liệu diễn ra nhanh hơn. Đồng thời giảm khả năng rủi ro bị ngắt (interupt). Ngoài ra nhờ cơ chế Non I/O Blocking, tận dụng tối đa tài nguyên của server, không tạo ra độ trễ như các ngôn ngữ phía server khác.
+        NodeJS thực sự tỏa sáng trong việc xây dựng RESTful API (JSON). Gần như không có ngôn ngữ nào xử lý JSON dễ dàng hơn Javascript, chưa kể các API server thường không phải thực hiện những xử lý nặng nề nhưng lượng concurrent request thì rất cao. Mà Node.js thì xử lý non-blocking. Chẳng còn gì thích hợp hơn Node.js trong trường hợp này!
+        NodeJS sinh ra là để xây dựng các ứng dụng thời gian thực (Real time) như ứng dụng chat, các dịch vụ mạng xã hội như Facebook, Twitter,…
+        Đối với thiết kế web: NodeJS xử lý mọi request trên cùng một process giúp cho việc xây dựng các bộ nhớ đệm chưa bao giờ đơn giản đến thế: Node.js có thể handle hàng nghìn kết nối đồng thời với chi phí tối thiểu trên 1 quá trình duy nhất.
+        NodeJS sử dụng ngôn ngữ JavaScript - một ngôn ngữ phổ biến, và chính điều này đã giúp node.js trở nên quen thuộc và dễ dàng được áp dụng rộng rãi hơn.
+        Đây là khóa học nối tiếp của khóa học NodeJS cho người mới bắt đầu, sau khi đã có những kiến thức cơ bản 
+        chúng ta sẽ tiếp tục tìm hiểu những kiến thức nâng cao hơn về NodeJS. Trong khóa học này bạn sẽ được học về Filesystem,
+         Module, Deloy, Authentication,...`,
         commands: ['Có hiểu biết cơ bản về lập trình', 
         'Hiểu biết cơ bản về cấu trúc dữ liệu và giải thuật, các kiểu dữ liệu đơn giản',
         'Có khả năng đọc hiểu tài liệu tiếng anh sẽ được cung cấp trong khóa học'],
-        target: 'Hoàn thiện những kiến thức về lập trình web với NodeJS ở SS',
+        target: 'Hoàn thiện và nâng cao kiến thức về NodeJS',
     },{
         name: 'Khóa học MERN: MongoDB, Express, ReactJS, NodeJS',
         tags: [],
@@ -1265,9 +1285,15 @@ const course_data = [
         views: 0,
         saleOff: 0,
         avatar: '/images/courses_avatar/4.jpg',
-        desDeep: '',
-        commands: [],
-        target: '',
+        desDeep: `Khóa học full-stack với MongoDB database và các framework của JS. Trong khóa học này, bạn học sẽ được cung
+        cấp những kiến thức cần thiết để tạo một website thương mại điện tử  với MERN: M - MongoBD, E - Express, R - ReacJS, N - NodeJS.
+        Khóa học sẽ hướng dẫn bạn sử dụng NodeJS + Express để tạo một server và chạy trên chính máy tính của mình; sử dụng ReactJS để 
+        code giao diện ở client-side, bên cạnh kiến thức cơ bản về React như Component, Router, ... khóa học còn cung cấp kiến thức về 
+        Hook, Redux,...; cơ sở dữ liệu được dùng trong khóa học này như đã đề cập ở trên chính là MongoDB - một No-SQL.`,
+        commands: ['Có hiểu biết cơ bản về lập trình', 
+        'Hiểu biết cơ bản về cấu trúc dữ liệu và giải thuật, các kiểu dữ liệu đơn giản',
+        'Có khả năng đọc hiểu tài liệu tiếng anh sẽ được cung cấp trong khóa học'],
+        target: 'Hiểu biết về 4 thành phần của MEAN, có khả năng tự lập trình các website sử dụng những kiến thức đã học.',
     },{
         name: 'Khóa học MEAN: MongoDB, Express, AngularJS, NodeJS',
         tags: [],
@@ -1282,9 +1308,15 @@ const course_data = [
         views: 0,
         saleOff: 0,
         avatar: '/images/courses_avatar/5.png',
-        desDeep: '',
-        commands: [],
-        target: '',
+        desDeep: `Khóa học full-stack với MongoDB database và các framework của JS. Trong khóa học này, bạn học sẽ được cung
+        cấp những kiến thức cần thiết để tạo một website thương mại điện tử  với MERN: M - MongoBD, E - Express, R - ReacJS, N - NodeJS.
+        Khóa học sẽ hướng dẫn bạn sử dụng NodeJS + Express để tạo một server và chạy trên chính máy tính của mình; sử dụng ReactJS để 
+        code giao diện ở client-side, bên cạnh kiến thức cơ bản về React như Component, Router, ... khóa học còn cung cấp kiến thức về 
+        Hook, Redux,...; cơ sở dữ liệu được dùng trong khóa học này như đã đề cập ở trên chính là MongoDB - một No-SQL.`,
+        commands: ['Có hiểu biết cơ bản về lập trình', 
+        'Hiểu biết cơ bản về cấu trúc dữ liệu và giải thuật, các kiểu dữ liệu đơn giản',
+        'Có khả năng đọc hiểu tài liệu tiếng anh sẽ được cung cấp trong khóa học'],
+        target: 'Hiểu biết về 4 thành phần của MEAN, có khả năng tự lập trình các website sử dụng những kiến thức đã học.',
     },{
         name: 'Javascript Framework: ReactJS and AngularJS',
         tags: [],
@@ -1300,7 +1332,9 @@ const course_data = [
         saleOff: 0,
         avatar: '/images/courses_avatar/6.png',
         desDeep: '',
-        commands: [],
+        commands: ['Có hiểu biết cơ bản về lập trình', 
+        'Hiểu biết cơ bản về cấu trúc dữ liệu và giải thuật, các kiểu dữ liệu đơn giản',
+        'Có khả năng đọc hiểu tài liệu tiếng anh sẽ được cung cấp trong khóa học'],
         target: '',
     },{
         name: 'Khóa học GraphQL',
@@ -1317,7 +1351,9 @@ const course_data = [
         saleOff: 0,
         avatar: '/images/courses_avatar/7.png',
         desDeep: '',
-        commands: [],
+        commands: ['Có hiểu biết cơ bản về lập trình', 
+        'Hiểu biết cơ bản về cấu trúc dữ liệu và giải thuật, các kiểu dữ liệu đơn giản',
+        'Có khả năng đọc hiểu tài liệu tiếng anh sẽ được cung cấp trong khóa học'],
         target: '',
     },{
         name: 'Khóa học lập trình Web cơ bản',
@@ -1334,7 +1370,9 @@ const course_data = [
         saleOff: 0,
         avatar: '/images/courses_avatar/8.jpg',
         desDeep: '',
-        commands: [],
+        commands: ['Có hiểu biết cơ bản về lập trình', 
+        'Hiểu biết cơ bản về cấu trúc dữ liệu và giải thuật, các kiểu dữ liệu đơn giản',
+        'Có khả năng đọc hiểu tài liệu tiếng anh sẽ được cung cấp trong khóa học'],
         target: '',
     },{
         name: 'Khóa học ExpressJS',
@@ -1351,7 +1389,9 @@ const course_data = [
         saleOff: 0,
         avatar: '/images/courses_avatar/9.png',
         desDeep: '',
-        commands: [],
+        commands: ['Có hiểu biết cơ bản về lập trình', 
+        'Hiểu biết cơ bản về cấu trúc dữ liệu và giải thuật, các kiểu dữ liệu đơn giản',
+        'Có khả năng đọc hiểu tài liệu tiếng anh sẽ được cung cấp trong khóa học'],
         target: '',
     },{
         name: 'Khóa học React cơ bản',
@@ -1368,7 +1408,9 @@ const course_data = [
         saleOff: 0,
         avatar: '/images/courses_avatar/10.jpg',
         desDeep: '',
-        commands: [],
+        commands: ['Có hiểu biết cơ bản về lập trình', 
+        'Hiểu biết cơ bản về cấu trúc dữ liệu và giải thuật, các kiểu dữ liệu đơn giản',
+        'Có khả năng đọc hiểu tài liệu tiếng anh sẽ được cung cấp trong khóa học'],
         target: '',
     },{
         name: 'Javascript cơ bản',
@@ -1385,7 +1427,9 @@ const course_data = [
         saleOff: 0,
         avatar: '/images/courses_avatar/11.png',
         desDeep: '',
-        commands: [],
+        commands: ['Có hiểu biết cơ bản về lập trình', 
+        'Hiểu biết cơ bản về cấu trúc dữ liệu và giải thuật, các kiểu dữ liệu đơn giản',
+        'Có khả năng đọc hiểu tài liệu tiếng anh sẽ được cung cấp trong khóa học'],
         target: '',
     },{
         name: 'Javascript nâng cao',
@@ -1402,7 +1446,9 @@ const course_data = [
         saleOff: 0,
         avatar: '/images/courses_avatar/12.jpg',
         desDeep: '',
-        commands: [],
+        commands: ['Có hiểu biết cơ bản về lập trình', 
+        'Hiểu biết cơ bản về cấu trúc dữ liệu và giải thuật, các kiểu dữ liệu đơn giản',
+        'Có khả năng đọc hiểu tài liệu tiếng anh sẽ được cung cấp trong khóa học'],
         target: '',
     },{
         name: 'Javascript ES6',
@@ -1419,7 +1465,9 @@ const course_data = [
         saleOff: 0,
         avatar: '/images/courses_avatar/13.png',
         desDeep: '',
-        commands: [],
+        commands: ['Có hiểu biết cơ bản về lập trình', 
+        'Hiểu biết cơ bản về cấu trúc dữ liệu và giải thuật, các kiểu dữ liệu đơn giản',
+        'Có khả năng đọc hiểu tài liệu tiếng anh sẽ được cung cấp trong khóa học'],
         target: '',
     },{
         name: 'Khóa học NuxtJS',
@@ -1436,7 +1484,9 @@ const course_data = [
         saleOff: 0,
         avatar: '/images/courses_avatar/14.jpeg',
         desDeep: '',
-        commands: [],
+        commands: ['Có hiểu biết cơ bản về lập trình', 
+        'Hiểu biết cơ bản về cấu trúc dữ liệu và giải thuật, các kiểu dữ liệu đơn giản',
+        'Có khả năng đọc hiểu tài liệu tiếng anh sẽ được cung cấp trong khóa học'],
         target: '',
     },{
         name: 'Lập trình web với NodeJS',
@@ -1453,7 +1503,9 @@ const course_data = [
         saleOff: 0,
         avatar: '/images/courses_avatar/15.jpg',
         desDeep: '',
-        commands: [],
+        commands: ['Có hiểu biết cơ bản về lập trình', 
+        'Hiểu biết cơ bản về cấu trúc dữ liệu và giải thuật, các kiểu dữ liệu đơn giản',
+        'Có khả năng đọc hiểu tài liệu tiếng anh sẽ được cung cấp trong khóa học'],
         target: '',
     },
 ]

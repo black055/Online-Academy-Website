@@ -2,7 +2,6 @@ const {User} = require('../utils/db');
 
 module.exports = {
     async getUser(id) {
-        console.log(id);
         return await User.findById(id);
     }, 
 

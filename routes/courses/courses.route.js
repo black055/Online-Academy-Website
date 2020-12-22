@@ -9,16 +9,26 @@ router.get('/', async (req, res) => {
     res.render('courses/courses', {isCourses: true, allCourses: allCourses});
 });
 
+router.get('/lectures', async (req, res) => {
+    res.render('courses/chapter');
+})
 
 router.get('/register/:id', async (req, res) => {
     if (typeof req.user == 'undefined') {
         res.redirect('/login');
     } else {
-        const student = await userModel.getUser(req.user._id);
+        let student = await userModel.getUser(req.user._id);
         let courses = student.courses;
         courses.push(req.params.id);
         await userModel.addCourse(req.user._id, courses);
-        res.redirect(`/courses/${req.params.id}`);
+        student = await userModel.getUser(req.user._id);
+        student.save(function(err) {
+            if (err) console.log(err);
+            req.logIn(student, function(e) {
+                if (e) console.log(e);
+                res.redirect(`/courses/${req.params.id}`);
+            })
+        });
     }
 });
 
@@ -27,7 +37,9 @@ router.get('/:id', async (req, res) => {
     let isRegistered = false;
     if (typeof req.user !== 'undefined') {
         if (req.user.courses.includes(course._id.toString()))
-        isRegistered = true;
+        {
+            isRegistered = true;
+        }
     }
     res.render('courses/course', {course: course, registered: isRegistered});
 });

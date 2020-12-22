@@ -10,27 +10,27 @@ const MongoStore = require("connect-mongo")(session);
 const hbs_section = require("express-handlebars-sections");
 const mdwIsValidated = require("./middlewares/validation.mdw");
 const { User, Teacher, Admin, Course } = require("./utils/db");
-//const {user_data, course_data} = require('./utils/insert');
+const {user_data, course_data} = require('./utils/insert');
 require("./auth");
 
 // Connect to database
 mongoose.connect('mongodb://localhost:27017/mydb', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
 
 // Insert data user
-/*(async function b() {
-    for (let i = 0; i < user_data.length; i++) {
-        let user = await User.findOne({'email': user_data[i].email});
-        if (!user) {
-            user = new User(user_data[i]);
-            user.save();
-        }
-    }
+// (async function b() {
+//     for (let i = 0; i < user_data.length; i++) {
+//         let user = await User.findOne({'email': user_data[i].email});
+//         if (!user) {
+//             user = new User(user_data[i]);
+//             user.save();
+//         }
+//     }
 
-    for (let i = 0; i < course_data.length; i++) {
-        let course = new Course(course_data[i]);
-        course.save();
-    }
-})();*/
+//     for (let i = 0; i < course_data.length; i++) {
+//         let course = new Course(course_data[i]);
+//         course.save();
+//     }
+// })();
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
