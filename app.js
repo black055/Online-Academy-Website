@@ -17,7 +17,11 @@ const userModel = require("./models/user.model.js");
 require("./auth");
 
 // Connect to database
-mongoose.connect('mongodb://localhost:27017/mydb', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
+mongoose.connect("mongodb://localhost:27017/mydb", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+});
 
 // Insert data user
 /*(async function b() {
@@ -99,17 +103,16 @@ app.get("/about", mdwIsValidated, (req, res) => {
 app.use("/courses", mdwIsValidated, require("./routes/courses/courses.route"));
 
 app.get("/profile", mdwIsValidated, async (req, res) => {
-  if (req.user.userType == 'Student') {
+  if (req.user.userType == "Student") {
     totalMoney = await userModel.getTotalMoney(req.user._id);
     res.render("profile/profile", {
       user: req.user,
-      totalMoney: totalMoney
+      totalMoney: totalMoney,
     });
   } else
-  res.render("profile/profile", {
-    user: req.user
-  });
-  
+    res.render("profile/profile", {
+      user: req.user,
+    });
 });
 
 app.get("/contact", mdwIsValidated, (req, res) => {
@@ -131,11 +134,23 @@ app.post(
 
 app.get("/loginfb", passport.authenticate("facebook"));
 
-app.get("/facebook", passport.authenticate("facebook", {successRedirect: "/", failureRedirect: "/login",}));
+app.get(
+  "/facebook",
+  passport.authenticate("facebook", {
+    successRedirect: "/",
+    failureRedirect: "/login",
+  })
+);
 
 app.get("/logingg", passport.authenticate("google"));
 
-app.get("/google", passport.authenticate("google", {successRedirect: "/", failureRedirect: "/login",}));
+app.get(
+  "/google",
+  passport.authenticate("google", {
+    successRedirect: "/",
+    failureRedirect: "/login",
+  })
+);
 
 app.get("/logout", (req, res) => {
   req.logOut();
