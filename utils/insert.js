@@ -1184,7 +1184,7 @@ const course_data = [
         chapters: [
             {
                 title: 'Bài 1: Giới thiệu những kiến thức cơ bản',
-                video: '',
+                video: '/courses/temp/0.mp4',
             },
             {
                 title: 'Bài 2: Template engines',

@@ -1,17 +1,18 @@
-<div style="display: flex;margin-top:150px;" id="lecture">
-    <video controls crossorigin playsinline poster="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg" class="js-player">
-        <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4" type="video/mp4" />
-    </video>
+<div style="display: flex;margin: 150px 100px 100px 100px;" id="lecture">
+    <div class="video">
+        <video controls crossorigin playsinline poster={{course.avatar}} class="js-player">
+            <source src="{{url}}" type="video/mp4" />
+        </video>
+        <div class="course_title">{{course.name}}</div>
+    </div>
 
-    <ul class="dropdowns">
+    <ul class="dropdowns" style="margin-left:50px;">
         {{#each course.chapters}}
         <li>
             <div class="dropdown_item">
-                <div class="dropdown_item_title">{{this.title}}</div>
-                <div class="dropdown_item_text">
-                    <p>Lorem Ipsn gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis
-                        sed odio sit amet nibh vulputate cursus.</p>
-                </div>
+                <a href="/courses/{{../course._id}}/{{@index}}">
+                    <div class="dropdown_item_title">{{this.title}}</div>
+                </a>
             </div>
         </li>
         {{/each}}

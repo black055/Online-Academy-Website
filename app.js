@@ -125,33 +125,15 @@ app.get("/login", mdwIsValidated, (req, res) => {
 });
 
 // Authentication
-app.post(
-  "/login",
-  passport.authenticate("local", {
-    failureRedirect: "/login",
-    successRedirect: "/",
-  })
-);
+app.post("/login", passport.authenticate("local", {failureRedirect: "/login", successRedirect: "/",}));
 
 app.get("/loginfb", passport.authenticate("facebook"));
 
-app.get(
-  "/facebook",
-  passport.authenticate("facebook", {
-    successRedirect: "/",
-    failureRedirect: "/login",
-  })
-);
+app.get("/facebook", passport.authenticate("facebook", {successRedirect: "/", failureRedirect: "/login",}));
 
 app.get("/logingg", passport.authenticate("google"));
 
-app.get(
-  "/google",
-  passport.authenticate("google", {
-    successRedirect: "/",
-    failureRedirect: "/login",
-  })
-);
+app.get("/google", passport.authenticate("google", {successRedirect: "/", failureRedirect: "/login",}));
 
 app.get("/logout", (req, res) => {
   req.logOut();
