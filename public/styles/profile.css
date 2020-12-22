@@ -31,13 +31,13 @@ body{
     right: 0;
     top: 0;
 }
-.profile-head h5{
+.profile-img h4{
     color: #333;
 }
-.profile-head h6{
+.profile-img h5{
     color: #0062cc;
 }
-.profile-edit-btn{
+.profile-edit-btn, .profile-add-btn{
     border: none;
     border-radius: 1.5rem;
     width: 70%;
@@ -45,6 +45,15 @@ body{
     font-weight: 600;
     color: #6c757d;
     cursor: pointer;
+    transition: all 0.5s ease 0s;
+}
+.profile-edit-btn:hover{
+    background: #8519eb;
+    color: #ffffff;
+}
+.profile-add-btn:hover{
+    background: rgb(135, 214, 33);
+    color: #ffffff;
 }
 .proile-rating{
     font-size: 12px;
