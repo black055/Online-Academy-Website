@@ -75,8 +75,7 @@
                                     <ul class="main_nav">
                                         <li id="home"><a href="/">Trang chủ</a></li>
                                         <li id="courses"><a href="/courses">Khóa học</a></li>
-                                        <li class="dropdown" id="categoriesDropdown" 
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <li class="dropdown" id="categoriesDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <a href="/contact" onclick="return false;">Lĩnh vực</a>
                                         </li>
                                         <div class="dropdown-menu" aria-labelledby="categoriesDropdown">
@@ -276,11 +275,12 @@
     <script src="/plugins/easing/easing.js"></script>
     <script src="/plugins/parallax-js-master/parallax.min.js"></script>
     <script src="/js/custom.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.2/jquery.twbsPagination.js"
+        integrity="sha512-uzuo1GprrBscZGr+iQSv8+YQQsKY+rSHJju0FruVsGHV2CZNZPymW/4RkxoHxAxw3Lo5UQaxDMF8zINUfAsGeg==" crossorigin="anonymous"></script>
     <script>
-        {{#if isHome}}
+        {{#if isHome }}
         $('#home').addClass('active');
-        {{else if isAbout}}
+        {{ else if isAbout}}
         $('#about').addClass('active');
         {{else if isContact}}
         $('#contact').addClass('active');
@@ -288,6 +288,7 @@
         $('#courses').addClass('active');
         {{/if}}
     </script>
+    {{{_sections.js}}}
 </body>
 
 </html>

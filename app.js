@@ -14,7 +14,7 @@ const {user_data, course_data} = require('./utils/insert');
 require('./auth');
 
 // Connect to database
-mongoose.connect('mongodb://localhost:27017/mydb', { useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect('mongodb://localhost:27017/mydb', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
 
 // Insert data user
 (async function b() {
@@ -84,16 +84,8 @@ app.get('/about', mdwIsValidated, (req, res) => {
 
 app.use('/courses',mdwIsValidated, require('./routes/courses/courses.route'));
 
-app.get('/course', mdwIsValidated, (req, res) => {
-    res.render('courses/course');
-})
-
 app.get('/profile', mdwIsValidated, (req, res) => {
     res.render('profile/profile')
-})
-
-app.get('/contact', mdwIsValidated, (req, res) => {
-    res.render('contact/contact');
 })
 
 app.get('/login', mdwIsValidated, (req, res) => {res.render('login') });
