@@ -17,7 +17,7 @@ require('./auth');
 mongoose.connect('mongodb://localhost:27017/mydb', { useNewUrlParser: true, useUnifiedTopology: true});
 
 // Insert data user
-(async function b() {
+/* (async function b() {
     for (let i = 0; i < user_data.length; i++) {
         let user = await User.findOne({'email': user_data[i].email});
         if (!user) {
@@ -30,7 +30,7 @@ mongoose.connect('mongodb://localhost:27017/mydb', { useNewUrlParser: true, useU
         let course = new Course(course_data[i]);
         course.save();
     }
-})();
+})(); */
 
 
 const app = express();
@@ -117,6 +117,7 @@ app.get('/logout', (req, res) => {
 });
 
 app.use('/register', require('./routes/register/register.route'));
+app.use('/teacher', require('./routes/teacher/teacher.route'));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
