@@ -10,65 +10,19 @@
                     <form action="#" id="courses_search_form" class="courses_search_form d-flex flex-row align-items-center justify-content-start">
                         <input type="search" class="courses_search_input" placeholder="Search Courses" required="required">
                         <select id="courses_search_select" class="courses_search_select courses_search_input">
-                            <option>All Categories</option>
-                            <option>Category</option>
-                            <option>Category</option>
-                            <option>Category</option>
+                            <option>Tất cả lĩnh vực</option>
+                            <option>Lập trình Web</option>
+                            <option>Lập trình Mobile</option>
                         </select>
-                        <button action="submit" class="courses_search_button ml-auto">search now</button>
+                        <button action="submit" class="courses_search_button ml-auto">Tìm kiếm</button>
                     </form>
                 </div>
                 <div class="courses_container">
-                    <div class="row courses_row">
-                        {{#each allCourses}}
-                        <div class="col-lg-6 course_col">
-                            <div class="course">
-                                <div class="course_image"><img style="width: 345px;" src="{{this.avatar}}" alt=""></div>
-                                <div class="course_body">
-                                    <h3 class="course_title"><a href="#">{{this.name}}</a></h3>
-                                    <div class="course_teacher">{{this.teacher}}</div>
-                                    <div class="course_text">
-                                        <p>{{this.description}}</p>
-                                    </div>
-                                </div>
-                                <div class="course_footer">
-                                    <div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
-                                        <div class="course_info">
-                                            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                                            <span>{{this.students}}</span>
-                                        </div>
-                                        <div class="course_info">
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <span>{{this.rating}} Ratings</span>
-                                        </div>
-                                        <div class="course_price ml-auto">${{this.price}}</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {{/each}}
-                    </div>
+                    <div class="row courses_row"></div>
                     <div class="row pagination_row">
                         <div class="col">
                             <div class="pagination_container d-flex flex-row align-items-center justify-content-start">
-                                <ul class="pagination_list">
-                                    <li class="active"><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-                                </ul>
-                                <div class="courses_show_container ml-auto clearfix">
-                                    <div class="courses_show_text">Showing <span class="courses_showing">1-6</span> of <span class="courses_total">26</span> results:</div>
-                                    <div class="courses_show_content">
-                                        <span>Show: </span>
-                                        <select id="courses_show_select" class="courses_show_select">
-                                            <option>06</option>
-                                            <option>12</option>
-                                            <option>24</option>
-                                            <option>36</option>
-                                        </select>
-                                    </div>
-                                </div>
+                                <ul id="pagination_list"></ul>
                             </div>
                         </div>
                     </div>
@@ -81,21 +35,21 @@
 
                     <!-- Categories -->
                     <div class="sidebar_section">
-                        <div class="sidebar_section_title">Categories</div>
+                        <div class="sidebar_section_title">Công nghệ</div>
                         <div class="sidebar_categories">
                             <ul>
-                                <li><a href="#">Art & Design</a></li>
-                                <li><a href="#">Business</a></li>
-                                <li><a href="#">IT & Software</a></li>
-                                <li><a href="#">Languages</a></li>
-                                <li><a href="#">Programming</a></li>
+                                <li><a href="#">NodeJS</a></li>
+                                <li><a href="#">ExpressJS</a></li>
+                                <li><a href="#">React</a></li>
+                                <li><a href="#">Full-stack</a></li>
+                                <li><a href="#">JavaScript</a></li>
                             </ul>
                         </div>
                     </div>
 
                     <!-- Latest Course -->
                     <div class="sidebar_section">
-                        <div class="sidebar_section_title">Latest Courses</div>
+                        <div class="sidebar_section_title">Khóa học mới nhất</div>
                         <div class="sidebar_latest">
 
                             <!-- Latest Course -->
@@ -244,4 +198,57 @@
 {{#section 'css'}}
 <link rel="stylesheet" type="text/css" href="/styles/courses.css">
 <link rel="stylesheet" type="text/css" href="/styles/courses_responsive.css">
+{{/section}}
+
+{{#section 'js'}}
+<script src="/js/courses.js"></script>
+<script>
+    let courses = [];
+    let content = '';
+    let length = 0;
+    {{#each allCourses }}
+    courses.push(`<div class="col-lg-6 course_col">
+            <div class="course">
+                <div class="course_image"><img style="width: 345px;" src="{{this.avatar}}" alt=""></div>
+                <div class="course_body">
+                    <h3 class="course_title"><a href="/courses/{{this._id}}">{{this.name}}</a></h3>
+                    <div class="course_teacher">{{this.teacher}}</div>
+                    <div class="course_text">
+                        <p>{{this.description}}</p>
+                    </div>
+                </div>
+                <div class="course_footer">
+                    <div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
+                        <div class="course_info">
+                            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                            <span>{{this.students}}</span>
+                        </div>
+                        <div class="course_info">
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <span>{{this.rating}} Ratings</span>
+                        </div>
+                        <div class="course_price ml-auto">{{this.price}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>`);
+    {{/each}}
+
+    length = Math.ceil(courses.length / 10);
+    $('#pagination_list').twbsPagination({
+        totalPages: length,
+        visiblePages: 5,
+        first: 'Trang đầu',
+        prev: 'Trước',
+        next: 'Sau',
+        last: 'Trang cuối',
+        onPageClick: function (event, page) {
+            content = '';
+            for (let i = (page - 1) * 10; i < courses.length && i < (page - 1) * 10 + 10; i++) {
+                content += courses[i];
+            }
+            $('.courses_row').html(content);
+        }
+    });
+</script>
 {{/section}}

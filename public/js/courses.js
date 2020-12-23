@@ -42,7 +42,6 @@ $(document).ready(function()
 
 	initMenu();
 	initHeaderSearch();
-	initColorbox();
 
 	/* 
 
@@ -139,18 +138,5 @@ $(document).ready(function()
 	5. Init Colorbox
 
 	*/
-
-	function initColorbox()
-	{
-		if($('.gallery_item').length)
-		{
-			$('.colorbox').colorbox(
-			{
-				rel:'colorbox',
-				photo: true,
-				maxWidth: '90%'
-			});
-		}
-	}
 
 });

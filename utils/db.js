@@ -47,6 +47,9 @@ const course = new Schema({
     views: Number,
     saleOff: Number,
     avatar: String,
+    desDeep: String,
+    commands: Array,
+    target: String,
 })
 
 module.exports = {
