@@ -1,4 +1,4 @@
-const {User} = require('../utils/db');
+const {User, Course} = require('../utils/db');
 
 module.exports = {
     async getUser(id) {
@@ -15,7 +15,8 @@ module.exports = {
             result = 0;
             if (user != null) {
                 for (i = 0; i < user.courses.length; i++) {
-                    result = result + user.courses[i].price
+                    course = await Course.findById(user.courses[i]);
+                    result = result + course.price;
                 }
             }
             resolve(result);
