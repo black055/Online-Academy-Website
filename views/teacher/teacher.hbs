@@ -1,0 +1,243 @@
+<form action="/teacher/add_course" method="POST" class="form" enctype="multipart/form-data">
+  <div class="edit h-100 w-100">
+    <div class="edit_chapter_container">
+      <div class="container-fluid mx-auto">
+        <div class="row">
+          <div class="col-lg-7">
+            <div class="edit_form">
+              <div class="edit_chapter_title">Đăng khóa học</div>
+              <div>
+                <div class="form_title">Tên khóa học</div>
+                <input type="text" class="comment_input" name="name" required="required">
+              </div>
+              <div>
+                <div class="form_title">Mô tả ngắn gọn nội dung khóa học</div>
+                <input type="text" class="comment_input" name="tinyDes" required="required">
+              </div>
+              <div>
+                <div class="form_title">Mô tả chi tiết nội dung khóa học</div>
+                <textarea id="descEditor" name="description"></textarea>
+              </div>
+              <div class="d-flex flex-column justify-content-center">
+                <label for="isFinished" class="form_title font-weight-bold">Hãy check nếu nội dung khóa học đã hoàn
+                  thành</label>
+                <div class="d-flex align-items-center">
+                  <input type="checkbox" name="isFinished" id="cbProgress">
+                  <span id="cbProgText" class="font-weight-bold">Đã hoàn thành</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form_title" for="category">Lĩnh vực:</label>
+                <select name="group" class="form-control" id="category">
+                  {{#if categoryList}}
+                  {{#each categoryList as |c|}}
+                  <option>{{c}}</option>
+                  {{/each}}
+                  {{else}}
+                  <option>Chưa có dữ liệu</option>
+                  {{/if}}
+                </select>
+              </div>
+
+              <div>
+                <div class="form_title">Giá</div>
+                <input type="number" class="comment_input" name="price" value="0" required="required">
+              </div>
+            </div>
+
+            <div class="upvideo">
+              <div class="edit_chapter_title">Soạn chương</div>
+
+              <div class="chapter_title form_title">
+                <div id="chapter_title">
+                  {{!-- Thêm ô input tên mỗi chương ở đây --}}
+                </div>
+              </div>
+
+              <div class="form_title">Lưu ý đăng video theo thứ tự của các chương</div>
+              <div class="upvideo_box d-flex justify-content-center">
+                <div class="file-loading">
+                  {{!-- Upload video chương học --}}
+                  <input id="video_chapter" name="chapter" type="file" class="file" multiple>
+                </div>
+              </div>
+
+              <div class="form_title">
+                Số lượng video: <span id="file_len">0</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-5 text-center">
+
+            {{!-- Ảnh đại diện khóa học --}}
+            <div class="course_thumbnail">
+              <div class="edit_chapter_title">Ảnh đại diện của khóa học</div>
+              <div class="thumbnail_box d-flex w-100 justify-content-center">
+                <div class="file-loading">
+                  <input id="avatar" name="avatar" type="file" class="mt-1">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-center">
+          <button type="submit" class="comment_button trans_200 mx-auto w-100">Đăng</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+{{#section 'css'}}
+<link rel="stylesheet" type="text/css" href="/styles/contact.css">
+<link rel="stylesheet" type="text/css" href="/styles/contact_responsive.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.2/css/fileinput.min.css">
+<link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.2/themes/explorer-fas/theme.min.css">
+
+<style>
+  .edit {
+    width: 100%;
+    padding-bottom: 100px;
+  }
+
+  .edit_map {
+    width: 100%;
+  }
+
+  .edit_chapter_container {
+    margin-top: 150px;
+  }
+
+  .edit_chapter_title {
+    font-family: 'Roboto Slab', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: #384158;
+  }
+
+  .edit_form {
+    padding-right: 10px;
+  }
+
+  .edit_chapter {
+    padding-left: 45px;
+  }
+
+  .edit_chapter_text {
+    margin-top: 27px;
+  }
+
+  .edit_chapter_location {
+    margin-top: 28px;
+  }
+
+  .edit_chapter_location_title {
+    font-family: 'Roboto Slab', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #384158;
+  }
+
+  #cbProgText {
+    color: #384158;
+    margin-left: 5px;
+  }
+
+  .form div {
+    margin: 15px 0px;
+  }
+
+  .course_thumbnail .krajee-default.file-preview-frame,
+  .course_thumbnail .krajee-default.file-preview-frame:hover {
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    text-align: center;
+  }
+
+  .course_thumbnail {
+    display: inline-block;
+  }
+
+  .course_thumbnail .file-input {
+    display: table-cell;
+    width: 213px;
+  }
+</style>
+
+{{/section}}
+
+{{#section 'jsHead'}}
+<script src='https://cdn.tiny.cloud/1/zkbs0drivq1btxfqv1gxw0h4ci8re203rj131aojg9mu74y2/tinymce/5/tinymce.min.js'
+  referrerpolicy="origin">
+  </script>
+<script>
+  tinymce.init({
+    selector: '#descEditor',
+    height: 450,
+    plugins: 'paste link autolink lists table',
+    menubar: false,
+    toolbar: [
+      'undo redo | bold italic underline strikethrough | numlist bullist | alignleft aligncenter alignright | forecolor backcolor | table link image media',
+    ],
+  });
+</script>
+{{/section}}
+
+{{#section 'js'}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.2/js/fileinput.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.2/themes/fas/theme.min.js"></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.2/themes/explorer-fas/theme.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.2/js/locales/vi.min.js"></script>
+<script>
+  $("#avatar").fileinput({
+    theme: "fas",
+    maxFileSize: 10000,
+    showClose: false,
+    showCaption: false,
+    showBrowse: false,
+    browseOnZoneClick: true,
+    removeLabel: '',
+    removeIcon: '<i class="fas fa-trash" aria-hidden="true"></i>',
+    language: 'vi',
+    msgErrorClass: 'alert alert-block alert-danger',
+    layoutTemplates: { main2: '{preview} ' + ' {remove} {browse}' },
+    allowedFileTypes: ["image"]
+  }).hide();
+
+  $('#video_chapter').fileinput({
+    theme: "explorer-fas",
+    showBrowse: false,
+    showCaption: false,
+    showRemove: false,
+    showUpload:false,
+    showCancel: false,
+    showClose: true,
+    browseOnZoneClick: true,
+    enableResumableUpload: true,
+    maxFileCount: 20,
+    allowedFileTypes: ["video"],
+    uploadUrl: "/teacher/upload-file-chunks",
+    deleteUrl: '/teacher/file-delete',
+    language: 'vi'
+  }).hide();
+
+  $('#video_chapter').change(() => {
+    setTimeout(() => {
+      const file_count = $('#video_chapter').fileinput('getFilesCount', true);
+      $('#file_len').html(file_count);
+
+      $('#chapter_title').html('');
+      for (let i = 0; i < file_count; i++) {
+        $('#chapter_title').append(`Tên chương ${i + 1}
+                <input type="text" class="comment_input" name="chapter_title">`);
+      }
+    }, 500);
+  })
+</script>
+{{/section}}

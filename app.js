@@ -141,7 +141,8 @@ app.get("/logout", (req, res) => {
   res.redirect("/login");
 });
 
-app.use("/register", require("./routes/register/register.route"));
+app.use('/register', require('./routes/register/register.route'));
+app.use('/teacher', require('./routes/teacher/teacher.route'));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

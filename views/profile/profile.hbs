@@ -35,45 +35,38 @@
                 <div class="profile-head">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" id="info-tab"
-                                data-toggle="tab" href="#info" role="tab"
+                            <a class="nav-link active" id="info-tab" data-toggle="tab" href="#info" role="tab"
                                 aria-controls="info" aria-selected="true">Thông
                                 tin</a>
                         </li>
                         {{#ifEquals user.userType "Student"}}
                         <li class="nav-item">
-                            <a class="nav-link" id="statistic-tab"
-                                data-toggle="tab" href="#statistic" role="tab"
+                            <a class="nav-link" id="statistic-tab" data-toggle="tab" href="#statistic" role="tab"
                                 aria-controls="statistic" aria-selected="false">Thống
                                 kê</a>
                         </li>
                         {{/ifEquals}}
                         <li class="nav-item">
-                            <a class="nav-link" id="myCourses-tab"
-                                data-toggle="tab" href="#myCourses" role="tab"
+                            <a class="nav-link" id="myCourses-tab" data-toggle="tab" href="#myCourses" role="tab"
                                 aria-controls="myCourses" aria-selected="false">Khóa
                                 học của tôi</a>
                         </li>
                         {{#ifEquals user.userType "Student"}}
                         <li class="nav-item">
-                            <a class="nav-link" id="watchList-tab"
-                                data-toggle="tab" href="#watchList" role="tab"
+                            <a class="nav-link" id="watchList-tab" data-toggle="tab" href="#watchList" role="tab"
                                 aria-controls="watchList" aria-selected="false">Khóa
                                 học yêu thích</a>
                         </li>
                         {{/ifEquals}}
                         <li class="nav-item">
-                            <a class="nav-link" id="changePassword-tab"
-                                data-toggle="tab" href="#changePassword"
-                                role="tab" aria-controls="changePassword"
-                                aria-selected="false">Đổi mật khẩu</a>
+                            <a class="nav-link" id="changePassword-tab" data-toggle="tab" href="#changePassword"
+                                role="tab" aria-controls="changePassword" aria-selected="false">Đổi mật khẩu</a>
                         </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
 
                         <!-- Infomation pane -->
-                        <div class="tab-pane fade show active" id="info"
-                            role="tabpanel" aria-labelledby="info-tab">
+                        <div class="tab-pane fade show active" id="info" role="tabpanel" aria-labelledby="info-tab">
                             <div class="row">
                                 <div class="col-md-6">
                                     <label>Tên người dùng</label>
@@ -118,8 +111,7 @@
 
                         {{#ifEquals user.userType "Student"}}
                         <!-- Student's tatistic pane -->
-                        <div class="tab-pane fade" id="statistic"
-                            role="tabpanel" aria-labelledby="statistic-tab">
+                        <div class="tab-pane fade" id="statistic" role="tabpanel" aria-labelledby="statistic-tab">
                             <div class="row">
                                 <div class="col-md-6">
                                     <label>Khóa học đã tham gia</label>
@@ -149,8 +141,7 @@
 
 
                         <!-- My courses pane -->
-                        <div class="tab-pane fade" id="myCourses"
-                            role="tabpanel" aria-labelledby="myCourses-tab">
+                        <div class="tab-pane fade" id="myCourses" role="tabpanel" aria-labelledby="myCourses-tab">
                             {{#ifEquals user.userType "Student"}}
                             <!-- Student's courses here -->
                             <div class="table-responsive">
@@ -174,17 +165,12 @@
                                         <tr>
                                             <th scope="row" class="border-0">
                                                 <div class="p-2">
-                                                    <img
-                                                        src="images/courses_avatar/1.jpg"
-                                                        alt="" width="70"
-                                                        class="img-fluid rounded
+                                                    <img src="images/courses_avatar/1.jpg" alt="" width="70" class="img-fluid rounded
                                                         shadow-sm">
                                                     <div class="ml-3
                                                         d-inline-block
                                                         align-middle">
-                                                        <h5 class="mb-0"> <a
-                                                                href="#"
-                                                                class="text-dark
+                                                        <h5 class="mb-0"> <a href="#" class="text-dark
                                                                 d-inline-block
                                                                 align-middle">Khóa
                                                                 học NodeJs</a></h5>
@@ -201,17 +187,12 @@
                                         <tr>
                                             <th scope="row">
                                                 <div class="p-2">
-                                                    <img
-                                                        src="images/courses_avatar/2.jpg"
-                                                        alt="" width="70"
-                                                        class="img-fluid rounded
+                                                    <img src="images/courses_avatar/2.jpg" alt="" width="70" class="img-fluid rounded
                                                         shadow-sm">
                                                     <div class="ml-3
                                                         d-inline-block
                                                         align-middle">
-                                                        <h5 class="mb-0"><a
-                                                                href="#"
-                                                                class="text-dark
+                                                        <h5 class="mb-0"><a href="#" class="text-dark
                                                                 d-inline-block">Khóa
                                                                 học làm giàu</a></h5>
                                                         <span class="text-muted
@@ -226,17 +207,12 @@
                                         <tr>
                                             <th scope="row">
                                                 <div class="p-2">
-                                                    <img
-                                                        src="images/courses_avatar/3.jpg"
-                                                        alt="" width="70"
-                                                        class="img-fluid rounded
+                                                    <img src="images/courses_avatar/3.jpg" alt="" width="70" class="img-fluid rounded
                                                         shadow-sm">
                                                     <div class="ml-3
                                                         d-inline-block
                                                         align-middle">
-                                                        <h5 class="mb-0"> <a
-                                                                href="#"
-                                                                class="text-dark
+                                                        <h5 class="mb-0"> <a href="#" class="text-dark
                                                                 d-inline-block">Khóa
                                                                 học NodeJs</a></h5>
                                                         <span class="text-muted
@@ -259,8 +235,7 @@
 
                         {{#ifEquals user.userType "Student"}}
                         <!-- Student's watch list pane -->
-                        <div class="tab-pane fade" id="watchList"
-                            role="tabpanel" aria-labelledby="watchList-tab">
+                        <div class="tab-pane fade" id="watchList" role="tabpanel" aria-labelledby="watchList-tab">
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
@@ -287,17 +262,12 @@
                                         <tr>
                                             <th scope="row" class="border-0">
                                                 <div class="p-2">
-                                                    <img
-                                                        src="images/courses_avatar/1.jpg"
-                                                        alt="" width="70"
-                                                        class="img-fluid rounded
+                                                    <img src="images/courses_avatar/1.jpg" alt="" width="70" class="img-fluid rounded
                                                         shadow-sm">
                                                     <div class="ml-3
                                                         d-inline-block
                                                         align-middle">
-                                                        <h5 class="mb-0"> <a
-                                                                href="#"
-                                                                class="text-dark
+                                                        <h5 class="mb-0"> <a href="#" class="text-dark
                                                                 d-inline-block
                                                                 align-middle">Khóa
                                                                 học NodeJs</a></h5>
@@ -310,124 +280,94 @@
                                                 </div>
                                             </th>
                                             <td class="border-0 align-middle"><strong>$79.00</strong></td>
-                                            <td class="align-middle"><a href="#"
-                                                    class="text-dark"><i
+                                            <td class="align-middle"><a href="#" class="text-dark"><i
                                                         class="fa fa-trash"></i></a>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    <div class="p-2">
-                                                        <img
-                                                            src="images/courses_avatar/2.jpg"
-                                                            alt="" width="70"
-                                                            class="img-fluid
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">
+                                                <div class="p-2">
+                                                    <img src="images/courses_avatar/2.jpg" alt="" width="70" class="img-fluid
                                                             rounded shadow-sm">
-                                                        <div class="ml-3
+                                                    <div class="ml-3
                                                             d-inline-block
                                                             align-middle">
-                                                            <h5 class="mb-0"><a
-                                                                    href="#"
-                                                                    class="text-dark
+                                                        <h5 class="mb-0"><a href="#" class="text-dark
                                                                     d-inline-block">Khóa
-                                                                    học làm giàu</a></h5>
-                                                            <span
-                                                                class="text-muted
+                                                                học làm giàu</a></h5>
+                                                        <span class="text-muted
                                                                 font-weight-normal
                                                                 font-italic">Kỹ
-                                                                năng sống</span>
-                                                        </div>
+                                                            năng sống</span>
                                                     </div>
-                                                </th>
-                                                <td class="align-middle"><strong>$79.00</strong></td>
-                                                <td class="align-middle"><a
-                                                        href="#"
-                                                        class="text-dark"><i
-                                                            class="fa fa-trash"></i></a>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">
-                                                        <div class="p-2">
-                                                            <img
-                                                                src="images/courses_avatar/3.jpg"
-                                                                alt=""
-                                                                width="70"
-                                                                class="img-fluid
+                                                </div>
+                                            </th>
+                                            <td class="align-middle"><strong>$79.00</strong></td>
+                                            <td class="align-middle"><a href="#" class="text-dark"><i
+                                                        class="fa fa-trash"></i></a>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">
+                                                <div class="p-2">
+                                                    <img src="images/courses_avatar/3.jpg" alt="" width="70" class="img-fluid
                                                                 rounded
                                                                 shadow-sm">
-                                                            <div class="ml-3
+                                                    <div class="ml-3
                                                                 d-inline-block
                                                                 align-middle">
-                                                                <h5
-                                                                    class="mb-0">
-                                                                    <a href="#"
-                                                                        class="text-dark
+                                                        <h5 class="mb-0">
+                                                            <a href="#" class="text-dark
                                                                         d-inline-block">Khóa
-                                                                        học
-                                                                        NodeJs</a>
-                                                                </h5>
-                                                                <span
-                                                                    class="text-muted
+                                                                học
+                                                                NodeJs</a>
+                                                        </h5>
+                                                        <span class="text-muted
                                                                     font-weight-normal
                                                                     font-italic">Lập
-                                                                    trình web</span>
-                                                            </div>
-                                                        </div>
-                                                    </th>
-                                                    <td class="align-middle"><strong>$79.00</strong></td>
-                                                    <td class="align-middle"><a
-                                                            href="#"
-                                                            class="text-dark"><i
-                                                                class="fa
+                                                            trình web</span>
+                                                    </div>
+                                                </div>
+                                            </th>
+                                            <td class="align-middle"><strong>$79.00</strong></td>
+                                            <td class="align-middle"><a href="#" class="text-dark"><i class="fa
                                                                 fa-trash"></i></a>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                    {{/ifEquals}}
-
-                                    <div class="tab-pane fade"
-                                        id="changePassword" role="tabpanel"
-                                        aria-labelledby="changePassword-tab">
-                                        <form action="#">
-
-                                            <div class="form-group">
-                                                <input type="password"
-                                                    id="newPass"
-                                                    class="form-control"
-                                                    placeholder="Mật khẩu mới"
-                                                    required>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <input type="password"
-                                                    id="newPassConfirm"
-                                                    class="form-control"
-                                                    placeholder="Nhập lại mật
-                                                    khẩu mới" required>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <input type="password"
-                                                    id="oldPass"
-                                                    class="form-control"
-                                                    placeholder="Mật khẩu cũ"
-                                                    required>
-                                            </div>
-
-                                            <button type="submit" class="btn
-                                                btn-primary mb-4">Đổi mật khẩu</button>
-                                        </form>
-                                    </div>
-                                </div>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-                    </div>
-                </form>
-            </div>
+                        {{/ifEquals}}
 
-            {{#section 'css'}}
-            <link rel="stylesheet" type="text/css" href="/styles/profile.css">
-            <link rel="stylesheet" type="text/css"
-                href="/styles/main_styles.css">
-            {{/section}}
+                        <div class="tab-pane fade" id="changePassword" role="tabpanel"
+                            aria-labelledby="changePassword-tab">
+                            <form action="#">
+
+                                <div class="form-group">
+                                    <input type="password" id="newPass" class="form-control" placeholder="Mật khẩu mới"
+                                        required>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="password" id="newPassConfirm" class="form-control" placeholder="Nhập lại mật
+                                                    khẩu mới" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="password" id="oldPass" class="form-control" placeholder="Mật khẩu cũ"
+                                        required>
+                                </div>
+
+                                <button type="submit" class="btn
+                                                btn-primary mb-4">Đổi mật khẩu</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+{{#section 'css'}}
+<link rel="stylesheet" type="text/css" href="/styles/profile.css">
+<link rel="stylesheet" type="text/css" href="/styles/main_styles.css">
+{{/section}}

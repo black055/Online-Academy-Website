@@ -42,6 +42,8 @@ const course = new Schema({
     students: Number,
     comments: Array,
     description: String,
+    tinyDes: String,
+    isFinished: Boolean,
     views: Number,
     saleOff: Number,
     avatar: String,
