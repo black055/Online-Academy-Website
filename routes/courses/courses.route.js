@@ -9,10 +9,6 @@ router.get('/', async (req, res) => {
     res.render('courses/courses', {isCourses: true, allCourses: allCourses});
 });
 
-// router.get('/lectures', async (req, res) => {
-//     res.render('courses/chapter');
-// })
-
 router.get('/register/:id', async (req, res) => {
     if (typeof req.user == 'undefined') {
         res.redirect('/login');
@@ -33,9 +29,11 @@ router.get('/register/:id', async (req, res) => {
 });
 
 router.get('/:id_course/:id_lecture', async (req, res) => {
+    console.log(req.params.id_course, req.params.id_lecture);
     const course = await courseModel.getCourse(req.params.id_course);
     const url = course.chapters[Number(req.params.id_lecture)].video;
-    res.render('courses/chapter', {course: course, url: url});
+    const title = course.chapters[Number(req.params.id_lecture)].title;
+    res.render('courses/chapter', {course: course, url: url, title: title});
 })
 
 router.get('/:id_course', async (req, res) => {

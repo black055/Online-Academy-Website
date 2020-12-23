@@ -1,12 +1,15 @@
 <div style="display: flex;margin: 150px 100px 100px 100px;" id="lecture">
     <div class="video">
+        <div class="course_title">{{course.name}}</div>
+        <h3>Giáo viên: <a href="#" id="teacher">Lê Thành Việt</a></h3>
+        <h4 style="margin-bottom: 20px;">Lĩnh vực: <a href="#" id="category">Lập trình Web</a></h4>
         <video controls crossorigin playsinline poster={{course.avatar}} class="js-player">
             <source src="{{url}}" type="video/mp4" />
         </video>
-        <div class="course_title">{{course.name}}</div>
+        <h3>{{title}}</h3>
     </div>
 
-    <ul class="dropdowns" style="margin-left:50px;">
+    <ul class="dropdowns" style="margin-left:50px; margin-top:60px;" id="chapters">
         {{#each course.chapters}}
         <li>
             <div class="dropdown_item">
@@ -26,12 +29,43 @@
 <style>
     .plyr {
         width: 1200px;
-        margin-bottom: 50px;
+        margin-bottom: 20px;
     }
 
-    @media only screen and (max-width: 1200px) {
+    #category {
+        margin-left: 10px;
+        font-weight:100 !important;
+        color: #384158;
+    }
+
+    #teacher {
+        margin-left: 10px;
+        font-weight:100 !important;
+        color: #384158;
+    }
+
+    #category:hover {
+        color: #14bdee;
+    }
+
+    #teacher:hover {
+        color: #14bdee;
+    }
+
+    @media only screen and (max-width: 1530px) {
         #lecture {
             display: block !important;
+        }
+
+        #chapters {
+            margin-left: 0px !important;
+            margin-top: 0px !important;
+        }
+    }
+
+    @media only screen and (max-width: 800px) {
+        #lecture {
+            margin: 75px 50px 50px 50px !important;
         }
     }
 </style>
