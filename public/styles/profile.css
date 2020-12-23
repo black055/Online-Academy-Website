@@ -102,3 +102,38 @@ body{
     font-weight: 600;
     color: #0062cc;
 }
+#pagination_mycourse li
+{
+	display: inline-block;
+	background: #FFFFFF;
+	text-align: center;
+	-webkit-transition: all 200ms ease;
+	-moz-transition: all 200ms ease;
+	-ms-transition: all 200ms ease;
+	-o-transition: all 200ms ease;
+	transition: all 200ms ease;
+}
+#pagination_mycourse li:not(:last-child)
+{
+	margin-right: 5px;
+}
+#pagination_mycourse li a
+{
+	display: block;
+	position: relative;
+	font-size: 16px;
+	font-weight: 400;
+	color: #757686;
+	-webkit-transition: all 200ms ease;
+	-moz-transition: all 200ms ease;
+	-ms-transition: all 200ms ease;
+	-o-transition: all 200ms ease;
+	transition: all 200ms ease;
+}
+#pagination_mycourse li:hover a,
+#pagination_mycourse li.active a
+{
+    color: #ffffff;
+    background: #14bdee;
+    border: solid 1px #14bdee;
+}

@@ -133,7 +133,7 @@
                                     <label>Tổng số tiền đã chi</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p>{{totalMoney}} $</p>
+                                    <p><strong>{{totalMoney}}$</strong></p>
                                 </div>
                             </div>
                         </div>
@@ -148,84 +148,18 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th scope="col" class="border-0
-                                                bg-light">
-                                                <div class="p-2 px-3
-                                                    text-uppercase">THÔNG TIN
-                                                    KHÓA HỌC</div>
+                                            <th scope="col" class="border-0 bg-light">
+                                                <div class="p-2 px-3 text-uppercase">THÔNG TIN KHÓA HỌC</div>
                                             </th>
-                                            <th scope="col" class="border-0
-                                                bg-light">
-                                                <div class="py-2
-                                                    text-uppercase">GIÁ TIỀN</div>
+                                            <th scope="col" class="border-0 bg-light">
+                                                <div class="py-2 text-uppercase">GIÁ TIỀN</div>
                                             </th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row" class="border-0">
-                                                <div class="p-2">
-                                                    <img src="images/courses_avatar/1.jpg" alt="" width="70" class="img-fluid rounded
-                                                        shadow-sm">
-                                                    <div class="ml-3
-                                                        d-inline-block
-                                                        align-middle">
-                                                        <h5 class="mb-0"> <a href="#" class="text-dark
-                                                                d-inline-block
-                                                                align-middle">Khóa
-                                                                học NodeJs</a></h5>
-                                                        <span class="text-muted
-                                                            font-weight-normal
-                                                            font-italic
-                                                            d-block">Lập trình
-                                                            web</span>
-                                                    </div>
-                                                </div>
-                                            </th>
-                                            <td class="border-0 align-middle"><strong>$79.00</strong></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">
-                                                <div class="p-2">
-                                                    <img src="images/courses_avatar/2.jpg" alt="" width="70" class="img-fluid rounded
-                                                        shadow-sm">
-                                                    <div class="ml-3
-                                                        d-inline-block
-                                                        align-middle">
-                                                        <h5 class="mb-0"><a href="#" class="text-dark
-                                                                d-inline-block">Khóa
-                                                                học làm giàu</a></h5>
-                                                        <span class="text-muted
-                                                            font-weight-normal
-                                                            font-italic">Kỹ năng
-                                                            sống</span>
-                                                    </div>
-                                                </div>
-                                            </th>
-                                            <td class="align-middle"><strong>$79.00</strong></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">
-                                                <div class="p-2">
-                                                    <img src="images/courses_avatar/3.jpg" alt="" width="70" class="img-fluid rounded
-                                                        shadow-sm">
-                                                    <div class="ml-3
-                                                        d-inline-block
-                                                        align-middle">
-                                                        <h5 class="mb-0"> <a href="#" class="text-dark
-                                                                d-inline-block">Khóa
-                                                                học NodeJs</a></h5>
-                                                        <span class="text-muted
-                                                            font-weight-normal
-                                                            font-italic">Lập
-                                                            trình web</span>
-                                                    </div>
-                                                </div>
-                                            </th>
-                                            <td class="align-middle"><strong>$79.00</strong></td>
-                                        </tr>
+                                    <tbody id="mycourse_list">
                                     </tbody>
                                 </table>
+                                <ul id="pagination_mycourse" class="d-flex justify-content-center"></ul>
                             </div>
                             {{else}}
                             <!-- Teacher's courses here -->
@@ -240,99 +174,21 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th scope="col" class="border-0
-                                                bg-light">
-                                                <div class="p-2 px-3
-                                                    text-uppercase">THÔNG TIN
-                                                    KHÓA HỌC</div>
+                                            <th scope="col" class="border-0 bg-light">
+                                                <div class="p-2 px-3 text-uppercase">THÔNG TIN KHÓA HỌC</div>
                                             </th>
-                                            <th scope="col" class="border-0
-                                                bg-light">
-                                                <div class="py-2
-                                                    text-uppercase">GIÁ TIỀN</div>
+                                            <th scope="col" class="border-0 bg-light">
+                                                <div class="py-2 text-uppercase">GIÁ TIỀN</div>
                                             </th>
-                                            <th scope="col" class="border-0
-                                                bg-light">
-                                                <div class="py-2
-                                                    text-uppercase">XÓA</div>
+                                            <th scope="col" class="border-0 bg-light">
+                                                <div class="py-2 text-uppercase">XÓA</div>
                                             </th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row" class="border-0">
-                                                <div class="p-2">
-                                                    <img src="images/courses_avatar/1.jpg" alt="" width="70" class="img-fluid rounded
-                                                        shadow-sm">
-                                                    <div class="ml-3
-                                                        d-inline-block
-                                                        align-middle">
-                                                        <h5 class="mb-0"> <a href="#" class="text-dark
-                                                                d-inline-block
-                                                                align-middle">Khóa
-                                                                học NodeJs</a></h5>
-                                                        <span class="text-muted
-                                                            font-weight-normal
-                                                            font-italic
-                                                            d-block">Lập trình
-                                                            web</span>
-                                                    </div>
-                                                </div>
-                                            </th>
-                                            <td class="border-0 align-middle"><strong>$79.00</strong></td>
-                                            <td class="align-middle"><a href="#" class="text-dark"><i
-                                                        class="fa fa-trash"></i></a>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">
-                                                <div class="p-2">
-                                                    <img src="images/courses_avatar/2.jpg" alt="" width="70" class="img-fluid
-                                                            rounded shadow-sm">
-                                                    <div class="ml-3
-                                                            d-inline-block
-                                                            align-middle">
-                                                        <h5 class="mb-0"><a href="#" class="text-dark
-                                                                    d-inline-block">Khóa
-                                                                học làm giàu</a></h5>
-                                                        <span class="text-muted
-                                                                font-weight-normal
-                                                                font-italic">Kỹ
-                                                            năng sống</span>
-                                                    </div>
-                                                </div>
-                                            </th>
-                                            <td class="align-middle"><strong>$79.00</strong></td>
-                                            <td class="align-middle"><a href="#" class="text-dark"><i
-                                                        class="fa fa-trash"></i></a>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">
-                                                <div class="p-2">
-                                                    <img src="images/courses_avatar/3.jpg" alt="" width="70" class="img-fluid
-                                                                rounded
-                                                                shadow-sm">
-                                                    <div class="ml-3
-                                                                d-inline-block
-                                                                align-middle">
-                                                        <h5 class="mb-0">
-                                                            <a href="#" class="text-dark
-                                                                        d-inline-block">Khóa
-                                                                học
-                                                                NodeJs</a>
-                                                        </h5>
-                                                        <span class="text-muted
-                                                                    font-weight-normal
-                                                                    font-italic">Lập
-                                                            trình web</span>
-                                                    </div>
-                                                </div>
-                                            </th>
-                                            <td class="align-middle"><strong>$79.00</strong></td>
-                                            <td class="align-middle"><a href="#" class="text-dark"><i class="fa
-                                                                fa-trash"></i></a>
-                                        </tr>
+                                    <tbody id="watchlist_list">
                                     </tbody>
                                 </table>
+                                <ul id="pagination_watchlist" class="d-flex justify-content-center"></ul>
                             </div>
                         </div>
                         {{/ifEquals}}
@@ -366,6 +222,80 @@
         </div>
     </form>
 </div>
+
+{{#section 'js'}}
+<script>
+    let courses = [];
+    let watchlist = [];
+    let content = '';
+    let length = 0;
+    for (i = 0; i < 50; i++) {
+        courses.push(`<tr>
+            <th scope="row" class="border-0">
+                <div class="p-2">
+                    <img src="images/courses_avatar/1.jpg" alt="" width="70" class="img-fluid rounded shadow-sm">
+                    <div class="ml-3 d-inline-block align-middle">
+                        <h5 class="mb-0">
+                            <a href="#" class="text-dark d-inline-block align-middle">Khóa học NodeJs (${i})</a>
+                        </h5>
+                        <span class="text-muted font-weight-normal font-italic d-block">Lập trình web</span>
+                    </div>
+                </div>
+            </th>
+            <td class="border-0 align-middle"><strong>$79.00</strong></td>
+            </tr>`);
+    }
+    length = Math.ceil(courses.length / 4);
+    $('#pagination_mycourse').twbsPagination({
+        totalPages: length,
+        visiblePages: 4,
+        first: 'Trang đầu',
+        prev: 'Trước',
+        next: 'Sau',
+        last: 'Trang cuối',
+        onPageClick: function (event, page) {
+            content = '';
+            for (let i = (page - 1) * 4; i < courses.length && i < (page - 1) * 4 + 4; i++) {
+                content += courses[i];
+            }
+            $('#mycourse_list').html(content);
+        }
+    });
+    
+    for (i = 0; i < 50; i++) {
+        watchlist.push(`<tr>
+            <th scope="row">
+                <div class="p-2">
+                    <img src="images/courses_avatar/2.jpg" alt="" width="70" class="img-fluid rounded shadow-sm">
+                    <div class="ml-3 d-inline-block align-middle">
+                        <h5 class="mb-0"><a href="#" class="text-dark d-inline-block">Khóa học làm giàu (${i})</a></h5>
+                        <span class="text-muted font-weight-normal font-italic">Kỹ năng sống</span>
+                    </div>
+                </div>
+            </th>
+            <td class="align-middle"><strong>$79.00</strong></td>
+            <td class="align-middle"><a href="#" class="text-dark"><i class="fa fa-trash"></i></a>
+        </tr>`);
+    }
+    length = Math.ceil(watchlist.length / 4);
+    $('#pagination_watchlist').twbsPagination({
+        totalPages: length,
+        visiblePages: 4,
+        first: 'Trang đầu',
+        prev: 'Trước',
+        next: 'Sau',
+        last: 'Trang cuối',
+        onPageClick: function (event, page) {
+            content = '';
+            for (let i = (page - 1) * 4; i < courses.length && i < (page - 1) * 4 + 4; i++) {
+                content += watchlist[i];
+            }
+            $('#watchlist_list').html(content);
+        }
+    });
+
+</script>
+{{/section}}
 
 {{#section 'css'}}
 <link rel="stylesheet" type="text/css" href="/styles/profile.css">
