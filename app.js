@@ -9,12 +9,11 @@ const hbs = require("express-handlebars");
 const MongoStore = require("connect-mongo")(session);
 const hbs_section = require("express-handlebars-sections");
 const mdwIsValidated = require("./middlewares/validation.mdw");
-const { User, Teacher, Admin, Course } = require("./utils/db");
-const {user_data, course_data} = require('./utils/insert');
+const { User, Teacher, Admin, Course, Category } = require("./utils/db");
+const {user_data, course_data, category_data} = require('./utils/insert');
 
 const userModel = require("./models/user.model.js");
 
-//const {user_data, course_data} = require('./utils/insert');
 require("./auth");
 
 // Connect to database
@@ -25,20 +24,30 @@ mongoose.connect("mongodb://localhost:27017/mydb", {
 });
 
 // Insert data user
-// (async function b() {
-//     for (let i = 0; i < user_data.length; i++) {
-//         let user = await User.findOne({'email': user_data[i].email});
-//         if (!user) {
-//             user = new User(user_data[i]);
-//             user.save();
-//         }
-//     }
+/*(async function b() {
+    for (let i = 0; i < user_data.length; i++) {
+        let user = await User.findOne({'email': user_data[i].email});
+        if (!user) {
+            user = new User(user_data[i]);
+            user.save();
+        }
+    }
 
-//     for (let i = 0; i < course_data.length; i++) {
-//         let course = new Course(course_data[i]);
-//         course.save();
-//     }
-// })();
+    for (let i = 0; i < course_data.length; i++) {
+        let course = new Course(course_data[i]);
+        course.save();
+    }
+
+  category = new Category({_id: mongoose.Types.ObjectId("000000000000000000000001"), "name": "Công nghệ thông tin"});category.save();
+  category = new Category({_id: mongoose.Types.ObjectId("000000000000000000000002"), "name": "Toán học"});category.save();
+  category = new Category({_id: mongoose.Types.ObjectId("000000000000000000000003"), "name": "Lập trình Web", "parentCategory": mongoose.Types.ObjectId("000000000000000000000001")});category.save();
+  category = new Category({_id: mongoose.Types.ObjectId("000000000000000000000004"), "name": "Lập trình ứng dụng di động", "parentCategory": mongoose.Types.ObjectId("000000000000000000000001")});category.save();
+  category = new Category({_id: mongoose.Types.ObjectId("000000000000000000000005"), "name": "Khoa học máy tính", "parentCategory": mongoose.Types.ObjectId("000000000000000000000001")});category.save();
+  category = new Category({_id: mongoose.Types.ObjectId("000000000000000000000006"), "name": "Hệ thống thông tin", "parentCategory": mongoose.Types.ObjectId("000000000000000000000001")});category.save();
+  category = new Category({_id: mongoose.Types.ObjectId("000000000000000000000007"), "name": "Toán tổ hợp", "parentCategory": mongoose.Types.ObjectId("000000000000000000000002")});category.save();
+  category = new Category({_id: mongoose.Types.ObjectId("000000000000000000000008"), "name": "Toán rời rạc", "parentCategory": mongoose.Types.ObjectId("000000000000000000000002")});category.save();
+  category = new Category({_id: mongoose.Types.ObjectId("000000000000000000000009"), "name": "Xác suất thống kê", "parentCategory": mongoose.Types.ObjectId("000000000000000000000002")});category.save();
+})();*/
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -106,8 +115,10 @@ app.use("/courses", mdwIsValidated, require("./routes/courses/courses.route"));
 app.get("/profile", mdwIsValidated, async (req, res) => {
   if (req.user.userType == "Student") {
     totalMoney = await userModel.getTotalMoney(req.user._id);
+    courses = await userModel.getCourses(req.user._id);
     res.render("profile/profile", {
       user: req.user,
+      courses: courses,
       totalMoney: totalMoney,
     });
   } else

@@ -32,24 +32,26 @@ const admin = new Schema({
 
 const course = new Schema({
     name: String,
-    tags: Array,
-    group: String,
+    category: String,
     chapters: Array,
     rate: Array,
-    rating: Number,
     price: Number,
     teacher: String,
     students: Number,
-    comments: Array,
     description: String,
-    tinyDes: String,
+    briefDes: String,
     isFinished: Boolean,
     views: Number,
     saleOff: Number,
-    avatar: String,
-    desDeep: String,
+    thumbnail: String,
     commands: Array,
     target: String,
+})
+
+const category = Schema({
+    name: String,
+    parentCategory: String,
+    courses: Array
 })
 
 module.exports = {
@@ -57,4 +59,5 @@ module.exports = {
     Teacher: mongoose.model('Teacher', teacher),
     Admin: mongoose.model('Admin', admin),
     Course: mongoose.model('Course', course),
+    Category: mongoose.model('Category', category),
 };
