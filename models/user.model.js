@@ -15,7 +15,7 @@ module.exports = {
             result = [];
             if (user != null) {
                 for (i = 0; i < user.courses.length; i++) {
-                    course = await Course.findById(user.courses[i]);
+                    course = await Course.findById(Object.keys(user.courses[i])[0]);
                     result.push(course);
                 }
             }
@@ -29,7 +29,7 @@ module.exports = {
             result = 0;
             if (user != null) {
                 for (i = 0; i < user.courses.length; i++) {
-                    course = await Course.findById(user.courses[i]);
+                    course = await Course.findById(Object.keys(user.courses[i])[0]);
                     result = result + course.price;
                 }
             }
