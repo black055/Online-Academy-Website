@@ -4,6 +4,7 @@ const router = express.Router();
 const { Course } = require('../../utils/db');
 const fs = require('fs');
 const mkdirp = require('mkdirp')
+const categoryModel = require('../../models/category.model')
 
 router.get('/', (req, res) => {
     //nothing here
@@ -12,24 +13,17 @@ router.get('/', (req, res) => {
 
 
 router.get('/upload_course', async (req, res) => {
-    const data = await Course.find({ "tags": { $ne: null } });
-    let tags = [];
-    data.forEach((e) => {
-        if (e['tags'].length) tags.push(e['tags'].length)
-    })
-    tags = [...new Set(tags)];
-    if (!tags.length)
-        tags = null;
+    const data = await categoryModel.getMenuCategory();
     res.render('teacher/teacher', {
-        categoryList: tags,
+        categoryList: data,
     });
 });
 
 router.post('/add_course', async (req, res) => {
-    let course = new Course({
-        name: '',
-        tags: [],
-        group: '',
+    const random_key = Math.floor(Math.random() * 999999) + 100000;
+
+    let new_course = new Course({
+        name: random_key,
         chapters: [],
         rate: [],
         rating: 0,
@@ -38,26 +32,28 @@ router.post('/add_course', async (req, res) => {
         students: 0,
         comments: [],
         description: '',
-        tinyDes: '',
+        briefDes: '',
         views: 0,
         saleOff: 0,
-        avatar: '',
-        isFinished: '',
+        thumbnail: '',
+        //isFinished: '',
+        category: '',
+        commands: [],
     });
+    await new_course.save();
+
+    const course = await Course.findOne({ name: random_key });
 
     const storage = multer.diskStorage({
         destination: function (req, file, cb) {
             if (file.fieldname == 'chapter') {
                 if (file.mimetype.includes('video/')) {
-                    const course_name = encodeURI(req.body.name);
-
-                    //TODO: Đổi course_name = id
                     //Lưu chapter
                     course.chapters.push({
                         title: '',
-                        video: `/video/${course_name}/${file.originalname}`
+                        video: `/video/${course._id.toString()}/${file.originalname}`
                     })
-                    const path = `./public/video/${course_name}/`;
+                    const path = `./public/video/${course._id.toString()}/`;
                     if (!fs.existsSync(path)) {
                         mkdirp(path, function (err) {
                             if (err) {
@@ -69,13 +65,13 @@ router.post('/add_course', async (req, res) => {
                     } else cb(null, path);
                 }
             }
-            else if (file.fieldname == 'avatar') {
+            else if (file.fieldname == 'thumbnail') {
                 if (file.mimetype.includes('image/')) {
 
                     //Lưu địa chỉ file thumbnail
-                    course.avatar = `/images/courses_avatar/${file.originalname}`;
+                    course.thumbnail = `/images/courses_thumbnail/${file.originalname}`;
 
-                    cb(null, './public/images/courses_avatar/')
+                    cb(null, './public/images/courses_thumbnail/')
                 }
             }
         },
@@ -86,7 +82,7 @@ router.post('/add_course', async (req, res) => {
 
     const upload = multer({ storage });
     await upload.fields([{
-        name: 'avatar',
+        name: 'thumbnail',
         maxCount: 1
     }, {
         name: 'chapter',
@@ -97,11 +93,11 @@ router.post('/add_course', async (req, res) => {
         }
         else {
             course.name = req.body.name;
-            course.tinyDes = req.body.tinyDes;
+            course.briefDes = req.body.briefDes;
             course.description = req.body.description;
             course.group = '';
             course.price = req.body.price;
-            course.isFinished = req.body.isFinished ? true : false;
+            //course.isFinished = req.body.isFinished ? true : false;
 
             const chapter_title = req.body.chapter_title;
             if (typeof chapter_title == 'string') {

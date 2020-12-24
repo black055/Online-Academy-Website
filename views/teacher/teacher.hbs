@@ -12,7 +12,7 @@
               </div>
               <div>
                 <div class="form_title">Mô tả ngắn gọn nội dung khóa học</div>
-                <input type="text" class="comment_input" name="tinyDes" required="required">
+                <input type="text" class="comment_input" name="briefDes" required="required">
               </div>
               <div>
                 <div class="form_title">Mô tả chi tiết nội dung khóa học</div>
@@ -32,7 +32,7 @@
                 <select name="group" class="form-control" id="category">
                   {{#if categoryList}}
                   {{#each categoryList as |c|}}
-                  <option>{{c}}</option>
+                  <option>{{c.name}}</option>
                   {{/each}}
                   {{else}}
                   <option>Chưa có dữ liệu</option>
@@ -47,24 +47,21 @@
             </div>
 
             <div class="upvideo">
-              <div class="edit_chapter_title">Soạn chương</div>
+              <div class="edit_chapter_title">
+                <div class="d-flex justify-content-between">
+                  <div class="">Soạn chương</div>
+                  <div class="d-flex">
+                    <div class="btn btn-danger rm-chapters mr-lg-1"><i class="far fa-trash-alt"></i></div>
+                    <div class="btn btn-success btn-add-chapter d-flex"><i class="fa fa-plus align-self-center"
+                        aria-hidden="true"></i></div>
+                  </div>
+                </div>
+              </div>
 
               <div class="chapter_title form_title">
-                <div id="chapter_title">
+                <div id="chapter_box">
                   {{!-- Thêm ô input tên mỗi chương ở đây --}}
                 </div>
-              </div>
-
-              <div class="form_title">Lưu ý đăng video theo thứ tự của các chương</div>
-              <div class="upvideo_box d-flex justify-content-center">
-                <div class="file-loading">
-                  {{!-- Upload video chương học --}}
-                  <input id="video_chapter" name="chapter" type="file" class="file" multiple>
-                </div>
-              </div>
-
-              <div class="form_title">
-                Số lượng video: <span id="file_len">0</span>
               </div>
             </div>
           </div>
@@ -76,7 +73,7 @@
               <div class="edit_chapter_title">Ảnh đại diện của khóa học</div>
               <div class="thumbnail_box d-flex w-100 justify-content-center">
                 <div class="file-loading">
-                  <input id="avatar" name="avatar" type="file" class="mt-1">
+                  <input id="thumbnail" name="thumbnail" type="file" class="mt-1">
                 </div>
               </div>
             </div>
@@ -94,8 +91,6 @@
 <link rel="stylesheet" type="text/css" href="/styles/contact.css">
 <link rel="stylesheet" type="text/css" href="/styles/contact_responsive.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.2/css/fileinput.min.css">
-<link rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.2/themes/explorer-fas/theme.min.css">
 
 <style>
   .edit {
@@ -165,7 +160,12 @@
 
   .course_thumbnail .file-input {
     display: table-cell;
-    width: 213px;
+    width: 82%;
+  }
+
+  .file-preview-thumbnails {
+    display: flex;
+    justify-content: center;
   }
 </style>
 
@@ -191,11 +191,9 @@
 {{#section 'js'}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.2/js/fileinput.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.2/themes/fas/theme.min.js"></script>
-<script
-  src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.2/themes/explorer-fas/theme.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.2/js/locales/vi.min.js"></script>
 <script>
-  $("#avatar").fileinput({
+  $("#thumbnail").fileinput({
     theme: "fas",
     maxFileSize: 10000,
     showClose: false,
@@ -210,34 +208,55 @@
     allowedFileTypes: ["image"]
   }).hide();
 
-  $('#video_chapter').fileinput({
-    theme: "explorer-fas",
-    showBrowse: false,
-    showCaption: false,
-    showRemove: false,
-    showUpload:false,
-    showCancel: false,
-    showClose: true,
-    browseOnZoneClick: true,
-    enableResumableUpload: true,
-    maxFileCount: 20,
-    allowedFileTypes: ["video"],
-    uploadUrl: "/teacher/upload-file-chunks",
-    deleteUrl: '/teacher/file-delete',
-    language: 'vi'
-  }).hide();
+  let _index_chapter = 0;
 
-  $('#video_chapter').change(() => {
-    setTimeout(() => {
-      const file_count = $('#video_chapter').fileinput('getFilesCount', true);
-      $('#file_len').html(file_count);
-
-      $('#chapter_title').html('');
-      for (let i = 0; i < file_count; i++) {
-        $('#chapter_title').append(`Tên chương ${i + 1}
-                <input type="text" class="comment_input" name="chapter_title">`);
-      }
-    }, 500);
+  $('.rm-chapters').click(() => {
+    $('.new-chapter').remove()
+    _index_chapter = 0
   })
+
+  $('.btn-add-chapter').click(() => {
+    $('#chapter_box').append(`
+    <div class="new-chapter">
+      <div class="chapter_title d-flex justify-content-between" style="font-size: 1.4rem;">
+        <div class="chapter_label">Tên chương ${++_index_chapter}</div>
+        <div class="btn btn-danger btn-rm-chapter"><i class="fa fa-minus" aria-hidden="true"></i></div>
+      </div>
+      <input type="text" class="comment_input" name="chapter_title">
+      <input name="chapter" type="file" class="video_chapter">
+    </div>
+  </div>`)
+
+    $('.video_chapter').fileinput({
+      theme: "fas",
+      showBrowse: true,
+      showRemove: false,
+      showCaption: true,
+      showUpload: false,
+      showCancel: false,
+      dropZoneEnabled: false,
+      showPreview: false,
+      allowedFileTypes: ["video"],
+      language: 'vi'
+    });
+
+    $('.clearfix').css("margin", "0px")
+      .parent().css({ "margin": "0px", "padding": "0px" })
+
+    $('.input-group-btn.input-group-append').css("margin", "0px")
+
+    $('#chapter_box .btn-rm-chapter').hide();
+    $('#chapter_box .new-chapter:last-child')
+      .find('.btn-rm-chapter').show();
+
+    $('.btn-rm-chapter').click(function () {
+      $(this).closest('.new-chapter').remove()
+      _index_chapter = $('.new-chapter').length
+      $('#chapter_box .btn-rm-chapter').hide();
+      $('#chapter_box .new-chapter:last-child')
+        .find('.btn-rm-chapter').show();
+    })
+  })
+
 </script>
 {{/section}}
