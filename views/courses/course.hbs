@@ -18,13 +18,19 @@
                         <!-- Course Info Item -->
                         <div class="course_info_item">
                             <div class="course_info_title">Đánh giá:</div>
-                            <div class="rating_r" id="rate"><i></i><i></i><i></i><i></i><i></i></div>
+                            <div class="div_rating">
+                                <input type="radio" name="example" class="rating" value="1" />
+                                <input type="radio" name="example" class="rating" value="2" />
+                                <input type="radio" name="example" class="rating" value="3" />
+                                <input type="radio" name="example" class="rating" value="4" />
+                                <input type="radio" name="example" class="rating" value="5" />
+                            </div>
                         </div>
 
                         <!-- Course Info Item -->
                         <div class="course_info_item">
                             <div class="course_info_title">Lĩnh vực:</div>
-                            <div class="course_info_text"><a href="/courses/category/{{course.category}}">{{course.category}}</a></div>
+                            <div class="course_info_text"><a href="/category/{{course.category}}">{{course.category}}</a></div>
                         </div>
 
                     </div>
@@ -308,16 +314,10 @@
 {{#section 'js'}}
 <script src="/js/course.js"></script>
 <script>
-    let rating = 0;
-    let rate = 0;
-    let total = 0;
-    {{#each course.rate}}
-    rate += {{this}} * ({{@index}} + 1);
-    total += {{this}};
-    {{/each}}
-    rating = (rate / (total * 5))*5;
-    let flo = Math.floor(rating);
-    let class_name = 'rating_r_' + flo;
-    $('#rate').addClass(class_name);
+    $('.div_rating').rating(function(vote, event) {
+        $.get(`/courses/rate/{{course._id}}/${vote}`, function(data, status) {
+            alert(data);
+        })
+    });
 </script>
 {{/section}}

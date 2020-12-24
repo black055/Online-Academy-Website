@@ -35,5 +35,9 @@ module.exports = {
             }
             resolve(result);
         })
+    },
+
+    async updateRate (id, courses) {
+        return await User.findOneAndUpdate({_id: id}, {courses: courses})
     }
 }

@@ -7,18 +7,30 @@ const categoryModel = require('../../models/category.model')
 
 router.get('/', async (req, res) => {
     const allCourses = await courseModel.getAllCourses();
-    res.render('courses/courses', {isCourses: true, allCourses: allCourses});
+    const categories = await categoryModel.getMenuCategory();
+    res.render('courses/courses', {isCourses: true, allCourses: allCourses, categories: categories});
 });
 
-router.get('/category/:id', async (req, res) => {
-    const category = await categoryModel.getCategory(req.params.id);
-    const coursesList = await courseModel.getCoursesByCategory(category);
-    res.render('courses/courses', {isCourses: true, allCourses: coursesList});
-});
+router.get('/rate/:id_course/:value', async (req, res) => {
+    let user = await userModel.getUser(req.user._id);
+    for(let index = 0; index < req.user.courses.length; index++) {
+        if (Object.keys(req.user.courses[index])[0] == req.params.id_course.toString())
+        {
+            user.courses[index][req.params.id_course].rate = req.params.value;
+            await userModel.updateRate(req.user._id, user.courses);
+            user = await userModel.getUser(req.user._id);
+            user.save(function(err) {
+                if (err) console.log(err);
+                req.logIn(user, function(e) {
+                    if (e) console.log(e);
+                })
+            });
+            break;
+        }
+    }
 
-// router.get('/lectures', async (req, res) => {
-//     res.render('courses/chapter');
-// })
+    res.send(`Bạn đã đánh giá khóa học này ${req.params.value} sao`);
+})
 
 router.get('/register/:id', async (req, res) => {
     if (typeof req.user == 'undefined') {
@@ -26,7 +38,10 @@ router.get('/register/:id', async (req, res) => {
     } else {
         let student = await userModel.getUser(req.user._id);
         let courses = student.courses;
-        courses.push(req.params.id);
+
+        const course = {};
+        course[req.params.id] = {rate: 0};
+        courses.push(course);
         await userModel.addCourse(req.user._id, courses);
         student = await userModel.getUser(req.user._id);
         student.save(function(err) {
@@ -43,19 +58,24 @@ router.get('/:id_course/:id_lecture', async (req, res) => {
     const course = await courseModel.getCourse(req.params.id_course);
     const url = course.chapters[Number(req.params.id_lecture)].video;
     const title = course.chapters[Number(req.params.id_lecture)].title;
-    res.render('courses/chapter', {course: course, url: url, title: title});
+    const categories = await categoryModel.getMenuCategory();
+    res.render('courses/chapter', {course: course, url: url, categories: categories, title: title});
 })
 
 router.get('/:id_course', async (req, res) => {
+    const categories = await categoryModel.getMenuCategory();
     const course = await courseModel.getCourse(req.params.id_course);
     let isRegistered = false;
     if (typeof req.user !== 'undefined') {
-        if (req.user.courses.includes(course._id.toString()))
-        {
-            isRegistered = true;
+        for(let index = 0; index < req.user.courses.length; index++) {
+            if (Object.keys(req.user.courses[index])[0] == course._id.toString())
+            {
+                isRegistered = true;
+                break;
+            }
         }
     }
-    res.render('courses/course', {course: course, registered: isRegistered});
+    res.render('courses/course', {course: course, registered: isRegistered, categories: categories});
 });
 
 

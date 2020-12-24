@@ -12,7 +12,8 @@ const mdwIsValidated = require("./middlewares/validation.mdw");
 const { User, Teacher, Admin, Course, Category } = require("./utils/db");
 const {user_data, course_data, category_data} = require('./utils/insert');
 
-const userModel = require("./models/user.model.js");
+const categoryModel = require("./models/category.model");
+const userModel = require("./models/user.model");
 
 require("./auth");
 
@@ -24,26 +25,26 @@ mongoose.connect("mongodb://localhost:27017/mydb", {
 });
 
 // Insert data user
-// (async function b() {
-//     for (let i = 0; i < user_data.length; i++) {
-//         let user = await User.findOne({'email': user_data[i].email});
-//         if (!user) {
-//             user = new User(user_data[i]);
-//             user.save();
-//         }
-//     }
+(async function b() {
+    for (let i = 0; i < user_data.length; i++) {
+        let user = await User.findOne({'email': user_data[i].email});
+        if (!user) {
+            user = new User(user_data[i]);
+            user.save();
+        }
+    }
 
-//     for (let i = 0; i < course_data.length; i++) {
-//         let course = new Course(course_data[i]);
-//         course.save();
-//     }
+    // for (let i = 0; i < course_data.length; i++) {
+    //     let course = new Course(course_data[i]);
+    //     course.save();
+    // }
 
-//     for (let i = 0; i < category_data.length; i++) {
-//       let category = new Category(category_data[i]);
-//       category.save();
-//     }
+    // for (let i = 0; i < category_data.length; i++) {
+    //   let category = new Category(category_data[i]);
+    //   category.save();
+    // }
 
-// })();
+})();
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -97,18 +98,21 @@ handlebars.handlebars.registerHelper(
 // Static resources
 app.use(express.static(__dirname + "/public"));
 
-app.get("/", mdwIsValidated, (req, res) => {
+app.get("/", mdwIsValidated, async (req, res) => {
   req.session.user = req.user;
-  res.render("index", { isHome: true });
+  const categories = await categoryModel.getMenuCategory();
+  res.render("index", { isHome: true, categories: categories});
 });
 
-app.get("/about", mdwIsValidated, (req, res) => {
-  res.render("about/about", { isAbout: true });
+app.get("/about", mdwIsValidated, async (req, res) => {
+  const categories = await categoryModel.getMenuCategory();
+  res.render("about/about", { isAbout: true, categories: categories });
 });
 
 app.use("/courses", mdwIsValidated, require("./routes/courses/courses.route"));
 
 app.get("/profile", mdwIsValidated, async (req, res) => {
+  const categories = await categoryModel.getMenuCategory();
   if (req.user.userType == "Student") {
     totalMoney = await userModel.getTotalMoney(req.user._id);
     courses = await userModel.getCourses(req.user._id);
@@ -116,15 +120,18 @@ app.get("/profile", mdwIsValidated, async (req, res) => {
       user: req.user,
       courses: courses,
       totalMoney: totalMoney,
+      categories: categories
     });
   } else
     res.render("profile/profile", {
       user: req.user,
+      categories: categories
     });
 });
 
-app.get("/contact", mdwIsValidated, (req, res) => {
-  res.render("contact/contact");
+app.get("/contact", mdwIsValidated, async (req, res) => {
+  const categories = await categoryModel.getMenuCategory();
+  res.render("contact/contact", { categories: categories });
 });
 
 app.get("/login", mdwIsValidated, (req, res) => {
@@ -150,6 +157,7 @@ app.get("/logout", (req, res) => {
 
 app.use('/register', require('./routes/register/register.route'));
 app.use('/teacher', require('./routes/teacher/teacher.route'));
+app.use('/category', require('./routes/category/category.route.js'));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

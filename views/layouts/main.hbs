@@ -79,8 +79,12 @@
                                             <a href="/contact" onclick="return false;">Lĩnh vực</a>
                                         </li>
                                         <div class="dropdown-menu" aria-labelledby="categoriesDropdown">
-                                            <a class="dropdown-item" href="#">Lập trình ứng dụng di động</a>
-                                            <a class="dropdown-item" href="#">Lập trình Web</a>
+                                            {{#each categories}}
+                                            <a class="dropdown-item font-weight-bold" href="/category/{{this.name}}">{{this.name}}</a>
+                                            {{#if this.subCategory}} {{#each this.subCategory}}
+                                            <a class="dropdown-item pl-5" href="/category/{{this.name}}">{{this.name}}</a>
+                                            {{/each}} {{/if}}
+                                            {{/each}}
                                         </div>
                                         <li id="about"><a href="/about">Về chúng tôi</a></li>
                                     </ul>
