@@ -7,13 +7,8 @@ const categoryModel = require('../../models/category.model')
 
 router.get('/', async (req, res) => {
     const allCourses = await courseModel.getAllCourses();
-    res.render('courses/courses', {isCourses: true, allCourses: allCourses});
-});
-
-router.get('/category/:id', async (req, res) => {
-    const category = await categoryModel.getCategory(req.params.id);
-    const coursesList = await courseModel.getCoursesByCategory(category);
-    res.render('courses/courses', {isCourses: true, allCourses: coursesList});
+    const categories = await categoryModel.getMenuCategory();
+    res.render('courses/courses', {isCourses: true, allCourses: allCourses, categories: categories});
 });
 
 // router.get('/lectures', async (req, res) => {
@@ -42,10 +37,12 @@ router.get('/register/:id', async (req, res) => {
 router.get('/:id_course/:id_lecture', async (req, res) => {
     const course = await courseModel.getCourse(req.params.id_course);
     const url = course.chapters[Number(req.params.id_lecture)].video;
-    res.render('courses/chapter', {course: course, url: url});
+    const categories = await categoryModel.getMenuCategory();
+    res.render('courses/chapter', {course: course, url: url, categories: categories});
 })
 
 router.get('/:id_course', async (req, res) => {
+    const categories = await categoryModel.getMenuCategory();
     const course = await courseModel.getCourse(req.params.id_course);
     let isRegistered = false;
     if (typeof req.user !== 'undefined') {
@@ -54,7 +51,7 @@ router.get('/:id_course', async (req, res) => {
             isRegistered = true;
         }
     }
-    res.render('courses/course', {course: course, registered: isRegistered});
+    res.render('courses/course', {course: course, registered: isRegistered, categories: categories});
 });
 
 
