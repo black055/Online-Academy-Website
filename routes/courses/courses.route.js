@@ -23,13 +23,12 @@ router.get('/rate/:id_course/:value', async (req, res) => {
                 if (err) console.log(err);
                 req.logIn(user, function(e) {
                     if (e) console.log(e);
+                    res.send(`Bạn đã đánh giá khóa học này ${req.params.value} sao`);
                 })
             });
             break;
         }
     }
-
-    res.send(`Bạn đã đánh giá khóa học này ${req.params.value} sao`);
 })
 
 router.get('/register/:id', async (req, res) => {
@@ -66,16 +65,18 @@ router.get('/:id_course', async (req, res) => {
     const categories = await categoryModel.getMenuCategory();
     const course = await courseModel.getCourse(req.params.id_course);
     let isRegistered = false;
+    let rate = 0;
     if (typeof req.user !== 'undefined') {
         for(let index = 0; index < req.user.courses.length; index++) {
             if (Object.keys(req.user.courses[index])[0] == course._id.toString())
             {
+                rate = req.user.courses[index][req.params.id_course].rate;
                 isRegistered = true;
                 break;
             }
         }
     }
-    res.render('courses/course', {course: course, registered: isRegistered, categories: categories});
+    res.render('courses/course', {course: course, registered: isRegistered, categories: categories, rate: rate});
 });
 
 
