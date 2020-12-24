@@ -1179,7 +1179,7 @@ const user_data = [{
 const course_data = [
     {
         name: 'NodeJS cho người mới bắt đầu',
-        category: '',
+        category: 'Lập trình Web',
         chapters: [
             {
                 title: 'Bài 1: Giới thiệu những kiến thức cơ bản',
@@ -1204,6 +1204,7 @@ const course_data = [
         students: 0,
         briefDes: 'Khóa học cơ bản nhất cho người mới học NodeJS',
         views: 0,
+        viewsInWeek: 0,
         saleOff: 0,
         thumbnail: '/images/courses_thumbnail/1.jpg',
         description: `NodeJS là một mã nguồn mở, được dùng để xây dựng các ứng dụng mạng, đặc biệt các ứng đòi hỏi real time (thời gian thực) & khối lượng request lớn. Chúng ta có thể lập trình NodeJS với ngôn ngữ JavaScript. NodeJS có thể được dùng để xây dựng hoàn chỉnh một trang web, ngoài ra, NodeJS còn có thể tích hợp để xây dựng các ứng dụng real time trên iOS, Android, Game online với Unity, Cocos2dx.
@@ -1218,7 +1219,7 @@ const course_data = [
         target: 'Sau khi kết thúc khóa học bạn sẽ có những kiến thức cơ bản nhất về NodeJS, đủ kiến thức để xây dựng những web thương mại điện tử bằng NodeJS và ứng tuyển thực tập về NodeJS ở các công ty.',
     },{
         name: 'Khóa học Full-stack web developer',
-        category: '',
+        category: 'Lập trình Web',
         chapters: [],
         rate: [],
         price: 200,
@@ -1226,6 +1227,7 @@ const course_data = [
         students: 0,
         briefDes: 'Khóa học bao gồm nhiều kỹ năng cả về FE và BE : HTML, CSS, JS, NodeJS, AngularJS,...',
         views: 0,
+        viewsInWeek: 0,
         saleOff: 0,
         thumbnail: '/images/courses_thumbnail/2.jpg',
         description: `Khóa học cung cấp những kiến thức và nền tảng cơ bản nhất cả về Front-end lẫn Back-end cho học viên.
@@ -1242,7 +1244,7 @@ const course_data = [
         Có đầy đủ kiến thức về Front-end và Back-end để ứng tuyển thực tập ở các công ty.`,
     },{
         name: 'Khóa học NodeJS chuyên sâu',
-        category: '',
+        category: 'Lập trình Web',
         chapters: [],
         rate: [],
         price: 200,
@@ -1250,6 +1252,7 @@ const course_data = [
         students: 0,
         briefDes: 'Khóa học chuyên sâu về SSR với NodeJS',
         views: 0,
+        viewsInWeek: 0,
         saleOff: 0,
         thumbnail: '/images/courses_thumbnail/3.jpg',
         description: `NodeJS là một mã nguồn mở, được dùng để xây dựng các ứng dụng mạng, đặc biệt các ứng đòi hỏi real time (thời gian thực) & khối lượng request lớn. Chúng ta có thể lập trình NodeJS với ngôn ngữ JavaScript. NodeJS có thể được dùng để xây dựng hoàn chỉnh một trang web, ngoài ra, NodeJS còn có thể tích hợp để xây dựng các ứng dụng real time trên iOS, Android, Game online với Unity, Cocos2dx.
@@ -1267,7 +1270,7 @@ const course_data = [
         target: 'Hoàn thiện và nâng cao kiến thức về NodeJS',
     },{
         name: 'Khóa học MERN: MongoDB, Express, ReactJS, NodeJS',
-        category: '',
+        category: 'Lập trình Web',
         chapters: [],
         rate: [],
         price: 200,
@@ -1275,6 +1278,7 @@ const course_data = [
         students: 0,
         briefDes: 'Khóa học full-stack với MongoDB database và các framework của JS',
         views: 0,
+        viewsInWeek: 0,
         saleOff: 0,
         thumbnail: '/images/courses_thumbnail/4.jpg',
         description: `Khóa học full-stack với MongoDB database và các framework của JS. Trong khóa học này, bạn học sẽ được cung
@@ -1288,7 +1292,7 @@ const course_data = [
         target: 'Hiểu biết về 4 thành phần của MEAN, có khả năng tự lập trình các website sử dụng những kiến thức đã học.',
     },{
         name: 'Khóa học MEAN: MongoDB, Express, AngularJS, NodeJS',
-        category: '',
+        category: 'Lập trình Web',
         chapters: [],
         rate: [],
         price: 200,
@@ -1296,6 +1300,7 @@ const course_data = [
         students: 0,
         briefDes: 'Khóa học full-stack với MongoDB database và các framework của JS',
         views: 0,
+        viewsInWeek: 0,
         saleOff: 0,
         thumbnail: '/images/courses_thumbnail/5.png',
         description: `Khóa học full-stack với MongoDB database và các framework của JS. Trong khóa học này, bạn học sẽ được cung
@@ -1309,7 +1314,7 @@ const course_data = [
         target: 'Hiểu biết về 4 thành phần của MEAN, có khả năng tự lập trình các website sử dụng những kiến thức đã học.',
     },{
         name: 'Javascript Framework: ReactJS and AngularJS',
-        category: '',
+        category: 'Lập trình Web',
         chapters: [],
         rate: [],
         price: 200,
@@ -1317,6 +1322,7 @@ const course_data = [
         students: 0,
         briefDes: 'Khóa học cơ bản và đầy đủ về 2 framework phổ biến của JS',
         views: 0,
+        viewsInWeek: 0,
         saleOff: 0,
         thumbnail: '/images/courses_thumbnail/6.png',
         description: '',
@@ -1326,7 +1332,7 @@ const course_data = [
         target: '',
     },{
         name: 'Khóa học GraphQL',
-        category: '',
+        category: 'Hệ thống thông tin',
         chapters: [],
         rate: [],
         price: 200,
@@ -1334,6 +1340,7 @@ const course_data = [
         students: 0,
         briefDes: 'Khóa học về cơ sở GraphQL và tích hợp SSR',
         views: 0,
+        viewsInWeek: 0,
         saleOff: 0,
         thumbnail: '/images/courses_thumbnail/7.png',
         description: '',
@@ -1343,7 +1350,7 @@ const course_data = [
         target: '',
     },{
         name: 'Khóa học lập trình Web cơ bản',
-        category: '',
+        category: 'Lập trình Web',
         chapters: [],
         rate: [],
         price: 200,
@@ -1351,6 +1358,7 @@ const course_data = [
         students: 0,
         briefDes: 'Khóa học cơ bản về HTML, CSS, JavaScript,...',
         views: 0,
+        viewsInWeek: 0,
         saleOff: 0,
         thumbnail: '/images/courses_thumbnail/8.jpg',
         description: '',
@@ -1360,7 +1368,7 @@ const course_data = [
         target: '',
     },{
         name: 'Khóa học ExpressJS',
-        category: '',
+        category: 'Lập trình Web',
         chapters: [],
         rate: [],
         price: 200,
@@ -1368,6 +1376,7 @@ const course_data = [
         students: 0,
         briefDes: 'Express là một framework của JS sử dụng ở SS',
         views: 0,
+        viewsInWeek: 0,
         saleOff: 0,
         thumbnail: '/images/courses_thumbnail/9.png',
         description: '',
@@ -1377,7 +1386,7 @@ const course_data = [
         target: '',
     },{
         name: 'Khóa học React cơ bản',
-        category: '',
+        category: 'Lập trình Web',
         chapters: [],
         rate: [],
         price: 200,
@@ -1385,6 +1394,7 @@ const course_data = [
         students: 0,
         briefDes: 'Khóa học cơ bản về React: Component, Router, ...',
         views: 0,
+        viewsInWeek: 0,
         saleOff: 0,
         thumbnail: '/images/courses_thumbnail/10.jpg',
         description: '',
@@ -1394,7 +1404,7 @@ const course_data = [
         target: '',
     },{
         name: 'Javascript cơ bản',
-        category: '',
+        category: 'Lập trình Web',
         chapters: [],
         rate: [],
         price: 200,
@@ -1402,6 +1412,7 @@ const course_data = [
         students: 0,
         briefDes: 'Khóa học cơ bản về JS: ES5, ES6, variable, operations, ...',
         views: 0,
+        viewsInWeek: 0,
         saleOff: 0,
         thumbnail: '/images/courses_thumbnail/11.png',
         description: '',
@@ -1411,7 +1422,7 @@ const course_data = [
         target: '',
     },{
         name: 'Javascript nâng cao',
-        category: '',
+        category: 'Lập trình Web',
         chapters: [],
         rate: [],
         price: 200,
@@ -1419,6 +1430,7 @@ const course_data = [
         students: 0,
         briefDes: 'Khóa học nâng cao về JS: hoisting, scope, promise, async await, ...',
         views: 0,
+        viewsInWeek: 0,
         saleOff: 0,
         thumbnail: '/images/courses_thumbnail/12.jpg',
         description: '',
@@ -1428,7 +1440,7 @@ const course_data = [
         target: '',
     },{
         name: 'Javascript ES6',
-        category: '',
+        category: 'Lập trình Web',
         chapters: [],
         rate: [],
         price: 200,
@@ -1436,6 +1448,7 @@ const course_data = [
         students: 0,
         briefDes: 'Khóa học về JS phiên bản ES6: let, arrow function, spread operator, ...',
         views: 0,
+        viewsInWeek: 0,
         saleOff: 0,
         thumbnail: '/images/courses_thumbnail/13.png',
         description: '',
@@ -1445,7 +1458,7 @@ const course_data = [
         target: '',
     },{
         name: 'Khóa học NuxtJS',
-        category: '',
+        category: 'Hệ thống thông tin',
         chapters: [],
         rate: [],
         price: 200,
@@ -1453,6 +1466,7 @@ const course_data = [
         students: 0,
         briefDes: 'Khóa học dành cho người mới bắt đầu về framework NuxtJS',
         views: 0,
+        viewsInWeek: 0,
         saleOff: 0,
         thumbnail: '/images/courses_thumbnail/14.jpeg',
         description: '',
@@ -1462,7 +1476,7 @@ const course_data = [
         target: '',
     },{
         name: 'Lập trình web với NodeJS',
-        category: '',
+        category: 'Lập trình Web',
         chapters: [],
         rate: [],
         price: 200,
@@ -1470,6 +1484,7 @@ const course_data = [
         students: 0,
         briefDes: 'Lập trình SS với NodeJS nâng cao',
         views: 0,
+        viewsInWeek: 0,
         saleOff: 0,
         thumbnail: '/images/courses_thumbnail/15.jpg',
         description: '',
@@ -1480,7 +1495,64 @@ const course_data = [
     },
 ]
 
+const category_data = [
+    {
+        name: 'Công nghệ thông tin',
+        courses: '',
+        soldInWeek: 0
+    },
+    {
+        name: 'Toán học',
+        courses: '',
+        soldInWeek: 0
+    },
+    {
+        name: 'Lập trình Web',
+        parent: 'Công nghệ thông tin',
+        courses: '',
+        soldInWeek: 0
+    },
+    {
+        name: 'Lập trình ứng dụng di động',
+        parent: 'Công nghệ thông tin',
+        courses: '',
+        soldInWeek: 0
+    },
+    {
+        name: 'Khoa học máy tính',
+        parent: 'Công nghệ thông tin',
+        courses: '',
+        soldInWeek: 0
+    },
+    {
+        name: 'Hệ thống thông tin',
+        parent: 'Công nghệ thông tin',
+        courses: '',
+        soldInWeek: 0
+    },
+    {
+        name: 'Toán tổ hợp',
+        parent: 'Toán học',
+        courses: '',
+        soldInWeek: 0
+    },
+    {
+        name: 'Toán rời rạc',
+        parent: 'Toán học',
+        courses: '',
+        soldInWeek: 0
+    },
+
+    {
+        name: 'Xác suất thống kê',
+        parent: 'Toán học',
+        courses: '',
+        soldInWeek: 0
+    }
+]
+
 module.exports = {
     user_data: user_data,
-    course_data: course_data
+    course_data: course_data,
+    category_data: category_data
 };

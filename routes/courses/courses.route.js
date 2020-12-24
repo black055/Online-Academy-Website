@@ -3,10 +3,17 @@ const { clearConfigCache } = require('prettier');
 const router = express.Router();
 const courseModel = require('../../models/courses.model');
 const userModel = require('../../models/user.model');
+const categoryModel = require('../../models/category.model')
 
 router.get('/', async (req, res) => {
     const allCourses = await courseModel.getAllCourses();
     res.render('courses/courses', {isCourses: true, allCourses: allCourses});
+});
+
+router.get('/category/:id', async (req, res) => {
+    const category = await categoryModel.getCategory(req.params.id);
+    const coursesList = await courseModel.getCoursesByCategory(category);
+    res.render('courses/courses', {isCourses: true, allCourses: coursesList});
 });
 
 // router.get('/lectures', async (req, res) => {

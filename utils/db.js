@@ -46,12 +46,14 @@ const course = new Schema({
     thumbnail: String,
     commands: Array,
     target: String,
+    viewsInWeek: Number
 })
 
 const category = Schema({
     name: String,
-    parentCategory: String,
-    courses: Array
+    parent: String,
+    courses: Array,
+    soldInWeek: Number
 })
 
 module.exports = {

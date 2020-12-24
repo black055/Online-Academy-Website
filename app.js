@@ -38,15 +38,11 @@ mongoose.connect("mongodb://localhost:27017/mydb", {
         course.save();
     }
 
-  category = new Category({_id: mongoose.Types.ObjectId("000000000000000000000001"), "name": "Công nghệ thông tin"});category.save();
-  category = new Category({_id: mongoose.Types.ObjectId("000000000000000000000002"), "name": "Toán học"});category.save();
-  category = new Category({_id: mongoose.Types.ObjectId("000000000000000000000003"), "name": "Lập trình Web", "parentCategory": mongoose.Types.ObjectId("000000000000000000000001")});category.save();
-  category = new Category({_id: mongoose.Types.ObjectId("000000000000000000000004"), "name": "Lập trình ứng dụng di động", "parentCategory": mongoose.Types.ObjectId("000000000000000000000001")});category.save();
-  category = new Category({_id: mongoose.Types.ObjectId("000000000000000000000005"), "name": "Khoa học máy tính", "parentCategory": mongoose.Types.ObjectId("000000000000000000000001")});category.save();
-  category = new Category({_id: mongoose.Types.ObjectId("000000000000000000000006"), "name": "Hệ thống thông tin", "parentCategory": mongoose.Types.ObjectId("000000000000000000000001")});category.save();
-  category = new Category({_id: mongoose.Types.ObjectId("000000000000000000000007"), "name": "Toán tổ hợp", "parentCategory": mongoose.Types.ObjectId("000000000000000000000002")});category.save();
-  category = new Category({_id: mongoose.Types.ObjectId("000000000000000000000008"), "name": "Toán rời rạc", "parentCategory": mongoose.Types.ObjectId("000000000000000000000002")});category.save();
-  category = new Category({_id: mongoose.Types.ObjectId("000000000000000000000009"), "name": "Xác suất thống kê", "parentCategory": mongoose.Types.ObjectId("000000000000000000000002")});category.save();
+    for (let i = 0; i < category_data.length; i++) {
+      let category = new Category(category_data[i]);
+      category.save();
+    }
+
 })();*/
 
 const app = express();
