@@ -3,11 +3,22 @@ const { clearConfigCache } = require('prettier');
 const router = express.Router();
 const courseModel = require('../../models/courses.model');
 const userModel = require('../../models/user.model');
+const categoryModel = require('../../models/category.model')
 
 router.get('/', async (req, res) => {
     const allCourses = await courseModel.getAllCourses();
     res.render('courses/courses', {isCourses: true, allCourses: allCourses});
 });
+
+router.get('/category/:id', async (req, res) => {
+    const category = await categoryModel.getCategory(req.params.id);
+    const coursesList = await courseModel.getCoursesByCategory(category);
+    res.render('courses/courses', {isCourses: true, allCourses: coursesList});
+});
+
+// router.get('/lectures', async (req, res) => {
+//     res.render('courses/chapter');
+// })
 
 router.get('/register/:id', async (req, res) => {
     if (typeof req.user == 'undefined') {
@@ -29,7 +40,6 @@ router.get('/register/:id', async (req, res) => {
 });
 
 router.get('/:id_course/:id_lecture', async (req, res) => {
-    console.log(req.params.id_course, req.params.id_lecture);
     const course = await courseModel.getCourse(req.params.id_course);
     const url = course.chapters[Number(req.params.id_lecture)].video;
     const title = course.chapters[Number(req.params.id_lecture)].title;

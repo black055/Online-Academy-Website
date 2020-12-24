@@ -9,12 +9,11 @@ const hbs = require("express-handlebars");
 const MongoStore = require("connect-mongo")(session);
 const hbs_section = require("express-handlebars-sections");
 const mdwIsValidated = require("./middlewares/validation.mdw");
-const { User, Teacher, Admin, Course } = require("./utils/db");
-const {user_data, course_data} = require('./utils/insert');
+const { User, Teacher, Admin, Course, Category } = require("./utils/db");
+const {user_data, course_data, category_data} = require('./utils/insert');
 
 const userModel = require("./models/user.model.js");
 
-//const {user_data, course_data} = require('./utils/insert');
 require("./auth");
 
 // Connect to database
@@ -38,6 +37,12 @@ mongoose.connect("mongodb://localhost:27017/mydb", {
 //         let course = new Course(course_data[i]);
 //         course.save();
 //     }
+
+//     for (let i = 0; i < category_data.length; i++) {
+//       let category = new Category(category_data[i]);
+//       category.save();
+//     }
+
 // })();
 
 const app = express();
@@ -106,8 +111,10 @@ app.use("/courses", mdwIsValidated, require("./routes/courses/courses.route"));
 app.get("/profile", mdwIsValidated, async (req, res) => {
   if (req.user.userType == "Student") {
     totalMoney = await userModel.getTotalMoney(req.user._id);
+    courses = await userModel.getCourses(req.user._id);
     res.render("profile/profile", {
       user: req.user,
+      courses: courses,
       totalMoney: totalMoney,
     });
   } else

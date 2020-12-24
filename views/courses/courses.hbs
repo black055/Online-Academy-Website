@@ -209,12 +209,12 @@
     {{#each allCourses }}
     courses.push(`<div class="col-lg-6 course_col">
             <div class="course">
-                <div class="course_image"><img style="width: 345px;" src="{{this.avatar}}" alt=""></div>
+                <div class="course_image"><img style="width: 345px;" src="{{this.thumbnail}}" alt=""></div>
                 <div class="course_body">
                     <h3 class="course_title"><a href="/courses/{{this._id}}">{{this.name}}</a></h3>
                     <div class="course_teacher">{{this.teacher}}</div>
                     <div class="course_text">
-                        <p>{{this.description}}</p>
+                        <p>{{this.briefDes}}</p>
                     </div>
                 </div>
                 <div class="course_footer">

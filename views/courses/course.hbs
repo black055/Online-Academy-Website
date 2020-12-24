@@ -24,13 +24,13 @@
                         <!-- Course Info Item -->
                         <div class="course_info_item">
                             <div class="course_info_title">Lĩnh vực:</div>
-                            <div class="course_info_text"><a href="#">Web</a></div>
+                            <div class="course_info_text"><a href="/courses/category/{{course.category}}">{{course.category}}</a></div>
                         </div>
 
                     </div>
 
                     <!-- Course Image -->
-                    <div class="course_image"><img src={{course.avatar}} alt=""></div>
+                    <div class="course_image"><img src={{course.thumbnail}} alt=""></div>
 
                     <!-- Course Tabs -->
                     <div class="course_tabs_container">
@@ -46,7 +46,7 @@
                                 <div class="tab_panel_title">{{course.name}}</div>
                                 <div class="tab_panel_content">
                                     <div class="tab_panel_text">
-                                        <p>{{course.desDeep}}</p>
+                                        <p>{{course.description}}</p>
                                     </div>
                                     <div class="tab_panel_section">
                                         <div class="tab_panel_subtitle">Yêu cầu</div>
@@ -233,7 +233,7 @@
                     <div class="sidebar_section">
                         <div class="sidebar_section_title">Thông tin</div>
                         <div class="sidebar_feature">
-                            <div class="course_price">$180</div>
+                            <div class="course_price">$ {{course.price}}</div>
 
                             <!-- Features -->
                             <div class="feature_list">
@@ -315,7 +315,6 @@
     rate += {{this}} * ({{@index}} + 1);
     total += {{this}};
     {{/each}}
-    console.log(rate, total);
     rating = (rate / (total * 5))*5;
     let flo = Math.floor(rating);
     let class_name = 'rating_r_' + flo;

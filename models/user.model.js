@@ -9,6 +9,20 @@ module.exports = {
         return await User.findOneAndUpdate({_id: id_user}, {courses: courses});
     },
 
+    getCourses(id) {
+        return new Promise(async function(resolve, reject) {
+            user = await User.findById(id);
+            result = [];
+            if (user != null) {
+                for (i = 0; i < user.courses.length; i++) {
+                    course = await Course.findById(user.courses[i]);
+                    result.push(course);
+                }
+            }
+            resolve(result);
+        })
+    },
+
     getTotalMoney(id) {
         return new Promise(async function(resolve, reject) {
             user = await User.findById(id);
