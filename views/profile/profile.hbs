@@ -192,10 +192,12 @@
                             <form action="/profile/changePassword" id="change-password-form" method="post">
                                 <div class="form-group">
                                     <input type="password" id="newPass" name="newPass" class="form-control" placeholder="Mật khẩu mới" required>
+                                    <span class="error" id="newPassErr"></span>
                                 </div>
 
                                 <div class="form-group">
                                     <input type="password" id="newPassConfirm" name="newPassConfirm" class="form-control" placeholder="Nhập lại mật khẩu mới" required>
+                                    <span class="error" id="newPassConfirmErr"></span>
                                 </div>
 
                                 <div class="form-group">
@@ -210,9 +212,17 @@
             </div>
         </div>
 </div>
-
 {{#section 'js'}}
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+{{#if message}}
+<script type="text/javascript">
+    Swal.fire( {
+        icon: '{{message.icon}}',
+        title: '{{message.title}}',
+        text: '{{message.text}}'
+    });
+</script>
+{{/if}}
 <script src="/js/profile.js"></script>
 <script>
     let courses = [];
@@ -252,21 +262,21 @@
         }
     });
     
-    for (i = 0; i < 50; i++) {
+    {{#each watchlist}}
         watchlist.push(`<tr>
             <th scope="row">
                 <div class="p-2">
-                    <img src="images/courses_thumbnail/2.jpg" alt="" width="70" class="img-fluid rounded shadow-sm">
+                    <img src="{{this.thumbnail}}" alt="" width="70" class="img-fluid rounded shadow-sm">
                     <div class="ml-3 d-inline-block align-middle">
-                        <h5 class="mb-0"><a href="#" class="text-dark d-inline-block">Khóa học làm giàu (${i})</a></h5>
-                        <span class="text-muted font-weight-normal font-italic">Kỹ năng sống</span>
+                        <h5 class="mb-0"><a href="#" class="text-dark d-inline-block">{{this.name}}</a></h5>
+                        <span class="text-muted font-weight-normal font-italic">{{this.category}}</span>
                     </div>
                 </div>
             </th>
-            <td class="align-middle"><strong>$79.00</strong></td>
+            <td class="align-middle"><strong>${{this.price}}</strong></td>
             <td class="align-middle"><a href="#" class="text-dark"><i class="fa fa-trash"></i></a>
         </tr>`);
-    }
+    {{/each}}
     length = Math.ceil(watchlist.length / 4);
     $('#pagination_watchlist').twbsPagination({
         totalPages: length,

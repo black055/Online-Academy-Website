@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const session = require("express-session");
 const passport = require("passport");
 const hbs = require("express-handlebars");
+const flash = require('req-flash');
 const MongoStore = require("connect-mongo")(session);
 const hbs_section = require("express-handlebars-sections");
 const mdwIsValidated = require("./middlewares/validation.mdw");
@@ -25,7 +26,7 @@ mongoose.connect("mongodb://localhost:27017/mydb", {
 });
 
 // Insert data user
-/*(async function b() {
+(async function b() {
     for (let i = 0; i < user_data.length; i++) {
         let user = await User.findOne({'email': user_data[i].email});
         if (!user) {
@@ -34,17 +35,17 @@ mongoose.connect("mongodb://localhost:27017/mydb", {
         }
     }
 
-    for (let i = 0; i < course_data.length; i++) {
-        let course = new Course(course_data[i]);
-        course.save();
-    }
+    // for (let i = 0; i < course_data.length; i++) {
+    //     let course = new Course(course_data[i]);
+    //     course.save();
+    // }
 
-    for (let i = 0; i < category_data.length; i++) {
-      let category = new Category(category_data[i]);
-      category.save();
-    }
+    // for (let i = 0; i < category_data.length; i++) {
+    //   let category = new Category(category_data[i]);
+    //   category.save();
+    // }
 
-})();*/
+})();
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -62,7 +63,7 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.use(flash());
 app.use(function (req, res, next) {
   res.locals.session = req.session;
   next();
@@ -98,20 +99,23 @@ handlebars.handlebars.registerHelper(
 // Static resources
 app.use(express.static(__dirname + "/public"));
 
+app.use(async function (req, res, next) {
+  const categories = await categoryModel.getMenuCategory();
+  req.session.categories = categories;
+  next();
+});
+
 app.get("/", mdwIsValidated, async (req, res) => {
   req.session.user = req.user;
-  const categories = await categoryModel.getMenuCategory();
-  res.render("index", { isHome: true, categories: categories});
+  res.render("index", { isHome: true});
 });
 
 app.get("/about", mdwIsValidated, async (req, res) => {
-  const categories = await categoryModel.getMenuCategory();
-  res.render("about/about", { isAbout: true, categories: categories });
+  res.render("about/about", { isAbout: true});
 });
 
 app.get("/contact", mdwIsValidated, async (req, res) => {
-  const categories = await categoryModel.getMenuCategory();
-  res.render("contact/contact", { categories: categories });
+  res.render("contact/contact");
 });
 
 app.get("/login", mdwIsValidated, (req, res) => {

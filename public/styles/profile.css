@@ -35,7 +35,7 @@ body{
     color: #333;
 }
 .profile-img h5{
-    color: #0062cc;
+    color: #14bdee;
 }
 .profile-edit-btn, .profile-add-btn{
     border: none;
@@ -74,7 +74,7 @@ body{
 }
 .profile-head .nav-tabs .nav-link.active{
     border: none;
-    border-bottom:2px solid #0062cc;
+    border-bottom:2px solid #14bdee;
 }
 .profile-work{
     padding: 14%;
@@ -136,4 +136,18 @@ body{
     color: #ffffff;
     background: #14bdee;
     border: solid 1px #14bdee;
+}
+
+a {
+    color: #14bdee;
+}
+
+a:hover {
+    color: #14bdee;
+}
+.error {
+    font-size: 13px;
+    padding: 6px 0 4px 5px;
+    color: red;
+    display: block
 }

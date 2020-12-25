@@ -79,7 +79,7 @@
                                             <a href="/contact" onclick="return false;">Lĩnh vực</a>
                                         </li>
                                         <div class="dropdown-menu" aria-labelledby="categoriesDropdown">
-                                            {{#each categories}}
+                                            {{#each session.categories}}
                                             <a class="dropdown-item font-weight-bold" href="/category/{{this.name}}">{{this.name}}</a>
                                             {{#if this.subCategory}} {{#each this.subCategory}}
                                             <a class="dropdown-item pl-5" href="/category/{{this.name}}">{{this.name}}</a>

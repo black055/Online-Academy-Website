@@ -11,7 +11,7 @@ module.exports = {
                 categories[i].subCategory = JSON.parse(JSON.stringify(subCategory));
             }
             resolve(categories);
-        });
+        }).catch(err => {console.log(err);});
     },
 
     getCategory(name) {
