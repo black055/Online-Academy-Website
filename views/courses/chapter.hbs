@@ -3,7 +3,7 @@
         <div class="course_title">{{course.name}}</div>
         <h3>Giáo viên: <a href="#" id="teacher">Lê Thành Việt</a></h3>
         <h4 style="margin-bottom: 20px;">Lĩnh vực: <a href="#" id="category">Lập trình Web</a></h4>
-        <video controls crossorigin playsinline poster={{course.thumbnail}} class="js-player">
+        <video controls crossorigin playsinline poster={{course.thumbnail}} class="js-player" id="video_chapter">
             <source src="{{url}}" type="video/mp4" />
         </video>
         <h3>{{title}}</h3>
@@ -11,11 +11,12 @@
 
     <ul class="dropdowns" style="margin-left:50px; margin-top:60px;" id="chapters">
         {{#each course.chapters}}
-        <li>
+        <li id="chapter_{{@index}}">
             <div class="dropdown_item">
-                <a href="/courses/{{../course._id}}/{{@index}}">
-                    <div class="dropdown_item_title">{{this.title}}</div>
-                </a>
+                <a href="/courses/{{../course._id}}/{{@index}}"><div class="dropdown_item_title">{{this.title}}</div></a>
+                <div class="dropdown_item_text">
+                    <p><a href="/courses/{{../course._id}}/{{@index}}" style="text-decoration: none;"><i class="far fa-play-circle" style="margin-right: 10px;"></i>{{this.title}}</a></p>
+                </div>
             </div>
         </li>
         {{/each}}
@@ -76,7 +77,26 @@
 <script src="/js/course.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        const player = Plyr.setup('.js-player');
+        const player = new Plyr('.js-player', {
+            autoplay: true,
+        });
     });
+
+    if (!{{registered}}) {
+        {{#each course.chapters}}
+        if ({{@index}} > 1) {
+            $(`#chapter_{{@index}}`).css('pointer-events', 'none');
+        }
+        {{/each}}
+    }
+
+    var video = document.getElementById('video_chapter');
+    if (localStorage.hasOwnProperty('{{url}}')) {
+        video.currentTime = localStorage.getItem('{{url}}');
+    }
+
+    setInterval(() => {
+        localStorage.setItem('{{url}}', video.currentTime);
+    },1000);
 </script>
 {{/section}}

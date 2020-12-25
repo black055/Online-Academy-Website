@@ -79,7 +79,7 @@
                                         <!-- Dropdowns -->
                                         <ul class="dropdowns">
                                             {{#each course.chapters}}
-                                            <li>
+                                            <li id="chapter_{{@index}}">
                                                 <div class="dropdown_item">
                                                     <a href="/courses/{{../course._id}}/{{@index}}"><div class="dropdown_item_title">{{this.title}}</div></a>
                                                     <div class="dropdown_item_text">
@@ -100,40 +100,27 @@
                                 <!-- Rating -->
                                 <div class="review_rating_container">
                                     <div class="review_rating">
-                                        <div class="review_rating_num">4.5</div>
+                                        <div class="review_rating_num">{{courseRate}}</div>
                                         <div class="review_rating_stars">
-                                            <div class="rating_r rating_r_4"><i></i><i></i><i></i><i></i><i></i></div>
+                                            <div class="div_none_rate">
+                                                <input type="radio" name="example" class="rating" value="1" id="" style="display: none;">
+                                                <input type="radio" name="example" class="rating" value="2" style="display: none;">
+                                                <input type="radio" name="example" class="rating" value="3" style="display: none;">
+                                                <input type="radio" name="example" class="rating" value="4" style="display: none;">
+                                                <input type="radio" name="example" class="rating" value="5" style="display: none;">
+                                                <div class="stars">
+                                                    <a class="star none_rate" id="rate_1" style="pointer-events: none;"></a>
+                                                    <a class="star none_rate" id="rate_2" style="pointer-events: none;"></a>
+                                                    <a class="star none_rate" id="rate_3" style="pointer-events: none;"></a>
+                                                    <a class="star none_rate" id="rate_4" style="pointer-events: none;"></a>
+                                                    <a class="star none_rate" id="rate_5" style="pointer-events: none;"></a>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="review_rating_text">(28 Ratings)</div>
+                                        <div class="review_rating_text">({{totalRate}} Ratings)</div>
                                     </div>
                                     <div class="review_rating_bars">
-                                        <ul>
-                                            <li><span>5 Star</span>
-                                                <div class="review_rating_bar">
-                                                    <div style="width:90%;"></div>
-                                                </div>
-                                            </li>
-                                            <li><span>4 Star</span>
-                                                <div class="review_rating_bar">
-                                                    <div style="width:75%;"></div>
-                                                </div>
-                                            </li>
-                                            <li><span>3 Star</span>
-                                                <div class="review_rating_bar">
-                                                    <div style="width:32%;"></div>
-                                                </div>
-                                            </li>
-                                            <li><span>2 Star</span>
-                                                <div class="review_rating_bar">
-                                                    <div style="width:10%;"></div>
-                                                </div>
-                                            </li>
-                                            <li><span>1 Star</span>
-                                                <div class="review_rating_bar">
-                                                    <div style="width:3%;"></div>
-                                                </div>
-                                            </li>
-                                        </ul>
+                                        <ul id="list_rate"></ul>
                                     </div>
                                 </div>
 
@@ -256,7 +243,7 @@
                     <div class="sidebar_section" id="register_button">
                         {{#if registered}}
                         <div class="row">
-                            <a href="/courses/lectures" style="width: 100%;"><button class="btn btn-danger btn-lg cl-12" style="width:100%;">Xem khóa học</button></a>
+                            <a href="/courses/{{course._id}}/0" style="width: 100%;"><button class="btn btn-danger btn-lg cl-12" style="width:100%;">Xem khóa học</button></a>
                         </div>
                         
                         {{else}}
@@ -311,15 +298,53 @@
 <script>
 
     $('document').ready(function() {
-        for (let i = 1; i <= {{rate}}; i++) {
+        if ({{registered}}) {
+            for (let i = 1; i <= {{rate}}; i++) {
+                $(`a[title|='${i}']`).addClass('fullStar');
+            }
+        } else {
+            for (let i = 1; i <= {{courseRate}}; i++) {
             $(`a[title|='${i}']`).addClass('fullStar');
-        };
-    })
+            }
+        }
+    });
+
+    for (let i = 1; i <= {{courseRate}}; i++) {
+        $(`#rate_${i}`).addClass('fullStar');
+    }
 
     $('.div_rating').rating(function(vote, event) {
-        $.get(`/courses/rate/{{course._id}}/${vote}`, function(data, status) {
-            alert(data);
-        })
+        if ({{registered}}) {
+            $.get(`/courses/rate/{{course._id}}/${vote}`, function(data, status) {
+                alert(data);
+            });
+        }
     });
+
+    let listRate = '';
+    let num = 0;
+    let percent = 0;
+    let totalRate = {{totalRate}};
+    {{#each course.rate}}
+        num = {{@index}} + 1;
+        percent = ({{this}}/ totalRate) * 100;
+        console.log(typeof totalRate);
+        percent = percent || 0;
+        listRate += `<li><span>${num} Sao</span>
+            <div class="review_rating_bar">
+                <div style="width:${percent}%;"></div>
+            </div>
+        </li>`
+    {{/each}}
+
+    $('#list_rate').html(listRate);
+
+    if (!{{registered}}) {
+        {{#each course.chapters}}
+        if ({{@index}} > 1) {
+            $(`#chapter_{{@index}}`).css('pointer-events', 'none');
+        }
+        {{/each}}
+    }
 </script>
 {{/section}}
