@@ -91,12 +91,14 @@
     }
 
     var video = document.getElementById('video_chapter');
-    if (localStorage.hasOwnProperty('{{url}}')) {
-        video.currentTime = localStorage.getItem('{{url}}');
+    const item = '{{session.user._id}}' + '{{url}}';
+    console.log(item);
+    if (localStorage.hasOwnProperty(item)) {
+        video.currentTime = localStorage.getItem(item);
     }
 
     setInterval(() => {
-        localStorage.setItem('{{url}}', video.currentTime);
+        localStorage.setItem(item, video.currentTime);
     },1000);
 </script>
 {{/section}}
