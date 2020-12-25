@@ -5,6 +5,10 @@ module.exports = {
         return await User.findById(id);
     }, 
 
+    async getUserByEmail(email) {
+        return await User.findOne( {"email" : `${email}`} );
+    }, 
+
     async addCourse(id_user, courses) {
         return await User.findOneAndUpdate({_id: id_user}, {courses: courses});
     },
@@ -28,8 +32,8 @@ module.exports = {
             user = await User.findById(id);
             result = [];
             if (user != null) {
-                for (i = 0; i < user.watchlist.length; i++) {
-                    course = await Course.findById(Object.keys(user.watchlist[i])[0]);
+                for (i = 0; i < user.watchList.length; i++) {
+                    course = await Course.findById(Object.keys(user.watchList[i])[0]);
                     result.push(course);
                 }
             }
