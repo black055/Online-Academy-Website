@@ -1,5 +1,4 @@
 <div class="container emp-profile pt-5">
-    <form method="post">
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-img">
@@ -36,26 +35,22 @@
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" id="info-tab" data-toggle="tab" href="#info" role="tab"
-                                aria-controls="info" aria-selected="true">Thông
-                                tin</a>
+                                aria-controls="info" aria-selected="true">Thông tin</a>
                         </li>
                         {{#ifEquals user.userType "Student"}}
                         <li class="nav-item">
                             <a class="nav-link" id="statistic-tab" data-toggle="tab" href="#statistic" role="tab"
-                                aria-controls="statistic" aria-selected="false">Thống
-                                kê</a>
+                                aria-controls="statistic" aria-selected="false">Thống kê</a>
                         </li>
                         {{/ifEquals}}
                         <li class="nav-item">
                             <a class="nav-link" id="myCourses-tab" data-toggle="tab" href="#myCourses" role="tab"
-                                aria-controls="myCourses" aria-selected="false">Khóa
-                                học của tôi</a>
+                                aria-controls="myCourses" aria-selected="false">Khóa học của tôi</a>
                         </li>
                         {{#ifEquals user.userType "Student"}}
                         <li class="nav-item">
                             <a class="nav-link" id="watchList-tab" data-toggle="tab" href="#watchList" role="tab"
-                                aria-controls="watchList" aria-selected="false">Khóa
-                                học yêu thích</a>
+                                aria-controls="watchList" aria-selected="false">Khóa học yêu thích</a>
                         </li>
                         {{/ifEquals}}
                         <li class="nav-item">
@@ -193,36 +188,32 @@
                         </div>
                         {{/ifEquals}}
 
-                        <div class="tab-pane fade" id="changePassword" role="tabpanel"
-                            aria-labelledby="changePassword-tab">
-                            <form action="#">
-
+                        <div class="tab-pane fade" id="changePassword" role="tabpanel" aria-labelledby="changePassword-tab">
+                            <form action="/profile/changePassword" id="change-password-form" method="post">
                                 <div class="form-group">
-                                    <input type="password" id="newPass" class="form-control" placeholder="Mật khẩu mới"
-                                        required>
+                                    <input type="password" id="newPass" name="newPass" class="form-control" placeholder="Mật khẩu mới" required>
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="password" id="newPassConfirm" class="form-control" placeholder="Nhập lại mật khẩu mới" required>
+                                    <input type="password" id="newPassConfirm" name="newPassConfirm" class="form-control" placeholder="Nhập lại mật khẩu mới" required>
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="password" id="oldPass" class="form-control" placeholder="Mật khẩu cũ"
-                                        required>
+                                    <input type="password" id="oldPass" name="oldPass" class="form-control" placeholder="Mật khẩu cũ" required>
                                 </div>
 
-                                <button type="submit" class="btn
-                                                btn-primary mb-4">Đổi mật khẩu</button>
+                                <button type="submit" class="btn btn-primary mb-4">Đổi mật khẩu</button>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </form>
 </div>
 
 {{#section 'js'}}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="/js/profile.js"></script>
 <script>
     let courses = [];
     let watchlist = [];

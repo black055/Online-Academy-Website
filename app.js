@@ -109,26 +109,6 @@ app.get("/about", mdwIsValidated, async (req, res) => {
   res.render("about/about", { isAbout: true, categories: categories });
 });
 
-app.use("/courses", mdwIsValidated, require("./routes/courses/courses.route"));
-
-app.get("/profile", mdwIsValidated, async (req, res) => {
-  const categories = await categoryModel.getMenuCategory();
-  if (req.user.userType == "Student") {
-    totalMoney = await userModel.getTotalMoney(req.user._id);
-    courses = await userModel.getCourses(req.user._id);
-    res.render("profile/profile", {
-      user: req.user,
-      courses: courses,
-      totalMoney: totalMoney,
-      categories: categories
-    });
-  } else
-    res.render("profile/profile", {
-      user: req.user,
-      categories: categories
-    });
-});
-
 app.get("/contact", mdwIsValidated, async (req, res) => {
   const categories = await categoryModel.getMenuCategory();
   res.render("contact/contact", { categories: categories });
@@ -155,6 +135,8 @@ app.get("/logout", (req, res) => {
   res.redirect("/login");
 });
 
+app.use("/courses", mdwIsValidated, require("./routes/courses/courses.route"));
+app.use("/profile", mdwIsValidated, require("./routes/profile/profile.route"));
 app.use('/register', require('./routes/register/register.route'));
 app.use('/teacher', require('./routes/teacher/teacher.route'));
 app.use('/category', require('./routes/category/category.route.js'));

@@ -1,5 +1,4 @@
 const express = require('express');
-const { clearConfigCache } = require('prettier');
 const router = express.Router();
 const courseModel = require('../../models/courses.model');
 const userModel = require('../../models/user.model');
