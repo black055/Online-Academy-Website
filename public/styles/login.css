@@ -145,4 +145,10 @@ p {
 .facebook 
 {
     background-color: #0255afb8;
+    border-color: #0255afb8;
+}
+
+.facebook:hover {
+    background-color: #0255afd4;
+    border-color: #0255afd4;
 }

@@ -98,21 +98,24 @@ handlebars.handlebars.registerHelper(
 // Static resources
 app.use(express.static(__dirname + "/public"));
 
+app.use(async function (req, res, next) {
+  const categories = await categoryModel.getMenuCategory();
+  req.session.categories = categories;
+  next();
+});
+
 app.get("/", mdwIsValidated, async (req, res) => {
   req.session.user = req.user;
-  const categories = await categoryModel.getMenuCategory();
-  res.render("index", { isHome: true, categories: categories});
+  res.render("index", { isHome: true});
 });
 
 app.get("/about", mdwIsValidated, async (req, res) => {
-  const categories = await categoryModel.getMenuCategory();
-  res.render("about/about", { isAbout: true, categories: categories });
+  res.render("about/about", { isAbout: true});
 });
 
 app.use("/courses", mdwIsValidated, require("./routes/courses/courses.route"));
 
 app.get("/profile", mdwIsValidated, async (req, res) => {
-  const categories = await categoryModel.getMenuCategory();
   if (req.user.userType == "Student") {
     totalMoney = await userModel.getTotalMoney(req.user._id);
     courses = await userModel.getCourses(req.user._id);
@@ -120,18 +123,15 @@ app.get("/profile", mdwIsValidated, async (req, res) => {
       user: req.user,
       courses: courses,
       totalMoney: totalMoney,
-      categories: categories
     });
   } else
     res.render("profile/profile", {
       user: req.user,
-      categories: categories
     });
 });
 
 app.get("/contact", mdwIsValidated, async (req, res) => {
-  const categories = await categoryModel.getMenuCategory();
-  res.render("contact/contact", { categories: categories });
+  res.render("contact/contact");
 });
 
 app.get("/login", mdwIsValidated, (req, res) => {

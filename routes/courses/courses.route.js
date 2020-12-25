@@ -7,8 +7,7 @@ const categoryModel = require('../../models/category.model')
 
 router.get('/', async (req, res) => {
     const allCourses = await courseModel.getAllCourses();
-    const categories = await categoryModel.getMenuCategory();
-    res.render('courses/courses', {isCourses: true, allCourses: allCourses, categories: categories});
+    res.render('courses/courses', {isCourses: true, allCourses: allCourses});
 });
 
 router.get('/rate/:id_course/:value', async (req, res) => {
@@ -57,12 +56,10 @@ router.get('/:id_course/:id_lecture', async (req, res) => {
     const course = await courseModel.getCourse(req.params.id_course);
     const url = course.chapters[Number(req.params.id_lecture)].video;
     const title = course.chapters[Number(req.params.id_lecture)].title;
-    const categories = await categoryModel.getMenuCategory();
-    res.render('courses/chapter', {course: course, url: url, categories: categories, title: title});
+    res.render('courses/chapter', {course: course, url: url, title: title});
 })
 
 router.get('/:id_course', async (req, res) => {
-    const categories = await categoryModel.getMenuCategory();
     const course = await courseModel.getCourse(req.params.id_course);
     let isRegistered = false;
     let rate = 0;
@@ -76,7 +73,7 @@ router.get('/:id_course', async (req, res) => {
             }
         }
     }
-    res.render('courses/course', {course: course, registered: isRegistered, categories: categories, rate: rate});
+    res.render('courses/course', {course: course, registered: isRegistered, rate: rate});
 });
 
 
