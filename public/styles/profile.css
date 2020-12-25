@@ -145,3 +145,9 @@ a {
 a:hover {
     color: #14bdee;
 }
+.error {
+    font-size: 13px;
+    padding: 6px 0 4px 5px;
+    color: red;
+    display: block
+}

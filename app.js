@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const session = require("express-session");
 const passport = require("passport");
 const hbs = require("express-handlebars");
+const flash = require('req-flash');
 const MongoStore = require("connect-mongo")(session);
 const hbs_section = require("express-handlebars-sections");
 const mdwIsValidated = require("./middlewares/validation.mdw");
@@ -62,7 +63,7 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.use(flash());
 app.use(function (req, res, next) {
   res.locals.session = req.session;
   next();
@@ -113,23 +114,6 @@ app.get("/about", mdwIsValidated, async (req, res) => {
   res.render("about/about", { isAbout: true});
 });
 
-app.use("/courses", mdwIsValidated, require("./routes/courses/courses.route"));
-
-app.get("/profile", mdwIsValidated, async (req, res) => {
-  if (req.user.userType == "Student") {
-    totalMoney = await userModel.getTotalMoney(req.user._id);
-    courses = await userModel.getCourses(req.user._id);
-    res.render("profile/profile", {
-      user: req.user,
-      courses: courses,
-      totalMoney: totalMoney,
-    });
-  } else
-    res.render("profile/profile", {
-      user: req.user,
-    });
-});
-
 app.get("/contact", mdwIsValidated, async (req, res) => {
   res.render("contact/contact");
 });
@@ -155,6 +139,8 @@ app.get("/logout", (req, res) => {
   res.redirect("/login");
 });
 
+app.use("/courses", mdwIsValidated, require("./routes/courses/courses.route"));
+app.use("/profile", mdwIsValidated, require("./routes/profile/profile.route"));
 app.use('/register', require('./routes/register/register.route'));
 app.use('/teacher', require('./routes/teacher/teacher.route'));
 app.use('/category', require('./routes/category/category.route.js'));
