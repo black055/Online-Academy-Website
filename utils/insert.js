@@ -1551,8 +1551,152 @@ const category_data = [
     }
 ]
 
+const teacher_data = [{
+    email: 'nguyenvantu5@gmail.com',
+    name: 'Nguyễn Văn Tú',
+    bthday: null,
+    password: '$2b$10$Fd0GDCRSSwpzsUaaAzSrz.tLxvBIWWX4G1WwRmekSvK7UdrS94z7a',
+    courses: [],
+    userType: 'Teacher',
+  }, {
+    email: 'trantanthanh2@gmail.com',
+    name: 'Trần Tấn Thành',
+    bthday: null,
+    password: '$2b$10$gzYEFuBiuRsv51yy9zxRZur.mbAPN7DBBLHRSZwY4aEhyTwJl/9iW',
+    courses: [],
+    userType: 'Teacher',
+  }, {
+    email: 'phamnguyencongminh@gmail.com',
+    name: 'Phạm Nguyễn Công Minh',
+    bthday: null,
+    password: '$2b$10$qk7zGEBjc1uNHtgg8.qcQO6ezLLJ85awi6b6cB6G3L3YTp4Uwzfnq',
+    courses: [],
+    userType: 'Teacher',
+  }, {
+    email: 'tranlecongluat@gmail.com',
+    name: 'Trần Lê Công Luật',
+    bthday: null,
+    password: '$2b$10$FHwKig1gVky2zPmFtiXcsOnYf25BLnarl/NPQC6aDJN8LfbY3SlXS',
+    courses: [],
+    userType: 'Teacher',
+  }, {
+    email: 'nguyenletuananh@gmail.com',
+    name: 'Nguyên Lê Tuấn Anh',
+    bthday: null,
+    password: '$2b$10$S9Cmb4KBjjXWkoqHNIz9NeI7H7gu0e/LwsyF94Gv2t0xptdbw9naS',
+    courses: [],
+    userType: 'Teacher',
+  }, {
+    email: 'lethanhbinh@gmail.com',
+    name: 'Lê Thanh Bình',
+    bthday: null,
+    password: '$2b$10$QC2iZAwoXFUIUb/a/OK0nOmF/FPeUoizQ5QohngAvfzypGhNSUmSO',
+    courses: [],
+    userType: 'Teacher',
+  }, {
+    email: 'phamtandung@gmail.com',
+    name: 'Phạm Tấn Dũng',
+    bthday: null,
+    password: '$2b$10$N3Z0kfgwW82xC7Vl8DxfN.WnJ8JwmeJmVmm3TyQREwMNUcUba1OG.',
+    courses: [],
+    userType: 'Teacher',
+  }, {
+    email: 'tranphutrong@gmail.com',
+    name: 'Trần Phú Trọng',
+    bthday: null,
+    password: '$2b$10$k6RGJS0f5GIZVHwVTkokRuhGpGuG9dEGPNX9knxhHAQ6QV2mvkYmi',
+    courses: [],
+    userType: 'Teacher',
+  }, {
+    email: 'nguyentrankimngan@gmail.com',
+    name: 'Nguyễn Trần Kim Ngân',
+    bthday: null,
+    password: '$2b$10$nYYV3jY6BHTPJOWZOsmrN.xCCVTxDGRWWaeQeB2VTHpQo7Ba5.o5C',
+    courses: [],
+    userType: 'Teacher',
+  }, {
+    email: 'truongphucanh@gmail.com',
+    name: 'Trương Phúc Anh',
+    bthday: null,
+    password: '$2b$10$gc7DdySTp7qW5T3qm6y99OtQ6nfusnf5RWQsVoaWOZMzvm2LJiFha',
+    courses: [],
+    userType: 'Teacher',
+  }, {
+    email: 'nguyenbichtuyet@gmail.com',
+    name: 'Nguyễn Bích Tuyết',
+    bthday: null,
+    password: '$2b$10$SC4f/inuSFwxbCeO1fh0hu75v2fXnyNrRhp7v0vTiZKuEC1vDuTUG',
+    courses: [],
+    userType: 'Teacher',
+  }, {
+    email: 'lethihonganh@gmail.com',
+    name: 'Lê Thị Hồng Ánh',
+    bthday: null,
+    password: '$2b$10$ixxXy9G/RseClaEyBIZuye6Ag3MZg8i800U9Ipuqhe2LS7wnHu1Du',
+    courses: [],
+    userType: 'Teacher',
+  }, {
+    email: 'tranlevy@gmail.com',
+    name: 'Trần Lê Vy',
+    bthday: null,
+    password: '$2b$10$CaY1vOpBX2Jt/51DWXl5Wu26k4UhO8EiEKbgUZ5bbwPnLawBuPbDy',
+    courses: [],
+    userType: 'Teacher',
+  }, {
+    email: 'nguyengiaanhtu@gmail.com',
+    name: 'Nguyên Gia Anh Tú',
+    bthday: null,
+    password: '$2b$10$58tOOrP32K27NomwTo2h4er767MDDHZ2ZbXUH9FxW/YADQ4rgMMwK',
+    courses: [],
+    userType: 'Teacher',
+  }, {
+    email: 'leduc@gmail.com',
+    name: 'Lê Đức',
+    bthday: null,
+    password: '$2b$10$UIqDgiNZ61To16IBRlvYHOjYiRHN6RmW87UwZqZLlw8xBpSlY/KKy',
+    courses: [],
+    userType: 'Teacher',
+  }, {
+    email: 'tranvantu@gmail.com',
+    name: 'Trần Văn Tú',
+    bthday: null,
+    password: '$2b$10$RIs0PEgBJ2lXhIqPuvdML..3ZUflD3mFrOW35uLv9bvWF8c7MlW8m',
+    courses: [],
+    userType: 'Teacher',
+  }, {
+    email: 'huynhphananh@gmail.com',
+    name: 'Huỳnh Phan Anh',
+    bthday: null,
+    password: '$2b$10$h0wa2NxYfAwr8yYvSlUnDeJB2u54jHwlfD9KirMnVji4U/Yqkukee',
+    courses: [],
+    userType: 'Teacher',
+  }, {
+    email: 'phamdat@gmail.com',
+    name: 'Phạm Quốc Đạt',
+    bthday: null,
+    password: '$2b$10$OmlpS2jM/uX/vWHy2kDP7.Jc9hn/zmGo0LaS43OAt8lf8S7KaE0bG',
+    courses: [],
+    userType: 'Teacher',
+  }, {
+    email: 'dinhnongmanh@gmail.com',
+    name: 'Đinh Nông Mạnh',
+    bthday: null,
+    password: '$2b$10$Pry0fjbUC5No4hKirI9BnuvZZiLkFqm8nB5zrWKOJ60M0y3xV7Gce',
+    courses: [],
+    userType: 'Teacher',
+  }, {
+    email: 'vuthitrang@gmail.com',
+    name: 'Vũ Thị Trang',
+    bthday: null,
+    password: '$2b$10$vfTth8ptjJKAYQT02G.CIec4g7Jnz1PKvrOQBPESYxwE/qWceNYW.',
+    courses: [],
+    userType: 'Teacher',
+  }
+]
+
 module.exports = {
     user_data: user_data,
     course_data: course_data,
-    category_data: category_data
+    category_data: category_data,
+    teacher_data: teacher_data,
 };
