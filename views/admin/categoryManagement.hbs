@@ -1,0 +1,205 @@
+<div class="container pt-5">
+    <div class="row justify-content-end">
+        <p data-placement="top" data-toggle="tooltip" title="Thêm lĩnh vực">
+            <button type="button" class="btn btn-success btn-s" data-title="Add" data-toggle="modal" data-target="#addCategory">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                Thêm mới
+            </button>
+        </p>
+    </div>
+    <div class="row mt-3 mb-5">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table id="mytable" class="table table-striped">
+                    <thead>
+                            <th class="h5">Lĩnh vực</th>
+                            <th class="h5 text-center" style="width: 120px;">Chỉnh sửa</th>
+                            <th class="h5 text-center" style="width: 80px;">Xóa</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="categories_row">
+                    </tbody>
+                </table>
+                <ul id="pagination_list"  class="d-flex justify-content-center"></ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add category modal -->
+<div class="modal fade" id="addCategory" tabindex="-1" role="dialog" aria-labelledby="add" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="/admin/categoryManagement/add" method="post" id="category-add-form">
+                <div class="modal-header">
+                    <h4 class="modal-title custom_align" id="Heading"> Thêm lĩnh vực</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input id="edtName" class="form-control" name="name" type="text" placeholder="Tên lĩnh vực" required>
+                        <span class="error" id="edtNameErr"></span>
+                    </div>
+                    <div class="form-group">
+                        <select id="rdParent" name="rdParent" class="form-control">
+                                <option selected value='null'>Không thuộc về lĩnh vực nào</option>
+                                {{#each session.categories}}
+                                <option value='{{this.name}}'>{{this.name}}</option>
+                                {{/each}}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="modal-footer ">
+                    <button type="submit" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i> Xác nhận</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> Hủy bỏ</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Edit category modal -->
+<div class="modal fade" id="editCategory" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="/admin/categoryManagement/edit" method="post" id="category-edit-form">
+                <div class="modal-header">
+                    <h4 class="modal-title custom_align" id="Heading"> Chỉnh sửa thông tin lĩnh vực</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-warning" role="alert">
+                        <strong>Lưu ý!</strong> Chỉ có thể thay đổi lĩnh vực cha của các lĩnh vực con hoặc các lĩnh vực cha không có lĩnh vực con nào.
+                    </div>
+                    <div class="form-group">
+                        <input id="oldName" name="oldName" type="hidden">
+                        <input id="newName" class="form-control" name="name" type="text" placeholder="Tên lĩnh vực" required>
+                    </div>
+                    <div class="form-group">
+                        <select id="newParent" name="newParent" class="form-control">
+                        </select>
+                    </div>
+                    <span class="error" id="editErr"></span>
+                </div>
+
+                <div class="modal-footer ">
+                    <button type="submit" class="btn btn-success"><i class="fa fa-upload" aria-hidden="true"></i> Cập nhật</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> Hủy bỏ</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Remove category modal -->
+<div class="modal fade" id="removeCategory" tabindex="-1" role="dialog" aria-labelledby="remove" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title custom_align" id="Heading"> Xóa lĩnh vực</h4>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger"><i class="fas fa-exclamation-triangle"></i>  Bạn chắn chắc muốn xóa lĩnh vực này?</div>
+            </div>
+
+            <div class="modal-footer ">
+                <form action="/admin/categoryManagement/remove" method="post">
+                    <input id="categoryRemoveName" name="name" type="hidden">
+                    <button type="submit" class="btn btn-success"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Xác nhận</button>
+                </form>
+                <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> Hủy bỏ</button>
+            </div>
+        </div>
+  </div>
+</div>
+
+{{#section 'css'}}
+<link rel="stylesheet" type="text/css" href="/styles/admin.css">
+<link rel="stylesheet" type="text/css" href="/styles/main_styles.css">
+{{/section}}
+
+{{#section 'js'}}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+{{#if message}}
+<script type="text/javascript">
+    Swal.fire( {
+        icon: '{{message.icon}}',
+        title: '{{message.title}}',
+        text: '{{message.text}}'
+    });
+</script>
+{{/if}}
+<script src="/js/admin.js"></script>
+<script>
+    categoriesObject = [];
+    categories = [];
+
+    {{#each session.categories}}
+        categoriesObject.push({
+            name: '{{this.name}}',
+            parent: null
+        });
+        categories.push(`<tr>
+            <td class="h5 align-middle"><a class="text-reset" href="/category/{{this.name}}" alt="{{this.name}}">
+                {{this.name}}
+            </a></td>
+            <td class="text-center">
+                <p data-placement="top" data-toggle="tooltip" title="Chỉnh sửa">
+                <button class="btn btn-primary btn-xs btnEditCategory" data-toggle="modal" 
+                    data-target="#editCategory" data-name="{{this.name}}" data-parent="null">
+                    <i class="fa fa-cog" aria-hidden="true"></i>
+                </button></p>
+            </td>
+            <td class="text-center">
+                <p data-placement="top" data-toggle="tooltip" title="Xóa">
+                <button class="btn btn-danger btn-xs btnRemoveCategory" data-toggle="modal" 
+                    data-target="#removeCategory" data-name="{{this.name}}">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </button></p>
+            </td>
+        </tr>`);
+    {{#if this.subCategory}} {{#each this.subCategory}}
+        categoriesObject.push({
+            name: '{{this.name}}',
+            parent: '{{this.parent}}'
+        });
+        categories.push(`<tr>
+            <td class="pl-4 h6 align-middle"><a class="text-reset" href="/category/{{this.name}}" alt="{{this.name}}">
+                <i class="fas fa-angle-double-right"></i> {{this.name}}
+            </a></td>
+            <td class="text-center">
+                <p data-placement="top" data-toggle="tooltip" title="Chỉnh sửa">
+                <button class="btn btn-primary btn-xs btnEditCategory" data-toggle="modal"
+                    data-target="#editCategory" data-name="{{this.name}}"  data-parent="{{this.parent}}">
+                    <i class="fa fa-cog" aria-hidden="true"></i>
+                </button></p>
+            </td>
+            <td class="text-center">
+                <p data-placement="top" data-toggle="tooltip" title="Xóa">
+                <button class="btn btn-danger btn-xs btnRemoveCategory" data-toggle="modal" 
+                    data-target="#removeCategory" data-name="{{this.name}}">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </button></p>
+            </td>
+        </tr>`);
+    {{/each}} {{/if}}
+    {{/each}}
+
+    length = Math.ceil(categories.length / 5);
+    $('#pagination_list').twbsPagination({
+        totalPages: length,
+        visiblePages: 5,
+        first: 'Trang đầu',
+        prev: 'Trước',
+        next: 'Sau',
+        last: 'Trang cuối',
+        onPageClick: function (event, page) {
+            content = '';
+            for (let i = (page - 1) * 5; i < categories.length && i < (page - 1) * 5 + 5; i++) {
+                content += categories[i];
+            }
+            $('#categories_row').html(content);
+        }
+    });
+</script>
+{{/section}}

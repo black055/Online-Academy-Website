@@ -6,8 +6,7 @@ const categoryModel = require('../../models/category.model')
 router.get('/:id', async (req, res) => {
     const category = await categoryModel.getCategory(req.params.id);
     const coursesList = await courseModel.getCoursesByCategory(category);
-    const categories = await categoryModel.getMenuCategory();
-    res.render('courses/courses', {isCourses: true, allCourses: coursesList, categories: categories });
+    res.render('courses/courses', {isCategories: true, allCourses: coursesList });
 });
 
 module.exports = router;

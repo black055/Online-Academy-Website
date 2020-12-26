@@ -12,7 +12,7 @@ module.exports = {
 
     getCoursesByCategory(category) {
         return new Promise( async (resolve, reject) => {
-            if (typeof category.parent === 'undefined') {
+            if (category.parent === 'null') {
                 subcategories = await categoryModel.getSubCategories(category.name);
                 result= [];
                 for (const subcategory of subcategories) {

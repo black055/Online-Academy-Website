@@ -1498,11 +1498,13 @@ const course_data = [
 const category_data = [
     {
         name: 'Công nghệ thông tin',
+        parent: 'null',
         courses: '',
         soldInWeek: 0
     },
     {
         name: 'Toán học',
+        parent: 'null',
         courses: '',
         soldInWeek: 0
     },

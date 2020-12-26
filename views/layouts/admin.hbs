@@ -77,20 +77,10 @@
                                 </div>
                                 <nav class="main_nav_contaner ml-auto">
                                     <ul class="main_nav">
-                                        <li id="home"><a href="/">Trang chủ</a></li>
-                                        <li id="courses"><a href="/courses">Khóa học</a></li>
-                                        <li class="dropdown" id="categories" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <a href="/contact" onclick="return false;">Lĩnh vực</a>
-                                        </li>
-                                        <div class="dropdown-menu" aria-labelledby="categories">
-                                            {{#each session.categories}}
-                                            <a class="dropdown-item font-weight-bold" href="/category/{{this.name}}">{{this.name}}</a>
-                                            {{#if this.subCategory}} {{#each this.subCategory}}
-                                            <a class="dropdown-item pl-5" href="/category/{{this.name}}">{{this.name}}</a>
-                                            {{/each}} {{/if}}
-                                            {{/each}}
-                                        </div>
-                                        <li id="about"><a href="/about">Về chúng tôi</a></li>
+                                        <li id="home"><a href="/admin">Trang chủ</a></li>
+                                        <li id="categoryManagement"><a href="/admin/categoryManagement">Quản lý lĩnh vực</a></li>
+                                        <li id="courseManagement"><a href="/admin/courseManagement">Quản lý khoá học</a></li>
+                                        <li id="userManagement"><a href="/admin/userManagement">Quản lý người dùng</a></li>
                                     </ul>
                                     <div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>
 
@@ -147,9 +137,9 @@
             <nav class="menu_nav">
                 <ul class="menu_mm">
                     <li class="menu_mm" id="home"><a href="/">Trang chủ</a></li>
-                    <li class="menu_mm" id="about"><a href="/about">Về chúng tôi</a></li>
-                    <li class="menu_mm" id="courses"><a href="/courses">Khóa học</a></li>
-                    <li class="menu_mm" id="contact"><a href="/contact">Contact</a></li>
+                    <li class="menu_mm" id="categoryManagement"><a href="/admin/categoryManagement">Quản lý lĩnh vực</a></li>
+                    <li class="menu_mm" id="courseManagement"><a href="/admin/courseManagement">Quản lý khoá học</a></li>
+                    <li class="menu_mm" id="userManagement"><a href="/admin/userManagement">Quản lý người dùng</a></li>
                 </ul>
             </nav>
         </div>
@@ -290,14 +280,12 @@
     <script>
         {{#if isHome }}
         $('#home').addClass('active');
-        {{else if isAbout}}
-        $('#about').addClass('active');
-        {{else if isContact}}
-        $('#contact').addClass('active');
-        {{else if isCourses}}
-        $('#courses').addClass('active');
-        {{else if isCategories}}
-        $('#categories').addClass('active');
+        {{else if isCategoryManagement}}
+        $('#categoryManagement').addClass('active');
+        {{else if isCourseManagement}}
+        $('#courseManagement').addClass('active');
+        {{else if isUserManagement}}
+        $('#userManagement').addClass('active');
         {{/if}}
     </script>
     {{{_sections.js}}}

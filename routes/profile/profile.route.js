@@ -15,7 +15,6 @@ const transporter = mailer.createTransport({
 })
 
 router.get("/", async (req, res) => {
-  const categories = await categoryModel.getMenuCategory();
   const message = req.flash('message');
 
   if (req.user.userType == "Student") {
@@ -23,16 +22,17 @@ router.get("/", async (req, res) => {
     courses = await userModel.getCourses(req.user._id);
     watchlist = await userModel.getWatchlist(req.user._id);
     if (typeof message === 'undefined')
-      res.render("profile/profile", { user: req.user, courses: courses, watchlist: watchlist,
-        totalMoney: totalMoney, categories: categories });
+      res.render("profile/profile", { courses: courses, watchlist: watchlist,
+        totalMoney: totalMoney });
     else
-      res.render("profile/profile", { user: req.user, courses: courses, watchlist: watchlist,
-        totalMoney: totalMoney, categories: categories, message: message });
-  } else
-  if (typeof message === 'undefined')
-    res.render("profile/profile", { user: req.user, categories: categories });
-  else
-    res.render("profile/profile", { user: req.user, categories: categories, message: message });
+      res.render("profile/profile", { courses: courses, watchlist: watchlist,
+        totalMoney: totalMoney, message: message });
+  } else {
+    if (typeof message === 'undefined')
+      res.render("profile/profile");
+    else
+      res.render("profile/profile", { message: message });
+  }
       
 });
 

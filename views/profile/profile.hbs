@@ -2,16 +2,16 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-img">
-                    {{#ifEquals user.userType "Student"}}
+                    {{#ifEquals session.user.userType "Student"}}
                     <img src="images/user_avatar/student.png" alt="" />
                     {{else}}
                     <img src="images/user_avatar/teacher.png" alt="" />
                     {{/ifEquals}}
                     <h4 class="mt-2">
-                        {{user.name}}
+                        {{session.user.name}}
                     </h4>
                     <h5 class="mt-2">
-                        {{#ifEquals user.userType "Student"}}
+                        {{#ifEquals session.user.userType "Student"}}
                         Học sinh
                         {{else}}
                         Giáo viên
@@ -22,7 +22,7 @@
                         <i class="fa fa-cog" aria-hidden="true"></i>
                         Chỉnh sửa
                     </button>
-                    {{#ifEquals user.userType "Student"}}
+                    {{#ifEquals session.user.userType "Student"}}
                     {{else}}
                     <button type="button" class="profile-add-btn col-6 mt-2">
                         <i class="fa fa-plus" aria-hidden="true"></i>
@@ -38,7 +38,7 @@
                             <a class="nav-link active" id="info-tab" data-toggle="tab" href="#info" role="tab"
                                 aria-controls="info" aria-selected="true">Thông tin</a>
                         </li>
-                        {{#ifEquals user.userType "Student"}}
+                        {{#ifEquals session.user.userType "Student"}}
                         <li class="nav-item">
                             <a class="nav-link" id="statistic-tab" data-toggle="tab" href="#statistic" role="tab"
                                 aria-controls="statistic" aria-selected="false">Thống kê</a>
@@ -48,7 +48,7 @@
                             <a class="nav-link" id="myCourses-tab" data-toggle="tab" href="#myCourses" role="tab"
                                 aria-controls="myCourses" aria-selected="false">Khóa học của tôi</a>
                         </li>
-                        {{#ifEquals user.userType "Student"}}
+                        {{#ifEquals session.user.userType "Student"}}
                         <li class="nav-item">
                             <a class="nav-link" id="watchList-tab" data-toggle="tab" href="#watchList" role="tab"
                                 aria-controls="watchList" aria-selected="false">Khóa học yêu thích</a>
@@ -72,7 +72,7 @@
                                     <label>Tên người dùng</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p id="infoName">{{user.name}}</p>
+                                    <p id="infoName">{{session.user.name}}</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -80,7 +80,7 @@
                                     <label>Giới tính</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p id="infoGender">{{user.gender}}</p>
+                                    <p id="infoGender">{{session.user.gender}}</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -88,7 +88,7 @@
                                     <label>Email</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p id="infoEmail">{{user.email}}</p>
+                                    <p id="infoEmail">{{session.user.email}}</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -96,7 +96,7 @@
                                     <label>Ngày sinh</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p id="infoBthday">{{user.bthday}}</p>
+                                    <p id="infoBthday">{{session.user.bthday}}</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -104,12 +104,12 @@
                                     <label>Điện thoại</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p id="infoPhone">{{user.phone}}</p>
+                                    <p id="infoPhone">{{session.user.phone}}</p>
                                 </div>
                             </div>
                         </div>
 
-                        {{#ifEquals user.userType "Student"}}
+                        {{#ifEquals session.user.userType "Student"}}
                         <!-- Student's tatistic pane -->
                         <div class="tab-pane fade" id="statistic" role="tabpanel" aria-labelledby="statistic-tab">
                             <div class="row">
@@ -125,7 +125,7 @@
                                     <label>Khóa học yêu thích</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p>{{user.watchList.length}}</p>
+                                    <p>{{session.user.watchList.length}}</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -142,7 +142,7 @@
 
                         <!-- My courses pane -->
                         <div class="tab-pane fade" id="myCourses" role="tabpanel" aria-labelledby="myCourses-tab">
-                            {{#ifEquals user.userType "Student"}}
+                            {{#ifEquals session.user.userType "Student"}}
                             <!-- Student's courses here -->
                             <div class="table-responsive">
                                 <table class="table">
@@ -167,7 +167,7 @@
 
                         </div>
 
-                        {{#ifEquals user.userType "Student"}}
+                        {{#ifEquals session.user.userType "Student"}}
                         <!-- Student's watch list pane -->
                         <div class="tab-pane fade" id="watchList" role="tabpanel" aria-labelledby="watchList-tab">
                             <div class="table-responsive">
@@ -312,7 +312,7 @@
             <td class="border-0 align-middle"><strong>${{this.price}}</strong></td>
             </tr>`);
     {{/each}}
-    length = Math.ceil({{user.courses.length}} / 4);
+    length = Math.ceil({{session.user.courses.length}} / 4);
     $('#pagination_mycourse').twbsPagination({
         totalPages: length,
         visiblePages: 4,

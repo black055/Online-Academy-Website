@@ -35,15 +35,21 @@ mongoose.connect("mongodb://localhost:27017/mydb", {
         }
     }
 
-    // for (let i = 0; i < course_data.length; i++) {
-    //     let course = new Course(course_data[i]);
-    //     course.save();
-    // }
+    for (let i = 0; i < course_data.length; i++) {
+      let course = await Course.findOne({ 'name': course_data[i].name});
+      if (course == null) {
+        course = new Course(course_data[i]);
+        course.save();
+      }
+    }
 
-    // for (let i = 0; i < category_data.length; i++) {
-    //   let category = new Category(category_data[i]);
-    //   category.save();
-    // }
+    for (let i = 0; i < category_data.length; i++) {
+      let category = await Category.findOne({ 'name': category_data[i].name});
+      if (category == null) {
+        category = new Category(category_data[i]);
+        category.save();
+      }
+    }
 
 })();
 
@@ -143,7 +149,8 @@ app.use("/courses", mdwIsValidated, require("./routes/courses/courses.route"));
 app.use("/profile", mdwIsValidated, require("./routes/profile/profile.route"));
 app.use('/register', require('./routes/register/register.route'));
 app.use('/teacher', require('./routes/teacher/teacher.route'));
-app.use('/category', require('./routes/category/category.route.js'));
+app.use('/category', require('./routes/category/category.route'));
+app.use('/admin', require('./routes/admin/admin.route'));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
