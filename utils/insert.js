@@ -12,7 +12,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "giavinh@gmail.com",
     name: "Võ Trọng Gia Vinh",
@@ -27,7 +27,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "vantruong@gmail.com",
     name: "Nguyễn Văn Trường",
@@ -42,7 +42,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "thanhuy@gmail.com",
     name: "Bùi Thanh Uy",
@@ -57,7 +57,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "quangtruong@gmail.com",
     name: "Lê Huỳnh Quang Trường",
@@ -72,7 +72,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "trantrung@gmail.com",
     name: "Nguyễn Trần Trung",
@@ -87,7 +87,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "hongvinh@gmail.com",
     name: "Phạm Hồng Vinh",
@@ -102,7 +102,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "hongxuyen@gmail.com",
     name: "Đặng Thị Hồng Xuyên",
@@ -117,7 +117,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "thinhi@gmail.com",
     name: "Huỳnh Thị Nhi",
@@ -132,7 +132,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "vietxuan@gmail.com",
     name: "Phạm Viết Xuân",
@@ -147,7 +147,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "bichthuy@gmail.com",
     name: "Nguyễn Thị Bích Thủy",
@@ -162,7 +162,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "thivi@gmail.com",
     name: "Huỳnh Thị Vi",
@@ -177,7 +177,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "nhattuan@gmail.com",
     name: "Lê Nhật Tuấn",
@@ -192,7 +192,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "tanvinh@gmail.com",
     name: "Nguyễn Tân Vinh",
@@ -207,7 +207,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "lethanhviet1@gmail.com",
     name: "Lê Thành Việt",
@@ -222,7 +222,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "giavinh1@gmail.com",
     name: "Võ Trọng Gia Vinh",
@@ -237,7 +237,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "vantruong1@gmail.com",
     name: "Nguyễn Văn Trường",
@@ -252,7 +252,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "thanhuy1@gmail.com",
     name: "Bùi Thanh Uy",
@@ -267,7 +267,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "quangtruong1@gmail.com",
     name: "Lê Huỳnh Quang Trường",
@@ -282,7 +282,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "trantrung1@gmail.com",
     name: "Nguyễn Trần Trung",
@@ -297,7 +297,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "hongvinh1@gmail.com",
     name: "Phạm Hồng Vinh",
@@ -312,7 +312,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "hongxuyen1@gmail.com",
     name: "Đặng Thị Hồng Xuyên",
@@ -327,7 +327,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "thinhi1@gmail.com",
     name: "Huỳnh Thị Nhi",
@@ -342,7 +342,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "vietxuan1@gmail.com",
     name: "Phạm Viết Xuân",
@@ -357,7 +357,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "bichthuy1@gmail.com",
     name: "Nguyễn Thị Bích Thủy",
@@ -372,7 +372,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "thivi1@gmail.com",
     name: "Huỳnh Thị Vi",
@@ -387,7 +387,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "nhattuan1@gmail.com",
     name: "Lê Nhật Tuấn",
@@ -402,7 +402,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "tanvinh1@gmail.com",
     name: "Nguyễn Tân Vinh",
@@ -417,7 +417,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "lethanhviet2@gmail.com",
     name: "Lê Thành Việt",
@@ -432,7 +432,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "giavinh2@gmail.com",
     name: "Võ Trọng Gia Vinh",
@@ -447,7 +447,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "vantruong2@gmail.com",
     name: "Nguyễn Văn Trường",
@@ -462,7 +462,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "thanhuy2@gmail.com",
     name: "Bùi Thanh Uy",
@@ -477,7 +477,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "quangtruong2@gmail.com",
     name: "Lê Huỳnh Quang Trường",
@@ -492,7 +492,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "trantrung2@gmail.com",
     name: "Nguyễn Trần Trung",
@@ -507,7 +507,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "hongvinh2@gmail.com",
     name: "Phạm Hồng Vinh",
@@ -522,7 +522,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "hongxuyen2@gmail.com",
     name: "Đặng Thị Hồng Xuyên",
@@ -537,7 +537,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "thinhi2@gmail.com",
     name: "Huỳnh Thị Nhi",
@@ -552,7 +552,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "vietxuan2@gmail.com",
     name: "Phạm Viết Xuân",
@@ -567,7 +567,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "bichthuy2@gmail.com",
     name: "Nguyễn Thị Bích Thủy",
@@ -582,7 +582,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "thivi2@gmail.com",
     name: "Huỳnh Thị Vi",
@@ -597,7 +597,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "nhattuan2@gmail.com",
     name: "Lê Nhật Tuấn",
@@ -612,7 +612,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "tanvinh2@gmail.com",
     name: "Nguyễn Tân Vinh",
@@ -627,7 +627,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "lethanhviet3@gmail.com",
     name: "Lê Thành Việt",
@@ -642,7 +642,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "giavinh3@gmail.com",
     name: "Võ Trọng Gia Vinh",
@@ -657,7 +657,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "vantruong3@gmail.com",
     name: "Nguyễn Văn Trường",
@@ -672,7 +672,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "thanhuy3@gmail.com",
     name: "Bùi Thanh Uy",
@@ -687,7 +687,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "quangtruong3@gmail.com",
     name: "Lê Huỳnh Quang Trường",
@@ -702,7 +702,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "trantrung3@gmail.com",
     name: "Nguyễn Trần Trung",
@@ -717,7 +717,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "hongvinh3@gmail.com",
     name: "Phạm Hồng Vinh",
@@ -732,7 +732,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "hongxuyen3@gmail.com",
     name: "Đặng Thị Hồng Xuyên",
@@ -747,7 +747,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "thinhi3@gmail.com",
     name: "Huỳnh Thị Nhi",
@@ -762,7 +762,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "vietxuan3@gmail.com",
     name: "Phạm Viết Xuân",
@@ -777,7 +777,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "bichthuy3@gmail.com",
     name: "Nguyễn Thị Bích Thủy",
@@ -792,7 +792,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "thivi3@gmail.com",
     name: "Huỳnh Thị Vi",
@@ -807,7 +807,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "nhattuan3@gmail.com",
     name: "Lê Nhật Tuấn",
@@ -822,7 +822,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "tanvinh3@gmail.com",
     name: "Nguyễn Tân Vinh",
@@ -837,7 +837,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "lethanhviet4@gmail.com",
     name: "Lê Thành Việt",
@@ -852,7 +852,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "giavinh4@gmail.com",
     name: "Võ Trọng Gia Vinh",
@@ -867,7 +867,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "vantruong4@gmail.com",
     name: "Nguyễn Văn Trường",
@@ -882,7 +882,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "thanhuy4@gmail.com",
     name: "Bùi Thanh Uy",
@@ -897,7 +897,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "quangtruong4@gmail.com",
     name: "Lê Huỳnh Quang Trường",
@@ -912,7 +912,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "trantrung4@gmail.com",
     name: "Nguyễn Trần Trung",
@@ -927,7 +927,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "hongvinh4@gmail.com",
     name: "Phạm Hồng Vinh",
@@ -942,7 +942,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "hongxuyen4@gmail.com",
     name: "Đặng Thị Hồng Xuyên",
@@ -957,7 +957,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "thinhi4@gmail.com",
     name: "Huỳnh Thị Nhi",
@@ -972,7 +972,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "vietxuan4@gmail.com",
     name: "Phạm Viết Xuân",
@@ -987,7 +987,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "bichthuy4@gmail.com",
     name: "Nguyễn Thị Bích Thủy",
@@ -1002,7 +1002,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "thivi4@gmail.com",
     name: "Huỳnh Thị Vi",
@@ -1017,7 +1017,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "nhattuan4@gmail.com",
     name: "Lê Nhật Tuấn",
@@ -1032,7 +1032,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "tanvinh4@gmail.com",
     name: "Nguyễn Tân Vinh",
@@ -1047,7 +1047,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "lethanhviet5@gmail.com",
     name: "Lê Thành Việt",
@@ -1062,7 +1062,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "giavinh5@gmail.com",
     name: "Võ Trọng Gia Vinh",
@@ -1077,7 +1077,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "vantruong5@gmail.com",
     name: "Nguyễn Văn Trường",
@@ -1092,7 +1092,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "thanhuy5@gmail.com",
     name: "Bùi Thanh Uy",
@@ -1107,7 +1107,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "quangtruong5@gmail.com",
     name: "Lê Huỳnh Quang Trường",
@@ -1122,7 +1122,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "trantrung5@gmail.com",
     name: "Nguyễn Trần Trung",
@@ -1137,7 +1137,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "hongvinh5@gmail.com",
     name: "Phạm Hồng Vinh",
@@ -1152,7 +1152,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "hongxuyen5@gmail.com",
     name: "Đặng Thị Hồng Xuyên",
@@ -1167,7 +1167,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "thinhi5@gmail.com",
     name: "Huỳnh Thị Nhi",
@@ -1182,7 +1182,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "vietxuan5@gmail.com",
     name: "Phạm Viết Xuân",
@@ -1197,7 +1197,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "bichthuy5@gmail.com",
     name: "Nguyễn Thị Bích Thủy",
@@ -1212,7 +1212,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "thivi5@gmail.com",
     name: "Huỳnh Thị Vi",
@@ -1227,7 +1227,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "nhattuan5@gmail.com",
     name: "Lê Nhật Tuấn",
@@ -1242,7 +1242,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }, {
     email: "tanvinh5@gmail.com",
     name: "Nguyễn Tân Vinh",
@@ -1257,7 +1257,7 @@ cart: []
     courses: [],
     userType: "Student",
     watchList: [],
-cart: []
+    cart: []
 }];
 
 const course_data = [

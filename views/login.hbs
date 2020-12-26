@@ -8,21 +8,21 @@
             <div class="col-lg-6 col-md-6 col-xs-12 col-sm-6"> <a href="/loginfb" class="btn btn-primary facebook"> <span>Đăng nhập với Facebook</span> <i class="fab fa-facebook-f"></i> </a> </div>
             <div class="col-lg-6 col-md-6 col-xs-12 col-sm-6"> <a href="/logingg" class="btn btn-primary google-plus"> Đăng nhập với Google <i class="fab fa-google"></i> </a> </div>
           </div>
-          <h2>or</h2>
-          <form action="/login" method="POST">
+          <h2>hoặc</h2>
+          <form action="/login" method="POST" id="form_login">
             <div class="formsix-pos">
-              <div class="form-group i-email"> <input type="email" name="email" class="form-control" required="" id="email2" placeholder="Email Address *"> </div>
+              <div class="form-group i-email"> <input type="email" name="email" class="form-control" required="" id="email2" placeholder="Nhập địa chỉ email *"> </div>
             </div>
             <div class="formsix-e">
-              <div class="form-group i-password"> <input type="password" name="password" class="form-control" required="" id="password2" placeholder="Password *"> </div>
+              <div class="form-group i-password"> <input type="password" name="password" class="form-control" required="" id="password2" placeholder="Nhập mật khẩu *"> </div>
             </div>
-            <div class="login_remember_box"> <label class="control control--checkbox"> </label> <a href="#" class="forget_password"> Did you forget your password ?</a> </div>
-            <div class="login_btn_wrapper"> <button type="submit" class="btn btn-success col"> Login </button> </div>
+            <div class="login_remember_box"> <label class="control control--checkbox"> </label> <a href="#" class="forget_password"> Bạn đã quên mật khẩu?</a> </div>
+            <div class="login_btn_wrapper"> <button type="submit" class="btn btn-success col"> Đăng nhập </button> </div>
           </form>
           <div class="login_message">
-            <p>Don’t have an account ? <a href="/register"> Register </a> </p>
+            <p>Đã có tài khoản? <a href="/register"> Register </a> </p>
           </div>
-        </div> <!-- /.login_wrapper-->
+        </div> 
       </div>
     </div>
   </div>
@@ -32,4 +32,17 @@
 <link rel="stylesheet" type="text/css" href="/styles/main_styles.css">
 <link rel="stylesheet" type="text/css" href="/styles/responsive.css">
 <link rel="stylesheet" type="text/css" href="/styles/login.css">
+{{/section}}
+
+{{#section 'js'}}
+<script>
+  $(document).ready(function() {
+    $('#form_login').submit(function() {
+      if ($('#password2').val().length < 8) {
+        alert("Mật khẩu ít nhất 8 ký tự");
+        return false;
+      } else return true;
+    })
+  })
+</script>
 {{/section}}

@@ -13,10 +13,16 @@ const transporter = mailer.createTransport({
         user: 'verifycourseonline@gmail.com',
         pass: '22102000shch',
     }
-})
+});
 
 router.get('/', (req, res) => {
     res.render('register');
+});
+
+router.get('/checkMail/:email', async (req, res) => {
+    const user = await User.findOne({'email': req.params.email});
+    if (user) res.send(true);
+    else res.send(false);
 })
 
 router.post('/', async (req, res) => {
@@ -60,11 +66,11 @@ router.post('/', async (req, res) => {
     } else {
         res.redirect('/register');
     }
-})
+});
 
 router.get('/OTP', (req, res) => {
     res.render('OTP');
-})
+});
 
 router.post('/OTP',async (req, res) => {
     if (req.session.user_invalidated) {
@@ -90,6 +96,6 @@ router.post('/OTP',async (req, res) => {
 
 router.get('resendOTP', (req, res) => {
 
-})
+});
 
 module.exports = router;

@@ -1,6 +1,6 @@
 const passport = require('passport');
 const express = require('express');
-const {User} = require('./utils/db');
+const {User, Teacher, Admin} = require('./utils/db');
 const bcrypt = require('bcrypt');
 const LogcalStrategy = require('passport-local').Strategy;
 const FacebookStrategy = require('passport-facebook').Strategy;
@@ -8,9 +8,23 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 passport.use(new LogcalStrategy({ usernameField: 'email',passwordField: 'password'}, async (username, password, done) => {
     const user = await User.findOne({'email': username});
+    const teacher = await Teacher.findOne({'email': username});
+    const admin = await Admin.findOne({'username': username});
     if (user) {
         if (await bcrypt.compareSync(password, user.password)) {
             return done(null, user);
+        } else {
+            return done(null, false);
+        }
+    } else if (teacher) {
+        if (await bcrypt.compareSync(password, teacher.password)) {
+            return done(null, teacher);
+        } else {
+            return done(null, false);
+        }
+    } else if (admin) {
+        if (await bcrypt.compareSync(password, admin.password)) {
+            return done(null, admin);
         } else {
             return done(null, false);
         }

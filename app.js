@@ -10,7 +10,8 @@ const flash = require('req-flash');
 const MongoStore = require("connect-mongo")(session);
 const hbs_section = require("express-handlebars-sections");
 const mdwIsValidated = require("./middlewares/validation.mdw");
-const { User, Teacher, Admin, Course, Category } = require("./utils/db");
+const mdwIsLoged = require("./middlewares/Loged.mdw");
+const {User, Teacher, Admin, Course, Category} = require('./utils/db');
 const {user_data, course_data, category_data, teacher_data} = require('./utils/insert');
 
 const categoryModel = require("./models/category.model");
@@ -27,37 +28,40 @@ mongoose.connect("mongodb://localhost:27017/mydb", {
 });
 
 // Insert data user
-/* (async function b() {
-    for (let i = 0; i < user_data.length; i++) {
-        let user = await User.findOne({'email': user_data[i].email});
-        if (!user) {
-            user = new User(user_data[i]);
-            user.save();
-        }
-    }
+// (async function b() {
+//   for (let i = 0; i < user_data.length; i++) {
+//       let user = await User.findOne({'email': user_data[i].email});
+//       if (!user) {
+//           user = new User(user_data[i]);
+//           user.save();
+//       }
+//   }
 
-    for (let i = 0; i < course_data.length; i++) {
-      let course = await Course.findOne({ 'name': course_data[i].name});
-      if (course == null) {
-        course = new Course(course_data[i]);
-        course.save();
-      }
-    }
+//   for (let i = 0; i < course_data.length; i++) {
+//     let course = await Course.findOne({ 'name': course_data[i].name});
+//     if (course == null) {
+//       course = new Course(course_data[i]);
+//       course.save();
+//     }
+//   }
 
-    for (let i = 0; i < category_data.length; i++) {
-      let category = await Category.findOne({ 'name': category_data[i].name});
-      if (category == null) {
-        category = new Category(category_data[i]);
-        category.save();
-      }
-    }
+//   for (let i = 0; i < category_data.length; i++) {
+//     let category = await Category.findOne({ 'name': category_data[i].name});
+//     if (category == null) {
+//       category = new Category(category_data[i]);
+//       category.save();
+//     }
+//   }
 
-    for (let i = 0; i < teacher_data.length; i++) {
-      let teacher = new Teacher(teacher_data[i]);
-      teacher.save();
-    }
+//   for (let i = 0; i < teacher_data.length; i++) {
+//     let teacher = new Teacher(teacher_data[i]);
+//     teacher.save();
+//   }
 
-})(); */
+
+//   const admin = new Admin({username: 'admin@gmail.com', password: bcrypt.hashSync('22102000', 10)});
+//   admin.save();
+// })();
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -114,7 +118,7 @@ app.use(express.static(__dirname + "/public"));
 app.use(async function (req, res, next) {
   const categories = await categoryModel.getMenuCategory();
   req.session.categories = categories;
-  if (req.user) {
+  if (req.user && req.user.userType == 'Student') {
     let coursesInCart = [];
     for (let index = 0; index < req.user.cart.length; index++) {
       let course = await coursesModel.getCourse(req.user.cart[index]);
@@ -127,7 +131,11 @@ app.use(async function (req, res, next) {
 
 app.get("/", mdwIsValidated, async (req, res) => {
   req.session.user = req.user;
-  res.render("index", { isHome: true});
+  if (req.user && req.user.userType == 'Teacher')
+    return res.redirect('/teacher');
+  if (req.user && req.user.username == 'admin@gmail.com')
+    return res.redirect('/admin');
+  else return res.render("index", { isHome: true});
 });
 
 app.get("/about", mdwIsValidated, async (req, res) => {
@@ -139,7 +147,9 @@ app.get("/contact", mdwIsValidated, async (req, res) => {
 });
 
 app.get("/login", mdwIsValidated, (req, res) => {
-  res.render("login");
+  if (typeof req.user !== "undefined")
+    res.redirect('/');
+  else res.render("login");
 });
 
 // Authentication
@@ -160,11 +170,11 @@ app.get("/logout", (req, res) => {
 });
 
 app.use("/courses", mdwIsValidated, require("./routes/courses/courses.route"));
-app.use("/profile", mdwIsValidated, require("./routes/profile/profile.route"));
+app.use("/profile", mdwIsLoged, mdwIsValidated, require("./routes/profile/profile.route"));
 app.use('/register', require('./routes/register/register.route'));
-app.use('/teacher', require('./routes/teacher/teacher.route'));
+app.use('/teacher', mdwIsLoged, require('./routes/teacher/teacher.route'));
 app.use('/category', require('./routes/category/category.route'));
-app.use('/admin', require('./routes/admin/admin.route'));
+app.use('/admin', mdwIsLoged, require('./routes/admin/admin.route'));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
