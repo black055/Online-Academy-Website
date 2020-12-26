@@ -11,10 +11,11 @@ const MongoStore = require("connect-mongo")(session);
 const hbs_section = require("express-handlebars-sections");
 const mdwIsValidated = require("./middlewares/validation.mdw");
 const { User, Teacher, Admin, Course, Category } = require("./utils/db");
-const {user_data, course_data, category_data} = require('./utils/insert');
+const {user_data, course_data, category_data, teacher_data} = require('./utils/insert');
 
 const categoryModel = require("./models/category.model");
 const userModel = require("./models/user.model");
+const coursesModel = require("./models/courses.model");
 
 require("./auth");
 
@@ -26,7 +27,7 @@ mongoose.connect("mongodb://localhost:27017/mydb", {
 });
 
 // Insert data user
-(async function b() {
+/* (async function b() {
     for (let i = 0; i < user_data.length; i++) {
         let user = await User.findOne({'email': user_data[i].email});
         if (!user) {
@@ -51,7 +52,12 @@ mongoose.connect("mongodb://localhost:27017/mydb", {
       }
     }
 
-})();
+    for (let i = 0; i < teacher_data.length; i++) {
+      let teacher = new Teacher(teacher_data[i]);
+      teacher.save();
+    }
+
+})(); */
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -108,6 +114,14 @@ app.use(express.static(__dirname + "/public"));
 app.use(async function (req, res, next) {
   const categories = await categoryModel.getMenuCategory();
   req.session.categories = categories;
+  if (req.user) {
+    let coursesInCart = [];
+    for (let index = 0; index < req.user.cart.length; index++) {
+      let course = await coursesModel.getCourse(req.user.cart[index]);
+      coursesInCart.push(course);
+    }
+    req.session.coursesInCart = coursesInCart;
+  }
   next();
 });
 

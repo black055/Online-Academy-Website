@@ -42,7 +42,7 @@
 
               <div>
                 <div class="form_title">Giá</div>
-                <input type="number" class="comment_input" name="price" value="0" required="required">
+                <input type="number" class="comment_input" name="price" min="0" value="0" required="required">
               </div>
             </div>
 
@@ -167,6 +167,16 @@
     display: flex;
     justify-content: center;
   }
+
+  #chapter_box {
+    max-height: 450px;
+    overflow-y: auto;
+    border-top: 1px solid #14BDEE;
+  }
+
+  .new-chapter {
+    margin-right: 15px !important;
+  }
 </style>
 
 {{/section}}
@@ -211,11 +221,21 @@
   let _index_chapter = 0;
 
   $('.rm-chapters').click(() => {
+    if (_index_chapter >= 20) {
+      $('.btn-add-chapter').removeClass('btn-secondary');
+      $('.btn-add-chapter').addClass('btn-success');
+    }
     $('.new-chapter').remove()
     _index_chapter = 0
   })
 
   $('.btn-add-chapter').click(() => {
+    if (_index_chapter >= 20) {
+      $('.btn-add-chapter').removeClass('btn-success');
+      $('.btn-add-chapter').addClass('btn-secondary');
+      return;
+    }
+
     $('#chapter_box').append(`
     <div class="new-chapter">
       <div class="chapter_title d-flex justify-content-between" style="font-size: 1.4rem;">
@@ -250,7 +270,11 @@
       .find('.btn-rm-chapter').show();
 
     $('.btn-rm-chapter').click(function () {
-      $(this).closest('.new-chapter').remove()
+      if (_index_chapter >= 20) {
+        $('.btn-add-chapter').removeClass('btn-secondary');
+        $('.btn-add-chapter').addClass('btn-success');
+      }
+      $(this).closest('.new-chapter').remove();
       _index_chapter = $('.new-chapter').length
       $('#chapter_box .btn-rm-chapter').hide();
       $('#chapter_box .new-chapter:last-child')

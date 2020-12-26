@@ -12,6 +12,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "giavinh@gmail.com",
     name: "Võ Trọng Gia Vinh",
@@ -26,6 +27,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "vantruong@gmail.com",
     name: "Nguyễn Văn Trường",
@@ -40,6 +42,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "thanhuy@gmail.com",
     name: "Bùi Thanh Uy",
@@ -54,6 +57,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "quangtruong@gmail.com",
     name: "Lê Huỳnh Quang Trường",
@@ -68,6 +72,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "trantrung@gmail.com",
     name: "Nguyễn Trần Trung",
@@ -82,6 +87,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "hongvinh@gmail.com",
     name: "Phạm Hồng Vinh",
@@ -96,6 +102,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "hongxuyen@gmail.com",
     name: "Đặng Thị Hồng Xuyên",
@@ -110,6 +117,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "thinhi@gmail.com",
     name: "Huỳnh Thị Nhi",
@@ -124,6 +132,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "vietxuan@gmail.com",
     name: "Phạm Viết Xuân",
@@ -138,6 +147,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "bichthuy@gmail.com",
     name: "Nguyễn Thị Bích Thủy",
@@ -152,6 +162,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "thivi@gmail.com",
     name: "Huỳnh Thị Vi",
@@ -166,6 +177,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "nhattuan@gmail.com",
     name: "Lê Nhật Tuấn",
@@ -180,6 +192,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "tanvinh@gmail.com",
     name: "Nguyễn Tân Vinh",
@@ -194,6 +207,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "lethanhviet1@gmail.com",
     name: "Lê Thành Việt",
@@ -208,6 +222,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "giavinh1@gmail.com",
     name: "Võ Trọng Gia Vinh",
@@ -222,6 +237,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "vantruong1@gmail.com",
     name: "Nguyễn Văn Trường",
@@ -236,6 +252,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "thanhuy1@gmail.com",
     name: "Bùi Thanh Uy",
@@ -250,6 +267,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "quangtruong1@gmail.com",
     name: "Lê Huỳnh Quang Trường",
@@ -264,6 +282,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "trantrung1@gmail.com",
     name: "Nguyễn Trần Trung",
@@ -278,6 +297,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "hongvinh1@gmail.com",
     name: "Phạm Hồng Vinh",
@@ -292,6 +312,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "hongxuyen1@gmail.com",
     name: "Đặng Thị Hồng Xuyên",
@@ -306,6 +327,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "thinhi1@gmail.com",
     name: "Huỳnh Thị Nhi",
@@ -320,6 +342,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "vietxuan1@gmail.com",
     name: "Phạm Viết Xuân",
@@ -334,6 +357,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "bichthuy1@gmail.com",
     name: "Nguyễn Thị Bích Thủy",
@@ -348,6 +372,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "thivi1@gmail.com",
     name: "Huỳnh Thị Vi",
@@ -362,6 +387,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "nhattuan1@gmail.com",
     name: "Lê Nhật Tuấn",
@@ -376,6 +402,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "tanvinh1@gmail.com",
     name: "Nguyễn Tân Vinh",
@@ -390,6 +417,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "lethanhviet2@gmail.com",
     name: "Lê Thành Việt",
@@ -404,6 +432,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "giavinh2@gmail.com",
     name: "Võ Trọng Gia Vinh",
@@ -418,6 +447,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "vantruong2@gmail.com",
     name: "Nguyễn Văn Trường",
@@ -432,6 +462,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "thanhuy2@gmail.com",
     name: "Bùi Thanh Uy",
@@ -446,6 +477,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "quangtruong2@gmail.com",
     name: "Lê Huỳnh Quang Trường",
@@ -460,6 +492,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "trantrung2@gmail.com",
     name: "Nguyễn Trần Trung",
@@ -474,6 +507,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "hongvinh2@gmail.com",
     name: "Phạm Hồng Vinh",
@@ -488,6 +522,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "hongxuyen2@gmail.com",
     name: "Đặng Thị Hồng Xuyên",
@@ -502,6 +537,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "thinhi2@gmail.com",
     name: "Huỳnh Thị Nhi",
@@ -516,6 +552,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "vietxuan2@gmail.com",
     name: "Phạm Viết Xuân",
@@ -530,6 +567,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "bichthuy2@gmail.com",
     name: "Nguyễn Thị Bích Thủy",
@@ -544,6 +582,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "thivi2@gmail.com",
     name: "Huỳnh Thị Vi",
@@ -558,6 +597,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "nhattuan2@gmail.com",
     name: "Lê Nhật Tuấn",
@@ -572,6 +612,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "tanvinh2@gmail.com",
     name: "Nguyễn Tân Vinh",
@@ -586,6 +627,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "lethanhviet3@gmail.com",
     name: "Lê Thành Việt",
@@ -600,6 +642,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "giavinh3@gmail.com",
     name: "Võ Trọng Gia Vinh",
@@ -614,6 +657,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "vantruong3@gmail.com",
     name: "Nguyễn Văn Trường",
@@ -628,6 +672,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "thanhuy3@gmail.com",
     name: "Bùi Thanh Uy",
@@ -642,6 +687,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "quangtruong3@gmail.com",
     name: "Lê Huỳnh Quang Trường",
@@ -656,6 +702,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "trantrung3@gmail.com",
     name: "Nguyễn Trần Trung",
@@ -670,6 +717,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "hongvinh3@gmail.com",
     name: "Phạm Hồng Vinh",
@@ -684,6 +732,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "hongxuyen3@gmail.com",
     name: "Đặng Thị Hồng Xuyên",
@@ -698,6 +747,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "thinhi3@gmail.com",
     name: "Huỳnh Thị Nhi",
@@ -712,6 +762,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "vietxuan3@gmail.com",
     name: "Phạm Viết Xuân",
@@ -726,6 +777,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "bichthuy3@gmail.com",
     name: "Nguyễn Thị Bích Thủy",
@@ -740,6 +792,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "thivi3@gmail.com",
     name: "Huỳnh Thị Vi",
@@ -754,6 +807,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "nhattuan3@gmail.com",
     name: "Lê Nhật Tuấn",
@@ -768,6 +822,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "tanvinh3@gmail.com",
     name: "Nguyễn Tân Vinh",
@@ -782,6 +837,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "lethanhviet4@gmail.com",
     name: "Lê Thành Việt",
@@ -796,6 +852,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "giavinh4@gmail.com",
     name: "Võ Trọng Gia Vinh",
@@ -810,6 +867,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "vantruong4@gmail.com",
     name: "Nguyễn Văn Trường",
@@ -824,6 +882,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "thanhuy4@gmail.com",
     name: "Bùi Thanh Uy",
@@ -838,6 +897,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "quangtruong4@gmail.com",
     name: "Lê Huỳnh Quang Trường",
@@ -852,6 +912,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "trantrung4@gmail.com",
     name: "Nguyễn Trần Trung",
@@ -866,6 +927,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "hongvinh4@gmail.com",
     name: "Phạm Hồng Vinh",
@@ -880,6 +942,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "hongxuyen4@gmail.com",
     name: "Đặng Thị Hồng Xuyên",
@@ -894,6 +957,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "thinhi4@gmail.com",
     name: "Huỳnh Thị Nhi",
@@ -908,6 +972,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "vietxuan4@gmail.com",
     name: "Phạm Viết Xuân",
@@ -922,6 +987,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "bichthuy4@gmail.com",
     name: "Nguyễn Thị Bích Thủy",
@@ -936,6 +1002,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "thivi4@gmail.com",
     name: "Huỳnh Thị Vi",
@@ -950,6 +1017,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "nhattuan4@gmail.com",
     name: "Lê Nhật Tuấn",
@@ -964,6 +1032,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "tanvinh4@gmail.com",
     name: "Nguyễn Tân Vinh",
@@ -978,6 +1047,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "lethanhviet5@gmail.com",
     name: "Lê Thành Việt",
@@ -992,6 +1062,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "giavinh5@gmail.com",
     name: "Võ Trọng Gia Vinh",
@@ -1006,6 +1077,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "vantruong5@gmail.com",
     name: "Nguyễn Văn Trường",
@@ -1020,6 +1092,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "thanhuy5@gmail.com",
     name: "Bùi Thanh Uy",
@@ -1034,6 +1107,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "quangtruong5@gmail.com",
     name: "Lê Huỳnh Quang Trường",
@@ -1048,6 +1122,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "trantrung5@gmail.com",
     name: "Nguyễn Trần Trung",
@@ -1062,6 +1137,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "hongvinh5@gmail.com",
     name: "Phạm Hồng Vinh",
@@ -1076,6 +1152,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "hongxuyen5@gmail.com",
     name: "Đặng Thị Hồng Xuyên",
@@ -1090,6 +1167,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "thinhi5@gmail.com",
     name: "Huỳnh Thị Nhi",
@@ -1104,6 +1182,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "vietxuan5@gmail.com",
     name: "Phạm Viết Xuân",
@@ -1118,6 +1197,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "bichthuy5@gmail.com",
     name: "Nguyễn Thị Bích Thủy",
@@ -1132,6 +1212,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "thivi5@gmail.com",
     name: "Huỳnh Thị Vi",
@@ -1146,6 +1227,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "nhattuan5@gmail.com",
     name: "Lê Nhật Tuấn",
@@ -1160,6 +1242,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "tanvinh5@gmail.com",
     name: "Nguyễn Tân Vinh",
@@ -1174,6 +1257,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }];
 
 const course_data = [
@@ -1182,23 +1266,19 @@ const course_data = [
         category: 'Lập trình Web',
         chapters: [
             {
-                title: 'Bài 1: Giới thiệu những kiến thức cơ bản',
+                title: 'Bài 1: Giới thiệu những kiến thức cơ bản về NodeJS',
                 video: '/courses/temp/0.mp4',
             },
             {
-                title: 'Bài 2: Template engines',
-                video: '',
+                title: 'Bài 2: NPM và Package',
+                video: '/courses/temp/1.mp4',
             },
             {
-                title: 'Bài 3: Quey Parameters',
-                video: '',
-            },
-            {
-                title: 'Bài 4: POST method',
-                video: '',
+                title: 'Bài 3: Install and Uninstall package',
+                video: '/courses/temp/2.mp4',
             },
         ],
-        rate: [3,4,80,200,100],
+        rate: [0,0,0,0,0],
         price: 200,
         teacher: '',
         students: 0,
@@ -1221,7 +1301,7 @@ const course_data = [
         name: 'Khóa học Full-stack web developer',
         category: 'Lập trình Web',
         chapters: [],
-        rate: [],
+        rate: [0,0,0,0,0],
         price: 200,
         teacher: '',
         students: 0,
@@ -1246,7 +1326,7 @@ const course_data = [
         name: 'Khóa học NodeJS chuyên sâu',
         category: 'Lập trình Web',
         chapters: [],
-        rate: [],
+        rate: [0,0,0,0,0],
         price: 200,
         teacher: '',
         students: 0,
@@ -1272,7 +1352,7 @@ const course_data = [
         name: 'Khóa học MERN: MongoDB, Express, ReactJS, NodeJS',
         category: 'Lập trình Web',
         chapters: [],
-        rate: [],
+        rate: [0,0,0,0,0],
         price: 200,
         teacher: '',
         students: 0,
@@ -1294,7 +1374,7 @@ const course_data = [
         name: 'Khóa học MEAN: MongoDB, Express, AngularJS, NodeJS',
         category: 'Lập trình Web',
         chapters: [],
-        rate: [],
+        rate: [0,0,0,0,0],
         price: 200,
         teacher: '',
         students: 0,
@@ -1316,7 +1396,7 @@ const course_data = [
         name: 'Javascript Framework: ReactJS and AngularJS',
         category: 'Lập trình Web',
         chapters: [],
-        rate: [],
+        rate: [0,0,0,0,0],
         price: 200,
         teacher: '',
         students: 0,
@@ -1334,7 +1414,7 @@ const course_data = [
         name: 'Khóa học GraphQL',
         category: 'Hệ thống thông tin',
         chapters: [],
-        rate: [],
+        rate: [0,0,0,0,0],
         price: 200,
         teacher: '',
         students: 0,
@@ -1352,7 +1432,7 @@ const course_data = [
         name: 'Khóa học lập trình Web cơ bản',
         category: 'Lập trình Web',
         chapters: [],
-        rate: [],
+        rate: [0,0,0,0,0],
         price: 200,
         teacher: '',
         students: 0,
@@ -1370,7 +1450,7 @@ const course_data = [
         name: 'Khóa học ExpressJS',
         category: 'Lập trình Web',
         chapters: [],
-        rate: [],
+        rate: [0,0,0,0,0],
         price: 200,
         teacher: '',
         students: 0,
@@ -1388,7 +1468,7 @@ const course_data = [
         name: 'Khóa học React cơ bản',
         category: 'Lập trình Web',
         chapters: [],
-        rate: [],
+        rate: [0,0,0,0,0],
         price: 200,
         teacher: '',
         students: 0,
@@ -1406,7 +1486,7 @@ const course_data = [
         name: 'Javascript cơ bản',
         category: 'Lập trình Web',
         chapters: [],
-        rate: [],
+        rate: [0,0,0,0,0],
         price: 200,
         teacher: '',
         students: 0,
@@ -1424,7 +1504,7 @@ const course_data = [
         name: 'Javascript nâng cao',
         category: 'Lập trình Web',
         chapters: [],
-        rate: [],
+        rate: [0,0,0,0,0],
         price: 200,
         teacher: '',
         students: 0,
@@ -1442,7 +1522,7 @@ const course_data = [
         name: 'Javascript ES6',
         category: 'Lập trình Web',
         chapters: [],
-        rate: [],
+        rate: [0,0,0,0,0],
         price: 200,
         teacher: '',
         students: 0,
@@ -1460,7 +1540,7 @@ const course_data = [
         name: 'Khóa học NuxtJS',
         category: 'Hệ thống thông tin',
         chapters: [],
-        rate: [],
+        rate: [0,0,0,0,0],
         price: 200,
         teacher: '',
         students: 0,
@@ -1478,7 +1558,7 @@ const course_data = [
         name: 'Lập trình web với NodeJS',
         category: 'Lập trình Web',
         chapters: [],
-        rate: [],
+        rate: [0,0,0,0,0],
         price: 200,
         teacher: '',
         students: 0,
@@ -1553,8 +1633,152 @@ const category_data = [
     }
 ]
 
+const teacher_data = [{
+    email: 'nguyenvantu5@gmail.com',
+    name: 'Nguyễn Văn Tú',
+    bthday: null,
+    password: '$2b$10$Fd0GDCRSSwpzsUaaAzSrz.tLxvBIWWX4G1WwRmekSvK7UdrS94z7a',
+    courses: [],
+    userType: 'Teacher',
+  }, {
+    email: 'trantanthanh2@gmail.com',
+    name: 'Trần Tấn Thành',
+    bthday: null,
+    password: '$2b$10$gzYEFuBiuRsv51yy9zxRZur.mbAPN7DBBLHRSZwY4aEhyTwJl/9iW',
+    courses: [],
+    userType: 'Teacher',
+  }, {
+    email: 'phamnguyencongminh@gmail.com',
+    name: 'Phạm Nguyễn Công Minh',
+    bthday: null,
+    password: '$2b$10$qk7zGEBjc1uNHtgg8.qcQO6ezLLJ85awi6b6cB6G3L3YTp4Uwzfnq',
+    courses: [],
+    userType: 'Teacher',
+  }, {
+    email: 'tranlecongluat@gmail.com',
+    name: 'Trần Lê Công Luật',
+    bthday: null,
+    password: '$2b$10$FHwKig1gVky2zPmFtiXcsOnYf25BLnarl/NPQC6aDJN8LfbY3SlXS',
+    courses: [],
+    userType: 'Teacher',
+  }, {
+    email: 'nguyenletuananh@gmail.com',
+    name: 'Nguyên Lê Tuấn Anh',
+    bthday: null,
+    password: '$2b$10$S9Cmb4KBjjXWkoqHNIz9NeI7H7gu0e/LwsyF94Gv2t0xptdbw9naS',
+    courses: [],
+    userType: 'Teacher',
+  }, {
+    email: 'lethanhbinh@gmail.com',
+    name: 'Lê Thanh Bình',
+    bthday: null,
+    password: '$2b$10$QC2iZAwoXFUIUb/a/OK0nOmF/FPeUoizQ5QohngAvfzypGhNSUmSO',
+    courses: [],
+    userType: 'Teacher',
+  }, {
+    email: 'phamtandung@gmail.com',
+    name: 'Phạm Tấn Dũng',
+    bthday: null,
+    password: '$2b$10$N3Z0kfgwW82xC7Vl8DxfN.WnJ8JwmeJmVmm3TyQREwMNUcUba1OG.',
+    courses: [],
+    userType: 'Teacher',
+  }, {
+    email: 'tranphutrong@gmail.com',
+    name: 'Trần Phú Trọng',
+    bthday: null,
+    password: '$2b$10$k6RGJS0f5GIZVHwVTkokRuhGpGuG9dEGPNX9knxhHAQ6QV2mvkYmi',
+    courses: [],
+    userType: 'Teacher',
+  }, {
+    email: 'nguyentrankimngan@gmail.com',
+    name: 'Nguyễn Trần Kim Ngân',
+    bthday: null,
+    password: '$2b$10$nYYV3jY6BHTPJOWZOsmrN.xCCVTxDGRWWaeQeB2VTHpQo7Ba5.o5C',
+    courses: [],
+    userType: 'Teacher',
+  }, {
+    email: 'truongphucanh@gmail.com',
+    name: 'Trương Phúc Anh',
+    bthday: null,
+    password: '$2b$10$gc7DdySTp7qW5T3qm6y99OtQ6nfusnf5RWQsVoaWOZMzvm2LJiFha',
+    courses: [],
+    userType: 'Teacher',
+  }, {
+    email: 'nguyenbichtuyet@gmail.com',
+    name: 'Nguyễn Bích Tuyết',
+    bthday: null,
+    password: '$2b$10$SC4f/inuSFwxbCeO1fh0hu75v2fXnyNrRhp7v0vTiZKuEC1vDuTUG',
+    courses: [],
+    userType: 'Teacher',
+  }, {
+    email: 'lethihonganh@gmail.com',
+    name: 'Lê Thị Hồng Ánh',
+    bthday: null,
+    password: '$2b$10$ixxXy9G/RseClaEyBIZuye6Ag3MZg8i800U9Ipuqhe2LS7wnHu1Du',
+    courses: [],
+    userType: 'Teacher',
+  }, {
+    email: 'tranlevy@gmail.com',
+    name: 'Trần Lê Vy',
+    bthday: null,
+    password: '$2b$10$CaY1vOpBX2Jt/51DWXl5Wu26k4UhO8EiEKbgUZ5bbwPnLawBuPbDy',
+    courses: [],
+    userType: 'Teacher',
+  }, {
+    email: 'nguyengiaanhtu@gmail.com',
+    name: 'Nguyên Gia Anh Tú',
+    bthday: null,
+    password: '$2b$10$58tOOrP32K27NomwTo2h4er767MDDHZ2ZbXUH9FxW/YADQ4rgMMwK',
+    courses: [],
+    userType: 'Teacher',
+  }, {
+    email: 'leduc@gmail.com',
+    name: 'Lê Đức',
+    bthday: null,
+    password: '$2b$10$UIqDgiNZ61To16IBRlvYHOjYiRHN6RmW87UwZqZLlw8xBpSlY/KKy',
+    courses: [],
+    userType: 'Teacher',
+  }, {
+    email: 'tranvantu@gmail.com',
+    name: 'Trần Văn Tú',
+    bthday: null,
+    password: '$2b$10$RIs0PEgBJ2lXhIqPuvdML..3ZUflD3mFrOW35uLv9bvWF8c7MlW8m',
+    courses: [],
+    userType: 'Teacher',
+  }, {
+    email: 'huynhphananh@gmail.com',
+    name: 'Huỳnh Phan Anh',
+    bthday: null,
+    password: '$2b$10$h0wa2NxYfAwr8yYvSlUnDeJB2u54jHwlfD9KirMnVji4U/Yqkukee',
+    courses: [],
+    userType: 'Teacher',
+  }, {
+    email: 'phamdat@gmail.com',
+    name: 'Phạm Quốc Đạt',
+    bthday: null,
+    password: '$2b$10$OmlpS2jM/uX/vWHy2kDP7.Jc9hn/zmGo0LaS43OAt8lf8S7KaE0bG',
+    courses: [],
+    userType: 'Teacher',
+  }, {
+    email: 'dinhnongmanh@gmail.com',
+    name: 'Đinh Nông Mạnh',
+    bthday: null,
+    password: '$2b$10$Pry0fjbUC5No4hKirI9BnuvZZiLkFqm8nB5zrWKOJ60M0y3xV7Gce',
+    courses: [],
+    userType: 'Teacher',
+  }, {
+    email: 'vuthitrang@gmail.com',
+    name: 'Vũ Thị Trang',
+    bthday: null,
+    password: '$2b$10$vfTth8ptjJKAYQT02G.CIec4g7Jnz1PKvrOQBPESYxwE/qWceNYW.',
+    courses: [],
+    userType: 'Teacher',
+  }
+]
+
 module.exports = {
     user_data: user_data,
     course_data: course_data,
-    category_data: category_data
+    category_data: category_data,
+    teacher_data: teacher_data,
 };
