@@ -15,6 +15,7 @@ const {user_data, course_data, category_data, teacher_data} = require('./utils/i
 
 const categoryModel = require("./models/category.model");
 const userModel = require("./models/user.model");
+const coursesModel = require("./models/courses.model");
 
 require("./auth");
 
@@ -107,6 +108,14 @@ app.use(express.static(__dirname + "/public"));
 app.use(async function (req, res, next) {
   const categories = await categoryModel.getMenuCategory();
   req.session.categories = categories;
+  if (req.user) {
+    let coursesInCart = [];
+    for (let index = 0; index < req.user.cart.length; index++) {
+      let course = await coursesModel.getCourse(req.user.cart[index]);
+      coursesInCart.push(course);
+    }
+    req.session.coursesInCart = coursesInCart;
+  }
   next();
 });
 

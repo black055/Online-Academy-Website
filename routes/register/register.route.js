@@ -32,6 +32,8 @@ router.post('/', async (req, res) => {
         const user = new User({
             email: email, 
             name: name, 
+            phone: '',
+            gender: '',
             password: hash, 
             fbID: '', 
             isValidated: false,
@@ -41,6 +43,7 @@ router.post('/', async (req, res) => {
             courses: [],
             userType: 'Student',
             watchList: [],
+            cart: []
         });
         user.save();
         req.session.user_invalidated = user;

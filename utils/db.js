@@ -15,6 +15,7 @@ const user = new Schema({
     courses: Array,
     userType: String,
     watchList: Array,
+    cart: Array,
 });
 
 const teacher = new Schema({
