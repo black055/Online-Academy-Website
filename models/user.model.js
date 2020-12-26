@@ -61,5 +61,9 @@ module.exports = {
 
     async getAllUser () {
         return await User.find();
+    },
+
+    async addCart (id, cart) {
+        return await User.findOneAndUpdate({_id: id}, {cart: cart});
     }
 }

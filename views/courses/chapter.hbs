@@ -3,7 +3,7 @@
         <div class="course_title">{{course.name}}</div>
         <h3>Giáo viên: <a href="#" id="teacher">Lê Thành Việt</a></h3>
         <h4 style="margin-bottom: 20px;">Lĩnh vực: <a href="#" id="category">Lập trình Web</a></h4>
-        <video controls crossorigin playsinline poster={{course.thumbnail}} class="js-player" id="video_chapter">
+        <video controls crossorigin playsinline poster={{course.thumbnail}} class="js-player" id="video_chapter" autoplay>
             <source src="{{url}}" type="video/mp4" />
         </video>
         <h3>{{title}}</h3>
@@ -77,9 +77,7 @@
 <script src="/js/course.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        const player = new Plyr('.js-player', {
-            autoplay: true,
-        });
+        const player = new Plyr('.js-player');
     });
 
     if (!{{registered}}) {
@@ -90,15 +88,22 @@
         {{/each}}
     }
 
-    var video = document.getElementById('video_chapter');
-    const item = '{{session.user._id}}' + '{{url}}';
-    console.log(item);
-    if (localStorage.hasOwnProperty(item)) {
-        video.currentTime = localStorage.getItem(item);
-    }
+    $('document').ready(function() {
+        $('#video_chapter').prop('muted', true);
+        document.getElementById('video_chapter').play();
+        $('#video_chapter').prop('muted', false);
+    })
 
-    setInterval(() => {
-        localStorage.setItem(item, video.currentTime);
-    },1000);
+    if ('{{session.user}}') {
+        var video = document.getElementById('video_chapter');
+        const item = '{{session.user._id}}' + '{{url}}';
+        if (localStorage.hasOwnProperty(item)) {
+            video.currentTime = localStorage.getItem(item);
+        }
+
+        setInterval(() => {
+            localStorage.setItem(item, video.currentTime);
+        },1000);
+    }
 </script>
 {{/section}}

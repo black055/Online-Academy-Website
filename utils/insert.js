@@ -12,6 +12,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "giavinh@gmail.com",
     name: "Võ Trọng Gia Vinh",
@@ -26,6 +27,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "vantruong@gmail.com",
     name: "Nguyễn Văn Trường",
@@ -40,6 +42,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "thanhuy@gmail.com",
     name: "Bùi Thanh Uy",
@@ -54,6 +57,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "quangtruong@gmail.com",
     name: "Lê Huỳnh Quang Trường",
@@ -68,6 +72,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "trantrung@gmail.com",
     name: "Nguyễn Trần Trung",
@@ -82,6 +87,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "hongvinh@gmail.com",
     name: "Phạm Hồng Vinh",
@@ -96,6 +102,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "hongxuyen@gmail.com",
     name: "Đặng Thị Hồng Xuyên",
@@ -110,6 +117,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "thinhi@gmail.com",
     name: "Huỳnh Thị Nhi",
@@ -124,6 +132,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "vietxuan@gmail.com",
     name: "Phạm Viết Xuân",
@@ -138,6 +147,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "bichthuy@gmail.com",
     name: "Nguyễn Thị Bích Thủy",
@@ -152,6 +162,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "thivi@gmail.com",
     name: "Huỳnh Thị Vi",
@@ -166,6 +177,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "nhattuan@gmail.com",
     name: "Lê Nhật Tuấn",
@@ -180,6 +192,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "tanvinh@gmail.com",
     name: "Nguyễn Tân Vinh",
@@ -194,6 +207,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "lethanhviet1@gmail.com",
     name: "Lê Thành Việt",
@@ -208,6 +222,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "giavinh1@gmail.com",
     name: "Võ Trọng Gia Vinh",
@@ -222,6 +237,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "vantruong1@gmail.com",
     name: "Nguyễn Văn Trường",
@@ -236,6 +252,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "thanhuy1@gmail.com",
     name: "Bùi Thanh Uy",
@@ -250,6 +267,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "quangtruong1@gmail.com",
     name: "Lê Huỳnh Quang Trường",
@@ -264,6 +282,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "trantrung1@gmail.com",
     name: "Nguyễn Trần Trung",
@@ -278,6 +297,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "hongvinh1@gmail.com",
     name: "Phạm Hồng Vinh",
@@ -292,6 +312,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "hongxuyen1@gmail.com",
     name: "Đặng Thị Hồng Xuyên",
@@ -306,6 +327,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "thinhi1@gmail.com",
     name: "Huỳnh Thị Nhi",
@@ -320,6 +342,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "vietxuan1@gmail.com",
     name: "Phạm Viết Xuân",
@@ -334,6 +357,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "bichthuy1@gmail.com",
     name: "Nguyễn Thị Bích Thủy",
@@ -348,6 +372,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "thivi1@gmail.com",
     name: "Huỳnh Thị Vi",
@@ -362,6 +387,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "nhattuan1@gmail.com",
     name: "Lê Nhật Tuấn",
@@ -376,6 +402,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "tanvinh1@gmail.com",
     name: "Nguyễn Tân Vinh",
@@ -390,6 +417,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "lethanhviet2@gmail.com",
     name: "Lê Thành Việt",
@@ -404,6 +432,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "giavinh2@gmail.com",
     name: "Võ Trọng Gia Vinh",
@@ -418,6 +447,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "vantruong2@gmail.com",
     name: "Nguyễn Văn Trường",
@@ -432,6 +462,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "thanhuy2@gmail.com",
     name: "Bùi Thanh Uy",
@@ -446,6 +477,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "quangtruong2@gmail.com",
     name: "Lê Huỳnh Quang Trường",
@@ -460,6 +492,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "trantrung2@gmail.com",
     name: "Nguyễn Trần Trung",
@@ -474,6 +507,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "hongvinh2@gmail.com",
     name: "Phạm Hồng Vinh",
@@ -488,6 +522,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "hongxuyen2@gmail.com",
     name: "Đặng Thị Hồng Xuyên",
@@ -502,6 +537,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "thinhi2@gmail.com",
     name: "Huỳnh Thị Nhi",
@@ -516,6 +552,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "vietxuan2@gmail.com",
     name: "Phạm Viết Xuân",
@@ -530,6 +567,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "bichthuy2@gmail.com",
     name: "Nguyễn Thị Bích Thủy",
@@ -544,6 +582,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "thivi2@gmail.com",
     name: "Huỳnh Thị Vi",
@@ -558,6 +597,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "nhattuan2@gmail.com",
     name: "Lê Nhật Tuấn",
@@ -572,6 +612,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "tanvinh2@gmail.com",
     name: "Nguyễn Tân Vinh",
@@ -586,6 +627,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "lethanhviet3@gmail.com",
     name: "Lê Thành Việt",
@@ -600,6 +642,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "giavinh3@gmail.com",
     name: "Võ Trọng Gia Vinh",
@@ -614,6 +657,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "vantruong3@gmail.com",
     name: "Nguyễn Văn Trường",
@@ -628,6 +672,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "thanhuy3@gmail.com",
     name: "Bùi Thanh Uy",
@@ -642,6 +687,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "quangtruong3@gmail.com",
     name: "Lê Huỳnh Quang Trường",
@@ -656,6 +702,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "trantrung3@gmail.com",
     name: "Nguyễn Trần Trung",
@@ -670,6 +717,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "hongvinh3@gmail.com",
     name: "Phạm Hồng Vinh",
@@ -684,6 +732,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "hongxuyen3@gmail.com",
     name: "Đặng Thị Hồng Xuyên",
@@ -698,6 +747,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "thinhi3@gmail.com",
     name: "Huỳnh Thị Nhi",
@@ -712,6 +762,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "vietxuan3@gmail.com",
     name: "Phạm Viết Xuân",
@@ -726,6 +777,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "bichthuy3@gmail.com",
     name: "Nguyễn Thị Bích Thủy",
@@ -740,6 +792,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "thivi3@gmail.com",
     name: "Huỳnh Thị Vi",
@@ -754,6 +807,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "nhattuan3@gmail.com",
     name: "Lê Nhật Tuấn",
@@ -768,6 +822,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "tanvinh3@gmail.com",
     name: "Nguyễn Tân Vinh",
@@ -782,6 +837,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "lethanhviet4@gmail.com",
     name: "Lê Thành Việt",
@@ -796,6 +852,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "giavinh4@gmail.com",
     name: "Võ Trọng Gia Vinh",
@@ -810,6 +867,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "vantruong4@gmail.com",
     name: "Nguyễn Văn Trường",
@@ -824,6 +882,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "thanhuy4@gmail.com",
     name: "Bùi Thanh Uy",
@@ -838,6 +897,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "quangtruong4@gmail.com",
     name: "Lê Huỳnh Quang Trường",
@@ -852,6 +912,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "trantrung4@gmail.com",
     name: "Nguyễn Trần Trung",
@@ -866,6 +927,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "hongvinh4@gmail.com",
     name: "Phạm Hồng Vinh",
@@ -880,6 +942,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "hongxuyen4@gmail.com",
     name: "Đặng Thị Hồng Xuyên",
@@ -894,6 +957,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "thinhi4@gmail.com",
     name: "Huỳnh Thị Nhi",
@@ -908,6 +972,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "vietxuan4@gmail.com",
     name: "Phạm Viết Xuân",
@@ -922,6 +987,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "bichthuy4@gmail.com",
     name: "Nguyễn Thị Bích Thủy",
@@ -936,6 +1002,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "thivi4@gmail.com",
     name: "Huỳnh Thị Vi",
@@ -950,6 +1017,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "nhattuan4@gmail.com",
     name: "Lê Nhật Tuấn",
@@ -964,6 +1032,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "tanvinh4@gmail.com",
     name: "Nguyễn Tân Vinh",
@@ -978,6 +1047,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "lethanhviet5@gmail.com",
     name: "Lê Thành Việt",
@@ -992,6 +1062,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "giavinh5@gmail.com",
     name: "Võ Trọng Gia Vinh",
@@ -1006,6 +1077,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "vantruong5@gmail.com",
     name: "Nguyễn Văn Trường",
@@ -1020,6 +1092,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "thanhuy5@gmail.com",
     name: "Bùi Thanh Uy",
@@ -1034,6 +1107,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "quangtruong5@gmail.com",
     name: "Lê Huỳnh Quang Trường",
@@ -1048,6 +1122,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "trantrung5@gmail.com",
     name: "Nguyễn Trần Trung",
@@ -1062,6 +1137,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "hongvinh5@gmail.com",
     name: "Phạm Hồng Vinh",
@@ -1076,6 +1152,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "hongxuyen5@gmail.com",
     name: "Đặng Thị Hồng Xuyên",
@@ -1090,6 +1167,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "thinhi5@gmail.com",
     name: "Huỳnh Thị Nhi",
@@ -1104,6 +1182,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "vietxuan5@gmail.com",
     name: "Phạm Viết Xuân",
@@ -1118,6 +1197,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "bichthuy5@gmail.com",
     name: "Nguyễn Thị Bích Thủy",
@@ -1132,6 +1212,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "thivi5@gmail.com",
     name: "Huỳnh Thị Vi",
@@ -1146,6 +1227,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "nhattuan5@gmail.com",
     name: "Lê Nhật Tuấn",
@@ -1160,6 +1242,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }, {
     email: "tanvinh5@gmail.com",
     name: "Nguyễn Tân Vinh",
@@ -1174,6 +1257,7 @@ const user_data = [{
     courses: [],
     userType: "Student",
     watchList: [],
+cart: []
 }];
 
 const course_data = [

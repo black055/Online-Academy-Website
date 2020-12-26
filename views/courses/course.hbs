@@ -249,7 +249,7 @@
                         {{else}}
                         <div class="row">
                             <a href="/courses/register/{{course._id}}" style="width: 100%;"><button class="btn btn-danger btn-lg cl-12" style="width:100%;">Đăng ký</button></a>
-                            <a href="#" style="width: 100%;"><button class="btn btn-outline-success btn-lg cl-12" style="width:100%; margin-top:10px">Thêm vào giỏ</button></a>
+                            <button id="addToCart" class="btn btn-outline-success btn-lg cl-12 {{course._id}}" style="width:100%; margin-top:10px">Thêm vào giỏ</button>
                         </div>
                         {{/if}}
                     </div>
@@ -309,6 +309,64 @@
         }
     });
 
+    {{#each session.coursesInCart}}
+        $('.{{this._id}}').replaceWith(`<button id="removeFromCart" class="btn btn-outline-success btn-lg cl-12 {{course_id}}" style="width:100%; margin-top:10px">Xóa khỏi giỏ</button>`);
+    {{/each}}
+
+    $('body').on('click', '#addToCart', function () {
+            if (`{{session.user}}`) {
+                $(this).replaceWith(`<button id="removeFromCart" class="btn btn-outline-success btn-lg cl-12 {{course_id}}" style="width:100%; margin-top:10px">Xóa khỏi giỏ</button>`)
+                $.get(`/courses/addTocart/{{course._id}}`, function (data, status) {
+                    let cart = '';
+                    if (`${data}`) {
+                        for (let i = 0; i < data.length; i++) {
+                        cart += `<button class="dropdown-item" type="button">
+                                    <div class="col-12" style="display:flex; padding-left:0px !important; padding-right: 40px;">
+                                        <img class="col-3" style="padding-left:0px; padding-right:0px; width: 100px !important; max-width: none !important;" src="${data[i].thumbnail}" alt="">
+                                        <div class="col-9" style="display: block;">
+                                            <h5 style="margin-bottom: 0px !important;">${data[i].name}</h5>
+                                            <p>Giá : ${data[i].price}</p>
+                                        </div>
+                                    </div>
+                                </button>`
+                        }
+                        cart += `<button class="dropdown-item btn btn-danger mx-auto col-4 text-center" type="button" style="background-color: #bd2130; color: #fff; padding: 7px 7px;">Thanh toán</button>`;
+                        $('.cart').html(cart);
+                    } else {
+                        $('.cart').html('<p style="text-align: center;">Giỏ hàng đang trống</p>');
+                    }
+                })
+            }
+    });
+
+    $('body').on('click', '#removeFromCart', function () {
+            if (`{{session.user}}`) {
+                $(this).replaceWith(`<button id="addToCart" class="btn btn-outline-success btn-lg cl-12 {{course_id}}" style="width:100%; margin-top:10px">Thêm vào giỏ</button>`)
+                $.get(`/courses/removeFromCart/{{course._id}}`, function (data, status) {
+                    let cart = '';
+                    if (`${data}`) {
+                        for (let i = 0; i < data.length; i++) {
+                        //$(`.${data[i]._id}`).attr('id', 'removeFromCart');
+                        cart += `<button class="dropdown-item" type="button">
+                                    <div class="col-12" style="display:flex; padding-left:0px !important; padding-right: 40px;">
+                                        <img class="col-3" style="padding-left:0px; padding-right:0px; width: 100px !important; max-width: none !important;" src="${data[i].thumbnail}" alt="">
+                                        <div class="col-9" style="display: block;">
+                                            <h5 style="margin-bottom: 0px !important;">${data[i].name}</h5>
+                                            <p>Giá : ${data[i].price}</p>
+                                        </div>
+                                    </div>
+                                </button>`
+                        }
+                       cart += `<button class="dropdown-item btn btn-danger mx-auto col-4 text-center" type="button" style="background-color: #bd2130; color: #fff; padding: 7px 7px;">Thanh toán</button>`;
+                        $('.cart').html(cart);
+                    } else {
+                        $('.cart').html('<p style="text-align: center;">Giỏ hàng đang trống</p>');
+                    }
+                    
+                })
+            }
+    })
+
     for (let i = 1; i <= {{courseRate}}; i++) {
         $(`#rate_${i}`).addClass('fullStar');
     }
@@ -328,7 +386,6 @@
     {{#each course.rate}}
         num = {{@index}} + 1;
         percent = ({{this}}/ totalRate) * 100;
-        console.log(typeof totalRate);
         percent = percent || 0;
         listRate += `<li><span>${num} Sao</span>
             <div class="review_rating_bar">
