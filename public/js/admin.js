@@ -64,3 +64,14 @@ $("#users_row").on('click', '.btnEditUser', function() {
     $('#edtId').val($(this).data('id'));
     $('#userType').val($(this).data('type'));
 });
+
+$('#teacher-add-form').submit(function(e) {
+    email = $('#teacherEmail').val();
+    $.get(`/register/checkMail/${email}`, function (data, status) {
+        if (data == true) {
+            //Đã tồn tại user
+            $('#teacherEmailErr').text('Email này đã tồn tại');
+            e.preventDefault();
+        }
+    });
+});

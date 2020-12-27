@@ -4,10 +4,11 @@ module.exports = {
 
     getMenuCategory() {
         return new Promise(async (resolve, reject) => {
-            categories = await Category.find( { "parent" : 'null' });
+            categories = await Category.find( { "parent" : 'null' }).lean();
             for (i = 0; i < categories.length; i++) {
-                subCategory = await Category.find( {"parent" : categories[i].name } );
-                categories[i].subCategory = JSON.parse(JSON.stringify(subCategory));
+                subCategory = await Category.find( {"parent" : categories[i].name } ).lean();
+                if (typeof subCategory !== 'undefined')
+                    categories[i].subCategory = subCategory;
             }
             resolve(categories);
         }).catch(err => {console.log(err);});

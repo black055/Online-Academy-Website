@@ -1,7 +1,6 @@
 const express = require('express');
-const {User} = require('../../utils/db');
+const {User, Teacher} = require('../../utils/db');
 const mailer = require('nodemailer');
-const mongoose = require('mongoose');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 
@@ -21,7 +20,8 @@ router.get('/', (req, res) => {
 
 router.get('/checkMail/:email', async (req, res) => {
     const user = await User.findOne({'email': req.params.email});
-    if (user) res.send(true);
+    const teacher = await Teacher.findOne({'email': req.params.email});
+    if (user || teacher) res.send(true);
     else res.send(false);
 })
 
