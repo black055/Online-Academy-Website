@@ -1174,7 +1174,6 @@ section
 	display: inline-block;
 	position: relative;
 	font-family: 'FontAwesome';
-	content: '\f101';
 	margin-right: 4px;
 	-webkit-transition: all 200ms ease;
 	-moz-transition: all 200ms ease;

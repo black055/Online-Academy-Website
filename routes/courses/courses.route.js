@@ -11,7 +11,23 @@ router.get('/', async (req, res) => {
         count = await coursesModel.getNumberOfStudent(allCourses[i]._id);
         arrStudent.push(count);
     }
-    res.render('courses/courses', {isCourses: true, allCourses: allCourses, numStudent: arrStudent});
+
+    // Get 3 courses which have most number of students
+    let cloneArrCourses = [...allCourses];
+    let mostCourses = cloneArrCourses.sort(function (course_1, course_2) {
+        return course_2.students - course_1.students;
+    });
+
+    mostCourses = mostCourses.slice(0,3);
+
+    // Get 3 newest courses
+    cloneArrCourses.sort(function (course_1, course_2) {
+        return course_1.createdDate - course_2.createdDate;
+    });
+
+    let newestCourses = cloneArrCourses.length >= 3 ? cloneArrCourses.slice(0,3) : cloneArrCourses;
+
+    res.render('courses/courses', {isCourses: true, allCourses: allCourses, newestCourses: newestCourses, mostCourses: mostCourses});
 });
 
 router.get('/rate/:id_course/:value', async (req, res) => {
@@ -56,6 +72,9 @@ router.get('/register/:id', async (req, res) => {
         res.redirect('/login');
     } else {
         let student = await userModel.getUser(req.user._id);
+        let courseReg = await coursesModel.getCourse(req.params.id);
+        courseReg.students += 1;
+        courseReg.save();
         let courses = student.courses;
 
         let cart = [];

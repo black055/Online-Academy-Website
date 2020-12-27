@@ -35,128 +35,52 @@
 
                     <!-- Categories -->
                     <div class="sidebar_section">
-                        <div class="sidebar_section_title">Công nghệ</div>
+                        <div class="sidebar_section_title">Chủ đề</div>
                         <div class="sidebar_categories">
                             <ul>
-                                <li><a href="#">NodeJS</a></li>
-                                <li><a href="#">ExpressJS</a></li>
-                                <li><a href="#">React</a></li>
-                                <li><a href="#">Full-stack</a></li>
-                                <li><a href="#">JavaScript</a></li>
+                                {{#each session.categories}}
+                                    {{#if this.subCategory}}
+                                        {{#each this.subCategory}}
+                                            <li style="display: flex; align-items: center;"><i class="fas fa-angle-double-right" style="margin-right: 10px;"></i><a href="#">{{this.name}}</a></li>
+                                        {{/each}}
+                                    {{/if}}
+                                {{/each}}
                             </ul>
                         </div>
                     </div>
 
                     <!-- Latest Course -->
                     <div class="sidebar_section">
-                        <div class="sidebar_section_title">Khóa học mới nhất</div>
+                        <div class="sidebar_section_title">Mới nhất</div>
                         <div class="sidebar_latest">
-
-                            <!-- Latest Course -->
-                            <div class="latest d-flex flex-row align-items-start justify-content-start">
-                                <div class="latest_image">
-                                    <div><img src="/images/latest_1.jpg" alt=""></div>
+                            {{#each newestCourses}}
+                                <div class="latest d-flex flex-row align-items-start justify-content-start">
+                                    <div class="latest_image">
+                                        <div><img src="{{this.thumbnail}}" alt=""></div>
+                                    </div>
+                                    <div class="latest_content">
+                                        <div class="latest_title"><a href="/courses/{{this._id}}">{{this.name}}</a></div>
+                                        <div class="latest_price">${{this.price}}</div>
+                                    </div>
                                 </div>
-                                <div class="latest_content">
-                                    <div class="latest_title"><a href="course.html">How to Design a Logo a Beginners Course</a></div>
-                                    <div class="latest_price">Free</div>
-                                </div>
-                            </div>
-
-                            <!-- Latest Course -->
-                            <div class="latest d-flex flex-row align-items-start justify-content-start">
-                                <div class="latest_image">
-                                    <div><img src="/images/latest_2.jpg" alt=""></div>
-                                </div>
-                                <div class="latest_content">
-                                    <div class="latest_title"><a href="course.html">Photography for Beginners Masterclass</a></div>
-                                    <div class="latest_price">$170</div>
-                                </div>
-                            </div>
-
-                            <!-- Latest Course -->
-                            <div class="latest d-flex flex-row align-items-start justify-content-start">
-                                <div class="latest_image">
-                                    <div><img src="/images/latest_3.jpg" alt=""></div>
-                                </div>
-                                <div class="latest_content">
-                                    <div class="latest_title"><a href="course.html">The Secrets of Body Language</a></div>
-                                    <div class="latest_price">$220</div>
-                                </div>
-                            </div>
-
+                            {{/each}}
                         </div>
                     </div>
 
-                    <!-- Gallery -->
                     <div class="sidebar_section">
-                        <div class="sidebar_section_title">Instagram</div>
-                        <div class="sidebar_gallery">
-                            <ul class="gallery_items d-flex flex-row align-items-start justify-content-between flex-wrap">
-                                <li class="gallery_item">
-                                    <div class="gallery_item_overlay d-flex flex-column align-items-center justify-content-center">+</div>
-                                    <a class="colorbox" href="/images/gallery_1_large.jpg">
-                                        <img src="/images/gallery_1.jpg" alt="">
-                                    </a>
-                                </li>
-                                <li class="gallery_item">
-                                    <div class="gallery_item_overlay d-flex flex-column align-items-center justify-content-center">+</div>
-                                    <a class="colorbox" href="/images/gallery_2_large.jpg">
-                                        <img src="/images/gallery_2.jpg" alt="">
-                                    </a>
-                                </li>
-                                <li class="gallery_item">
-                                    <div class="gallery_item_overlay d-flex flex-column align-items-center justify-content-center">+</div>
-                                    <a class="colorbox" href="/images/gallery_3_large.jpg">
-                                        <img src="/images/gallery_3.jpg" alt="">
-                                    </a>
-                                </li>
-                                <li class="gallery_item">
-                                    <div class="gallery_item_overlay d-flex flex-column align-items-center justify-content-center">+</div>
-                                    <a class="colorbox" href="/images/gallery_4_large.jpg">
-                                        <img src="/images/gallery_4.jpg" alt="">
-                                    </a>
-                                </li>
-                                <li class="gallery_item">
-                                    <div class="gallery_item_overlay d-flex flex-column align-items-center justify-content-center">+</div>
-                                    <a class="colorbox" href="/images/gallery_5_large.jpg">
-                                        <img src="/images/gallery_5.jpg" alt="">
-                                    </a>
-                                </li>
-                                <li class="gallery_item">
-                                    <div class="gallery_item_overlay d-flex flex-column align-items-center justify-content-center">+</div>
-                                    <a class="colorbox" href="/images/gallery_6_large.jpg">
-                                        <img src="/images/gallery_6.jpg" alt="">
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- Tags -->
-                    <div class="sidebar_section">
-                        <div class="sidebar_section_title">Tags</div>
-                        <div class="sidebar_tags">
-                            <ul class="tags_list">
-                                <li><a href="#">creative</a></li>
-                                <li><a href="#">unique</a></li>
-                                <li><a href="#">photography</a></li>
-                                <li><a href="#">ideas</a></li>
-                                <li><a href="#">wordpress</a></li>
-                                <li><a href="#">startup</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- Banner -->
-                    <div class="sidebar_section">
-                        <div class="sidebar_banner d-flex flex-column align-items-center justify-content-center text-center">
-                            <div class="sidebar_banner_background" style="background-image:url(/images/banner_1.jpg)"></div>
-                            <div class="sidebar_banner_overlay"></div>
-                            <div class="sidebar_banner_content">
-                                <div class="banner_title">Free Book</div>
-                                <div class="banner_button"><a href="#">download now</a></div>
-                            </div>
+                        <div class="sidebar_section_title">Nhiều học viên nhất</div>
+                        <div class="sidebar_latest">
+                            {{#each mostCourses}}
+                                <div class="latest d-flex flex-row align-items-start justify-content-start">
+                                    <div class="latest_image">
+                                        <div><img src="{{this.thumbnail}}" alt=""></div>
+                                    </div>
+                                    <div class="latest_content">
+                                        <div class="latest_title"><a href="/courses/{{this._id}}">{{this.name}}</a></div>
+                                        <div class="latest_price">${{this.price}}</div>
+                                    </div>
+                                </div>
+                            {{/each}}
                         </div>
                     </div>
                 </div>
@@ -226,20 +150,20 @@
                     <div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
                         <div class="course_info">
                             <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                            <span id="info_{{@index}}"></span>
+                            <span id="info_{{@index}}">{{this.students}}</span>
                         </div>
                         <div class="course_info">
                             <i class="fa fa-star" aria-hidden="true"></i>
                             <span>${sumRate} Ratings</span>
                         </div>
-                        <div class="course_price ml-auto">{{this.price}}</div>
+                        <div class="course_price ml-auto">${{this.price}}</div>
                     </div>
                 </div>
             </div>
         </div>`);
     {{/each}}
-
-    length = Math.ceil(courses.length / 10);
+    let coursePerPage = 6;
+    length = Math.ceil(courses.length / coursePerPage);
     $('#pagination_list').twbsPagination({
         totalPages: length,
         visiblePages: 5,
@@ -249,15 +173,11 @@
         last: 'Trang cuối',
         onPageClick: function (event, page) {
             content = '';
-            for (let i = (page - 1) * 10; i < courses.length && i < (page - 1) * 10 + 10; i++) {
+            for (let i = (page - 1) * coursePerPage; i < courses.length && i < (page - 1) * coursePerPage + coursePerPage; i++) {
                 content += courses[i];
             }
             $('.courses_row').html(content);
         }
     });
-
-    {{#each numStudent}}
-        $("#info_{{@index}}").text("{{this}} học viên");
-    {{/each}}
 </script>
 {{/section}}
