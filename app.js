@@ -116,6 +116,7 @@ handlebars.handlebars.registerHelper(
 app.use(express.static(__dirname + "/public"));
 
 app.use(async function (req, res, next) {
+  req.session.user = req.user;
   const categories = await categoryModel.getMenuCategory();
   req.session.categories = categories;
   if (req.user && req.user.userType == 'Student') {
@@ -130,7 +131,6 @@ app.use(async function (req, res, next) {
 });
 
 app.get("/", mdwIsValidated, async (req, res) => {
-  req.session.user = req.user;
   if (req.user && req.user.userType == 'Teacher')
     return res.redirect('/teacher');
   if (req.user && req.user.userType == 'Admin')
