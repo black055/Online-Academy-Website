@@ -1,5 +1,220 @@
-<span>user</span>
+<div class="container pt-5">
+    <div class="row justify-content-end">
+        <p data-placement="top" data-toggle="tooltip" title="Thêm giáo viên">
+            <button type="button" class="btn btn-success btn-s" data-title="Add" data-toggle="modal" data-target="#addTeacher">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                Thêm giáo viên
+            </button>
+        </p>
+    </div>
+    <div class="row mt-3 mb-5">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table id="mytable" class="table table-striped">
+                    <thead>
+                            <th class="h5">Họ tên</th>
+                            <th class="h5">Email</th>
+                            <th class="h5">Giới tính</th>
+                            <th class="h5">Điện thoại</th>
+                            <th class="h5">Ngày sinh</th>
+                            <th class="h5">Loại người dùng</th>
+                            <th class="h5 text-center" style="width: 120px;">Chỉnh sửa</th>
+                            <th class="h5 text-center" style="width: 80px;">Xóa</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="users_row">
+                    </tbody>
+                </table>
+                <ul id="pagination_list"  class="d-flex justify-content-center"></ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Teacher modal -->
+<div class="modal fade" id="addTeacher" tabindex="-1" role="dialog" aria-labelledby="add" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="/admin/userManagement/add" method="post" id="teacher-add-form">
+                <div class="modal-header">
+                    <h4 class="modal-title custom_align" id="Heading"> Thêm giáo viên</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input id="edtName" class="form-control" name="name" type="text" placeholder="Họ tên" required>
+                        <span class="error" id="edtNameErr"></span>
+                    </div>
+                    <div class="form-group">
+                        
+                    </div>
+                </div>
+
+                <div class="modal-footer ">
+                    <button type="submit" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i> Xác nhận</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> Hủy bỏ</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Edit user modal -->
+<div class="modal fade" id="editUser" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="/admin/userManagement/edit" method="post" id="user-edit-form">
+                <div class="modal-header">
+                    <h4 class="modal-title custom_align" id="Heading"> Chỉnh sửa thông tin người dùng</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input id="newName" class="form-control" name="name" type="text" placeholder="Họ tên" required>
+                        <input id="userType" name="userType" type="hidden">
+                        <input id="edtId" name="id" type="hidden">
+                    </div>
+                    <div class="form-group row">
+                        <div class="col">
+                            <input id="newEmail" class="form-control" type="email" readonly>
+                        </div>
+                        <div class="col">
+                            <input id="newBthday" class="form-control" name="bthday" type="date" placeholder="Ngày sinh">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col">
+                            <select id="newGender" name="gender" class="form-control">
+                                <option selected value='Nam'>Nam</option>
+                                <option value='Nữ'>Nữ</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <input id="newPhone" class="form-control" name="phone" placeholder="Điện thoại">
+                            <span class="error" id="edtPhoneErr"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer ">
+                    <button type="submit" class="btn btn-success"><i class="fa fa-upload" aria-hidden="true"></i> Cập nhật</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> Hủy bỏ</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Remove user modal -->
+<div class="modal fade" id="removeUser" tabindex="-1" role="dialog" aria-labelledby="remove" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title custom_align" id="Heading"> Xóa lĩnh vực</h4>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger"><i class="fas fa-exclamation-triangle"></i>  Bạn chắn chắc muốn xóa lĩnh vực này?</div>
+            </div>
+
+            <div class="modal-footer ">
+                <form action="/admin/userManagement/remove" method="post">
+                    <input id="userRemoveId" name="id" type="hidden">
+                    <button type="submit" class="btn btn-success"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Xác nhận</button>
+                </form>
+                <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> Hủy bỏ</button>
+            </div>
+        </div>
+  </div>
+</div>
 
 {{#section 'css'}}
+<link rel="stylesheet" type="text/css" href="/styles/admin.css">
 <link rel="stylesheet" type="text/css" href="/styles/main_styles.css">
+{{/section}}
+
+{{#section 'js'}}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+{{#if message}}
+<script type="text/javascript">
+    Swal.fire( {
+        icon: '{{message.icon}}',
+        title: '{{message.title}}',
+        text: '{{message.text}}'
+    });
+</script>
+{{/if}}
+<script src="/js/admin.js"></script>
+<script>
+    users = [];
+
+    {{#each teachers}}
+        users.push(`<tr>
+            <td class="align-middle">{{this.name}}</td>
+            <td class="align-middle">{{this.email}}</td>
+            <td class="align-middle">{{this.gender}}</td>
+            <td class="align-middle">{{this.phone}}</td>
+            <td class="align-middle">{{formatTime this.bthday "YYYY-MM-DD"}}</td>
+            <td class="align-middle">Giáo viên</td>
+            <td class="text-center">
+                <p data-placement="top" data-toggle="tooltip" title="Chỉnh sửa">
+                <button class="btn btn-primary btn-xs btnEditUser" data-toggle="modal" 
+                    data-target="#editUser" data-id="{{this._id}}" data-type="Teacher"
+                    data-name="{{this.name}}" data-email="{{this.email}}" data-gender="{{this.gender}}"
+                    data-phone="{{this.phone}}" data-bthday="{{formatTime this.bthday "YYYY-MM-DD"}}">
+                    <i class="fa fa-cog" aria-hidden="true"></i>
+                </button></p>
+            </td>
+            <td class="text-center">
+                <p data-placement="top" data-toggle="tooltip" title="Xóa">
+                <button class="btn btn-danger btn-xs btnRemoveUser" data-toggle="modal" 
+                    data-target="#removeUser" data-id ="{{this._id}}">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </button></p>
+            </td>
+        </tr>`);
+    {{/each}}
+
+    {{#each users}}
+        users.push(`<tr>
+            <td class="align-middle">{{this.name}}</td>
+            <td class="align-middle">{{this.email}}</td>
+            <td class="align-middle">{{this.gender}}</td>
+            <td class="align-middle">{{this.phone}}</td>
+            <td class="align-middle">{{formatTime this.bthday "YYYY-MM-DD"}}</td>
+            <td class="align-middle">Học sinh</td>
+            <td class="text-center">
+                <p data-placement="top" data-toggle="tooltip" title="Chỉnh sửa">
+                <button class="btn btn-primary btn-xs btnEditUser" data-toggle="modal" 
+                    data-target="#editUser" data-id="{{this._id}}" data-type="Student"
+                    data-name="{{this.name}}" data-email="{{this.email}}" data-gender="{{this.gender}}"
+                    data-phone="{{this.phone}}" data-bthday="{{formatTime this.bthday "YYYY-MM-DD"}}">
+                    <i class="fa fa-cog" aria-hidden="true"></i>
+                </button></p>
+            </td>
+            <td class="text-center">
+                <p data-placement="top" data-toggle="tooltip" title="Xóa">
+                <button class="btn btn-danger btn-xs btnRemoveUser" data-toggle="modal" 
+                    data-target="#removeUser" data-id="{{this._id}}">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </button></p>
+            </td>
+        </tr>`);
+    {{/each}}
+
+    length = Math.ceil(users.length / 5);
+    $('#pagination_list').twbsPagination({
+        totalPages: length,
+        visiblePages: 5,
+        first: 'Trang đầu',
+        prev: 'Trước',
+        next: 'Sau',
+        last: 'Trang cuối',
+        onPageClick: function (event, page) {
+            content = '';
+            for (let i = (page - 1) * 5; i < users.length && i < (page - 1) * 5 + 5; i++) {
+                content += users[i];
+            }
+            $('#users_row').html(content);
+        }
+    });
+</script>
 {{/section}}

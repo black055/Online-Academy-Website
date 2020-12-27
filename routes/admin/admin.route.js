@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const courseModel = require('../../models/courses.model');
-const categoryModel = require('../../models/category.model')
+const categoryModel = require('../../models/category.model');
+const userModel = require('../../models/user.model');
+const teacherModel = require('../../models/teacher.model')
 
 router.get('/', async (req, res) => {
     res.render('index', { layout: 'admin', isHome: 'true' });
@@ -20,7 +22,16 @@ router.get('/courseManagement', async (req, res) => {
 });
 
 router.get('/userManagement', async (req, res) => {
-    res.render('admin/userManagement', { layout: 'admin', isUserManagement: 'true' });
+    users = await userModel.getAllUser();
+    teachers = await teacherModel.getAllTeachers();
+    const message = req.flash('message');
+    if (typeof message === 'undefined')
+        res.render('admin/userManagement', { layout: 'admin', isUserManagement: 'true',
+            users: users, teachers: teachers });
+    else
+        res.render('admin/userManagement', { layout: 'admin', isUserManagement: 'true', message: message,
+            users: users, teachers: teachers });
+    
 });
 
 router.post('/categoryManagement/add', async (req, res) => {
@@ -79,6 +90,23 @@ router.post('/categoryManagement/remove', async (req, res) => {
     }
 
     res.redirect('/admin/categoryManagement');
+});
+
+router.post('/userManagement/edit', async (req, res) => {
+    if (req.body.userType == "Student") user = await userModel.getUser(req.body.id);
+    else if (req.body.userType == "Teacher") user = await teacherModel.getTeacher(req.body.id);
+    user.name = req.body.name;
+    user.bthday = req.body.bthday;
+    user.gender = req.body.gender;
+    user.phone = req.body.phone;
+    await user.save();
+    req.flash('message', {
+        icon: 'success',
+        title: 'Cập nhật thành công!',
+        text: 'Cập nhật thông tin của người dùng thành công!'
+    } );
+
+    res.redirect('/admin/userManagement');
 });
 
 module.exports = router;

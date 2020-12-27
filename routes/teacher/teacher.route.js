@@ -7,7 +7,6 @@ const mkdirp = require('mkdirp')
 const categoryModel = require('../../models/category.model')
 
 router.get('/', (req, res) => {
-    console.log("hello world");
     //nothing here
     res.render('index');
 });

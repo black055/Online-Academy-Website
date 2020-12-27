@@ -25,6 +25,8 @@ const teacher = new Schema({
     password: String,
     courses: Array,
     userType: String,
+    phone: String,
+    gender: String,
 });
 
 const admin = new Schema({
