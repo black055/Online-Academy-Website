@@ -13,14 +13,14 @@ router.get('/', async (req, res) => {
     }
 
     // Get 3 courses which have most number of students
-    let mostCourses = allCourses.sort(function (course_1, course_2) {
+    let cloneArrCourses = [...allCourses];
+    let mostCourses = cloneArrCourses.sort(function (course_1, course_2) {
         return course_2.students - course_1.students;
     });
 
     mostCourses = mostCourses.slice(0,3);
 
     // Get 3 newest courses
-    let cloneArrCourses = [...allCourses];
     cloneArrCourses.sort(function (course_1, course_2) {
         return course_1.createdDate - course_2.createdDate;
     });
