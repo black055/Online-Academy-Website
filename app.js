@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
+const moment = require('moment');
 const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
@@ -15,7 +15,6 @@ const {User, Teacher, Admin, Course, Category} = require('./utils/db');
 const {user_data, course_data, category_data, teacher_data} = require('./utils/insert');
 
 const categoryModel = require("./models/category.model");
-const userModel = require("./models/user.model");
 const coursesModel = require("./models/courses.model");
 
 require("./auth");
@@ -27,41 +26,41 @@ mongoose.connect("mongodb://localhost:27017/mydb", {
   useFindAndModify: false,
 });
 
-// Insert data user
-// (async function b() {
-//   for (let i = 0; i < user_data.length; i++) {
-//       let user = await User.findOne({'email': user_data[i].email});
-//       if (!user) {
-//           user = new User(user_data[i]);
-//           user.save();
-//       }
-//   }
+//Insert data user
+/* (async function b() {
+  for (let i = 0; i < user_data.length; i++) {
+      let user = await User.findOne({'email': user_data[i].email});
+      if (!user) {
+          user = new User(user_data[i]);
+          user.save();
+      }
+  }
 
-//   for (let i = 0; i < course_data.length; i++) {
-//     let course = await Course.findOne({ 'name': course_data[i].name});
-//     if (course == null) {
-//       course = new Course(course_data[i]);
-//       course.save();
-//     }
-//   }
+  for (let i = 0; i < course_data.length; i++) {
+    let course = await Course.findOne({ 'name': course_data[i].name});
+    if (course == null) {
+      course = new Course(course_data[i]);
+      course.save();
+    }
+  }
 
-//   for (let i = 0; i < category_data.length; i++) {
-//     let category = await Category.findOne({ 'name': category_data[i].name});
-//     if (category == null) {
-//       category = new Category(category_data[i]);
-//       category.save();
-//     }
-//   }
+  for (let i = 0; i < category_data.length; i++) {
+    let category = await Category.findOne({ 'name': category_data[i].name});
+    if (category == null) {
+      category = new Category(category_data[i]);
+      category.save();
+    }
+  }
 
-//   for (let i = 0; i < teacher_data.length; i++) {
-//     let teacher = new Teacher(teacher_data[i]);
-//     teacher.save();
-//   }
+  for (let i = 0; i < teacher_data.length; i++) {
+    let teacher = new Teacher(teacher_data[i]);
+    teacher.save();
+  }
 
 
-//   const admin = new Admin({username: 'admin', password: bcrypt.hashSync('22102000', 10), userType: 'Admin'});
-//   admin.save();
-// })();
+  const admin = new Admin({username: 'admin@gmail.com', password: bcrypt.hashSync('22102000', 10)});
+  admin.save();
+})(); */
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -111,6 +110,14 @@ handlebars.handlebars.registerHelper(
     return arg1 == arg2 ? options.fn(this) : options.inverse(this);
   }
 );
+handlebars.handlebars.registerHelper('formatTime', function (date, format) {
+  var mmnt = moment(date);
+  result = mmnt.format(format);
+  if (result != 'Invalid date') {
+    return result;
+  }
+  return '';
+});
 
 // Static resources
 app.use(express.static(__dirname + "/public"));
@@ -119,6 +126,7 @@ app.use(async function (req, res, next) {
   req.session.user = req.user;
   const categories = await categoryModel.getMenuCategory();
   req.session.categories = categories;
+  req.session.user = req.user;
   if (req.user && req.user.userType == 'Student') {
     let coursesInCart = [];
     for (let index = 0; index < req.user.cart.length; index++) {

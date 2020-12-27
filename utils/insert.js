@@ -1670,6 +1670,8 @@ const teacher_data = [{
     password: '$2b$10$Fd0GDCRSSwpzsUaaAzSrz.tLxvBIWWX4G1WwRmekSvK7UdrS94z7a',
     courses: [],
     userType: 'Teacher',
+    phone: '',
+    gender: 'Nam',
   }, {
     email: 'trantanthanh2@gmail.com',
     name: 'Trần Tấn Thành',
@@ -1677,6 +1679,8 @@ const teacher_data = [{
     password: '$2b$10$gzYEFuBiuRsv51yy9zxRZur.mbAPN7DBBLHRSZwY4aEhyTwJl/9iW',
     courses: [],
     userType: 'Teacher',
+    phone: '',
+    gender: 'Nam',
   }, {
     email: 'phamnguyencongminh@gmail.com',
     name: 'Phạm Nguyễn Công Minh',
@@ -1684,6 +1688,8 @@ const teacher_data = [{
     password: '$2b$10$qk7zGEBjc1uNHtgg8.qcQO6ezLLJ85awi6b6cB6G3L3YTp4Uwzfnq',
     courses: [],
     userType: 'Teacher',
+    phone: '',
+    gender: 'Nam',
   }, {
     email: 'tranlecongluat@gmail.com',
     name: 'Trần Lê Công Luật',
@@ -1691,6 +1697,8 @@ const teacher_data = [{
     password: '$2b$10$FHwKig1gVky2zPmFtiXcsOnYf25BLnarl/NPQC6aDJN8LfbY3SlXS',
     courses: [],
     userType: 'Teacher',
+    phone: '',
+    gender: 'Nam',
   }, {
     email: 'nguyenletuananh@gmail.com',
     name: 'Nguyên Lê Tuấn Anh',
@@ -1698,6 +1706,8 @@ const teacher_data = [{
     password: '$2b$10$S9Cmb4KBjjXWkoqHNIz9NeI7H7gu0e/LwsyF94Gv2t0xptdbw9naS',
     courses: [],
     userType: 'Teacher',
+    phone: '',
+    gender: 'Nam',
   }, {
     email: 'lethanhbinh@gmail.com',
     name: 'Lê Thanh Bình',
@@ -1705,6 +1715,8 @@ const teacher_data = [{
     password: '$2b$10$QC2iZAwoXFUIUb/a/OK0nOmF/FPeUoizQ5QohngAvfzypGhNSUmSO',
     courses: [],
     userType: 'Teacher',
+    phone: '',
+    gender: 'Nam',
   }, {
     email: 'phamtandung@gmail.com',
     name: 'Phạm Tấn Dũng',
@@ -1712,6 +1724,8 @@ const teacher_data = [{
     password: '$2b$10$N3Z0kfgwW82xC7Vl8DxfN.WnJ8JwmeJmVmm3TyQREwMNUcUba1OG.',
     courses: [],
     userType: 'Teacher',
+    phone: '',
+    gender: 'Nam',
   }, {
     email: 'tranphutrong@gmail.com',
     name: 'Trần Phú Trọng',
@@ -1719,6 +1733,8 @@ const teacher_data = [{
     password: '$2b$10$k6RGJS0f5GIZVHwVTkokRuhGpGuG9dEGPNX9knxhHAQ6QV2mvkYmi',
     courses: [],
     userType: 'Teacher',
+    phone: '',
+    gender: 'Nam',
   }, {
     email: 'nguyentrankimngan@gmail.com',
     name: 'Nguyễn Trần Kim Ngân',
@@ -1726,6 +1742,8 @@ const teacher_data = [{
     password: '$2b$10$nYYV3jY6BHTPJOWZOsmrN.xCCVTxDGRWWaeQeB2VTHpQo7Ba5.o5C',
     courses: [],
     userType: 'Teacher',
+    phone: '',
+    gender: 'Nữ',
   }, {
     email: 'truongphucanh@gmail.com',
     name: 'Trương Phúc Anh',
@@ -1733,6 +1751,8 @@ const teacher_data = [{
     password: '$2b$10$gc7DdySTp7qW5T3qm6y99OtQ6nfusnf5RWQsVoaWOZMzvm2LJiFha',
     courses: [],
     userType: 'Teacher',
+    phone: '',
+    gender: 'Nam',
   }, {
     email: 'nguyenbichtuyet@gmail.com',
     name: 'Nguyễn Bích Tuyết',
@@ -1740,6 +1760,8 @@ const teacher_data = [{
     password: '$2b$10$SC4f/inuSFwxbCeO1fh0hu75v2fXnyNrRhp7v0vTiZKuEC1vDuTUG',
     courses: [],
     userType: 'Teacher',
+    phone: '',
+    gender: 'Nữ',
   }, {
     email: 'lethihonganh@gmail.com',
     name: 'Lê Thị Hồng Ánh',
@@ -1747,6 +1769,8 @@ const teacher_data = [{
     password: '$2b$10$ixxXy9G/RseClaEyBIZuye6Ag3MZg8i800U9Ipuqhe2LS7wnHu1Du',
     courses: [],
     userType: 'Teacher',
+    phone: '',
+    gender: 'Nữ',
   }, {
     email: 'tranlevy@gmail.com',
     name: 'Trần Lê Vy',
@@ -1754,6 +1778,8 @@ const teacher_data = [{
     password: '$2b$10$CaY1vOpBX2Jt/51DWXl5Wu26k4UhO8EiEKbgUZ5bbwPnLawBuPbDy',
     courses: [],
     userType: 'Teacher',
+    phone: '',
+    gender: 'Nữ',
   }, {
     email: 'nguyengiaanhtu@gmail.com',
     name: 'Nguyên Gia Anh Tú',
@@ -1761,6 +1787,8 @@ const teacher_data = [{
     password: '$2b$10$58tOOrP32K27NomwTo2h4er767MDDHZ2ZbXUH9FxW/YADQ4rgMMwK',
     courses: [],
     userType: 'Teacher',
+    phone: '',
+    gender: 'Nữ',
   }, {
     email: 'leduc@gmail.com',
     name: 'Lê Đức',
@@ -1768,6 +1796,8 @@ const teacher_data = [{
     password: '$2b$10$UIqDgiNZ61To16IBRlvYHOjYiRHN6RmW87UwZqZLlw8xBpSlY/KKy',
     courses: [],
     userType: 'Teacher',
+    phone: '',
+    gender: 'Nam',
   }, {
     email: 'tranvantu@gmail.com',
     name: 'Trần Văn Tú',
@@ -1775,6 +1805,8 @@ const teacher_data = [{
     password: '$2b$10$RIs0PEgBJ2lXhIqPuvdML..3ZUflD3mFrOW35uLv9bvWF8c7MlW8m',
     courses: [],
     userType: 'Teacher',
+    phone: '',
+    gender: 'Nam',
   }, {
     email: 'huynhphananh@gmail.com',
     name: 'Huỳnh Phan Anh',
@@ -1782,6 +1814,8 @@ const teacher_data = [{
     password: '$2b$10$h0wa2NxYfAwr8yYvSlUnDeJB2u54jHwlfD9KirMnVji4U/Yqkukee',
     courses: [],
     userType: 'Teacher',
+    phone: '',
+    gender: 'Nam',
   }, {
     email: 'phamdat@gmail.com',
     name: 'Phạm Quốc Đạt',
@@ -1789,6 +1823,8 @@ const teacher_data = [{
     password: '$2b$10$OmlpS2jM/uX/vWHy2kDP7.Jc9hn/zmGo0LaS43OAt8lf8S7KaE0bG',
     courses: [],
     userType: 'Teacher',
+    phone: '',
+    gender: 'Nam',
   }, {
     email: 'dinhnongmanh@gmail.com',
     name: 'Đinh Nông Mạnh',
@@ -1796,6 +1832,8 @@ const teacher_data = [{
     password: '$2b$10$Pry0fjbUC5No4hKirI9BnuvZZiLkFqm8nB5zrWKOJ60M0y3xV7Gce',
     courses: [],
     userType: 'Teacher',
+    phone: '',
+    gender: 'Nam',
   }, {
     email: 'vuthitrang@gmail.com',
     name: 'Vũ Thị Trang',
@@ -1803,6 +1841,8 @@ const teacher_data = [{
     password: '$2b$10$vfTth8ptjJKAYQT02G.CIec4g7Jnz1PKvrOQBPESYxwE/qWceNYW.',
     courses: [],
     userType: 'Teacher',
+    phone: '',
+    gender: 'Nữ',
   }
 ]
 

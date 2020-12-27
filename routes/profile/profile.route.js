@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const mailer = require('nodemailer');
 const userModel = require('../../models/user.model');
+const teacherModel = require('../../models/teacher.model');
 const categoryModel = require('../../models/category.model')
 const {User} = require('../../utils/db');
 
@@ -16,7 +17,6 @@ const transporter = mailer.createTransport({
 
 router.get("/", async (req, res) => {
   const message = req.flash('message');
-
   if (req.user.userType == "Student") {
     totalMoney = await userModel.getTotalMoney(req.user._id);
     courses = await userModel.getCourses(req.user._id);
@@ -37,7 +37,11 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/changePassword", async (req, res) => {
-    const user = await userModel.getUser(req.user._id);
+    if (req.user.userType == "Student")
+      user = await userModel.getUser(req.user._id);
+    else if (req.user.userType == "Teacher")
+      user = await teacherModel.getTeacher(req.user._id);
+
     if (bcrypt.compareSync(req.body.oldPass, user.password)) {
       const hash = bcrypt.hashSync(req.body.newPass, 10, (err, hash) => {
         if (err) {
@@ -64,12 +68,13 @@ router.post("/changePassword", async (req, res) => {
 });
 
 router.post("/edit", async (req, res) => {
-  const user = await userModel.getUser(req.user._id);
+  if (req.user.userType == "Student") user = await userModel.getUser(req.user._id);
+  else if (req.user.userType == "Teacher") user = await teacherModel.getTeacher(req.user._id);
   user.name = req.body.name; req.user.name = req.body.name;
   user.bthday = req.body.bthday; req.user.bthday = req.body.bthday;
   user.gender = req.body.gender; req.user.gender = req.body.gender;
   user.phone = req.body.phone; req.user.phone = req.body.phone;
-  user.save();
+  await user.save();
   req.flash('message', {
     icon: 'success',
     title: 'Cập nhật thành công!',
@@ -79,9 +84,11 @@ router.post("/edit", async (req, res) => {
 });
 
 router.post("/changeEmail", async (req, res) => {
-  const checkEmail = await userModel.getUserByEmail(req.body.newEmail);
-  if (checkEmail === null) {
-    const user = await userModel.getUser(req.user._id);
+  const checkUserEmail = await userModel.getUserByEmail(req.body.newEmail);
+  const checkTeacherEmail = await teacherModel.getTeacherByEmail(req.body.newEmail);
+  if (checkUserEmail === null && checkTeacherEmail == null) {
+    if (req.user.userType == "Student") user = await userModel.getUser(req.user._id);
+    else if (req.user.userType == "Teacher") user = await teacherModel.getTeacher(req.user._id);
 
     if (bcrypt.compareSync(req.body.passConfirm, user.password)) {
       user.email = req.body.newEmail; req.user.email = req.body.newEmail;

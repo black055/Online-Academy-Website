@@ -53,5 +53,14 @@ $("#categories_row").on('click', '.btnEditCategory', function() {
 
 $("#categories_row").on('click', '.btnRemoveCategory', function() {
     $('#categoryRemoveName').val($(this).data('name'));
-    console.log($('#categoryRemoveName').val());
+});
+
+$("#users_row").on('click', '.btnEditUser', function() {
+    $('#newName').val($(this).data('name'));
+    $('#newEmail').val($(this).data('email'));
+    $('#newBthday').val($(this).data('bthday'));
+    $('#newGender').val($(this).data('gender'));
+    $('#newPhone').val($(this).data('phone'));
+    $('#edtId').val($(this).data('id'));
+    $('#userType').val($(this).data('type'));
 });
