@@ -32,6 +32,7 @@ const teacher = new Schema({
 const admin = new Schema({
     username: String,
     password: String,
+    userType: String,
 });
 
 const course = new Schema({

@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const moment = require('moment');
-const bcrypt = require("bcrypt");
 const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
@@ -16,7 +15,6 @@ const {User, Teacher, Admin, Course, Category} = require('./utils/db');
 const {user_data, course_data, category_data, teacher_data} = require('./utils/insert');
 
 const categoryModel = require("./models/category.model");
-const userModel = require("./models/user.model");
 const coursesModel = require("./models/courses.model");
 
 require("./auth");
@@ -142,7 +140,7 @@ app.use(async function (req, res, next) {
 app.get("/", mdwIsValidated, async (req, res) => {
   if (req.user && req.user.userType == 'Teacher')
     return res.redirect('/teacher');
-  if (req.user && req.user.username == 'admin@gmail.com')
+  if (req.user && req.user.userType == 'Admin')
     return res.redirect('/admin');
   else return res.render("index", { isHome: true});
 });

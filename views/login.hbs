@@ -11,7 +11,7 @@
           <h2>hoặc</h2>
           <form action="/login" method="POST" id="form_login">
             <div class="formsix-pos">
-              <div class="form-group i-email"> <input type="email" name="email" class="form-control" required="" id="email2" placeholder="Nhập địa chỉ email *"> </div>
+              <div class="form-group i-email"> <input type="text" name="email" class="form-control" required="" id="email2" placeholder="Nhập địa chỉ email *"> </div>
             </div>
             <div class="formsix-e">
               <div class="form-group i-password"> <input type="password" name="password" class="form-control" required="" id="password2" placeholder="Nhập mật khẩu *"> </div>
@@ -22,7 +22,7 @@
           <div class="login_message">
             <p>Đã có tài khoản? <a href="/register"> Register </a> </p>
           </div>
-        </div> 
+        </div>
       </div>
     </div>
   </div>
@@ -36,12 +36,18 @@
 
 {{#section 'js'}}
 <script>
-  $(document).ready(function() {
-    $('#form_login').submit(function() {
+  $(document).ready(function () {
+    $('#form_login').submit(function () {
       if ($('#password2').val().length < 8) {
         alert("Mật khẩu ít nhất 8 ký tự");
         return false;
-      } else return true;
+      } else {
+        const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (!regex.test($('#email2').val().toLowerCase()) && $('#email2').val().toLowerCase() != 'admin') {
+          alert("Tên đăng nhập không hợp lệ !");
+          return false;
+        } else return true;
+      }
     })
   })
 </script>
