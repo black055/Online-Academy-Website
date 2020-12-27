@@ -59,7 +59,7 @@ mongoose.connect("mongodb://localhost:27017/mydb", {
 //   }
 
 
-//   const admin = new Admin({username: 'admin@gmail.com', password: bcrypt.hashSync('22102000', 10)});
+//   const admin = new Admin({username: 'admin', password: bcrypt.hashSync('22102000', 10), userType: 'Admin'});
 //   admin.save();
 // })();
 
@@ -133,7 +133,7 @@ app.get("/", mdwIsValidated, async (req, res) => {
   req.session.user = req.user;
   if (req.user && req.user.userType == 'Teacher')
     return res.redirect('/teacher');
-  if (req.user && req.user.username == 'admin@gmail.com')
+  if (req.user && req.user.userType == 'Admin')
     return res.redirect('/admin');
   else return res.render("index", { isHome: true});
 });
