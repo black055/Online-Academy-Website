@@ -120,7 +120,17 @@ router.get('/addTocart/:id_course', async (req, res) => {
                 res.send(coursesInCart);
             })
         })
-    } else res.redirect('/login');
+    } else {
+        req.session.cart = typeof req.session.cart === 'undefined' ? [] : req.session.cart;
+        if (!req.session.cart.includes(req.params.id_course))
+            req.session.cart.push(req.params.id_course);
+        let cart = [];
+        for (let index = 0; index < req.session.cart.length; index++) {
+            let course = await coursesModel.getCourse(req.session.cart[index]);
+            cart.push(course);
+        }
+        res.send(cart);
+    };
 });
 
 router.get('/removeFromCart/:id_course', async (req, res) => {
@@ -145,7 +155,17 @@ router.get('/removeFromCart/:id_course', async (req, res) => {
                 res.send(coursesInCart);
             })
         })
-    } else res.redirect('/login');
+    } else {
+        req.session.cart = typeof req.session.cart === 'undefined' ? [] : req.session.cart;
+        if (req.session.cart.includes(req.params.id_course))
+            req.session.cart = req.session.cart.filter(id_course => id_course != req.params.id_course);
+        let cart = [];
+        for (let index = 0; index < req.session.cart.length; index++) {
+            let course = await coursesModel.getCourse(req.session.cart[index]);
+            cart.push(course);
+        }
+        res.send(cart);
+    };
 })
 
 router.get('/:id_course/:id_lecture', async (req, res) => {

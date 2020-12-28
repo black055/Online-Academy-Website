@@ -8,9 +8,11 @@ const passport = require("passport");
 const hbs = require("express-handlebars");
 const flash = require('req-flash');
 const MongoStore = require("connect-mongo")(session);
+const bcrypt = require('bcrypt');
 const hbs_section = require("express-handlebars-sections");
 const mdwIsValidated = require("./middlewares/validation.mdw");
 const mdwIsLoged = require("./middlewares/Loged.mdw");
+const userModel = require('./models/user.model');
 const {User, Teacher, Admin, Course, Category} = require('./utils/db');
 const {user_data, course_data, category_data, teacher_data} = require('./utils/insert');
 
@@ -57,7 +59,6 @@ mongoose.connect("mongodb://localhost:27017/mydb", {
 //     teacher.save();
 //   }
 
-
 //   const admin = new Admin({username: 'admin', password: bcrypt.hashSync('22102000', 10), userType: 'Admin'});
 //   admin.save();
 // })();
@@ -71,7 +72,7 @@ app.use(
     saveUninitialized: true,
     resave: true,
     cookie: {
-      expires: 1000 * 60 * 60,
+      expires: 1000 * 60 * 60 * 24 * 30,
     },
     store: new MongoStore({ mongooseConnection: mongoose.connection }),
   })
@@ -123,6 +124,53 @@ handlebars.handlebars.registerHelper('formatTime', function (date, format) {
 // Static resources
 app.use(express.static(__dirname + "/public"));
 
+// Middleware for getting cart for guest and user
+app.use(async function(req, res, next) {
+  if (typeof req.session.cart == 'undefined') 
+    req.session.cart = [];
+
+  if (req.user && req.user.userType == 'Student') {
+    for (let i = 0; i < req.session.cart.length; i++) {
+      let isRegistered = false;
+      let isExist = false;
+      req.user.courses.forEach(course => {
+        if (Object.keys(course)[0] == req.session.cart[i])
+          isRegistered = true;
+      });
+
+      if (isRegistered)
+        continue;
+      if (req.user.cart.includes(req.session.cart[i])) 
+        isExist = true;
+      if (isExist)
+        continue;
+      
+      let cart = req.user.cart;
+      cart.push(req.session.cart[i]);
+      await userModel.addCart(req.user._id, cart);
+      let user = await userModel.getUser(req.user._id);
+      user.save();
+      req.logIn(user, function (err) {
+        console.log(err);
+      });
+    }
+    req.session.cart = [];
+    req.session.coursesInCart = [];
+  }
+
+  if (req.session.cart.length > 0) {
+    let coursesInCart = [];
+    for (let i = 0; i < req.session.cart.length; i++) {
+      let course = await coursesModel.getCourse(req.session.cart[i]);
+      coursesInCart.push(course);
+    }
+    req.session.coursesInCart = coursesInCart;
+  }
+
+  next();
+});
+
+// Middleware for get categories and course in cart for student
 app.use(async function (req, res, next) {
   req.session.user = req.user;
   const categories = await categoryModel.getMenuCategory();
@@ -173,7 +221,7 @@ app.get("/google", passport.authenticate("google", {successRedirect: "/", failur
 
 app.get("/logout", (req, res) => {
   req.logOut();
-  req.session.user = null;
+  req.session.destroy();
   res.redirect("/login");
 });
 
