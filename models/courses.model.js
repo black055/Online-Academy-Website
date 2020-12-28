@@ -45,5 +45,9 @@ module.exports = {
             }
         }
         return count;
-    }, 
+    },
+
+    async updateCourse(id, course, callback) {
+        return await Course.findByIdAndUpdate(id, course, callback);
+    }
 }
