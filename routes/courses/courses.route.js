@@ -30,6 +30,31 @@ router.get('/', async (req, res) => {
     res.render('courses/courses', {isCourses: true, allCourses: allCourses, newestCourses: newestCourses, mostCourses: mostCourses});
 });
 
+router.get('/registerAllCourses', async (req, res) => {
+    if (typeof req.user == 'undefined') {
+        res.redirect('/login');
+    } else {
+        let student = await userModel.getUser(req.user._id);
+        let cart = student.cart;
+        let arrCourses = student.courses;
+        for (let i = 0; i < cart.length; i++) {
+            let course = await coursesModel.getCourse(cart[i]);
+            course.students += 1;
+            course.save();
+            let newCourse = {};
+            newCourse[cart[i]] = {rate: 0};
+            arrCourses.push(newCourse);
+        }
+        student.courses = arrCourses;
+        student.cart = [];
+        student.save();
+        req.logIn(student, function(err) {
+            console.log(err);
+        });
+        res.redirect('/');
+    }
+});
+
 router.get('/rate/:id_course/:value', async (req, res) => {
     let user = await userModel.getUser(req.user._id);
     let course = await coursesModel.getCourse(req.params.id_course);
@@ -96,6 +121,16 @@ router.get('/register/:id', async (req, res) => {
             })
         });
     }
+});
+
+router.get('/addToWatchList/:id_course', async (req, res) => {
+    let user = await userModel.getUser(req.user._id);
+    if (!user.watchList.includes(req.params.id_course))
+    {
+        user.watchList.push(req.params.id_course);
+        user.save();
+        res.send(true);
+    } else res.send(false);
 });
 
 router.get('/addTocart/:id_course', async (req, res) => {

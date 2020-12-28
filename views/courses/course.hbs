@@ -243,12 +243,14 @@
                     <div class="sidebar_section" id="register_button">
                         {{#if registered}}
                         <div class="row">
-                            <a href="/courses/{{course._id}}/0" style="width: 100%;"><button class="btn btn-danger btn-lg cl-12" style="width:100%;">Xem khóa học</button></a>
+                            <button class="btn btn-warning btn-lg col-10 watch" style="width:100%; margin-right:10px;">Xem khóa học</button>
+                            <button class="btn btn-danger addToWL"><i class="fas fa-heart"></i></button>
                         </div>
                         
                         {{else}}
                         <div class="row">
-                            <a href="/courses/register/{{course._id}}" style="width: 100%;"><button class="btn btn-danger btn-lg cl-12" style="width:100%;">Đăng ký</button></a>
+                            <button class="btn btn-warning btn-lg col-10" style="width:100%; margin-right:10px">Đăng ký</button>
+                            <button class="btn btn-danger addToWL"><i class="fas fa-heart"></i></button>
                             <button id="addToCart" class="btn btn-outline-success btn-lg cl-12 {{course._id}}" style="width:100%; margin-top:10px">Thêm vào giỏ</button>
                         </div>
                         {{/if}}
@@ -317,19 +319,22 @@
         $(this).replaceWith(`<button id="removeFromCart" class="btn btn-outline-success btn-lg cl-12 {{course_id}}" style="width:100%; margin-top:10px">Xóa khỏi giỏ</button>`)
         $.get(`/courses/addTocart/{{course._id}}`, function (data, status) {
             let cart = '';
+            total_price = 0;
             if (`${data}`) {
                 for (let i = 0; i < data.length; i++) {
-                cart += `<button class="dropdown-item" type="button">
-                            <div class="col-12" style="display:flex; padding-left:0px !important; padding-right: 40px;">
-                                <img class="col-3" style="padding-left:0px; padding-right:0px; width: 100px !important; max-width: none !important;" src="${data[i].thumbnail}" alt="">
-                                <div class="col-9" style="display: block;">
-                                    <h5 style="margin-bottom: 0px !important;">${data[i].name}</h5>
-                                    <p>Giá : ${data[i].price}</p>
+                    cart += `<button class="dropdown-item" type="button">
+                                <div class="col-12" style="display:flex; padding-left:0px !important; padding-right: 40px;">
+                                    <img class="col-3" style="padding-left:0px; padding-right:0px; width: 100px !important; max-width: none !important;" src="${data[i].thumbnail}" alt="">
+                                    <div class="col-9" style="display: block;">
+                                        <h5 style="margin-bottom: 0px !important;">${data[i].name}</h5>
+                                        <p>Giá :$${data[i].price}</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </button>`
+                            </button>`
+                    total_price += data[i].price;
                 }
-                cart += `<button class="dropdown-item btn btn-danger mx-auto col-4 text-center" type="button" style="background-color: #bd2130; color: #fff; padding: 7px 7px;">Thanh toán</button>`;
+                cart += `<p style="margin-left: 24px;">Tổng tiền: $${total_price}</p>`
+                cart += `<button class="dropdown-item btn btn-danger mx-auto col-4 text-center pay" type="button" style="background-color: #bd2130; color: #fff; padding: 7px 7px;">Thanh toán</button>`;
                 $('.cart').html(cart);
             } else {
                 $('.cart').html('<p style="text-align: center;">Giỏ hàng đang trống</p>');
@@ -341,25 +346,28 @@
         $(this).replaceWith(`<button id="addToCart" class="btn btn-outline-success btn-lg cl-12 {{course_id}}" style="width:100%; margin-top:10px">Thêm vào giỏ</button>`)
         $.get(`/courses/removeFromCart/{{course._id}}`, function (data, status) {
             let cart = '';
+            total_price = 0;
             if (`${data}`) {
                 for (let i = 0; i < data.length; i++) {
-                cart += `<button class="dropdown-item" type="button">
-                            <div class="col-12" style="display:flex; padding-left:0px !important; padding-right: 40px;">
-                                <img class="col-3" style="padding-left:0px; padding-right:0px; width: 100px !important; max-width: none !important;" src="${data[i].thumbnail}" alt="">
-                                <div class="col-9" style="display: block;">
-                                    <h5 style="margin-bottom: 0px !important;">${data[i].name}</h5>
-                                    <p>Giá : ${data[i].price}</p>
+                    cart += `<button class="dropdown-item" type="button">
+                                <div class="col-12" style="display:flex; padding-left:0px !important; padding-right: 40px;">
+                                    <img class="col-3" style="padding-left:0px; padding-right:0px; width: 100px !important; max-width: none !important;" src="${data[i].thumbnail}" alt="">
+                                    <div class="col-9" style="display: block;">
+                                        <h5 style="margin-bottom: 0px !important;">${data[i].name}</h5>
+                                        <p>Giá : $${data[i].price}</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </button>`
+                            </button>`
+                    total_price += data[i].price;
                 }
-                cart += `<button class="dropdown-item btn btn-danger mx-auto col-4 text-center" type="button" style="background-color: #bd2130; color: #fff; padding: 7px 7px;">Thanh toán</button>`;
+                cart += `<p style="margin-left: 24px;">Tổng tiền: $${total_price}</p>`
+                cart += `<button class="dropdown-item btn btn-danger mx-auto col-4 text-center pay" type="button" style="background-color: #bd2130; color: #fff; padding: 7px 7px;">Thanh toán</button>`;
                 $('.cart').html(cart);
             } else {
                 $('.cart').html('<p style="text-align: center;">Giỏ hàng đang trống</p>');
             }
         });
-    })
+    });
 
     for (let i = 1; i <= {{courseRate}}; i++) {
         $(`#rate_${i}`).addClass('fullStar');
@@ -399,5 +407,43 @@
 
         $('.div_rating').css('pointer-events', 'none');
     }
+
+    $('.watch').click(function() {
+        window.location = `/courses/{{course._id}}/0`
+    });
+
+    $('body').on('click', '.pay', function() {
+        {{#if session.user}} 
+        swal({
+            title: "Bạn có chắc muốn đăng ký tất cả các khóa học giỏ?",
+            text: `Tổng số tiền của các khóa học trong giỏ là $${total_price}!`,
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((accept) => {
+            if (accept) {
+                window.location = '/courses/registerAllCourses';
+            }
+        });
+        {{else}}
+        window.location = '/login';
+        {{/if}}
+    });
+
+    $('body').on('click', '.addToWL', function() {
+        console.log("hello");
+        $.get('/courses/addToWatchList/{{course._id}}', function(data) {
+            if (data == true) {
+                swal("Good job!", "Khóa học đã được thêm vào watchlist!", "success");
+            } else {
+                swal({
+                    title: "Sorry !",
+                    text: "Khóa học đã tồn tại trong watchlist rồi bạn nhé !",
+                    icon: "warning",
+                    dangerMode: true,
+                });
+            }
+        })
+    });
 </script>
 {{/section}}

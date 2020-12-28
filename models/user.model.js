@@ -33,7 +33,7 @@ module.exports = {
             result = [];
             if (user != null) {
                 for (i = 0; i < user.watchList.length; i++) {
-                    course = await Course.findById(Object.keys(user.watchList[i])[0]);
+                    course = await Course.findById(user.watchList[i]);
                     result.push(course);
                 }
             }
