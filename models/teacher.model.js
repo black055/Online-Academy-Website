@@ -12,4 +12,9 @@ module.exports = {
     async getAllTeachers () {
         return await Teacher.find();
     },
+
+    async removeTeacher(id) {
+        await Teacher.deleteOne( {"_id" : `${id}`} );
+        return true;
+    },
 }

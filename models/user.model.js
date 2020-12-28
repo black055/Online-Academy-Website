@@ -65,5 +65,10 @@ module.exports = {
 
     async addCart (id, cart) {
         return await User.findOneAndUpdate({_id: id}, {cart: cart});
-    }
+    },
+
+    async removeUser(id) {
+        await User.deleteOne( {"_id" : `${id}`} );
+        return true;
+    },
 }

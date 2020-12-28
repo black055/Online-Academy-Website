@@ -15,6 +15,10 @@ module.exports = {
         return await Course.findById(id);
     },
 
+    async getCourseOfTeacher(teacherId) {
+        return await Course.find( {'teacher': `${teacherId}`} );
+    },
+
     getCoursesByCategory(category) {
         return new Promise( async (resolve, reject) => {
             if (category.parent === 'null') {
@@ -49,5 +53,10 @@ module.exports = {
             }
         }
         return count;
-    }, 
+    },
+
+    async removeCourse(id) {
+        await Course.deleteOne( {"_id" : `${id}`} );
+        return true;
+    }
 }

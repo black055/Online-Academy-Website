@@ -121,15 +121,43 @@
     </div>
 </div>
 
-<!-- Remove user modal -->
-<div class="modal fade" id="removeUser" tabindex="-1" role="dialog" aria-labelledby="remove" aria-hidden="true">
+<!-- Remove teacher modal -->
+<div class="modal fade" id="removeTeacher" tabindex="-1" role="dialog" aria-labelledby="remove" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title custom_align" id="Heading"> Xóa lĩnh vực</h4>
             </div>
             <div class="modal-body">
-                <div class="alert alert-danger"><i class="fas fa-exclamation-triangle"></i>  Bạn chắn chắc muốn xóa lĩnh vực này?</div>
+                <div class="alert alert-warning" role="alert">
+                        <strong>Lưu ý!</strong> Nếu xóa giáo viên sẽ đồng thời xóa các khóa học của giáo viên này.
+                </div>
+                <div class="alert alert-danger" id="teacher-alert"></div>
+            </div>
+
+            <div class="modal-footer ">
+                <form action="/admin/userManagement/removeTeacher" method="post">
+                    <input id="teacherRemoveId" name="id" type="hidden">
+                    <button type="submit" class="btn btn-success"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Xác nhận</button>
+                </form>
+                <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> Hủy bỏ</button>
+            </div>
+        </div>
+  </div>
+</div>
+
+<!-- Remove user modal -->
+<div class="modal fade" id="removeUser" tabindex="-1" role="dialog" aria-labelledby="remove" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title custom_align" id="Heading"> Xóa người dùng</h4>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger">
+                    <i class="fas fa-exclamation-triangle"></i>
+                      Bạn chắn chắc muốn xóa người dùng này?
+                </div>
             </div>
 
             <div class="modal-footer ">
@@ -182,8 +210,8 @@
             </td>
             <td class="text-center">
                 <p data-placement="top" data-toggle="tooltip" title="Xóa">
-                <button class="btn btn-danger btn-xs btnRemoveUser" data-toggle="modal" 
-                    data-target="#removeUser" data-id ="{{this._id}}">
+                <button class="btn btn-danger btn-xs btnRemoveTeacher" data-toggle="modal" 
+                    data-target="#removeTeacher" data-id ="{{this._id}}">
                     <i class="fa fa-trash" aria-hidden="true"></i>
                 </button></p>
             </td>

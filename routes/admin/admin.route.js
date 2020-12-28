@@ -40,7 +40,11 @@ router.get('/courseManagement', async (req, res) => {
             };
         }
     }
-    res.render('admin/courseManagement', { layout: 'admin', isCourseManagement: 'true', courses: courses });
+
+    const message = req.flash('message');
+    if (typeof message === 'undefined')
+        res.render('admin/courseManagement', { layout: 'admin', isCourseManagement: 'true', courses: courses });
+    else res.render('admin/courseManagement', { layout: 'admin', isCourseManagement: 'true', courses: courses, message: message});
 });
 
 router.get('/userManagement', async (req, res) => {
@@ -170,6 +174,105 @@ router.post('/userManagement/add', async (req, res) => {
         icon: 'success',
         title: 'Thêm giáo viên thành công!',
         text: 'Thêm giáo viên vào cơ sở dữ liệu thành công!'
+    } );
+
+    res.redirect('/admin/userManagement');
+});
+
+router.post('/courseManagement/remove', async (req, res) => {
+    users = await userModel.getAllUser();
+    for (user of users) {
+        // Xóa khóa học ra khỏi danh sách khóa học đã mua
+        for (i = 0; i < user.courses.length; i++) {
+            if (Object.keys(user.courses[i])[0] == req.body.id) {
+                user.courses.splice(i, 1);
+                user.save();
+                break;
+            }
+        }
+        // Xóa khóa học ra khỏi danh sách khóa học đang theo dõi
+        for (i = 0; i < user.watchList.length; i++) {
+            if (Object.keys(user.watchList[i])[0] == req.body.id) {
+                user.watchList.splice(i, 1);
+                user.save();
+                break;
+            }
+        }
+    }
+    await courseModel.removeCourse(req.body.id);
+
+    req.flash('message', {
+        icon: 'success',
+        title: 'Xóa khóa học thành công!',
+        text: 'Xóa khóa học ra khỏi cơ sở dữ liệu thành công!'
+    } );
+
+    res.redirect('/admin/courseManagement');
+});
+
+router.get('/getTeacherCourses/:id', async (req, res) => {
+    courses = await courseModel.getCourseOfTeacher(req.params.id);
+    res.send(`${courses.length}`);
+});
+
+router.post('/userManagement/remove', async (req, res) => {
+    user = await userModel.getUser(req.body.id);
+    //Giảm số học sinh và các đánh giá của học sinh này trong các khóa học học sinh này tham gia
+    for (i = 0; i < user.courses.length; i++) {
+        course = await courseModel.getCourse(Object.keys(user.courses[i])[0]);
+        console.log(course);
+        //Giảm số học sinh
+        course.students = course.students - 1;
+        //Nếu đã đánh giá khóa học thì xóa đánh giá ra khỏi csdl
+        rate = user.courses[i].rate
+        if (rate != 0) {
+            course.rate[rate - 1] = course.rate[rate - 1] - 1;
+        }
+        console.log(course);
+        course.save();
+    }
+    await userModel.removeUser(req.body.id);
+
+    req.flash('message', {
+        icon: 'success',
+        title: 'Xóa học sinh thành công!',
+        text: 'Đã xóa học sinh và các hoạt động của học sinh này ra khỏi cơ sở dữ liệu thành công!'
+    } );
+
+    res.redirect('/admin/userManagement');
+});
+
+router.post('/userManagement/removeTeacher', async (req, res) => {
+    courses = await courseModel.getCourseOfTeacher(req.body.id);
+    users = await userModel.getAllUser();
+    // Xóa các khóa học của giáo viên này
+    for (course of courses) {
+        for (user of users) {
+            // Xóa khóa học ra khỏi danh sách khóa học đã mua
+            for (i = 0; i < user.courses.length; i++) {
+                if (Object.keys(user.courses[i])[0] == course._id) {
+                    user.courses.splice(i, 1);
+                    user.save();
+                    break;
+                }
+            }
+            // Xóa khóa học ra khỏi danh sách khóa học đang theo dõi
+            for (i = 0; i < user.watchList.length; i++) {
+                if (Object.keys(user.watchList[i])[0] == course._id) {
+                    user.watchList.splice(i, 1);
+                    user.save();
+                    break;
+                }
+            }
+        }
+        await courseModel.removeCourse(course._id);
+    }
+    await teacherModel.removeTeacher(req.body.id);
+
+    req.flash('message', {
+        icon: 'success',
+        title: 'Xóa giáo viên thành công!',
+        text: 'Xóa giáo viên cùng các khóa học của giáo viên này ra khỏi cơ sở dữ liệu thành công!'
     } );
 
     res.redirect('/admin/userManagement');

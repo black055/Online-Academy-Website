@@ -55,6 +55,24 @@ $("#categories_row").on('click', '.btnRemoveCategory', function() {
     $('#categoryRemoveName').val($(this).data('name'));
 });
 
+$("#courses_row").on('click', '.btnRemoveCourse', function() {
+    $('#courseRemoveId').val($(this).data('id'));
+});
+
+$("#users_row").on('click', '.btnRemoveUser', function() {
+    $('#userRemoveId').val($(this).data('id'));
+});
+
+$("#users_row").on('click', '.btnRemoveTeacher', function() {
+    id = $(this).data('id');
+    $('#teacherRemoveId').val(id);
+    $.get(`/admin/getTeacherCourses/${id}`, function (data, status) {
+        $('#teacher-alert').html(`<i class="fas fa-exclamation-triangle"></i>
+        Giáo viên này hiện đang có ${data} khóa học. <br>
+        Bạn có chắc chắn muốn xóa người này?`);
+    });
+});
+
 $("#users_row").on('click', '.btnEditUser', function() {
     $('#newName').val($(this).data('name'));
     $('#newEmail').val($(this).data('email'));
