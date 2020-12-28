@@ -99,6 +99,7 @@ app.engine(
     defaultLayout: "main.hbs",
     helpers: {
       section: hbs_section(),
+      inc: (index) => {return ++index},
     },
   })
 );
@@ -139,7 +140,7 @@ app.use(async function (req, res, next) {
 
 app.get("/", mdwIsValidated, async (req, res) => {
   if (req.user && req.user.userType == 'Teacher')
-    return res.redirect('/teacher');
+    return res.redirect('/course');
   if (req.user && req.user.userType == 'Admin')
     return res.redirect('/admin');
   else return res.render("index", { isHome: true});
@@ -179,7 +180,7 @@ app.get("/logout", (req, res) => {
 app.use("/courses", mdwIsValidated, require("./routes/courses/courses.route"));
 app.use("/profile", mdwIsLoged, mdwIsValidated, require("./routes/profile/profile.route"));
 app.use('/register', require('./routes/register/register.route'));
-app.use('/teacher', mdwIsLoged, require('./routes/teacher/teacher.route'));
+app.use('/course', mdwIsLoged, require('./routes/course/course.route'));
 app.use('/category', require('./routes/category/category.route'));
 app.use('/admin', mdwIsLoged, require('./routes/admin/admin.route'));
 

@@ -27,6 +27,12 @@ router.get("/", async (req, res) => {
     else
       res.render("profile/profile", { courses: courses, watchlist: watchlist,
         totalMoney: totalMoney, message: message });
+  } else if (req.user.userType == "Teacher") {
+    courses = await teacherModel.getCoursesCreated(req.user._id.toString());
+    if (typeof message === 'undefined')
+      res.render("profile/profile_teacher", { courses: courses });
+    else
+      res.render("profile/profile_teacher", { courses: courses, message: message });
   } else {
     if (typeof message === 'undefined')
       res.render("profile/profile");

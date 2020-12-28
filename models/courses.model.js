@@ -58,5 +58,9 @@ module.exports = {
     async removeCourse(id) {
         await Course.deleteOne( {"_id" : `${id}`} );
         return true;
+    },
+    
+    async updateCourse(id, course, callback) {
+        return await Course.findByIdAndUpdate(id, course, callback);
     }
 }
