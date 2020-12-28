@@ -7,6 +7,10 @@ module.exports = {
         return await Course.find();
     },
 
+    async getAllCoursesJSON() {
+        return await Course.find().lean();
+    },
+
     async getCourse(id) {
         return await Course.findById(id);
     },

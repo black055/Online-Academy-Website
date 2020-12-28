@@ -42,11 +42,28 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <input id="edtName" class="form-control" name="name" type="text" placeholder="Họ tên" required>
-                        <span class="error" id="edtNameErr"></span>
+                        <input id="teacherName" class="form-control" name="name" type="text" placeholder="Họ tên" required>
                     </div>
-                    <div class="form-group">
-                        
+                    <div class="form-group row">
+                        <div class="col">
+                            <input id="teacherEmail" class="form-control" name="email" type="email" placeholder="Email" required>
+                            <span class="error" id="teacherEmailErr"></span>
+                        </div>
+                        <div class="col">
+                            <input id="teacherBthday" class="form-control" name="bthday" type="date" placeholder="Ngày sinh">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col">
+                            <select id="teacherGender" name="gender" class="form-control">
+                                <option selected value='Nam'>Nam</option>
+                                <option value='Nữ'>Nữ</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <input id="teacherPhone" class="form-control" name="phone" placeholder="Điện thoại">
+                            <span class="error" id="edtPhoneErr"></span>
+                        </div>
                     </div>
                 </div>
 
@@ -159,7 +176,7 @@
                 <button class="btn btn-primary btn-xs btnEditUser" data-toggle="modal" 
                     data-target="#editUser" data-id="{{this._id}}" data-type="Teacher"
                     data-name="{{this.name}}" data-email="{{this.email}}" data-gender="{{this.gender}}"
-                    data-phone="{{this.phone}}" data-bthday="{{formatTime this.bthday "YYYY-MM-DD"}}">
+                    data-phone="{{this.phone}}" data-bthday="{{formatTime this.bthday 'YYYY-MM-DD'}}">
                     <i class="fa fa-cog" aria-hidden="true"></i>
                 </button></p>
             </td>
@@ -186,7 +203,7 @@
                 <button class="btn btn-primary btn-xs btnEditUser" data-toggle="modal" 
                     data-target="#editUser" data-id="{{this._id}}" data-type="Student"
                     data-name="{{this.name}}" data-email="{{this.email}}" data-gender="{{this.gender}}"
-                    data-phone="{{this.phone}}" data-bthday="{{formatTime this.bthday "YYYY-MM-DD"}}">
+                    data-phone="{{this.phone}}" data-bthday="{{formatTime this.bthday 'YYYY-MM-DD'}}">
                     <i class="fa fa-cog" aria-hidden="true"></i>
                 </button></p>
             </td>

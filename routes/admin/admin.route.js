@@ -3,7 +3,19 @@ const router = express.Router();
 const courseModel = require('../../models/courses.model');
 const categoryModel = require('../../models/category.model');
 const userModel = require('../../models/user.model');
-const teacherModel = require('../../models/teacher.model')
+const teacherModel = require('../../models/teacher.model');
+const mailer = require('nodemailer');
+const bcrypt = require('bcrypt');
+const randomString = require('random-string');
+const {Teacher} = require('../../utils/db');
+
+const transporter = mailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'verifycourseonline@gmail.com',
+        pass: '22102000shch',
+    }
+});
 
 router.get('/', async (req, res) => {
     res.render('index', { layout: 'admin', isHome: 'true' });
@@ -18,7 +30,17 @@ router.get('/categoryManagement', async (req, res) => {
 });
 
 router.get('/courseManagement', async (req, res) => {
-    res.render('admin/courseManagement', { layout: 'admin', isCourseManagement: 'true' });
+    courses = await courseModel.getAllCoursesJSON();
+    for (course of courses) {
+        if (course.teacher != '') {
+            teacher = await teacherModel.getTeacher(course.teacher);
+            courses.teacher = {
+                'id': teacher._id,
+                'name': teacher.name,
+            };
+        }
+    }
+    res.render('admin/courseManagement', { layout: 'admin', isCourseManagement: 'true', courses: courses });
 });
 
 router.get('/userManagement', async (req, res) => {
@@ -104,6 +126,50 @@ router.post('/userManagement/edit', async (req, res) => {
         icon: 'success',
         title: 'Cập nhật thành công!',
         text: 'Cập nhật thông tin của người dùng thành công!'
+    } );
+
+    res.redirect('/admin/userManagement');
+});
+
+router.post('/userManagement/add', async (req, res) => {
+    password = randomString({ length: 8, numeric: true, letters: true, special: false, });
+    password += Math.floor(Math.random() * 9);
+    
+    const hash = await bcrypt.hashSync(password, 10, (err, hash) => {
+        if (err) {
+            console.log(err);
+        }
+    });
+    newTeacher = new Teacher({
+        email: req.body.email, 
+        name: req.body.name,
+        bthday: req.body.bthday,
+        password: hash,
+        courses: [],
+        userType: 'Teacher',
+        phone: req.body.phone,
+        gender: req.body.gender,
+    });
+    newTeacher.save();
+    console.log('Email: ' + req.body.email);
+    console.log('Password: ' + password);
+
+    let mailOptions = {
+        from: 'verifycourseonline@gmail.com',
+        to: req.body.email,
+        subject: 'Welcome to our website',
+        html: `You have register as a teacher at our website. Here is your account infomation: <br>
+        Username: ${req.body.email} <br>
+        Password: ${password}`,
+    }
+    transporter.sendMail(mailOptions, function (err, data) {
+        if (err) console.log(err);
+    });
+
+    req.flash('message', {
+        icon: 'success',
+        title: 'Thêm giáo viên thành công!',
+        text: 'Thêm giáo viên vào cơ sở dữ liệu thành công!'
     } );
 
     res.redirect('/admin/userManagement');

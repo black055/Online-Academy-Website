@@ -24,7 +24,7 @@ $('#change-email-form').submit(function(e) {
 });
 
 $('#edit-profile-form').submit(function(e) {
-  if ($('#edtPhone').val().length < 8 || $('#edtPhone').val().length> 10) {
+  if ($('#edtPhone').val().length != 0 && ($('#edtPhone').val().length < 8 || $('#edtPhone').val().length> 10)) {
     $('#edtPhoneErr').text('Điện thoại dài từ 8-10 số!');
     e.preventDefault();
   }
