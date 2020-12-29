@@ -47,7 +47,6 @@ module.exports = {
                     parCat.soldInWeek += 1;
                     parCat.save();
                 }
-                console.log(arrCat[i]);
             }
         }
     },

@@ -126,84 +126,23 @@
 
                                 <!-- Comments -->
                                 <div class="comments_container">
-                                    <ul class="comments_list">
-                                        <li>
-                                            <div class="comment_item d-flex flex-row align-items-start jutify-content-start">
-                                                <div class="comment_image">
-                                                    <div><img src="/images/comment_1.jpg" alt=""></div>
-                                                </div>
-                                                <div class="comment_content">
-                                                    <div class="comment_title_container d-flex flex-row align-items-center justify-content-start">
-                                                        <div class="comment_author"><a href="#">Milley Cyrus</a></div>
-                                                        <div class="comment_rating">
-                                                            <div class="rating_r rating_r_4"><i></i><i></i><i></i><i></i><i></i></div>
-                                                        </div>
-                                                        <div class="comment_time ml-auto">1 day ago</div>
-                                                    </div>
-                                                    <div class="comment_text">
-                                                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have alteration in some form, by injected humour.</p>
-                                                    </div>
-                                                    <div class="comment_extras d-flex flex-row align-items-center justify-content-start">
-                                                        <div class="comment_extra comment_likes"><a href="#"><i class="fa fa-heart" aria-hidden="true"></i><span>15</span></a></div>
-                                                        <div class="comment_extra comment_reply"><a href="#"><i class="fa fa-reply" aria-hidden="true"></i><span>Reply</span></a></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <ul>
-                                                <li>
-                                                    <div class="comment_item d-flex flex-row align-items-start jutify-content-start">
-                                                        <div class="comment_image">
-                                                            <div><img src="/images/comment_2.jpg" alt=""></div>
-                                                        </div>
-                                                        <div class="comment_content">
-                                                            <div class="comment_title_container d-flex flex-row align-items-center justify-content-start">
-                                                                <div class="comment_author"><a href="#">John Tyler</a></div>
-                                                                <div class="comment_rating">
-                                                                    <div class="rating_r rating_r_4"><i></i><i></i><i></i><i></i><i></i></div>
-                                                                </div>
-                                                                <div class="comment_time ml-auto">1 day ago</div>
-                                                            </div>
-                                                            <div class="comment_text">
-                                                                <p>There are many variations of passages of Lorem Ipsum available, but the majority have alteration in some form, by injected humour.
-                                                                </p>
-                                                            </div>
-                                                            <div class="comment_extras d-flex flex-row align-items-center justify-content-start">
-                                                                <div class="comment_extra comment_likes"><a href="#"><i class="fa fa-heart" aria-hidden="true"></i><span>15</span></a></div>
-                                                                <div class="comment_extra comment_reply"><a href="#"><i class="fa fa-reply" aria-hidden="true"></i><span>Reply</span></a></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <div class="comment_item d-flex flex-row align-items-start jutify-content-start">
-                                                <div class="comment_image">
-                                                    <div><img src="/images/comment_3.jpg" alt=""></div>
-                                                </div>
-                                                <div class="comment_content">
-                                                    <div class="comment_title_container d-flex flex-row align-items-center justify-content-start">
-                                                        <div class="comment_author"><a href="#">Milley Cyrus</a></div>
-                                                        <div class="comment_rating">
-                                                            <div class="rating_r rating_r_4"><i></i><i></i><i></i><i></i><i></i></div>
-                                                        </div>
-                                                        <div class="comment_time ml-auto">1 day ago</div>
-                                                    </div>
-                                                    <div class="comment_text">
-                                                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have alteration in some form, by injected humour.</p>
-                                                    </div>
-                                                    <div class="comment_extras d-flex flex-row align-items-center justify-content-start">
-                                                        <div class="comment_extra comment_likes"><a href="#"><i class="fa fa-heart" aria-hidden="true"></i><span>15</span></a></div>
-                                                        <div class="comment_extra comment_reply"><a href="#"><i class="fa fa-reply" aria-hidden="true"></i><span>Reply</span></a></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
+                                    <ul class="comments_list"></ul>
                                     <div class="add_comment_container">
-                                        <div class="add_comment_title">Add a review</div>
-                                        <div class="add_comment_text">You must be <a href="#">logged</a> in to post a comment.</div>
+                                        <div class="add_comment_title">Nhận xét</div>
                                     </div>
+
+                                    {{#if session.user}}
+                                        {{#if registered}}
+                                            <form action="/courses/comment/{{course._id}}" method="post">
+                                                <textarea class="form-control" name="comment" placeholder="Nhập comment ..." required></textarea>
+                                                <button type="submit" class="btn btn-success submit_comment" style="margin-top: 10px;">Nhận xét</button>
+                                            </form>
+                                        {{else}}
+                                            <div class="add_comment_text">Bạn phải <a href="/courses/register/{{course._id}}">đăng ký</a> khóa học để có thể nhận xét.</div>
+                                        {{/if}}
+                                    {{else}}
+                                        <div class="add_comment_text">Bạn phải <a href="/login">đăng nhập</a> để có thể nhận xét.</div>
+                                    {{/if}}
                                 </div>
                             </div>
 
@@ -228,13 +167,25 @@
                                 <!-- Feature -->
                                 <div class="feature d-flex flex-row align-items-center justify-content-start">
                                     <div class="feature_title"><i class="fas fa-clock"></i><span>Thời gian:</span></div>
-                                    <div class="feature_text ml-auto">2 tuần</div>
+                                    <div class="feature_text ml-auto">{{course.chapters.length}}</div>
                                 </div>
 
                                 <!-- Feature -->
                                 <div class="feature d-flex flex-row align-items-center justify-content-start">
                                     <div class="feature_title"><i class="fa fa-list-alt" aria-hidden="true"></i><span>Số bài học:</span></div>
-                                    <div class="feature_text ml-auto">10</div>
+                                    <div class="feature_text ml-auto">{{course.chapters.length}}</div>
+                                </div>
+
+                                <!-- Feature -->
+                                <div class="feature d-flex flex-row align-items-center justify-content-start">
+                                    <div class="feature_title"><i class="fas fa-user-graduate"></i><span>Học viên:</span></div>
+                                    <div class="feature_text ml-auto">{{course.students}}</div>
+                                </div>
+
+                                <!-- Feature -->
+                                <div class="feature d-flex flex-row align-items-center justify-content-start">
+                                    <div class="feature_title"><i class="fas fa-eye"></i><span>Lượt xem:</span></div>
+                                    <div class="feature_text ml-auto">{{course.views}}</div>
                                 </div>
                             </div>
                         </div>
@@ -408,8 +359,26 @@
         $('.div_rating').css('pointer-events', 'none');
     }
 
-    $('.watch').click(function() {
-        window.location = `/courses/{{course._id}}/0`
+    $('body').on('click','.watch', function() {
+        if ("{{course.chapters}}") {
+            if ("{{course.chapters.0.video}}") {
+                window.location = `/courses/{{course._id}}/0`
+            } else {
+                swal({
+                    title: "Sorry !",
+                    text: "Khóa học chưa được bổ sung nội dung !",
+                    icon: "warning",
+                    dangerMode: true,
+                });
+            }
+        } else {
+            swal({
+                title: "Sorry !",
+                text: "Khóa học chưa được bổ sung nội dung !",
+                icon: "warning",
+                dangerMode: true,
+            });
+        }
     });
 
     $('body').on('click', '.pay', function() {
@@ -448,5 +417,58 @@
     $('body').on('click', '.register', function() {
         window.location = `/courses/register/{{course._id}}`;
     });
+
+    function convert(str) {
+    var date = new Date(str),
+        mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+        day = ("0" + date.getDate()).slice(-2);
+    return [date.getFullYear(), mnth, day].join("-");
+    }
+
+    let content = '';
+    let tag_star = '';
+    let r = 0;
+    let date = new Date();
+    {{#each comments}}
+        tag_star = '';
+        date = "{{this.content.time}}";
+        date = convert(date);
+        r = {{this.rate}};
+        for (let i = 0; i < r; i++) 
+            tag_star += `<a class="star none_rate fullStar" style="pointer-events: none;"></a>`;
+        for (let i = r; i < 5; i++) 
+            tag_star += `<a class="star none_rate" style="pointer-events: none;"></a>`;
+        content += `<li>
+            <div class="comment_item d-flex flex-row align-items-start jutify-content-start">
+                <div class="comment_image">
+                    <div><img src="/images/user_avatar/student.png" alt=""></div>
+                </div>
+                <div class="comment_content">
+                    <div class="comment_title_container d-flex flex-row align-items-center justify-content-start">
+                        <div class="comment_author"><a href="#">{{this.name}}</a></div>
+                        
+                        <div class="comment_time ml-auto">${date}</div>
+                    </div>
+                    <div class="comment_text">
+                        <div class="comment_rating">
+                            <div class="rate-comment">
+                                <input type="radio" name="example" class="rating" value="1" id="" style="display: none;">
+                                <input type="radio" name="example" class="rating" value="2" style="display: none;">
+                                <input type="radio" name="example" class="rating" value="3" style="display: none;">
+                                <input type="radio" name="example" class="rating" value="4" style="display: none;">
+                                <input type="radio" name="example" class="rating" value="5" style="display: none;">
+                                <div class="stars">
+                                    ${tag_star}
+                                </div>
+                            </div>
+                        </div>
+                        <p>{{this.content.content}}</p>
+                    </div>
+                </div>
+            </div>
+        </li>`
+    {{/each}}
+
+    $('.comments_list').html(content);
 </script>
 {{/section}}
