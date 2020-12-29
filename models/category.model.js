@@ -3,7 +3,7 @@ const coursesModel = require('../models/courses.model');
 
 module.exports = {
 
-    getMenuCategory() {
+    async getMenuCategory() {
         return new Promise(async (resolve, reject) => {
             categories = await Category.find( { "parent" : 'null' }).lean();
             for (i = 0; i < categories.length; i++) {

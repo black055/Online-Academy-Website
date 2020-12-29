@@ -22,6 +22,9 @@
         }
     </style>
     {{{_sections.jsHead}}}
+    
+<link rel="stylesheet" type="text/css" href="/styles/main_styles.css">
+<link rel="stylesheet" type="text/css" href="/styles/responsive.css">
     {{{_sections.css}}}
 </head>
 
@@ -84,7 +87,17 @@
                                         <div class="logo_text">Unic<span>at</span></div>
                                     </a>
                                 </div>
+                                
                                 <nav class="main_nav_contaner ml-auto">
+                                    {{#ifEquals session.user.userType "Admin"}}
+                                    <ul class="main_nav">
+                                        <li id="home"><a href="/">Trang chủ</a></li>
+                                        <li id="categoryManagement"><a href="/admin/categoryManagement">Quản lý lĩnh vực</a></li>
+                                        <li id="courseManagement"><a href="/admin/courseManagement">Quản lý khoá học</a></li>
+                                        <li id="userManagement"><a href="/admin/userManagement">Quản lý người dùng</a></li>
+                                    </ul>
+                                    <div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>
+                                    {{else}}
                                     <ul class="main_nav">
                                         <li id="home"><a href="/">Trang chủ</a></li>
                                         <li id="courses"><a href="/courses">Khóa học</a></li>
@@ -102,7 +115,7 @@
                                         <li id="about"><a href="/about">Về chúng tôi</a></li>
                                     </ul>
                                     <div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>
-
+                                    {{/ifEquals}}
                                     <!-- Hamburger -->
 
                                     
@@ -126,18 +139,21 @@
             <!-- Header Search Panel -->
             <div class="header_search_container">
                 <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            <div class="header_search_content d-flex flex-row align-items-center justify-content-end">
-                                <form action="#" class="header_search_form">
-                                    <input type="search" class="search_input" placeholder="Search" required="required">
-                                    <button class="header_search_button d-flex flex-column align-items-center justify-content-center">
-                                        <i class="fa fa-search" aria-hidden="true"></i>
-                                    </button>
-                                </form>
-                            </div>
+                    <form class="row" action="/courses/search" method="post">
+                        <div class="col d-flex justify-content-end align-items-center" style="height: 73px;">
+                            <input type="text" name="keyword" class="home_search_input" required>
+                            <select name="category" id="categorySearch" class="home_search_input home_search_option">
+                                <option value="null" selected="selected">Lựa chọn lĩnh vực</option>
+                                {{#each session.categories}}
+                                <option value="{{this.name}}" class="parent">{{this.name}}</option>
+                                {{#if this.subCategory}} {{#each this.subCategory}}
+                                <option value="{{this.name}}">&nbsp;&nbsp;&nbsp;{{this.name}}</option>
+                                {{/each}} {{/if}}
+                                {{/each}}
+                            </select>
+                            <button type="submit" class="home_search_button"><i class="fa fa-search" aria-hidden="true"></i></button>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </header>
@@ -169,7 +185,7 @@
             </nav>
         </div>
 
-        <div style="margin-top: 100px;">
+        <div class="body_container">
             {{{body}}}
         </div>
 
@@ -313,6 +329,12 @@
         $('#courses').addClass('active');
         {{else if isCategories}}
         $('#categories').addClass('active');
+        {{else if isCategoryManagement}}
+        $('#categoryManagement').addClass('active');
+        {{else if isCourseManagement}}
+        $('#courseManagement').addClass('active');
+        {{else if isUserManagement}}
+        $('#userManagement').addClass('active');
         {{/if}}
 
         let cart = '';

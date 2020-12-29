@@ -63,6 +63,8 @@ const category = Schema({
     soldInWeek: Number
 })
 
+course.index({name: 'text'});
+
 module.exports = {
     User: mongoose.model('User', user),
     Teacher: mongoose.model('Teacher', teacher),
