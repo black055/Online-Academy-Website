@@ -43,7 +43,6 @@ $(document).ready(function()
 	});
 
 	initMenu();
-	initHeaderSearch();
 	initTabs();
 	initAccordions();
 	initDropdowns();
@@ -116,26 +115,6 @@ $(document).ready(function()
 	{
 		menu.removeClass('active');
 		menuActive = false;
-	}
-
-	/* 
-
-	4. Init Header Search
-
-	*/
-
-	function initHeaderSearch()
-	{
-		if($('.search_button').length)
-		{
-			$('.search_button').on('click', function()
-			{
-				if($('.header_search_container').length)
-				{
-					$('.header_search_container').toggleClass('active');
-				}
-			});
-		}
 	}
 
 	/* 

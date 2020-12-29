@@ -28,7 +28,7 @@ router.get('/', async (req, res) => {
 
     let newestCourses = cloneArrCourses.length >= 3 ? cloneArrCourses.slice(0,3) : cloneArrCourses;
 
-    res.render('courses/courses', {isCourses: true, allCourses: allCourses, newestCourses: newestCourses, mostCourses: mostCourses});
+    res.render('courses/courses', {isCourses: true, allCourses: allCourses, newestCourses: newestCourses, mostCourses: mostCourses, title: 'Tất cả khóa học' });
 });
 
 router.get('/registerAllCourses', async (req, res) => {
@@ -207,6 +207,11 @@ router.get('/removeFromCart/:id_course', async (req, res) => {
         res.send(cart);
     };
 })
+
+router.post('/search', async (req, res) => {
+    result = await coursesModel.searchCourses(req.body.keyword, req.body.category);
+    res.render('courses/courses', {allCourses: result, title: `Kết quả cho: ${req.body.keyword}`});
+});
 
 router.get('/:id_course/:id_lecture', async (req, res) => {
     const course = await coursesModel.getCourse(req.params.id_course);

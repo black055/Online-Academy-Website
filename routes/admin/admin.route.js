@@ -18,15 +18,15 @@ const transporter = mailer.createTransport({
 });
 
 router.get('/', async (req, res) => {
-    res.render('index', { layout: 'admin', isHome: 'true' });
+    res.render('index', { isHome: 'true' });
 });
 
 router.get('/categoryManagement', async (req, res) => {
     const message = req.flash('message');
     if (typeof message === 'undefined')
-        res.render('admin/categoryManagement', { layout: 'admin', isCategoryManagement: 'true' });
+        res.render('admin/categoryManagement', { isCategoryManagement: 'true' });
     else
-        res.render('admin/categoryManagement', { layout: 'admin', isCategoryManagement: 'true', message: message });
+        res.render('admin/categoryManagement', { isCategoryManagement: 'true', message: message });
 });
 
 router.get('/courseManagement', async (req, res) => {
@@ -43,8 +43,8 @@ router.get('/courseManagement', async (req, res) => {
 
     const message = req.flash('message');
     if (typeof message === 'undefined')
-        res.render('admin/courseManagement', { layout: 'admin', isCourseManagement: 'true', courses: courses });
-    else res.render('admin/courseManagement', { layout: 'admin', isCourseManagement: 'true', courses: courses, message: message});
+        res.render('admin/courseManagement', { isCourseManagement: 'true', courses: courses });
+    else res.render('admin/courseManagement', { isCourseManagement: 'true', courses: courses, message: message});
 });
 
 router.get('/userManagement', async (req, res) => {
@@ -52,10 +52,10 @@ router.get('/userManagement', async (req, res) => {
     teachers = await teacherModel.getAllTeachers();
     const message = req.flash('message');
     if (typeof message === 'undefined')
-        res.render('admin/userManagement', { layout: 'admin', isUserManagement: 'true',
+        res.render('admin/userManagement', { isUserManagement: 'true',
             users: users, teachers: teachers });
     else
-        res.render('admin/userManagement', { layout: 'admin', isUserManagement: 'true', message: message,
+        res.render('admin/userManagement', { isUserManagement: 'true', message: message,
             users: users, teachers: teachers });
     
 });

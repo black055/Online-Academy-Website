@@ -1,5 +1,4 @@
-const {Course} = require('../utils/db');
-const categoryModel = require('./category.model');
+const {Course, Category} = require('../utils/db');
 const userModel = require('./user.model');
 
 module.exports = {
@@ -22,7 +21,7 @@ module.exports = {
     getCoursesByCategory(category) {
         return new Promise( async (resolve, reject) => {
             if (category.parent === 'null') {
-                subcategories = await categoryModel.getSubCategories(category.name);
+                subcategories = await Category.find( {"parent" : `${category.name}`} );
                 result= [];
                 for (const subcategory of subcategories) {
                     subcourses = await Course.find({ 'category': `${subcategory.name}` });
@@ -69,6 +68,14 @@ module.exports = {
         for (let i = 0; i < arrCourse.length; i++) {
             arrCourse[i].soldInWeek = 0;
             arrCourse[i].save();
+        }
+    },
+
+    async searchCourses(keyword, category) {
+        if (category == 'null') {
+            return await Course.find( {$text: {$search: keyword}} );
+        } else {
+            return await Course.find( {$text: {$search: keyword}, 'category': `${category}`} );
         }
     }
 }

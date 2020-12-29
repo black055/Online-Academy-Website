@@ -125,16 +125,15 @@ $(document).ready(function()
 
 	function initHeaderSearch()
 	{
-		if($('.search_button').length)
-		{
-			$('.search_button').on('click', function()
-			{
-				if($('.header_search_container').length)
-				{
-					$('.header_search_container').toggleClass('active');
-				}
-			});
-		}
+		$('.search_button').click(() => {
+			$('.header_search_container').toggleClass('active');
+			if ($('.header_search_container')[0].classList.contains('active')) {
+				$('.body_container').css('margin-top', '173px');
+			} else {
+				$('.body_container').css('margin-top', '100px');
+			}
+		});
+		
 	}
 
 	/* 
