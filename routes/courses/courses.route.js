@@ -31,6 +31,25 @@ router.get('/', async (req, res) => {
     res.render('courses/courses', {isCourses: true, allCourses: allCourses, newestCourses: newestCourses, mostCourses: mostCourses, title: 'Tất cả khóa học' });
 });
 
+router.post('/comment/:id_course', async (req, res) => {
+    let user = await userModel.getUser(req.user._id);
+    for (let i = 0; i < user.courses.length; i++) {
+        if (Object.keys(user.courses[i])[0] == req.params.id_course) {
+            let comment = {content: req.body.comment, time: new Date(Date.now())};
+            if (typeof user.courses[i][req.params.id_course]["comment"] == "undefined")
+                user.courses[i][req.params.id_course]["comment"] = [];
+        
+            user.courses[i][req.params.id_course]["comment"].push(comment);
+            let courses = user.courses;
+            await userModel.addComment(req.user._id, courses);
+            break;
+        }
+    }
+    user = await userModel.getUser(req.user._id);
+    user.save();
+    res.redirect(`/courses/${req.params.id_course}`);
+});
+
 router.get('/registerAllCourses', async (req, res) => {
     if (typeof req.user == 'undefined') {
         res.redirect('/login');
@@ -45,7 +64,7 @@ router.get('/registerAllCourses', async (req, res) => {
             course.save();
             categoryModel.updateSoldInWeek(course._id);
             let newCourse = {};
-            newCourse[cart[i]] = {rate: 0};
+            newCourse[cart[i]] = {rate: 0, comment: []};
             arrCourses.push(newCourse);
         }
         student.courses = arrCourses;
@@ -110,7 +129,7 @@ router.get('/register/:id', async (req, res) => {
         let cart = [];
         cart = student.cart;
         const course = {};
-        course[req.params.id] = {rate: 0};
+        course[req.params.id] = {rate: 0, comment: []};
         courses.push(course);
         if (cart.includes(req.params.id))
             cart = cart.filter(course => course.toString() != req.params.id);
@@ -237,6 +256,25 @@ router.get('/:id_course', async (req, res) => {
     let rate = 0;
     let courseRate = 0;
     let sumRate = 0;
+    let allComments = [];
+    let allUser = await userModel.getAllUser();
+    for (let i = 0; i < allUser.length; i++) {
+        for (let j = 0; j < allUser[i].courses.length; j++) {
+            if (Object.keys(allUser[i].courses[j])[0] == req.params.id_course) {
+                if (typeof allUser[i].courses[j][req.params.id_course]["comment"] != 'undefined') {
+                    for (let k = 0; k < allUser[i].courses[j][req.params.id_course]["comment"].length; k++) {
+                        let item = {
+                            name: allUser[i].name, 
+                            rate: allUser[i].courses[j][req.params.id_course]["rate"], 
+                            content: allUser[i].courses[j][req.params.id_course]["comment"][k]}
+
+                        allComments = [...allComments, item];
+                    }
+                }
+            }
+        }
+    }
+
     for (let i = 0; i < arrRate.length; i++) {
         courseRate += arrRate[i]*(i+1);
         sumRate += arrRate[i]*5;
@@ -261,6 +299,7 @@ router.get('/:id_course', async (req, res) => {
         rate: rate, 
         courseRate: courseRate,
         totalRate: sumRate / 5,
+        comments: allComments,
     });
 });
 

@@ -44,7 +44,6 @@ module.exports = {
         let count = 0;
         for(let i = 0; i < allUser.length; i++) {
             for (let j = 0; j < allUser[i].courses.length; j++) {
-                //console.log(Object.keys(allUser[i].courses[j]), id_course.toString(), Object.keys(allUser[i].courses[j]).indexOf(id_course.toString()));
                 if (Object.keys(allUser[i].courses[j]).indexOf(id_course.toString()) > -1){
                     count++;
                     break;

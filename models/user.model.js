@@ -1,6 +1,10 @@
 const {User, Course} = require('../utils/db');
 
 module.exports = {
+    async getAllUsers () {
+        return await User.find();
+    },
+
     async getUser(id) {
         return await User.findById(id);
     }, 
@@ -70,5 +74,9 @@ module.exports = {
     async removeUser(id) {
         await User.deleteOne( {"_id" : `${id}`} );
         return true;
+    },
+
+    async addComment(id, courses) {
+        return await User.findOneAndUpdate({"_id": id}, {courses: courses})
     },
 }
