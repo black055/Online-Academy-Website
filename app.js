@@ -126,7 +126,7 @@ app.use(express.static(__dirname + "/public"));
 
 // Schedule to reset soldInWeek and viewInWeek
 
-var sche = schedule.scheduleJob({hour: 13, minute: 37, dayOfWeek: 2}, function() {
+var sche = schedule.scheduleJob({hour: 0, minute: 0, dayOfWeek: 1}, function() {
   categoryModel.resetSoldInWeek();
   coursesModel.resetSoldInWeek();
 });
