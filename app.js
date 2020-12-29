@@ -10,14 +10,14 @@ const flash = require('req-flash');
 const MongoStore = require("connect-mongo")(session);
 const bcrypt = require('bcrypt');
 const hbs_section = require("express-handlebars-sections");
+const schedule = require('node-schedule');
 const mdwIsValidated = require("./middlewares/validation.mdw");
 const mdwIsLoged = require("./middlewares/Loged.mdw");
 const userModel = require('./models/user.model');
+const categoryModel = require('./models/category.model');
+const coursesModel = require('./models/courses.model')
 const {User, Teacher, Admin, Course, Category} = require('./utils/db');
 const {user_data, course_data, category_data, teacher_data} = require('./utils/insert');
-
-const categoryModel = require("./models/category.model");
-const coursesModel = require("./models/courses.model");
 
 require("./auth");
 
@@ -123,6 +123,13 @@ handlebars.handlebars.registerHelper('formatTime', function (date, format) {
 
 // Static resources
 app.use(express.static(__dirname + "/public"));
+
+// Schedule to reset soldInWeek and viewInWeek
+
+var sche = schedule.scheduleJob({hour: 13, minute: 37, dayOfWeek: 2}, function() {
+  categoryModel.resetSoldInWeek();
+  coursesModel.resetSoldInWeek();
+});
 
 // Middleware for getting cart for guest and user
 app.use(async function(req, res, next) {

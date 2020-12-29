@@ -1,4 +1,5 @@
 const {Course, Category} = require('../utils/db');
+const coursesModel = require('../models/courses.model');
 
 module.exports = {
 
@@ -32,5 +33,30 @@ module.exports = {
         await Category.deleteMany( {"parent" : `${category.name}`} );
         await Category.deleteOne( {"name" : `${category.name}`} );
         return true;
+    },
+
+    async updateSoldInWeek(id_course) {
+        let course = await coursesModel.getCourse(id_course);
+        let arrCat = await Category.find();
+        for (let i = 0; i < arrCat.length; i++) {
+            if (arrCat[i].name == course.category) {
+                arrCat[i].soldInWeek += 1;
+                arrCat[i].save();
+                if (arrCat[i].parent != null) {
+                    let parCat = await this.getCategory(arrCat[i].parent);
+                    parCat.soldInWeek += 1;
+                    parCat.save();
+                }
+                console.log(arrCat[i]);
+            }
+        }
+    },
+
+    async resetSoldInWeek () {
+        let arrCat = await Category.find();
+        for (let i = 0; i < arrCat.length; i++) {
+            arrCat[i].soldInWeek = 0;
+            arrCat[i].save();
+        }
     }
 }

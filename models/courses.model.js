@@ -62,5 +62,13 @@ module.exports = {
     
     async updateCourse(id, course, callback) {
         return await Course.findByIdAndUpdate(id, course, callback);
+    },
+
+    async resetSoldInWeek() {
+        let arrCourse = await Course.find();
+        for (let i = 0; i < arrCourse.length; i++) {
+            arrCourse[i].soldInWeek = 0;
+            arrCourse[i].save();
+        }
     }
 }

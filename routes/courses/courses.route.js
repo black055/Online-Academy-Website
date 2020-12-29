@@ -1,4 +1,5 @@
 const express = require('express');
+const categoryModel = require('../../models/category.model');
 const router = express.Router();
 const coursesModel = require('../../models/courses.model');
 const userModel = require('../../models/user.model');
@@ -40,7 +41,9 @@ router.get('/registerAllCourses', async (req, res) => {
         for (let i = 0; i < cart.length; i++) {
             let course = await coursesModel.getCourse(cart[i]);
             course.students += 1;
+            course.soldInWeek += 1;
             course.save();
+            categoryModel.updateSoldInWeek(course._id);
             let newCourse = {};
             newCourse[cart[i]] = {rate: 0};
             arrCourses.push(newCourse);
@@ -99,7 +102,9 @@ router.get('/register/:id', async (req, res) => {
         let student = await userModel.getUser(req.user._id);
         let courseReg = await coursesModel.getCourse(req.params.id);
         courseReg.students += 1;
+        courseReg.soldInWeek += 1;
         courseReg.save();
+        categoryModel.updateSoldInWeek(req.params.id);
         let courses = student.courses;
 
         let cart = [];
@@ -231,6 +236,8 @@ router.get('/:id_course', async (req, res) => {
         courseRate += arrRate[i]*(i+1);
         sumRate += arrRate[i]*5;
     };
+    course.views += 1;
+    course.save();
     courseRate = (courseRate / sumRate) * 5;
     if (typeof req.user !== 'undefined') {
         for(let index = 0; index < req.user.courses.length; index++) {
@@ -251,7 +258,5 @@ router.get('/:id_course', async (req, res) => {
         totalRate: sumRate / 5,
     });
 });
-
-
 
 module.exports = router;

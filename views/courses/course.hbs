@@ -249,7 +249,7 @@
                         
                         {{else}}
                         <div class="row">
-                            <button class="btn btn-warning btn-lg col-10" style="width:100%; margin-right:10px">Đăng ký</button>
+                            <button class="btn btn-warning btn-lg col-10 register" style="width:100%; margin-right:10px">Đăng ký</button>
                             <button class="btn btn-danger addToWL"><i class="fas fa-heart"></i></button>
                             <button id="addToCart" class="btn btn-outline-success btn-lg cl-12 {{course._id}}" style="width:100%; margin-top:10px">Thêm vào giỏ</button>
                         </div>
@@ -431,7 +431,6 @@
     });
 
     $('body').on('click', '.addToWL', function() {
-        console.log("hello");
         $.get('/courses/addToWatchList/{{course._id}}', function(data) {
             if (data == true) {
                 swal("Good job!", "Khóa học đã được thêm vào watchlist!", "success");
@@ -444,6 +443,10 @@
                 });
             }
         })
+    });
+
+    $('body').on('click', '.register', function() {
+        window.location = `/courses/register/{{course._id}}`;
     });
 </script>
 {{/section}}

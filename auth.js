@@ -37,7 +37,7 @@ passport.use(new FacebookStrategy({
     clientID: '1063939974087421',
     clientSecret: '7f0e44d00765956f59d7f93a43477c9d',
     callbackURL: 'http://localhost:3000/facebook',
-    profileFields: ['email', 'name', 'id'],
+    profileFields: ["id", "email", "first_name", "last_name"],
 }, async function (accessToken, refreshToken, profile, done) {
     let {email, first_name, last_name, id} = profile._json;
     if (typeof email == 'undefined') email = '';

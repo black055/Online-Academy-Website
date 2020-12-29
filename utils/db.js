@@ -51,7 +51,7 @@ const course = new Schema({
     thumbnail: String,
     commands: Array,
     target: String,
-    viewsInWeek: Number,
+    soldInWeek: Number,
     lastModified: Date,
     createdDate: Date,
 })
