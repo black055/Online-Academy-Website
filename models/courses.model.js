@@ -73,7 +73,7 @@ module.exports = {
 
     async searchCourses(keyword, category) {
         if (category == 'null') {
-            return await Course.find( {$text: {$search: keyword}} );
+            return await Course.find({ $text: {$search: keyword} });
         } else {
             return await Course.find( {$text: {$search: keyword}, 'category': `${category}`} );
         }

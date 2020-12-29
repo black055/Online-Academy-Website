@@ -44,7 +44,7 @@
                                 {{#each session.categories}}
                                     {{#if this.subCategory}}
                                         {{#each this.subCategory}}
-                                            <li style="display: flex; align-items: center;"><i class="fas fa-angle-double-right" style="margin-right: 10px;"></i><a href="#">{{this.name}}</a></li>
+                                            <li style="display: flex; align-items: center;"><i class="fas fa-angle-double-right" style="margin-right: 10px;"></i><a href="/category/{{this.name}}">{{this.name}}</a></li>
                                         {{/each}}
                                     {{/if}}
                                 {{/each}}
@@ -59,7 +59,7 @@
                             {{#each newestCourses}}
                                 <div class="latest d-flex flex-row align-items-start justify-content-start">
                                     <div class="latest_image">
-                                        <div><img src="{{this.thumbnail}}" alt=""></div>
+                                        <div><a href="/courses/{{this._id}}"><img src="{{this.thumbnail}}" alt=""></a></div>
                                     </div>
                                     <div class="latest_content">
                                         <div class="latest_title"><a href="/courses/{{this._id}}">{{this.name}}</a></div>
@@ -76,7 +76,7 @@
                             {{#each mostCourses}}
                                 <div class="latest d-flex flex-row align-items-start justify-content-start">
                                     <div class="latest_image">
-                                        <div><img src="{{this.thumbnail}}" alt=""></div>
+                                        <div><a href="/courses/{{this._id}}"><img src="{{this.thumbnail}}" alt=""></a></div>
                                     </div>
                                     <div class="latest_content">
                                         <div class="latest_title"><a href="/courses/{{this._id}}">{{this.name}}</a></div>
@@ -141,7 +141,7 @@
         {{/each}}
     courses.push(`<div class="col-lg-6 course_col">
             <div class="course">
-                <div class="course_image"><img style="width: 345px;" src="{{this.thumbnail}}" alt=""></div>
+                <div class="course_image"><a href="/courses/{{this._id}}"><img style="width: 345px;" src="{{this.thumbnail}}" alt=""></a></div>
                 <div class="course_body">
                     <h3 class="course_title"><a href="/courses/{{this._id}}">{{this.name}}</a></h3>
                     <div class="course_teacher">{{this.teacher}}</div>
