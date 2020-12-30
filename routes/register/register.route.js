@@ -25,6 +25,14 @@ router.get('/checkMail/:email', async (req, res) => {
     else res.send(false);
 })
 
+router.post('/checkPassword', async (req, res) => {
+    const user = await User.findOne({'email': req.body.email});
+    if (bcrypt.compareSync(req.body.oldPass, user.password)) {
+        res.send(true);
+    }
+    else res.send(false);
+})
+
 router.post('/', async (req, res) => {
     const {email, name, password} = req.body;
     const user = await User.findOne({'email': email});

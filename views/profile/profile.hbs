@@ -55,12 +55,14 @@
                         </li>
                         {{/ifEquals}}
                         <li class="nav-item">
-                            <a class="nav-link" id="changePassword-tab" data-toggle="tab" href="#changePassword"
-                                role="tab" aria-controls="changePassword" aria-selected="false">Đổi mật khẩu</a>
+                            <a class="nav-link {{#ifEquals session.user.password ""}}disabled{{/ifEquals}}"
+                            id="changePassword-tab" data-toggle="tab" href="#changePassword"
+                            role="tab" aria-controls="changePassword" aria-selected="false">Đổi mật khẩu</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="changeEmail-tab" data-toggle="tab" href="#changeEmail"
-                                role="tab" aria-controls="changeEmail" aria-selected="false">Đổi email</a>
+                            <a class="nav-link {{#ifEquals session.user.password ""}}disabled{{/ifEquals}}"
+                            id="changeEmail-tab" data-toggle="tab" href="#changeEmail"
+                            role="tab" aria-controls="changeEmail" aria-selected="false">Đổi email</a>
                         </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
@@ -96,7 +98,7 @@
                                     <label>Ngày sinh</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p id="infoBthday">{{session.user.bthday}}</p>
+                                    <p id="infoBthday">{{formatTime session.user.bthday "YYYY-MM-DD"}}</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -117,7 +119,7 @@
                                     <label>Khóa học đã tham gia</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p>{{user.courses.length}}</p>
+                                    <p>{{courses.length}}</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -125,7 +127,7 @@
                                     <label>Khóa học yêu thích</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p>{{session.user.watchList.length}}</p>
+                                    <p>{{watchlist.length}}</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -207,6 +209,7 @@
 
                                 <div class="form-group">
                                     <input type="password" id="oldPass" name="oldPass" class="form-control" placeholder="Mật khẩu cũ" required>
+                                    <span class="error" id="oldPassErr"></span>
                                 </div>
 
                                 <button type="submit" class="btn btn-primary mb-4">Đổi mật khẩu</button>
@@ -225,6 +228,7 @@
 
                                 <div class="form-group">
                                     <input type="password" id="passConfirm" name="passConfirm" class="form-control" placeholder="Xác nhận mật khẩu" required>
+                                    <span class="error" id="passConfirmErr"></span>
                                 </div>
 
                                 <button type="submit" class="btn btn-primary mb-4">Đổi email</button>
@@ -299,11 +303,11 @@
     {{#each courses}}
         courses.push(`<tr>
             <th scope="row" class="border-0">
-                <div class="p-2">
-                    <img src="{{this.thumbnail}}" alt="" width="70" class="img-fluid rounded shadow-sm">
+                <div class="p-2"><a href="/courses/{{this._id}}" class="text-dark d-inline-block">
+                    <img src="{{this.thumbnail}}" alt="" width="70" class="img-fluid rounded shadow-sm"></a>
                     <div class="ml-3 d-inline-block align-middle">
                         <h5 class="mb-0">
-                            <a href="#" class="text-dark d-inline-block align-middle">{{this.name}}</a>
+                            <a href="/courses/{{this._id}}" class="text-dark d-inline-block align-middle">{{this.name}}</a>
                         </h5>
                         <span class="text-muted font-weight-normal font-italic d-block">{{this.category}}</span>
                     </div>
@@ -313,29 +317,31 @@
             </tr>`);
     {{/each}}
     length = Math.ceil({{session.user.courses.length}} / 4);
-    $('#pagination_mycourse').twbsPagination({
-        totalPages: length,
-        visiblePages: 4,
-        first: 'Trang đầu',
-        prev: 'Trước',
-        next: 'Sau',
-        last: 'Trang cuối',
-        onPageClick: function (event, page) {
-            content = '';
-            for (let i = (page - 1) * 4; i < courses.length && i < (page - 1) * 4 + 4; i++) {
-                content += courses[i];
+    if (length > 0) {
+        $('#pagination_mycourse').twbsPagination({
+            totalPages: length,
+            visiblePages: 4,
+            first: 'Trang đầu',
+            prev: 'Trước',
+            next: 'Sau',
+            last: 'Trang cuối',
+            onPageClick: function (event, page) {
+                content = '';
+                for (let i = (page - 1) * 4; i < courses.length && i < (page - 1) * 4 + 4; i++) {
+                    content += courses[i];
+                }
+                $('#mycourse_list').html(content);
             }
-            $('#mycourse_list').html(content);
-        }
-    });
-    
+        });
+    }
+
     {{#each watchlist}}
         watchlist.push(`<tr>
             <th scope="row">
-                <div class="p-2">
-                    <img src="{{this.thumbnail}}" alt="" width="70" class="img-fluid rounded shadow-sm">
+                <div class="p-2"><a href="/courses/{{this._id}}" class="text-dark d-inline-block">
+                    <img src="{{this.thumbnail}}" alt="" width="70" class="img-fluid rounded shadow-sm"></a>
                     <div class="ml-3 d-inline-block align-middle">
-                        <h5 class="mb-0"><a href="#" class="text-dark d-inline-block">{{this.name}}</a></h5>
+                        <h5 class="mb-0"><a href="/courses/{{this._id}}" class="text-dark d-inline-block">{{this.name}}</a></h5>
                         <span class="text-muted font-weight-normal font-italic">{{this.category}}</span>
                     </div>
                 </div>
@@ -345,22 +351,23 @@
         </tr>`);
     {{/each}}
     length = Math.ceil(watchlist.length / 4);
-    $('#pagination_watchlist').twbsPagination({
-        totalPages: length,
-        visiblePages: 4,
-        first: 'Trang đầu',
-        prev: 'Trước',
-        next: 'Sau',
-        last: 'Trang cuối',
-        onPageClick: function (event, page) {
-            content = '';
-            for (let i = (page - 1) * 4; i < watchlist.length && i < (page - 1) * 4 + 4; i++) {
-                content += watchlist[i];
+    if (length > 0) {
+        $('#pagination_watchlist').twbsPagination({
+            totalPages: length,
+            visiblePages: 4,
+            first: 'Trang đầu',
+            prev: 'Trước',
+            next: 'Sau',
+            last: 'Trang cuối',
+            onPageClick: function (event, page) {
+                content = '';
+                for (let i = (page - 1) * 4; i < watchlist.length && i < (page - 1) * 4 + 4; i++) {
+                    content += watchlist[i];
+                }
+                $('#watchlist_list').html(content);
             }
-            $('#watchlist_list').html(content);
-        }
-    });
-
+        });
+    }
 </script>
 {{/section}}
 

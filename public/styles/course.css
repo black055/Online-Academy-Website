@@ -1290,7 +1290,6 @@ section
 .comment_author::after
 {
 	display: inline-block;
-	content: '-';
 	margin-left: 6px;
 }
 .comment_author a
@@ -1304,6 +1303,7 @@ section
 	-ms-transition: all 200ms ease;
 	-o-transition: all 200ms ease;
 	transition: all 200ms ease;
+	margin-right: 6px;
 }
 .comment_author a:hover
 {
@@ -1317,10 +1317,6 @@ section
 .comments_container .rating_r i::before
 {
 	color: #ffc80a;
-}
-.comment_text
-{
-	margin-top: 12px;
 }
 .comment_extras
 {
@@ -1414,10 +1410,6 @@ section
 .feature_list
 {
 	margin-top: 16px;
-}
-.feature:not(:last-child)
-{
-	margin-bottom: 21px;
 }
 .feature_title
 {
