@@ -57,5 +57,11 @@ module.exports = {
             arrCat[i].soldInWeek = 0;
             arrCat[i].save();
         }
+    },
+    
+    async getBestSellerCategories() {
+        return await Category.find()
+                            .sort({soldInWeek: -1})
+                            .limit(4);
     }
 }

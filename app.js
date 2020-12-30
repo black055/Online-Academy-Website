@@ -230,7 +230,11 @@ app.get("/", mdwIsValidated, async (req, res) => {
   });
   mostViewCourse = mostViewCourse.slice(0, 10);
 
-  return res.render("index", { isHome: true, bestSeller: bestSeller, newestCourses: newestCourses, mostViewCourse: mostViewCourse, counter: counter});
+  // 4 lĩnh vực bán chạy nhất
+  bestSellerCategories = await categoryModel.getBestSellerCategories()
+  
+  return res.render("index", { isHome: true, bestSeller: bestSeller, newestCourses: newestCourses,
+    mostViewCourse: mostViewCourse, counter: counter, bestSellerCategories: bestSellerCategories});
 });
 
 app.get("/about", mdwIsValidated, async (req, res) => {
