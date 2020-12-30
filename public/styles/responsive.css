@@ -63,13 +63,13 @@
 
 @media only screen and (max-width: 1199px)
 {
-	.home_slider_prev
+	.bestseller_slider_prev
 	{
-		left: 25px;
+		left: 10px;
 	}
-	.home_slider_next
+	.bestseller_slider_next
 	{
-		right: 25px;
+		right: 10px;
 	}
 	.course_info:first-child
 	{
@@ -130,11 +130,11 @@
 		display: inline-block;
 		margin-left: 33px;
 	}
-	.home_slider_form_container
+	.bestseller_slider_form_container
 	{
 		width: 100%;
 	}
-	.home_search_button
+	.bestseller_search_button
 	{
 		margin-top: 15px;
 	}
@@ -289,15 +289,15 @@
 	{
 		display: none;
 	}
-	.home_slider_nav
+	.bestseller_slider_nav
 	{
 		display: none;
 	}
-	.home_slider_title
+	.bestseller_slider_title
 	{
 		font-size: 48px;
 	}
-	.home_search_form div
+	.bestseller_search_form div
 	{
 		width: 100%;
 	}
@@ -349,32 +349,32 @@
 		width: 100%;
 		right: -100%;
 	}
-	.home_search_input::-webkit-input-placeholder
+	.bestseller_search_input::-webkit-input-placeholder
 	{
 		font-size: 12px !important;
 	}
-	.home_search_input:-moz-placeholder
+	.bestseller_search_input:-moz-placeholder
 	{
 		font-size: 12px !important;
 	}
-	.home_search_input::-moz-placeholder
+	.bestseller_search_input::-moz-placeholder
 	{
 		font-size: 12px !important;
 	} 
-	.home_search_input:-ms-input-placeholder
+	.bestseller_search_input:-ms-input-placeholder
 	{ 
 		font-size: 12px !important;
 	}
-	.home_search_input::input-placeholder
+	.bestseller_search_input::input-placeholder
 	{
 		font-size: 12px !important;
 	}
 	.dropdown_item_select,
-	.home_search_button
+	.bestseller_search_button
 	{
 		font-size: 12px;
 	}
-	.home_search_button
+	.bestseller_search_button
 	{
 		width: 100px;
 		height: 40px;

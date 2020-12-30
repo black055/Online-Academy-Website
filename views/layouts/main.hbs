@@ -141,7 +141,7 @@
                 <div class="container">
                     <form class="row" action="/courses/search" method="post">
                         <div class="col d-flex justify-content-end align-items-center" style="height: 73px;">
-                            <input type="text" name="keyword" class="home_search_input" required>
+                            <input type="text" name="keyword" class="home_search_input" placeholder="Tìm kiếm..." required>
                             <select name="category" id="categorySearch" class="home_search_input home_search_option">
                                 <option value="null" selected="selected">Lựa chọn lĩnh vực</option>
                                 {{#each session.categories}}

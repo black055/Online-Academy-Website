@@ -24,5 +24,9 @@ module.exports = {
             result = await Course.find({ teacher: id })
             resolve(result);
         })
+    },
+
+    async count() {
+        return await Teacher.countDocuments();
     }
 }

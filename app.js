@@ -13,6 +13,7 @@ const hbs_section = require("express-handlebars-sections");
 const schedule = require('node-schedule');
 const mdwIsValidated = require("./middlewares/validation.mdw");
 const mdwIsLoged = require("./middlewares/Loged.mdw");
+const teacherModel = require('./models/teacher.model');
 const userModel = require('./models/user.model');
 const categoryModel = require('./models/category.model');
 const coursesModel = require('./models/courses.model')
@@ -195,11 +196,41 @@ app.use(async function (req, res, next) {
 });
 
 app.get("/", mdwIsValidated, async (req, res) => {
-  if (req.user && req.user.userType == 'Teacher')
-    return res.redirect('/course');
-  if (req.user && req.user.userType == 'Admin')
-    return res.redirect('/admin');
-  else return res.render("index", { isHome: true});
+  const allCourses = await coursesModel.getAllCourses();
+  const countStudent = await userModel.count();
+  const countTeacher = await teacherModel.count();
+
+  counter = {
+    "courses": allCourses.length,
+    "student": countStudent,
+    "teacher": countTeacher
+  }
+
+  for (course of allCourses) {
+    if (course.teacher != '') {
+      course.teacher = await teacherModel.getTeacher(course.teacher);
+    }
+  }
+  // 3 khóa học nổi bật
+  let bestSeller = allCourses.sort(function (course_1, course_2) {
+      return course_2.soldInWeek - course_1.soldInWeek;
+  });
+  bestSeller = bestSeller.slice(0,3);
+
+  // 10 khóa học có mới nhất
+  newestCourses = allCourses.sort(function (course_1, course_2) {
+    return course_2.createdDate - course_1.createdDate;
+  });
+  
+  newestCourses = newestCourses.slice(0, 10);
+
+  // 10 khóa học có nhiều view nhất
+  mostViewCourse = allCourses.sort(function (course_1, course_2) {
+    return course_2.views - course_1.views;
+  });
+  mostViewCourse = mostViewCourse.slice(0, 10);
+
+  return res.render("index", { isHome: true, bestSeller: bestSeller, newestCourses: newestCourses, mostViewCourse: mostViewCourse, counter: counter});
 });
 
 app.get("/about", mdwIsValidated, async (req, res) => {

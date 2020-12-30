@@ -153,8 +153,31 @@ router.get('/addToWatchList/:id_course', async (req, res) => {
     {
         user.watchList.push(req.params.id_course);
         user.save();
+        req.logIn(user, function(err) {console.log(err)})
         res.send(true);
     } else res.send(false);
+});
+
+router.get('/removeFromWatchList/:id_course', async (req, res) => {
+    let user = await userModel.getUser(req.user._id);
+    if (user.watchList.includes(req.params.id_course))
+    {
+        user.watchList = user.watchList.filter(course => course.toString() != req.params.id_course);
+        user.save();
+        req.logIn(user, function(err) {console.log(err)})
+        req.flash('message', {
+            icon: 'success',
+            title: 'Thành công!',
+            text: 'Xóa khóa học ra khỏi danh sách khóa học yêu thích!'
+          } );
+    } else {
+        req.flash( 'message', {
+            icon: 'error',
+            title: 'Thất bại...',
+            text: 'Có lỗi xảy ra khi xóa khóa học ra khỏi danh sách!'
+          } );
+    }
+    res.redirect('/profile');
 });
 
 router.get('/addTocart/:id_course', async (req, res) => {

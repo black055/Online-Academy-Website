@@ -44,7 +44,7 @@ $(document).ready(function()
 
 	initMenu();
 	initHeaderSearch();
-	initHomeSlider();
+	initBestsellerSlider();
 	initMilestones();
 
 	/* 
@@ -128,9 +128,9 @@ $(document).ready(function()
 		$('.search_button').click(() => {
 			$('.header_search_container').toggleClass('active');
 			if ($('.header_search_container')[0].classList.contains('active')) {
-				$('.body_container').css('margin-top', '173px');
+				$('.body_container').css('margin-top', '203px');
 			} else {
-				$('.body_container').css('margin-top', '100px');
+				$('.body_container').css('margin-top', '130px');
 			}
 		});
 		
@@ -142,36 +142,36 @@ $(document).ready(function()
 
 	*/
 
-	function initHomeSlider()
+	function initBestsellerSlider()
 	{
-		if($('.home_slider').length)
+		if($('.bestseller_slider').length)
 		{
-			var homeSlider = $('.home_slider');
-			homeSlider.owlCarousel(
+			var bestsellerSlider = $('.bestseller_slider');
+			bestsellerSlider.owlCarousel(
 			{
 				items:1,
 				loop:true,
 				autoplay:true,
 				nav:false,
-				dots:false,
+				dots:true,
 				smartSpeed:1200
 			});
 
-			if($('.home_slider_prev').length)
+			if($('.bestseller_slider_prev').length)
 			{
-				var prev = $('.home_slider_prev');
+				var prev = $('.bestseller_slider_prev');
 				prev.on('click', function()
 				{
-					homeSlider.trigger('prev.owl.carousel');
+					bestsellerSlider.trigger('prev.owl.carousel');
 				});
 			}
 
-			if($('.home_slider_next').length)
+			if($('.bestseller_slider_next').length)
 			{
-				var next = $('.home_slider_next');
+				var next = $('.bestseller_slider_next');
 				next.on('click', function()
 				{
-					homeSlider.trigger('next.owl.carousel');
+					bestsellerSlider.trigger('next.owl.carousel');
 				});
 			}
 		}
@@ -234,3 +234,29 @@ $(document).ready(function()
 		}
 	}
 });
+
+$('#newestCourse').owlCarousel({
+    loop:false,
+    margin: 20,
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:3
+        }
+    }
+})
+
+$('#mostViewCourse').owlCarousel({
+    loop:false,
+    margin: 20,
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:3
+        }
+    }
+})

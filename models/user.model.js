@@ -52,7 +52,10 @@ module.exports = {
             if (user != null) {
                 for (i = 0; i < user.courses.length; i++) {
                     course = await Course.findById(Object.keys(user.courses[i])[0]);
-                    result = result + course.price;
+                    if (course.saleOff != 0)
+                        result = result + course.saleOff;
+                    else
+                        result = result + course.price;
                 }
             }
             resolve(result);
@@ -79,4 +82,9 @@ module.exports = {
     async addComment(id, courses) {
         return await User.findOneAndUpdate({"_id": id}, {courses: courses})
     },
+
+    async count() {
+        return await User.countDocuments();
+    }
+
 }
