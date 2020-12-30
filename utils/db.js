@@ -27,6 +27,7 @@ const teacher = new Schema({
     userType: String,
     phone: String,
     gender: String,
+    shortBio: String,
 });
 
 const admin = new Schema({

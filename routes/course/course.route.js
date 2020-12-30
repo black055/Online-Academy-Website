@@ -34,13 +34,13 @@ router.post('/add_course', async (req, res) => {
         students: 0,
         description: '',
         briefDes: '',
-        isFinished: '',
+        isFinished: false,
         views: 0,
         saleOff: 0,
         thumbnail: '',
         commands: [],
         target: '',
-        viewsInWeek: 0,
+        soldInWeek: 0,
         lastModified: new Date(),
         createdDate: new Date(),
         //comments: [],
@@ -72,10 +72,6 @@ router.post('/add_course', async (req, res) => {
             }
             else if (file.fieldname == 'thumbnail') {
                 if (file.mimetype.includes('image/')) {
-                    //Xóa thumbnail cũ
-                    console.log('./public' + course.thumbnail)
-                    fs.unlinkSync('./public' + course.thumbnail);
-
                     //Lưu địa chỉ file thumbnail
                     course.thumbnail = `/images/courses_thumbnail/${file.originalname}`;
 
@@ -105,7 +101,7 @@ router.post('/add_course', async (req, res) => {
             course.briefDes = req.body.briefDes;
             course.description = req.body.description;
             course.price = req.body.price;
-            course.teacher = req.user._id.toString();
+            course.teacher = req.session.user._id.toString();
             course.isFinished = req.body.isFinished ? true : false;
 
             const chapter_title = req.body.chapter_title;
@@ -149,7 +145,8 @@ router.post('/update/:id', async (req, res) => {
                 if (file.mimetype.includes('image/')) {
 
                     //Xóa thumbnail cũ
-                    fs.unlinkSync('./public' + course.thumbnail);
+                    if (course.thumbnail !== '' && course.thumbnail !== '/')
+                        fs.unlinkSync('./public' + course.thumbnail);
 
                     //Lưu địa chỉ file thumbnail
                     course.thumbnail = `/images/courses_thumbnail/${file.originalname}`;
