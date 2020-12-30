@@ -342,14 +342,14 @@
         
         if (`{{session.coursesInCart}}`) {
             {{#each session.coursesInCart}}
-            price = {{this.price}} * (1-{{this.saleOff}});
+            price = {{this.saleOff}} || {{this.price}};
             cart += `<a href="/courses/{{this._id}}">
                 <button class="dropdown-item" type="button" style="outline: none;">
                     <div class="col-12" style="display:flex; padding-left:0px !important; padding-right: 40px;">
                         <img class="col-3" style="padding-left:0px; padding-right:0px; padding-right:0px; width: 100px !important; max-width: none !important;" src="{{this.thumbnail}}" alt="">
                         <div class="col-9" style="display: block;">
                             <h5 style="margin-bottom: 0px !important;">{{this.name}}</h5>
-                            <p>Giá : ${{this.price}}</p>
+                            <p>Giá : $${price}</p>
                         </div>
                     </div>
                 </button>

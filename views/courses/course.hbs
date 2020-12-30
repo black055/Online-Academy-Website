@@ -181,26 +181,32 @@
 
                                 <!-- Feature -->
                                 <div class="feature d-flex flex-row align-items-center justify-content-start">
-                                    <div class="feature_title"><i class="fas fa-clock"></i><span>Thời gian:</span></div>
+                                    <div class="feature_title"><i class="fas fa-clock"></i><span>Thời gian</span></div>
                                     <div class="feature_text ml-auto">{{course.chapters.length}}</div>
                                 </div>
 
                                 <!-- Feature -->
                                 <div class="feature d-flex flex-row align-items-center justify-content-start">
-                                    <div class="feature_title"><i class="fa fa-list-alt" aria-hidden="true"></i><span>Số bài học:</span></div>
+                                    <div class="feature_title"><i class="fa fa-list-alt" aria-hidden="true"></i><span>Số bài học</span></div>
                                     <div class="feature_text ml-auto">{{course.chapters.length}}</div>
                                 </div>
 
                                 <!-- Feature -->
                                 <div class="feature d-flex flex-row align-items-center justify-content-start">
-                                    <div class="feature_title"><i class="fas fa-user-graduate"></i><span>Học viên:</span></div>
+                                    <div class="feature_title"><i class="fas fa-user-graduate"></i><span>Học viên</span></div>
                                     <div class="feature_text ml-auto">{{course.students}}</div>
                                 </div>
 
                                 <!-- Feature -->
                                 <div class="feature d-flex flex-row align-items-center justify-content-start">
-                                    <div class="feature_title"><i class="fas fa-eye"></i><span>Lượt xem:</span></div>
+                                    <div class="feature_title"><i class="fas fa-eye"></i><span>Lượt xem</span></div>
                                     <div class="feature_text ml-auto">{{course.views}}</div>
+                                </div>
+
+                                <!-- Feature -->
+                                <div class="feature d-flex flex-row align-items-center justify-content-start">
+                                    <div class="feature_title"><i class="fas fa-pen"></i><span>Lần cập nhật cuối</span></div>
+                                    <div class="feature_text ml-auto lastModified">{{course.lastModified}}</div>
                                 </div>
                             </div>
                         </div>
@@ -296,7 +302,7 @@
             price = 0;
             if (`${data}`) {
                 for (let i = 0; i < data.length; i++) {
-                    price = data[i].price * (1 - data[i].saleOff);
+                    price = data[i].saleOff || data[i].price;
                     cart += `<button class="dropdown-item" type="button">
                                 <div class="col-12" style="display:flex; padding-left:0px !important; padding-right: 40px;">
                                     <img class="col-3" style="padding-left:0px; padding-right:0px; width: 100px !important; max-width: none !important;" src="${data[i].thumbnail}" alt="">
@@ -324,7 +330,7 @@
             total_price = 0;
             if (`${data}`) {
                 for (let i = 0; i < data.length; i++) {
-                    price = data[i].price * (1 - data[i].saleOff);
+                    price = data[i].saleOff || data[i].price;
                     cart += `<button class="dropdown-item" type="button">
                                 <div class="col-12" style="display:flex; padding-left:0px !important; padding-right: 40px;">
                                     <img class="col-3" style="padding-left:0px; padding-right:0px; width: 100px !important; max-width: none !important;" src="${data[i].thumbnail}" alt="">
@@ -425,18 +431,21 @@
     });
 
     $('body').on('click', '.addToWL', function() {
-        $.get('/courses/addToWatchList/{{course._id}}', function(data) {
-            if (data == true) {
-                swal("Good job!", "Khóa học đã được thêm vào watchlist!", "success");
-            } else {
-                swal({
-                    title: "Sorry !",
-                    text: "Khóa học đã tồn tại trong watchlist rồi bạn nhé !",
-                    icon: "warning",
-                    dangerMode: true,
-                });
-            }
-        })
+        if ({{registered}}) {
+            $.get('/courses/addToWatchList/{{course._id}}', function(data) {
+                if (data == true) {
+                    swal("Good job!", "Khóa học đã được thêm vào watchlist!", "success");
+                } else {
+                    swal({
+                        title: "Sorry !",
+                        text: "Khóa học đã tồn tại trong watchlist rồi bạn nhé !",
+                        icon: "warning",
+                        dangerMode: true,
+                    });
+                }
+            });
+        } else window.location = '/login';
+        
     });
 
     $('body').on('click', '.register', function() {
@@ -494,22 +503,20 @@
         </li>`
     {{/each}}
 
+    $('.lastModified').text(convert(`{{course.lastModified}}`))
+
     $('.comments_list').html(content);
+
     {{#if course.saleOff}} 
-        price = {{course.price}} * (1 - {{course.saleOff}});
-        let per = {{course.saleOff}} * 100;
-        $('.course_price').html(`$${price} <span style="margin-left=20px; font-size: 24px; margin-right: 0px">${{course.price}}</span>`);
+        price = {{course.saleOff}} || {{course.price}};
+        $('.course_price').html(`$${price} <span style="margin-left=20px; font-size: 24px; margin-right: 0px; color: #a5a5a5; text-decoration: line-through;">${{course.price}}</span>`);
     {{/if}}
     let course = "";
     price = 0;
     {{#each sameCourses}}
         price = 0;
-        {{#if this.saleOff}}
-            price = {{this.price}} * (1 - {{this.saleOff}});
-        {{else}} 
-            price = "";
-        {{/if}}
-        if (price) price = price + `<span style="font-size:14px; margin-left:5px; text-decoration: line-through; color:#a5a5a5">${{this.price}}</span>`;
+        price = {{this.saleOff}} || {{this.price}};
+        if ({{this.saleOff}}) price = price + `<span style="font-size:14px; margin-left:5px; text-decoration: line-through; color:#a5a5a5">${{this.price}}</span>`;
         else price = {{this.price}}
         course += `<div class="latest d-flex flex-row align-items-start justify-content-start" style="border-bottom: 1px solid #76777a61; padding-bottom:10px;">
             <div class="latest_image">
@@ -517,7 +524,7 @@
             </div>
             <div class="latest_content">
                 <div class="latest_title"><a href="/courses/{{this._id}}">{{this.name}}</a></div>
-                <div class="latest_price">$${price}</div>
+                <div class="latest_price" >$${price}</div>
             </div>
         </div>`
     {{/each}}

@@ -19,6 +19,19 @@
                         </select>
                         <button action="submit" class="courses_search_button ml-auto">Tìm kiếm</button>
                     </form>
+                    <div class="optional">
+                        <select class="form-control form-control-sm col-3 option-item">
+                            <option>Điểm đánh giá</option>
+                            <option value="rateInc">Điểm đánh giá tăng dần</option>
+                            <option value="rateDes">Điểm đánh giá giảm dần</option>
+                        </select>
+
+                        <select class="form-control form-control-sm col-2 option-item">
+                            <option>Giá</option>
+                            <option value="priceDes">Giá giảm dần</option>
+                            <option value="priceInc">Gía tăng dần</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="courses_container">
                     <div class="row courses_row"></div>
@@ -111,27 +124,30 @@
     let length = 0;
     let sumRate = 0;
     let saleOffPrice = 0;
+    let special = "";
     {{#each allCourses }}
+        special = "";
         sumRate = 0;
         saleOffPrice = 0;
         {{#each this.rate}}
             sumRate += {{this}};
         {{/each}}
-        {{#if this.saleOff}}
-            saleOffPrice = {{this.price}} * (1 - {{this.saleOff}});
-        {{else}}
-            saleOffPrice = "";
-        {{/if}}
+        saleOffPrice = {{this.saleOff}} || {{this.price}};
 
-        if (saleOffPrice) {
+        if ({{this.saleOff}}) {
             saleOffPrice = saleOffPrice + `<span style="font-size:16px; margin-left:5px;">${{this.price}}</span>`;
         } else saleOffPrice = {{this.price}}
+
+        if (`{{this.isBestseller}}`) special = `<span class="badge badge-warning" style="font-size: 18px; padding: 5px 10px;">Bestseller</span>`;
+        else if (`{{this.isNewest}}`) special = `<span class="badge badge-success" style="font-size: 18px; padding: 5px 10px;">Newest</span>`;
+
     courses.push(`<div class="col-lg-6 course_col">
             <div class="course">
                 <div class="course_image"><a href="/courses/{{this._id}}"><img style="width: 345px;" src="{{this.thumbnail}}" alt=""></a></div>
                 <div class="course_body">
                     <h3 class="course_title"><a href="/courses/{{this._id}}">{{this.name}}</a></h3>
                     <div class="course_teacher">{{this.teacherName}}</div>
+                    <div>${special}</div>
                     <div class="course_text">
                         <p>{{this.briefDes}}</p>
                     </div>
@@ -174,12 +190,8 @@
     {{#each newestCourses}}
         saleOffPrice = 0;
         
-        {{#if this.saleOff}}
-            saleOffPrice = {{this.price}} * (1 - {{this.saleOff}});
-        {{else}}
-            saleOffPrice = "";
-        {{/if}}
-        if (saleOffPrice) {
+        saleOffPrice = {{this.saleOff}} || {{this.price}};
+        if ({{this.saleOff}}) {
             saleOffPrice = saleOffPrice + `<span style="font-size:14px; margin-left:5px; text-decoration: line-through; color:#a5a5a5">${{this.price}}</span>`;
         } else saleOffPrice = {{this.price}}
         newCourses +=`<div class="latest d-flex flex-row align-items-start justify-content-start">
@@ -198,13 +210,8 @@
     newCourses = "";
     {{#each mostCourses}}
         saleOffPrice = 0;
-        
-        {{#if this.saleOff}}
-            saleOffPrice = {{this.price}} * (1 - {{this.saleOff}});
-        {{else}}
-            saleOffPrice = "";
-        {{/if}}
-        if (saleOffPrice) {
+        saleOffPrice = {{this.saleOff}} || {{this.price}};
+        if ({{this.saleOff}}) {
             saleOffPrice = saleOffPrice + `<span style="font-size:14px; margin-left:5px; text-decoration: line-through; color:#a5a5a5">${{this.price}}</span>`;
         } else saleOffPrice = {{this.price}}
         newCourses +=`<div class="latest d-flex flex-row align-items-start justify-content-start">

@@ -76,5 +76,21 @@ module.exports = {
         } else {
             return await Course.find( {$text: {$search: keyword}, 'category': `${category}`} );
         }
+    }, 
+
+    async bestSeller() {
+        let courses = await Course.find();
+        courses = courses.filter( course => course.students > 0 );
+        return courses.sort((course_1, course_2) => course_2.students - course_1.students).slice(0,10);
+    },
+
+    async getNewest() {
+        let courses = await Course.find();
+        return courses.sort((course_1, course_2) => course_2.createdDate - course_1.createdDate).slice(0,10);
+    }, 
+    
+    async getBestSeller() {
+        let courses = await Course.find();
+        return courses.sort((course_1, course_2) => course_2.students - course_1.students).slice(0,10);
     }
 }

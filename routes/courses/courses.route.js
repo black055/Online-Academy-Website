@@ -255,11 +255,64 @@ router.get('/removeFromCart/:id_course', async (req, res) => {
         }
         res.send(cart);
     };
-})
+});
 
 router.post('/search', async (req, res) => {
-    result = await coursesModel.searchCourses(req.body.keyword, req.body.category);
-    res.render('courses/courses', {allCourses: result, title: `Kết quả cho: ${req.body.keyword}`});
+    let result = await coursesModel.searchCourses(req.body.keyword, req.body.category);
+    let bestSeller = await coursesModel.bestSeller();
+    let newest = await coursesModel.getNewest();
+    let temp = [];
+    for (let i = 0; i < result.length; i++) {
+        temp = bestSeller.filter(course => course._id.toString() == result[i]._id.toString());
+        if (temp.length > 0) result[i].isBestseller = true;
+        temp = newest.filter(course => course._id.toString() == result[i]._id.toString());
+        if (temp.length > 0) result[i].isNewest = true;
+    }
+    newest = newest.slice(0,3);
+    bestSeller = await coursesModel.getBestSeller();
+    bestSeller = bestSeller.slice(0,3);
+    let rateInc = result.sort((course_1, course_2) => {
+        let rate1 = 0, rate2 = 0;
+        let sum1 = 0, sum2 = 0;
+        for (let i = 0; i < course_1.rate.length; i++) {
+          rate1 += course_1.rate[i] * (i+1);
+          sum1 += course_1.rate[i] * 5;
+        }
+        rate1 = (rate1 / sum1) * 5;
+        for (let i = 0; i < course_2.rate.length; i++) {
+          rate1 += course_2.rate[i] * (i+1);
+          sum1 += course_2.rate[i] * 5;
+        }
+        rate2 = (rate2 / sum2) * 5;
+        return rate1 - rate2;
+    });
+    let rateDes = result.sort((course_1, course_2) => {
+        let rate1 = 0, rate2 = 0;
+        let sum1 = 0, sum2 = 0;
+        for (let i = 0; i < course_1.rate.length; i++) {
+          rate1 += course_1.rate[i] * (i+1);
+          sum1 += course_1.rate[i] * 5;
+        }
+        rate1 = (rate1 / sum1) * 5;
+        for (let i = 0; i < course_2.rate.length; i++) {
+          rate1 += course_2.rate[i] * (i+1);
+          sum1 += course_2.rate[i] * 5;
+        }
+        rate2 = (rate2 / sum2) * 5;
+        return rate2 - rate1;
+    });
+    let priceInc = result.sort((course_1, course_2) => course_1.price - course_2.price);
+    let priceDes = result.sort((course_1, course_2) => course_2.price - course_1.price);
+    res.render('courses/courses', {
+        allCourses: result, 
+        newestCourses: newest, 
+        mostCourses: bestSeller, 
+        rateInc: rateInc,
+        rateDes: rateDes,
+        priceInc: priceInc,
+        priceDes: priceDes,
+        title: `Kết quả cho: ${req.body.keyword}`,
+    });
 });
 
 router.get('/:id_course/:id_lecture', async (req, res) => {
@@ -277,7 +330,7 @@ router.get('/:id_course/:id_lecture', async (req, res) => {
         }
     };
     res.render('courses/chapter', {course: course, url: url, title: title, registered: isRegistered});
-})
+});
 
 router.get('/:id_course', async (req, res) => {
     const course = await coursesModel.getCourse(req.params.id_course);
@@ -330,7 +383,7 @@ router.get('/:id_course', async (req, res) => {
             temp.push(sameCourses[i]);
     }
     sameCourses = [...temp];
-    sameCourses = sameCourses.length < 5 ? sameCourses : sameCourses.slice(0, 5);
+    sameCourses = sameCourses.length < 5 ? sameCourses : sameCourses.sort((course_1, course_2) =>  course_2.students - course_1.students).slice(0, 5);
     courseRate = isNaN(Number.parseFloat(courseRate).toFixed(1)) ? 0 : Number.parseFloat(courseRate).toFixed(1);
     res.render('courses/course', {
         course: course, 
