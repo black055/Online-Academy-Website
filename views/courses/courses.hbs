@@ -55,36 +55,12 @@
                     <!-- Latest Course -->
                     <div class="sidebar_section">
                         <div class="sidebar_section_title">Mới nhất</div>
-                        <div class="sidebar_latest">
-                            {{#each newestCourses}}
-                                <div class="latest d-flex flex-row align-items-start justify-content-start">
-                                    <div class="latest_image">
-                                        <div><a href="/courses/{{this._id}}"><img src="{{this.thumbnail}}" alt=""></a></div>
-                                    </div>
-                                    <div class="latest_content">
-                                        <div class="latest_title"><a href="/courses/{{this._id}}">{{this.name}}</a></div>
-                                        <div class="latest_price">${{this.price}}</div>
-                                    </div>
-                                </div>
-                            {{/each}}
-                        </div>
+                        <div class="sidebar_latest newestCourses"></div>
                     </div>
 
                     <div class="sidebar_section">
                         <div class="sidebar_section_title">Nhiều học viên nhất</div>
-                        <div class="sidebar_latest">
-                            {{#each mostCourses}}
-                                <div class="latest d-flex flex-row align-items-start justify-content-start">
-                                    <div class="latest_image">
-                                        <div><a href="/courses/{{this._id}}"><img src="{{this.thumbnail}}" alt=""></a></div>
-                                    </div>
-                                    <div class="latest_content">
-                                        <div class="latest_title"><a href="/courses/{{this._id}}">{{this.name}}</a></div>
-                                        <div class="latest_price">${{this.price}}</div>
-                                    </div>
-                                </div>
-                            {{/each}}
-                        </div>
+                        <div class="sidebar_latest mostCourses"></div>
                     </div>
                 </div>
             </div>
@@ -134,11 +110,22 @@
     let content = '';
     let length = 0;
     let sumRate = 0;
+    let saleOffPrice = 0;
     {{#each allCourses }}
         sumRate = 0;
+        saleOffPrice = 0;
         {{#each this.rate}}
             sumRate += {{this}};
         {{/each}}
+        {{#if this.saleOff}}
+            saleOffPrice = {{this.price}} * (1 - {{this.saleOff}});
+        {{else}}
+            saleOffPrice = "";
+        {{/if}}
+
+        if (saleOffPrice) {
+            saleOffPrice = saleOffPrice + `<span style="font-size:16px; margin-left:5px;">${{this.price}}</span>`;
+        } else saleOffPrice = {{this.price}}
     courses.push(`<div class="col-lg-6 course_col">
             <div class="course">
                 <div class="course_image"><a href="/courses/{{this._id}}"><img style="width: 345px;" src="{{this.thumbnail}}" alt=""></a></div>
@@ -153,13 +140,13 @@
                     <div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
                         <div class="course_info">
                             <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                            <span id="info_{{@index}}">{{this.students}}</span>
+                            <span id="info_{{@index}}">{{this.students}} Học viên</span>
                         </div>
                         <div class="course_info">
                             <i class="fa fa-star" aria-hidden="true"></i>
-                            <span>${sumRate} Ratings</span>
+                            <span>${sumRate} Rates</span>
                         </div>
-                        <div class="course_price ml-auto">${{this.price}}</div>
+                        <div class="course_price ml-auto">$${saleOffPrice}</div>
                     </div>
                 </div>
             </div>
@@ -182,5 +169,54 @@
             $('.courses_row').html(content);
         }
     });
+
+    newCourses = "";
+    {{#each newestCourses}}
+        saleOffPrice = 0;
+        
+        {{#if this.saleOff}}
+            saleOffPrice = {{this.price}} * (1 - {{this.saleOff}});
+        {{else}}
+            saleOffPrice = "";
+        {{/if}}
+        if (saleOffPrice) {
+            saleOffPrice = saleOffPrice + `<span style="font-size:14px; margin-left:5px; text-decoration: line-through; color:#a5a5a5">${{this.price}}</span>`;
+        } else saleOffPrice = {{this.price}}
+        newCourses +=`<div class="latest d-flex flex-row align-items-start justify-content-start">
+            <div class="latest_image">
+                <div><a href="/courses/{{this._id}}"><img src="{{this.thumbnail}}" alt=""></a></div>
+            </div>
+            <div class="latest_content">
+                <div class="latest_title"><a href="/courses/{{this._id}}">{{this.name}}</a></div>
+                <div class="latest_price">$${saleOffPrice}</div>
+            </div>
+        </div>`
+    {{/each}}
+
+    $('.newestCourses').html(newCourses);
+    newCourses = "";
+    {{#each mostCourses}}
+        saleOffPrice = 0;
+        
+        {{#if this.saleOff}}
+            saleOffPrice = {{this.price}} * (1 - {{this.saleOff}});
+        {{else}}
+            saleOffPrice = "";
+        {{/if}}
+        if (saleOffPrice) {
+            saleOffPrice = saleOffPrice + `<span style="font-size:14px; margin-left:5px; text-decoration: line-through; color:#a5a5a5">${{this.price}}</span>`;
+        } else saleOffPrice = {{this.price}}
+        newCourses +=`<div class="latest d-flex flex-row align-items-start justify-content-start">
+            <div class="latest_image">
+                <div><a href="/courses/{{this._id}}"><img src="{{this.thumbnail}}" alt=""></a></div>
+            </div>
+            <div class="latest_content">
+                <div class="latest_title"><a href="/courses/{{this._id}}">{{this.name}}</a></div>
+                <div class="latest_price">$${saleOffPrice}</div>
+            </div>
+        </div>`
+    {{/each}}
+
+    $('.mostCourses').html(newCourses)
 </script>
 {{/section}}

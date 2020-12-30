@@ -1287,7 +1287,7 @@ const course_data = [
         briefDes: 'Khóa học cơ bản nhất cho người mới học NodeJS',
         views: 0,
         soldInWeek: 0,
-        saleOff: 0,
+        saleOff: 0.2,
         thumbnail: '/images/courses_thumbnail/1.jpg',
         description: `NodeJS là một mã nguồn mở, được dùng để xây dựng các ứng dụng mạng, đặc biệt các ứng đòi hỏi real time (thời gian thực) & khối lượng request lớn. Chúng ta có thể lập trình NodeJS với ngôn ngữ JavaScript. NodeJS có thể được dùng để xây dựng hoàn chỉnh một trang web, ngoài ra, NodeJS còn có thể tích hợp để xây dựng các ứng dụng real time trên iOS, Android, Game online với Unity, Cocos2dx.
                 Về tốc độ thực thi, Node.js có thể nói là nhanh nhất hiện nay, hơn cả java. Bởi lẽ node.js kế thừa công nghệ V8 của google, khả năng tự build server bằng ngôn ngữ client giúp cho việc trung chuyển dữ liệu diễn ra nhanh hơn. Đồng thời giảm khả năng rủi ro bị ngắt (interupt). Ngoài ra nhờ cơ chế Non I/O Blocking, tận dụng tối đa tài nguyên của server, không tạo ra độ trễ như các ngôn ngữ phía server khác.

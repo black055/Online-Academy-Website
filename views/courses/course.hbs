@@ -159,7 +159,7 @@
                     <div class="sidebar_section">
                         <div class="sidebar_section_title">Thông tin</div>
                         <div class="sidebar_feature">
-                            <div class="course_price">$ {{course.price}}</div>
+                            <div class="course_price" style="font-size: 40px;">$ {{course.price}}</div>
 
                             <!-- Features -->
                             <div class="feature_list">
@@ -470,5 +470,10 @@
     {{/each}}
 
     $('.comments_list').html(content);
+    {{#if course.saleOff}} 
+        let price = {{course.price}} * (1 - {{course.saleOff}});
+        let per = {{course.saleOff}} * 100;
+        $('.course_price').html(`$${price} <span style="margin-left=20px; font-size: 24px; margin-right: 0px">${{course.price}}</span>`);
+    {{/if}}
 </script>
 {{/section}}
