@@ -177,6 +177,26 @@
   .new-chapter {
     margin-right: 15px !important;
   }
+
+    /* width */
+  div::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  /* Track */
+  div::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  /* Handle */
+  div::-webkit-scrollbar-thumb {
+    background: #14bdee;
+  }
+
+  /* Handle on hover */
+  div::-webkit-scrollbar-thumb:hover {
+    background: #14B4E0;
+  }
 </style>
 
 {{/section}}
@@ -205,7 +225,6 @@
 <script>
   $("#thumbnail").fileinput({
     theme: "fas",
-    maxFileSize: 10000,
     showClose: false,
     showCaption: false,
     showBrowse: false,

@@ -233,6 +233,26 @@
   .minus-sale-off {
     border-radius: 4px 0px 0px 4px;
   }
+
+    /* width */
+  div::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  /* Track */
+  div::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  /* Handle */
+  div::-webkit-scrollbar-thumb {
+    background: #14bdee;
+  }
+
+  /* Handle on hover */
+  div::-webkit-scrollbar-thumb:hover {
+    background: #14B4E0;
+  }
 </style>
 
 {{/section}}
@@ -263,7 +283,6 @@
 <script>
   $("#thumbnail").fileinput({
     theme: "fas",
-    maxFileSize: 10000,
     showClose: false,
     showCaption: false,
     showBrowse: false,
@@ -302,6 +321,7 @@
     $('.clearfix').css("margin", "0px")
       .parent().css({ "margin": "0px", "padding": "0px" })
     $('.input-group-btn.input-group-append').css("margin", "0px")
+    $('#points-sale-off').val($('#saleOff').val())
 
     $('#points-sale-off').on('input', function() {
       $('#saleOff').val($(this).val());

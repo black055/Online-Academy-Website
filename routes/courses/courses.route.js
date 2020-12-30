@@ -3,6 +3,7 @@ const categoryModel = require('../../models/category.model');
 const router = express.Router();
 const coursesModel = require('../../models/courses.model');
 const userModel = require('../../models/user.model');
+const teacherModel = require('../../models/teacher.model');
 
 router.get('/', async (req, res) => {
     const allCourses = await coursesModel.getAllCourses();
@@ -11,6 +12,10 @@ router.get('/', async (req, res) => {
     for (let i = 0; i < allCourses.length; i++) {
         count = await coursesModel.getNumberOfStudent(allCourses[i]._id);
         arrStudent.push(count);
+        if (allCourses[i].teacher !== '') {
+            let teacher = await teacherModel.getTeacher(allCourses[i].teacher)
+            allCourses[i].teacherName = teacher.name;
+        }
     }
 
     // Get 3 courses which have most number of students
