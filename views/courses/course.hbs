@@ -41,7 +41,7 @@
                     <!-- Course Tabs -->
                     <div class="course_tabs_container">
                         <div class="tabs d-flex flex-row align-items-center justify-content-start">
-                            <div class="tab active">Mô tả</div>
+                            <div class="tab active">Giới thiệu</div>
                             <div class="tab">Nội dung khóa học</div>
                             <div class="tab">Đánh giá và nhận xét</div>
                         </div>
@@ -49,6 +49,21 @@
 
                             <!-- Description -->
                             <div class="tab_panel active">
+                                <div class="tab_panel_title">Giảng Viên</div>
+                                <div class="tab_panel_content" style="display: flex;margin-top: 10px">
+                                    <img src="/images/user_avatar/student.png" alt="" style="width: 150px">
+                                    <div class="info_teacher">
+                                        <span class="tab_panel_subtitle">Lê Thành Việt</span>
+                                        <div class="row_info"><i class="fas fa-birthday-cake icon_info"></i><p style="color: #3c3b37;">22/10/2000</p></div>
+                                        <div class="row_info"><i class="fas fa-envelope icon_info"></i><p style="color: #3c3b37;">lethanhviet7c@gmail.com</p></div>
+                                        <div class="row_info"><i class="fas fa-play-circle icon_info"></i><p style="color: #3c3b37;">35 Khóa học</p></div>
+                                        <div class="row_info"><i class="fas fa-graduation-cap icon_info"></i><p style="color: #3c3b37;">300 Học viên</p></div>
+                                    </div>
+                                </div>
+                                <div class="tab_panel_text" style=" margin-bottom: 30px; ">
+                                    <p>Hiện tại đang l&agrave; Gi&aacute;m Đốc Điều H&agrave;nh Navigos Search thuộc tập đo&agrave;n Navigos<br />Hơn 25 năm kinh nghiệm, trong đ&oacute; c&oacute; 20 năm trong lĩnh vực ph&aacute;t triển kinh doanh v&agrave; điều h&agrave;nh doanh nghiệp với gần 10 năm trong lĩnh vực Nh&acirc;n sự. <br />Trước khi gia nhập Navigos, chị đươc biết đến với c&aacute;c vai tr&ograve;:<br />Trưởng văn ph&ograve;ng đại diện đầu ti&ecirc;n tại Việt Nam của Hiệp hội kế to&aacute;n c&ocirc;ng chứng Anh Quốc ACCA<br />Gi&aacute;m đốc ph&aacute;t triển kinh doanh của Deloitte Việt Nam<br />Tổng gi&aacute;m đốc của eSillicon Việt Nam</p>
+                                </div>
+
                                 <div class="tab_panel_title">{{course.name}}</div>
                                 <div class="tab_panel_content">
                                     <div class="tab_panel_text">
@@ -206,6 +221,13 @@
                         </div>
                         {{/if}}
                     </div>
+
+                    <div class="sidebar_section">
+                        <div class="sidebar_section_title">Khóa học cùng lĩnh vực</div>
+                        <div class="sidebar_latest sameCourses">
+                            
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -271,20 +293,22 @@
         $.get(`/courses/addTocart/{{course._id}}`, function (data, status) {
             let cart = '';
             total_price = 0;
+            price = 0;
             if (`${data}`) {
                 for (let i = 0; i < data.length; i++) {
+                    price = data[i].price * (1 - data[i].saleOff);
                     cart += `<button class="dropdown-item" type="button">
                                 <div class="col-12" style="display:flex; padding-left:0px !important; padding-right: 40px;">
                                     <img class="col-3" style="padding-left:0px; padding-right:0px; width: 100px !important; max-width: none !important;" src="${data[i].thumbnail}" alt="">
                                     <div class="col-9" style="display: block;">
                                         <h5 style="margin-bottom: 0px !important;">${data[i].name}</h5>
-                                        <p>Giá :$${data[i].price}</p>
+                                        <p>Giá :$${price}</p>
                                     </div>
                                 </div>
                             </button>`
-                    total_price += data[i].price;
+                    total_price += price;
                 }
-                cart += `<p style="margin-left: 24px;">Tổng tiền: $${total_price}</p>`
+                cart += `<p style="margin: 10px 24px 10px 24px; border-top: 1px solid; font-size: 20px;">Tổng tiền: $${total_price}</p>`
                 cart += `<button class="dropdown-item btn btn-danger mx-auto col-4 text-center pay" type="button" style="background-color: #bd2130; color: #fff; padding: 7px 7px;">Thanh toán</button>`;
                 $('.cart').html(cart);
             } else {
@@ -300,18 +324,19 @@
             total_price = 0;
             if (`${data}`) {
                 for (let i = 0; i < data.length; i++) {
+                    price = data[i].price * (1 - data[i].saleOff);
                     cart += `<button class="dropdown-item" type="button">
                                 <div class="col-12" style="display:flex; padding-left:0px !important; padding-right: 40px;">
                                     <img class="col-3" style="padding-left:0px; padding-right:0px; width: 100px !important; max-width: none !important;" src="${data[i].thumbnail}" alt="">
                                     <div class="col-9" style="display: block;">
                                         <h5 style="margin-bottom: 0px !important;">${data[i].name}</h5>
-                                        <p>Giá : $${data[i].price}</p>
+                                        <p>Giá : $${price}</p>
                                     </div>
                                 </div>
                             </button>`
-                    total_price += data[i].price;
+                    total_price += price;
                 }
-                cart += `<p style="margin-left: 24px;">Tổng tiền: $${total_price}</p>`
+                cart += `<p style="margin: 10px 24px 10px 24px; border-top: 1px solid; font-size: 20px;">Tổng tiền: $${total_price}</p>`
                 cart += `<button class="dropdown-item btn btn-danger mx-auto col-4 text-center pay" type="button" style="background-color: #bd2130; color: #fff; padding: 7px 7px;">Thanh toán</button>`;
                 $('.cart').html(cart);
             } else {
@@ -471,9 +496,32 @@
 
     $('.comments_list').html(content);
     {{#if course.saleOff}} 
-        let price = {{course.price}} * (1 - {{course.saleOff}});
+        price = {{course.price}} * (1 - {{course.saleOff}});
         let per = {{course.saleOff}} * 100;
         $('.course_price').html(`$${price} <span style="margin-left=20px; font-size: 24px; margin-right: 0px">${{course.price}}</span>`);
     {{/if}}
+    let course = "";
+    price = 0;
+    {{#each sameCourses}}
+        price = 0;
+        {{#if this.saleOff}}
+            price = {{this.price}} * (1 - {{this.saleOff}});
+        {{else}} 
+            price = "";
+        {{/if}}
+        if (price) price = price + `<span style="font-size:14px; margin-left:5px; text-decoration: line-through; color:#a5a5a5">${{this.price}}</span>`;
+        else price = {{this.price}}
+        course += `<div class="latest d-flex flex-row align-items-start justify-content-start" style="border-bottom: 1px solid #76777a61; padding-bottom:10px;">
+            <div class="latest_image">
+                <div><a href="/courses/{{this._id}}"><img src="{{this.thumbnail}}" alt=""></a></div>
+            </div>
+            <div class="latest_content">
+                <div class="latest_title"><a href="/courses/{{this._id}}">{{this.name}}</a></div>
+                <div class="latest_price">$${price}</div>
+            </div>
+        </div>`
+    {{/each}}
+
+    $('.sameCourses').html(course);
 </script>
 {{/section}}

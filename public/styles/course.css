@@ -1895,3 +1895,17 @@ section
 .tmp_fs{
     background-position:left -40px;
 }
+
+.info_teacher {
+	margin-left: 20px;
+}
+
+.row_info {
+	display: flex;
+	align-items: center;
+}
+
+.icon_info {
+	margin-right: 10px;
+	color: #eb8a2f
+}

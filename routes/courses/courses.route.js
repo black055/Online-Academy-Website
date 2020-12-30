@@ -28,7 +28,7 @@ router.get('/', async (req, res) => {
 
     // Get 3 newest courses
     cloneArrCourses.sort(function (course_1, course_2) {
-        return course_1.createdDate - course_2.createdDate;
+        return course_2.createdDate - course_1.createdDate;
     });
 
     let newestCourses = cloneArrCourses.length >= 3 ? cloneArrCourses.slice(0,3) : cloneArrCourses;
@@ -158,6 +158,9 @@ router.get('/addToWatchList/:id_course', async (req, res) => {
     {
         user.watchList.push(req.params.id_course);
         user.save();
+        req.logIn(user, function(err) {
+            console.log(err);
+        });
         res.send(true);
     } else res.send(false);
 });
@@ -297,6 +300,15 @@ router.get('/:id_course', async (req, res) => {
             }
         }
     };
+    let cat = await categoryModel.getCategory(course.category);
+    let sameCourses = await coursesModel.getCoursesByCategory(cat);
+    let temp = [];
+    for (let i = 0; i < sameCourses.length; i++) {
+        if (sameCourses[i]._id.toString() != course._id.toString())
+            temp.push(sameCourses[i]);
+    }
+    sameCourses = [...temp];
+    sameCourses = sameCourses.length < 5 ? sameCourses : sameCourses.slice(0, 5);
     courseRate = isNaN(Number.parseFloat(courseRate).toFixed(1)) ? 0 : Number.parseFloat(courseRate).toFixed(1);
     res.render('courses/course', {
         course: course, 
@@ -305,6 +317,7 @@ router.get('/:id_course', async (req, res) => {
         courseRate: courseRate,
         totalRate: sumRate / 5,
         comments: allComments,
+        sameCourses: sameCourses,
     });
 });
 
