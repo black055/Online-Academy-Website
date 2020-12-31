@@ -71,11 +71,12 @@ module.exports = {
     },
 
     async searchCourses(keyword, category) {
-        if (category == 'null') {
-            return await Course.find({ $text: {$search: keyword} });
-        } else {
-            return await Course.find( {$text: {$search: keyword}, 'category': `${category}`} );
+        result = await Course.find( {$text: {$search: keyword}, 'category': `${category}`} );
+        subCategories = await Category.find({ 'parent': `${category}` });
+        for (subCategory of subCategories) {
+            result = result.concat(await Course.find( {$text: {$search: keyword}, 'category': `${subCategory.name}`} ));
         }
+        return result;
     }, 
 
     async bestSeller() {
