@@ -1722,4 +1722,5 @@ section
 .option-item {
 	box-shadow: none !important;
 	margin-right: 10px;
+	margin-left: 10px;
 }

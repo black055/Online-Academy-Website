@@ -33,7 +33,64 @@ router.get('/', async (req, res) => {
 
     let newestCourses = cloneArrCourses.length >= 3 ? cloneArrCourses.slice(0,3) : cloneArrCourses;
 
-    res.render('courses/courses', {isCourses: true, allCourses: allCourses, newestCourses: newestCourses, mostCourses: mostCourses, title: 'Tất cả khóa học' });
+    let rateInc = [...allCourses].sort((course_1, course_2) => {
+        let rate1 = 0, rate2 = 0;
+        let sum1 = 0, sum2 = 0;
+        for (let i = 0; i < course_1.rate.length; i++) {
+          rate1 += course_1.rate[i] * (i+1);
+          sum1 += course_1.rate[i] * 5;
+        }
+        rate1 = (rate1 / sum1) * 5;
+        for (let i = 0; i < course_2.rate.length; i++) {
+          rate2 += course_2.rate[i] * (i+1);
+          sum2 += course_2.rate[i] * 5;
+        }
+        rate2 = (rate2 / sum2) * 5;
+        rate1 = rate1 || 0;
+        rate2 = rate2 || 0;
+        return rate1 - rate2;
+    });
+    let rateDes = [...allCourses].sort((course_1, course_2) => {
+        let rate1 = 0, rate2 = 0;
+        let sum1 = 0, sum2 = 0;
+        for (let i = 0; i < course_1.rate.length; i++) {
+          rate1 += course_1.rate[i] * (i+1);
+          sum1 += course_1.rate[i] * 5;
+        }
+        rate1 = (rate1 / sum1) * 5;
+        for (let i = 0; i < course_2.rate.length; i++) {
+          rate2 += course_2.rate[i] * (i+1);
+          sum2 += course_2.rate[i] * 5;
+        }
+        rate2 = (rate2 / sum2) * 5;
+        rate1 = rate1 || 0;
+        rate2 = rate2 || 0;
+        return rate2 - rate1;
+    });
+
+    let priceInc = [...allCourses].sort((course_1, course_2) => {
+        let price1 = course_1.saleOff || course_1.price;
+        let price2 = course_2.saleOff || course_2.price;
+        return price1 - price2;
+    });
+
+    let priceDes = [...allCourses].sort((course_1, course_2) => {
+        let price1 = course_1.saleOff || course_1.price;
+        let price2 = course_2.saleOff || course_2.price;
+        return price2 - price1;
+    });
+
+    res.render('courses/courses', {
+        isCourses: true, 
+        allCourses: allCourses, 
+        newestCourses: newestCourses, 
+        mostCourses: mostCourses, 
+        title: 'Tất cả khóa học',
+        rateInc: rateInc,
+        rateDes: rateDes,
+        priceInc: priceInc,
+        priceDes: priceDes,
+    });
 });
 
 router.post('/comment/:id_course', async (req, res) => {
@@ -271,7 +328,7 @@ router.post('/search', async (req, res) => {
     newest = newest.slice(0,3);
     bestSeller = await coursesModel.getBestSeller();
     bestSeller = bestSeller.slice(0,3);
-    let rateInc = result.sort((course_1, course_2) => {
+    let rateInc = [...result].sort((course_1, course_2) => {
         let rate1 = 0, rate2 = 0;
         let sum1 = 0, sum2 = 0;
         for (let i = 0; i < course_1.rate.length; i++) {
@@ -280,13 +337,15 @@ router.post('/search', async (req, res) => {
         }
         rate1 = (rate1 / sum1) * 5;
         for (let i = 0; i < course_2.rate.length; i++) {
-          rate1 += course_2.rate[i] * (i+1);
-          sum1 += course_2.rate[i] * 5;
+          rate2 += course_2.rate[i] * (i+1);
+          sum2 += course_2.rate[i] * 5;
         }
         rate2 = (rate2 / sum2) * 5;
+        rate1 = rate1 || 0;
+        rate2 = rate2 || 0;
         return rate1 - rate2;
     });
-    let rateDes = result.sort((course_1, course_2) => {
+    let rateDes = [...result].sort((course_1, course_2) => {
         let rate1 = 0, rate2 = 0;
         let sum1 = 0, sum2 = 0;
         for (let i = 0; i < course_1.rate.length; i++) {
@@ -295,14 +354,26 @@ router.post('/search', async (req, res) => {
         }
         rate1 = (rate1 / sum1) * 5;
         for (let i = 0; i < course_2.rate.length; i++) {
-          rate1 += course_2.rate[i] * (i+1);
-          sum1 += course_2.rate[i] * 5;
+          rate2 += course_2.rate[i] * (i+1);
+          sum2 += course_2.rate[i] * 5;
         }
         rate2 = (rate2 / sum2) * 5;
+        rate1 = rate1 || 0;
+        rate2 = rate2 || 0;
         return rate2 - rate1;
     });
-    let priceInc = result.sort((course_1, course_2) => course_1.price - course_2.price);
-    let priceDes = result.sort((course_1, course_2) => course_2.price - course_1.price);
+
+    let priceInc = [...result].sort((course_1, course_2) => {
+        let price1 = course_1.saleOff || course_1.price;
+        let price2 = course_2.saleOff || course_2.price;
+        return price1 - price2;
+    });
+
+    let priceDes = [...result].sort((course_1, course_2) => {
+        let price1 = course_1.saleOff || course_1.price;
+        let price2 = course_2.saleOff || course_2.price;
+        return price2 - price1;
+    });
     res.render('courses/courses', {
         allCourses: result, 
         newestCourses: newest, 

@@ -17,21 +17,16 @@
                             <option>Lập trình Web</option>
                             <option>Lập trình Mobile</option>
                         </select>
-                        <button action="submit" class="courses_search_button ml-auto">Tìm kiếm</button>
-                    </form>
-                    <div class="optional">
-                        <select class="form-control form-control-sm col-3 option-item">
-                            <option>Điểm đánh giá</option>
+
+                        <select id="courses_search_select" class="courses_search_select courses_search_input option-item">
+                            <option >Sắp xếp</option>
                             <option value="rateInc">Điểm đánh giá tăng dần</option>
                             <option value="rateDes">Điểm đánh giá giảm dần</option>
-                        </select>
-
-                        <select class="form-control form-control-sm col-2 option-item">
-                            <option>Giá</option>
                             <option value="priceDes">Giá giảm dần</option>
-                            <option value="priceInc">Gía tăng dần</option>
+                            <option value="priceInc">Giá tăng dần</option>
                         </select>
-                    </div>
+                        <button action="submit" class="courses_search_button ml-auto">Tìm kiếm</button>
+                    </form>
                 </div>
                 <div class="courses_container">
                     <div class="row courses_row"></div>
@@ -184,6 +179,213 @@
             }
             $('.courses_row').html(content);
         }
+    });
+
+    $('.option-item').on('change', function(e) {
+        courses = [];
+        content = '';
+        length = 0;
+        sumRate = 0;
+        saleOffPrice = 0;
+        special = "";
+        if (e.currentTarget.value == 'rateInc') {
+            {{#each rateInc }}
+                special = "";
+                sumRate = 0;
+                saleOffPrice = 0;
+                {{#each this.rate}}
+                    sumRate += {{this}};
+                {{/each}}
+                saleOffPrice = {{this.saleOff}} || {{this.price}};
+
+                if ({{this.saleOff}}) {
+                    saleOffPrice = saleOffPrice + `<span style="font-size:16px; margin-left:5px;">${{this.price}}</span>`;
+                } else saleOffPrice = {{this.price}}
+
+                if (`{{this.isBestseller}}`) special = `<span class="badge badge-warning" style="font-size: 18px; padding: 5px 10px;">Bestseller</span>`;
+                else if (`{{this.isNewest}}`) special = `<span class="badge badge-success" style="font-size: 18px; padding: 5px 10px;">Newest</span>`;
+
+            courses.push(`<div class="col-lg-6 course_col">
+                    <div class="course">
+                        <div class="course_image"><a href="/courses/{{this._id}}"><img style="width: 345px;" src="{{this.thumbnail}}" alt=""></a></div>
+                        <div class="course_body">
+                            <h3 class="course_title"><a href="/courses/{{this._id}}">{{this.name}}</a></h3>
+                            <div class="course_teacher">{{this.teacherName}}</div>
+                            <div>${special}</div>
+                            <div class="course_text">
+                                <p>{{this.briefDes}}</p>
+                            </div>
+                        </div>
+                        <div class="course_footer">
+                            <div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
+                                <div class="course_info">
+                                    <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                                    <span id="info_{{@index}}">{{this.students}} Học viên</span>
+                                </div>
+                                <div class="course_info">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <span>${sumRate} Rates</span>
+                                </div>
+                                <div class="course_price ml-auto">$${saleOffPrice}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>`);
+            {{/each}}
+        } else if (e.currentTarget.value == 'rateDes') {
+            {{#each rateDes }}
+                special = "";
+                sumRate = 0;
+                saleOffPrice = 0;
+                {{#each this.rate}}
+                    sumRate += {{this}};
+                {{/each}}
+                saleOffPrice = {{this.saleOff}} || {{this.price}};
+
+                if ({{this.saleOff}}) {
+                    saleOffPrice = saleOffPrice + `<span style="font-size:16px; margin-left:5px;">${{this.price}}</span>`;
+                } else saleOffPrice = {{this.price}}
+
+                if (`{{this.isBestseller}}`) special = `<span class="badge badge-warning" style="font-size: 18px; padding: 5px 10px;">Bestseller</span>`;
+                else if (`{{this.isNewest}}`) special = `<span class="badge badge-success" style="font-size: 18px; padding: 5px 10px;">Newest</span>`;
+
+            courses.push(`<div class="col-lg-6 course_col">
+                    <div class="course">
+                        <div class="course_image"><a href="/courses/{{this._id}}"><img style="width: 345px;" src="{{this.thumbnail}}" alt=""></a></div>
+                        <div class="course_body">
+                            <h3 class="course_title"><a href="/courses/{{this._id}}">{{this.name}}</a></h3>
+                            <div class="course_teacher">{{this.teacherName}}</div>
+                            <div>${special}</div>
+                            <div class="course_text">
+                                <p>{{this.briefDes}}</p>
+                            </div>
+                        </div>
+                        <div class="course_footer">
+                            <div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
+                                <div class="course_info">
+                                    <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                                    <span id="info_{{@index}}">{{this.students}} Học viên</span>
+                                </div>
+                                <div class="course_info">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <span>${sumRate} Rates</span>
+                                </div>
+                                <div class="course_price ml-auto">$${saleOffPrice}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>`);
+            {{/each}}
+
+        } else if (e.currentTarget.value == 'priceInc') {
+            {{#each priceInc }}
+                special = "";
+                sumRate = 0;
+                saleOffPrice = 0;
+                {{#each this.rate}}
+                    sumRate += {{this}};
+                {{/each}}
+                saleOffPrice = {{this.saleOff}} || {{this.price}};
+
+                if ({{this.saleOff}}) {
+                    saleOffPrice = saleOffPrice + `<span style="font-size:16px; margin-left:5px;">${{this.price}}</span>`;
+                } else saleOffPrice = {{this.price}}
+
+                if (`{{this.isBestseller}}`) special = `<span class="badge badge-warning" style="font-size: 18px; padding: 5px 10px;">Bestseller</span>`;
+                else if (`{{this.isNewest}}`) special = `<span class="badge badge-success" style="font-size: 18px; padding: 5px 10px;">Newest</span>`;
+
+            courses.push(`<div class="col-lg-6 course_col">
+                    <div class="course">
+                        <div class="course_image"><a href="/courses/{{this._id}}"><img style="width: 345px;" src="{{this.thumbnail}}" alt=""></a></div>
+                        <div class="course_body">
+                            <h3 class="course_title"><a href="/courses/{{this._id}}">{{this.name}}</a></h3>
+                            <div class="course_teacher">{{this.teacherName}}</div>
+                            <div>${special}</div>
+                            <div class="course_text">
+                                <p>{{this.briefDes}}</p>
+                            </div>
+                        </div>
+                        <div class="course_footer">
+                            <div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
+                                <div class="course_info">
+                                    <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                                    <span id="info_{{@index}}">{{this.students}} Học viên</span>
+                                </div>
+                                <div class="course_info">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <span>${sumRate} Rates</span>
+                                </div>
+                                <div class="course_price ml-auto">$${saleOffPrice}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>`);
+            {{/each}}
+            
+        } else if (e.currentTarget.value == 'priceDes') {
+            {{#each priceDes }}
+                special = "";
+                sumRate = 0;
+                saleOffPrice = 0;
+                {{#each this.rate}}
+                    sumRate += {{this}};
+                {{/each}}
+                saleOffPrice = {{this.saleOff}} || {{this.price}};
+
+                if ({{this.saleOff}}) {
+                    saleOffPrice = saleOffPrice + `<span style="font-size:16px; margin-left:5px;">${{this.price}}</span>`;
+                } else saleOffPrice = {{this.price}}
+
+                if (`{{this.isBestseller}}`) special = `<span class="badge badge-warning" style="font-size: 18px; padding: 5px 10px;">Bestseller</span>`;
+                else if (`{{this.isNewest}}`) special = `<span class="badge badge-success" style="font-size: 18px; padding: 5px 10px;">Newest</span>`;
+
+            courses.push(`<div class="col-lg-6 course_col">
+                    <div class="course">
+                        <div class="course_image"><a href="/courses/{{this._id}}"><img style="width: 345px;" src="{{this.thumbnail}}" alt=""></a></div>
+                        <div class="course_body">
+                            <h3 class="course_title"><a href="/courses/{{this._id}}">{{this.name}}</a></h3>
+                            <div class="course_teacher">{{this.teacherName}}</div>
+                            <div>${special}</div>
+                            <div class="course_text">
+                                <p>{{this.briefDes}}</p>
+                            </div>
+                        </div>
+                        <div class="course_footer">
+                            <div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
+                                <div class="course_info">
+                                    <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                                    <span id="info_{{@index}}">{{this.students}} Học viên</span>
+                                </div>
+                                <div class="course_info">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <span>${sumRate} Rates</span>
+                                </div>
+                                <div class="course_price ml-auto">$${saleOffPrice}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>`);
+            {{/each}}
+        }
+        console.log(courses);
+        coursePerPage = 6;
+        length = Math.ceil(courses.length / coursePerPage);
+        $('#pagination_list').twbsPagination('destroy');
+        $('#pagination_list').twbsPagination({
+            totalPages: length,
+            visiblePages: 5,
+            first: 'Trang đầu',
+            prev: 'Trước',
+            next: 'Sau',
+            last: 'Trang cuối',
+            onPageClick: function (event, page) {
+                content = '';
+                for (let i = (page - 1) * coursePerPage; i < courses.length && i < (page - 1) * coursePerPage + coursePerPage; i++) {
+                    content += courses[i];
+                }
+                $('.courses_row').html(content);
+            }
+        });
     });
 
     newCourses = "";

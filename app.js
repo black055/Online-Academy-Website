@@ -30,6 +30,7 @@ mongoose.connect("mongodb://localhost:27017/mydb", {
 });
 
 mongoose.set("useCreateIndex", true);
+
 //Insert data user
 // (async function b() {
 //   for (let i = 0; i < user_data.length; i++) {
