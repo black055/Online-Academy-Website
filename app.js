@@ -7,6 +7,7 @@ const session = require("express-session");
 const passport = require("passport");
 const hbs = require("express-handlebars");
 const flash = require('req-flash');
+const cnFlash = require('connect-flash')
 const MongoStore = require("connect-mongo")(session);
 const bcrypt = require('bcrypt');
 const hbs_section = require("express-handlebars-sections");
@@ -83,8 +84,11 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
+app.use(cnFlash());
 app.use(function (req, res, next) {
   res.locals.session = req.session;
+  res.locals.errorLogin = req.flash("error");
+  res.locals.errorOTP = req.flash("err_OTP");
   next();
 });
 
@@ -246,6 +250,8 @@ app.get("/contact", mdwIsValidated, async (req, res) => {
   res.render("contact/contact");
 });
 
+app.use("/forgotPassWord", require('./routes/resetpass/resetPassword'));
+
 app.get("/login", mdwIsValidated, (req, res) => {
   if (typeof req.user !== "undefined")
     res.redirect('/');
@@ -253,7 +259,7 @@ app.get("/login", mdwIsValidated, (req, res) => {
 });
 
 // Authentication
-app.post("/login", passport.authenticate("local", {failureRedirect: "/login", successRedirect: "/",}));
+app.post("/login",passport.authenticate("local", {failureRedirect: "/login", successRedirect: "/", failureFlash: true}));
 
 app.get("/loginfb", passport.authenticate("facebook"));
 

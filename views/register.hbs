@@ -44,17 +44,32 @@
                 });
 
                 if (isExisted) {
-                    alert('Email đã tồn tại');
+                    swal({
+                        title: "Sorry !",
+                        text: "Email đã tồn tại!",
+                        icon: "warning",
+                        dangerMode: true,
+                    });
                     return false;
                 }
                 else {
                     regex = /^(?=.*\d).{8,12}$/;
                     if (!regex.test($('#password').val())) {
-                        alert("Mật khẩu phải từ 8-12 ký tự và bao gồm ít nhất một chữ số !");
+                        swal({
+                            title: "Sorry !",
+                            text: "Mật khẩu phải từ 8-12 ký tự và bao gồm ít nhất một chữ số !",
+                            icon: "warning",
+                            dangerMode: true,
+                        }); 
                         return false;
                     }
                     if ($('#password').val() != $('#passAgain').val()) {
-                        alert("Nhập lại mật khẩu không đúng !");
+                        swal({
+                            title: "Sorry !",
+                            text: "Nhập lại mật khẩu không đúng !",
+                            icon: "warning",
+                            dangerMode: true,
+                        });
                         return false;
                     } else {
                         e.currentTarget.submit();

@@ -85,8 +85,10 @@ router.post('/OTP',async (req, res) => {
         const user = await User.findOne({'email': req.session.user_invalidated.email});
         if (req.body.otp == user.OTP) {
             await User.updateOne({'email': user.email}, {OTP: null, isValidated: true});
+            req.session.user_invalidated = null;
             res.redirect('/login');
         } else {
+            req.flash("err_OTP", "Mã xác thực không chính xác !");
             res.redirect('/register/OTP');
         }
     } else if (req.user) {
@@ -97,13 +99,44 @@ router.post('/OTP',async (req, res) => {
             req.user.OTP = null;
             res.redirect('/');
         } else {
+            req.flash("err_OTP", "Mã xác thực không chính xác !");
             res.redirect('/register/OTP');
         }
     }
 });
 
-router.get('resendOTP', (req, res) => {
-
+router.get('/resendOTP', async (req, res) => {
+    if (req.session.user_invalidated) {
+        const user = await User.findOne({'email': req.session.user_invalidated.email});
+        otp = Math.floor(Math.random() * 999999) + 100000;
+        let mailOptions = {
+            from: 'verifycourseonline@gmail.com',
+            to: user.email,
+            subject: 'Welcome to our website, Please validate your account',
+            html: '<h3>Here is you OTP code: <strong style="font-size: 15px;">' + otp + '</strong></h3>',
+        }
+        transporter.sendMail(mailOptions, function (err, data) {
+            if (err) console.log(err);
+        });
+        user.OTP = otp;
+        user.save();
+        res.send(true);
+    } else if (req.user) {
+        const user = await User.findOne({'email': req.user.email});
+        otp = Math.floor(Math.random() * 999999) + 100000;
+        let mailOptions = {
+            from: 'verifycourseonline@gmail.com',
+            to: user.email,
+            subject: 'Welcome to our website, Please validate your account',
+            html: '<h3>Here is you OTP code: <strong style="font-size: 15px;">' + otp + '</strong></h3>',
+        }
+        transporter.sendMail(mailOptions, function (err, data) {
+            if (err) console.log(err);
+        });
+        user.OTP = otp;
+        user.save();
+        res.send(true);
+    }
 });
 
 module.exports = router;

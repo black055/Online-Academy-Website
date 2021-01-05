@@ -16,11 +16,11 @@
             <div class="formsix-e">
               <div class="form-group i-password"> <input type="password" name="password" class="form-control" required="" id="password2" placeholder="Nhập mật khẩu *"> </div>
             </div>
-            <div class="login_remember_box"> <label class="control control--checkbox"> </label> <a href="#" class="forget_password"> Bạn đã quên mật khẩu?</a> </div>
+            <div class="login_remember_box"> <label class="control control--checkbox"> </label> <a href="/forgotPassWord" class="forget_password"> Bạn đã quên mật khẩu?</a> </div>
             <div class="login_btn_wrapper"> <button type="submit" class="btn btn-success col"> Đăng nhập </button> </div>
           </form>
           <div class="login_message">
-            <p>Đã có tài khoản? <a href="/register"> Register </a> </p>
+            <p>Bạn chưa có tài khoản? <a href="/register"> Đăng ký </a> </p>
           </div>
         </div>
       </div>
@@ -39,16 +39,35 @@
   $(document).ready(function () {
     $('#form_login').submit(function () {
       if ($('#password2').val().length < 8) {
-        alert("Mật khẩu ít nhất 8 ký tự");
+        swal({
+          title: "Sorry !",
+          text: "Mật khẩu ít nhất 8 ký tự",
+          icon: "warning",
+          dangerMode: true,
+        });
         return false;
       } else {
         const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         if (!regex.test($('#email2').val().toLowerCase()) && $('#email2').val().toLowerCase() != 'admin') {
-          alert("Tên đăng nhập không hợp lệ !");
+          swal({
+            title: "Sorry !",
+            text: "Tên đăng nhập không hợp lệ",
+            icon: "warning",
+            dangerMode: true,
+          });
           return false;
         } else return true;
       }
     })
-  })
+  });
+
+  {{#if errorLogin}} 
+    swal({
+        title: "Sorry !",
+        text: "{{errorLogin}}",
+        icon: "warning",
+        dangerMode: true,
+    });
+  {{/if}}
 </script>
 {{/section}}

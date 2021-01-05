@@ -138,8 +138,8 @@
         rating = rating/sumRate || 0;
 
         if ({{this.saleOff}}) {
-            saleOffPrice = saleOffPrice + `<span style="font-size:16px; margin-left:5px;">${{this.price}}</span>`;
-        } else saleOffPrice = {{this.price}}
+            priceTag = saleOffPrice + `<span style="font-size:16px; margin-left:5px;">${{this.price}}</span>`;
+        } else priceTag = {{this.price}}
 
         if (`{{this.isBestseller}}`) special = `<span class="badge badge-warning" style="font-size: 18px; padding: 5px 10px;">Bestseller</span>`;
         else if (`{{this.isNewest}}`) special = `<span class="badge badge-success" style="font-size: 18px; padding: 5px 10px;">Newest</span>`;
@@ -166,9 +166,9 @@
                         </div>
                         <div class="course_info">
                             <i class="fa fa-star" aria-hidden="true"></i>
-                            <span>${rating} (${sumRate} đánh giá)</span>
+                            <span>${rating}</span>
                         </div>
-                        <div class="course_price ml-auto">$${saleOffPrice}</div>
+                        <div class="course_price ml-auto">$${priceTag}</div>
                     </div>
                 </div>
             </div>
@@ -263,6 +263,8 @@
         </div>`
     {{/each}}
 
-    $('.mostCourses').html(newCourses)
+    $('.mostCourses').html(newCourses);
+
+    console.log(courses);
 </script>
 {{/section}}

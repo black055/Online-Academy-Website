@@ -14,22 +14,22 @@ passport.use(new LogcalStrategy({ usernameField: 'email',passwordField: 'passwor
         if (await bcrypt.compareSync(password, user.password)) {
             return done(null, user);
         } else {
-            return done(null, false);
+            return done(null, false, {message: "Tên đăng nhập hoặc mật khẩu không đúng !"});
         }
     } else if (teacher) {
         if (await bcrypt.compareSync(password, teacher.password)) {
             return done(null, teacher);
         } else {
-            return done(null, false);
+            return done(null, false, {message: "Tên đăng nhập hoặc mật khẩu không đúng !"});
         }
     } else if (admin) {
         if (await bcrypt.compareSync(password, admin.password)) {
             return done(null, admin);
         } else {
-            return done(null, false);
+            return done(null, false , {message: "Tên đăng nhập hoặc mật khẩu không đúng !"});
         }
     } else {
-        return done(null, false);
+        return done(null, false, {message: "Tên đăng nhập hoặc mật khẩu không đúng !"});
     }
 }));
 
