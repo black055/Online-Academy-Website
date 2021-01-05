@@ -12,15 +12,23 @@ const MongoStore = require("connect-mongo")(session);
 const bcrypt = require('bcrypt');
 const hbs_section = require("express-handlebars-sections");
 const schedule = require('node-schedule');
-const mdwIsValidated = require("./middlewares/validation.mdw");
-const mdwIsLoged = require("./middlewares/Loged.mdw");
+
+// Declare for models
 const teacherModel = require('./models/teacher.model');
 const userModel = require('./models/user.model');
 const categoryModel = require('./models/category.model');
-const coursesModel = require('./models/courses.model')
-const {User, Teacher, Admin, Course, Category} = require('./utils/db');
-const {user_data, course_data, category_data, teacher_data} = require('./utils/insert');
+const coursesModel = require('./models/courses.model');
 
+// Declare for middlewares
+const mdwIsValidated = require("./middlewares/validation.mdw");
+const mdwIsLoged = require("./middlewares/Loged.mdw");
+const cartMiddleware = require('./middlewares/cart.mdw');
+const categoriesMiddleware = require('./middlewares/categories.mdw');
+
+// Script insert data
+const insertData = require('./script_insert');
+
+// Authentication
 require("./auth");
 
 // Connect to database
@@ -33,39 +41,7 @@ mongoose.connect("mongodb://localhost:27017/mydb", {
 mongoose.set("useCreateIndex", true);
 
 //Insert data user
-// (async function b() {
-//   for (let i = 0; i < user_data.length; i++) {
-//       let user = await User.findOne({'email': user_data[i].email});
-//       if (!user) {
-//           user = new User(user_data[i]);
-//           user.save();
-//       }
-//   }
-
-//   for (let i = 0; i < course_data.length; i++) {
-//     let course = await Course.findOne({ 'name': course_data[i].name});
-//     if (course == null) {
-//       course = new Course(course_data[i]);
-//       course.save();
-//     }
-//   }
-
-//   for (let i = 0; i < category_data.length; i++) {
-//     let category = await Category.findOne({ 'name': category_data[i].name});
-//     if (category == null) {
-//       category = new Category(category_data[i]);
-//       category.save();
-//     }
-//   }
-
-//   for (let i = 0; i < teacher_data.length; i++) {
-//     let teacher = new Teacher(teacher_data[i]);
-//     teacher.save();
-//   }
-
-//   const admin = new Admin({username: 'admin', password: bcrypt.hashSync('22102000', 10), userType: 'Admin'});
-//   admin.save();
-// })(); 
+//insertData();
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -139,108 +115,12 @@ var sche = schedule.scheduleJob({hour: 0, minute: 0, dayOfWeek: 1}, function() {
 });
 
 // Middleware for getting cart for guest and user
-app.use(async function(req, res, next) {
-  if (typeof req.session.cart == 'undefined') 
-    req.session.cart = [];
-
-  if (req.user && req.user.userType == 'Student') {
-    for (let i = 0; i < req.session.cart.length; i++) {
-      let isRegistered = false;
-      let isExist = false;
-      req.user.courses.forEach(course => {
-        if (Object.keys(course)[0] == req.session.cart[i])
-          isRegistered = true;
-      });
-
-      if (isRegistered)
-        continue;
-      if (req.user.cart.includes(req.session.cart[i])) 
-        isExist = true;
-      if (isExist)
-        continue;
-      
-      let cart = req.user.cart;
-      cart.push(req.session.cart[i]);
-      await userModel.addCart(req.user._id, cart);
-      let user = await userModel.getUser(req.user._id);
-      user.save();
-      req.logIn(user, function (err) {
-        console.log(err);
-      });
-    }
-    req.session.cart = [];
-    req.session.coursesInCart = [];
-  }
-
-  if (req.session.cart.length > 0) {
-    let coursesInCart = [];
-    for (let i = 0; i < req.session.cart.length; i++) {
-      let course = await coursesModel.getCourse(req.session.cart[i]);
-      coursesInCart.push(course);
-    }
-    req.session.coursesInCart = coursesInCart;
-  }
-
-  next();
-});
+app.use(cartMiddleware);
 
 // Middleware for get categories and course in cart for student
-app.use(async function (req, res, next) {
-  req.session.user = req.user;
-  const categories = await categoryModel.getMenuCategory();
-  req.session.categories = categories;
-  if (req.user && req.user.userType == 'Student') {
-    let coursesInCart = [];
-    for (let index = 0; index < req.user.cart.length; index++) {
-      let course = await coursesModel.getCourse(req.user.cart[index]);
-      coursesInCart.push(course);
-    }
-    req.session.coursesInCart = coursesInCart;
-  }
-  next();
-});
+app.use(categoriesMiddleware);
 
-app.get("/", mdwIsValidated, async (req, res) => {
-  const allCourses = await coursesModel.getAllCourses();
-  const countStudent = await userModel.count();
-  const countTeacher = await teacherModel.count();
-
-  counter = {
-    "courses": allCourses.length,
-    "student": countStudent,
-    "teacher": countTeacher
-  }
-
-  for (course of allCourses) {
-    if (course.teacher != '') {
-      course.teacher = await teacherModel.getTeacher(course.teacher);
-    }
-  }
-  // 3 khóa học nổi bật
-  let bestSeller = allCourses.sort(function (course_1, course_2) {
-      return course_2.soldInWeek - course_1.soldInWeek;
-  });
-  bestSeller = bestSeller.slice(0,3);
-
-  // 10 khóa học có mới nhất
-  newestCourses = allCourses.sort(function (course_1, course_2) {
-    return course_2.createdDate - course_1.createdDate;
-  });
-  
-  newestCourses = newestCourses.slice(0, 10);
-
-  // 10 khóa học có nhiều view nhất
-  mostViewCourse = allCourses.sort(function (course_1, course_2) {
-    return course_2.views - course_1.views;
-  });
-  mostViewCourse = mostViewCourse.slice(0, 10);
-
-  // 4 lĩnh vực bán chạy nhất
-  bestSellerCategories = await categoryModel.getBestSellerCategories()
-  
-  return res.render("index", { isHome: true, bestSeller: bestSeller, newestCourses: newestCourses,
-    mostViewCourse: mostViewCourse, counter: counter, bestSellerCategories: bestSellerCategories});
-});
+app.use("/", mdwIsValidated, require('./routes/home/home.route'));
 
 app.get("/about", mdwIsValidated, async (req, res) => {
   res.render("about/about", { isAbout: true});
@@ -260,15 +140,10 @@ app.get("/login", mdwIsValidated, (req, res) => {
 
 // Authentication
 app.post("/login",passport.authenticate("local", {failureRedirect: "/login", successRedirect: "/", failureFlash: true}));
-
 app.get("/loginfb", passport.authenticate("facebook"));
-
 app.get("/facebook", passport.authenticate("facebook", {successRedirect: "/", failureRedirect: "/login",}));
-
 app.get("/logingg", passport.authenticate("google"));
-
 app.get("/google", passport.authenticate("google", {successRedirect: "/", failureRedirect: "/login",}));
-
 app.get("/logout", (req, res) => {
   req.logOut();
   req.session.destroy();
