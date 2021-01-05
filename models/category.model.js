@@ -42,7 +42,7 @@ module.exports = {
             if (arrCat[i].name == course.category) {
                 arrCat[i].soldInWeek += 1;
                 arrCat[i].save();
-                if (arrCat[i].parent != null) {
+                if (arrCat[i].parent != "null") {
                     let parCat = await this.getCategory(arrCat[i].parent);
                     parCat.soldInWeek += 1;
                     parCat.save();

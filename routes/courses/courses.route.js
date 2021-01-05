@@ -405,6 +405,14 @@ router.get('/:id_course', async (req, res) => {
     sameCourses = [...temp];
     sameCourses = sameCourses.length < 5 ? sameCourses : sameCourses.sort((course_1, course_2) =>  course_2.students - course_1.students).slice(0, 5);
     courseRate = isNaN(Number.parseFloat(courseRate).toFixed(1)) ? 0 : Number.parseFloat(courseRate).toFixed(1);
+    
+    let teacher = await teacherModel.getTeacher(course.teacher);
+    let info_teacher = {};
+    info_teacher.name = teacher.name;
+    info_teacher.bthday = teacher.bthday;
+    info_teacher.email = teacher.email;
+    info_teacher.numCourse = (await coursesModel.getCourseOfTeacher(course.teacher)).length;
+    info_teacher.phone = teacher.phone;
     res.render('courses/course', {
         course: course, 
         registered: isRegistered, 
@@ -413,6 +421,7 @@ router.get('/:id_course', async (req, res) => {
         totalRate: sumRate / 5,
         comments: allComments,
         sameCourses: sameCourses,
+        teacher: info_teacher,
     });
 });
 

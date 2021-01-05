@@ -53,11 +53,11 @@
                                 <div class="tab_panel_content" style="display: flex;margin-top: 10px">
                                     <img src="/images/user_avatar/student.png" alt="" style="width: 150px">
                                     <div class="info_teacher">
-                                        <span class="tab_panel_subtitle">Lê Thành Việt</span>
-                                        <div class="row_info"><i class="fas fa-birthday-cake icon_info"></i><p style="color: #3c3b37;">22/10/2000</p></div>
-                                        <div class="row_info"><i class="fas fa-envelope icon_info"></i><p style="color: #3c3b37;">lethanhviet7c@gmail.com</p></div>
-                                        <div class="row_info"><i class="fas fa-play-circle icon_info"></i><p style="color: #3c3b37;">35 Khóa học</p></div>
-                                        <div class="row_info"><i class="fas fa-graduation-cap icon_info"></i><p style="color: #3c3b37;">300 Học viên</p></div>
+                                        <span class="tab_panel_subtitle">{{teacher.name}}</span>
+                                        <div class="row_info"><i class="fas fa-birthday-cake icon_info"></i><p style="color: #3c3b37;" id="tc_bthday"></p></div>
+                                        <div class="row_info"><i class="fas fa-envelope icon_info"></i><p style="color: #3c3b37;">{{teacher.email}}</p></div>
+                                        <div class="row_info"><i class="fas fa-play-circle icon_info"></i><p style="color: #3c3b37;">{{teacher.numCourse}}</p></div>
+                                        <div class="row_info"><i class="fas fa-phone icon_info"></i><p style="color: #3c3b37;">{{teacher.phone}}</p></div>
                                     </div>
                                 </div>
                                 <div class="tab_panel_text" style=" margin-bottom: 30px; ">
@@ -66,8 +66,8 @@
 
                                 <div class="tab_panel_title">{{course.name}}</div>
                                 <div class="tab_panel_content">
-                                    <div class="tab_panel_text">
-                                        <p>{{course.description}}</p>
+                                    <div class="tab_panel_text" id="description" style="font-size: 16px;">
+                                        {{{course.description}}}
                                     </div>
                                     <div class="tab_panel_section">
                                         <div class="tab_panel_subtitle">Yêu cầu</div>
@@ -458,6 +458,9 @@
         day = ("0" + date.getDate()).slice(-2);
     return [date.getFullYear(), mnth, day].join("-");
     }
+
+    let tc_bthday = convert("{{teacher.bthday}}");
+    $('#tc_bthday').text(tc_bthday);
 
     let content = '';
     let tag_star = '';
