@@ -28,7 +28,7 @@ router.post('/add_course', async (req, res) => {
         name: random_key,
         category: '',
         chapters: [],
-        rate: [],
+        rate: [0,0,0,0,0],
         price: '',
         teacher: '',
         students: 0,

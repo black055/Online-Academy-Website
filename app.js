@@ -24,6 +24,7 @@ const mdwIsValidated = require("./middlewares/validation.mdw");
 const mdwIsLoged = require("./middlewares/Loged.mdw");
 const cartMiddleware = require('./middlewares/cart.mdw');
 const categoriesMiddleware = require('./middlewares/categories.mdw');
+const returnTomdw = require('./middlewares/returnTo.mdw');
 
 // Script insert data
 const insertData = require('./script_insert');
@@ -40,8 +41,8 @@ mongoose.connect("mongodb://localhost:27017/mydb", {
 
 mongoose.set("useCreateIndex", true);
 
-//Insert data user
-//insertData();
+// Insert data user
+// insertData();
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -132,18 +133,27 @@ app.get("/contact", mdwIsValidated, async (req, res) => {
 
 app.use("/forgotPassWord", require('./routes/resetpass/resetPassword'));
 
-app.get("/login", mdwIsValidated, (req, res) => {
+app.get("/login", mdwIsValidated, returnTomdw, (req, res) => {
   if (typeof req.user !== "undefined")
     res.redirect('/');
   else res.render("login");
 });
 
 // Authentication
-app.post("/login",passport.authenticate("local", {failureRedirect: "/login", successRedirect: "/", failureFlash: true}));
-app.get("/loginfb", passport.authenticate("facebook"));
-app.get("/facebook", passport.authenticate("facebook", {successRedirect: "/", failureRedirect: "/login",}));
-app.get("/logingg", passport.authenticate("google"));
-app.get("/google", passport.authenticate("google", {successRedirect: "/", failureRedirect: "/login",}));
+app.post("/login",passport.authenticate("local", {failureRedirect: "/login", failureFlash: true}), function(req, res) {
+  res.redirect(req.session.returnTo || '/');
+  delete req.session.returnTo;
+});
+app.get("/loginfb", returnTomdw, passport.authenticate("facebook"));
+app.get("/facebook", passport.authenticate("facebook", {failureRedirect: "/login",}), function(req, res) {
+  res.redirect(req.session.returnTo || '/');
+  delete req.session.returnTo;
+});
+app.get("/logingg", returnTomdw, passport.authenticate("google"));
+app.get("/google", passport.authenticate("google", {failureRedirect: "/login",}), function(req, res) {
+  res.redirect(req.session.returnTo || '/');
+  delete req.session.returnTo;
+});
 app.get("/logout", (req, res) => {
   req.logOut();
   req.session.destroy();
@@ -152,7 +162,7 @@ app.get("/logout", (req, res) => {
 
 app.use("/courses", mdwIsValidated, require("./routes/courses/courses.route"));
 app.use("/profile", mdwIsLoged, mdwIsValidated, require("./routes/profile/profile.route"));
-app.use('/register', require('./routes/register/register.route'));
+app.use('/register', returnTomdw, require('./routes/register/register.route'));
 app.use('/course', mdwIsLoged, require('./routes/course/course.route'));
 app.use('/category', require('./routes/category/category.route'));
 app.use('/admin', mdwIsLoged, require('./routes/admin/admin.route'));

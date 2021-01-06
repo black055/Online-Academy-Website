@@ -4,6 +4,7 @@ const router = express.Router();
 const coursesModel = require('../../models/courses.model');
 const userModel = require('../../models/user.model');
 const teacherModel = require('../../models/teacher.model');
+const { clearConfigCache } = require('prettier');
 
 router.get('/', async (req, res) => {
     const allCourses = await coursesModel.getAllCourses();
