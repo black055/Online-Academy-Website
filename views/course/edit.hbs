@@ -15,16 +15,16 @@
                 <input type="text" class="comment_input" name="briefDes" value="{{course.briefDes}}" required="required">
               </div>
               <div>
+                <div class="form_title">Yêu cầu của khóa học</div>
+                <input type="text" class="comment_input" name="require" value="{{course.require}}" required="required">
+              </div>
+              <div>
+                <div class="form_title">Mục tiêu khóa học</div>
+                <input type="text" class="comment_input" name="purpose" value="{{course.purpose}}" required="required">
+              </div>
+              <div>
                 <div class="form_title">Mô tả chi tiết</div>
                 <textarea id="descEditor" name="description">{{course.description}}</textarea>
-              </div>
-              <div class="d-flex flex-column justify-content-center">
-                <label for="isFinished" class="form_title font-weight-bold">Hãy check nếu nội dung khóa học đã hoàn
-                  thành</label>
-                <div class="d-flex align-items-center">
-                  <input type="checkbox" name="isFinished" id="cbProgress" {{#if course.isFinished}}checked{{/if}}>
-                  <span id="cbProgText" class="font-weight-bold">Đã hoàn thành</span>
-                </div>
               </div>
 
               <div class="form-group">
@@ -35,6 +35,15 @@
               <div>
                 <div class="form_title">Giá</div>
                 <input type="number" class="comment_input" name="price" min="0" value="{{course.price}}" required="required">
+              </div>
+
+              <div class="d-flex flex-column justify-content-center">
+                <label for="isFinished" class="form_title font-weight-bold">Hãy check nếu nội dung khóa học đã hoàn
+                  thành</label>
+                <div class="d-flex align-items-center">
+                  <input type="checkbox" name="isFinished" id="cbProgress" {{#if course.isFinished}}checked{{/if}}>
+                  <span id="cbProgText" class="font-weight-bold">Đã hoàn thành</span>
+                </div>
               </div>
             </div>
 
@@ -100,160 +109,20 @@
   </div>
 </form>
 
+<div class="overlay-fade"></div>
+<div class="loading">
+  <div class="canvas canvas4">
+    <div class="spinner4"></div>
+  </div>
+  <h4 class="text-center">Đang đăng tải...</h4>
+</div>
+
 {{#section 'css'}}
 <link rel="stylesheet" href="https://cdn.plyr.io/3.5.6/plyr.css" />
 <link rel="stylesheet" type="text/css" href="/styles/contact.css">
 <link rel="stylesheet" type="text/css" href="/styles/contact_responsive.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.2/css/fileinput.min.css">
-
-<style>
-  .plyr {
-    width: 420px;
-    margin-bottom: 20px;
-    margin: 0px !important;
-  }
-
-  .video-preview {
-    background-color: #14BDEE;
-  }
-  
-  .chapter_title {
-    border-radius: 14px;
-  }
-
-  .video-content .chapter_title:hover {
-    cursor: pointer;
-    background-color: #c9dbe0;
-    opacity: 0.7;
-    transition: 1.5s;
-  }
-
-  .edit {
-    width: 100%;
-    padding-bottom: 100px;
-  }
-
-  .edit_map {
-    width: 100%;
-  }
-
-  .edit_chapter_container {
-    margin-top: 150px;
-  }
-
-  .edit_chapter_title {
-    font-family: 'Roboto Slab', serif;
-    font-size: 36px;
-    font-weight: 700;
-    color: #384158;
-  }
-
-  .edit_form {
-    padding-right: 10px;
-  }
-
-  .edit_chapter {
-    padding-left: 45px;
-  }
-
-  .edit_chapter_text {
-    margin-top: 27px;
-  }
-
-  .edit_chapter_location {
-    margin-top: 28px;
-  }
-
-  .edit_chapter_location_title {
-    font-family: 'Roboto Slab', serif;
-    font-size: 18px;
-    font-weight: 700;
-    color: #384158;
-  }
-
-  #cbProgText {
-    color: #384158;
-    margin-left: 5px;
-  }
-
-  .form div {
-    margin: 15px 0px;
-  }
-
-  .course_thumbnail .krajee-default.file-preview-frame,
-  .course_thumbnail .krajee-default.file-preview-frame:hover {
-    margin: 0;
-    padding: 0;
-    border: none;
-    box-shadow: none;
-    text-align: center;
-  }
-
-  .course_thumbnail {
-    display: inline-block;
-  }
-
-  .course_thumbnail .file-input {
-    display: table-cell;
-    width: 82%;
-  }
-
-  .file-preview-thumbnails {
-    display: flex;
-    justify-content: center;
-  }
-
-  #chapter_box {
-    max-height: 550px;
-    overflow-y: auto;
-    border-top: 1px solid #14BDEE;
-  }
-
-  #chapter_box_current {
-    max-height: 550px;
-    overflow-y: auto;
-    border-top: 1px solid #14BDEE;
-  }
-
-  .new-chapter {
-    margin-right: 15px !important;
-  }
-
-  .plus-sale-off, .minus-sale-off {
-    height: 46px;
-    align-items: center;
-    display: flex;
-    cursor: pointer ;
-  }
-  
-  .plus-sale-off {
-    border-radius: 0px 4px 4px 0px;
-  }
-  
-  .minus-sale-off {
-    border-radius: 4px 0px 0px 4px;
-  }
-
-    /* width */
-  div::-webkit-scrollbar {
-    width: 4px;
-  }
-
-  /* Track */
-  div::-webkit-scrollbar-track {
-    background: #f1f1f1;
-  }
-
-  /* Handle */
-  div::-webkit-scrollbar-thumb {
-    background: #14bdee;
-  }
-
-  /* Handle on hover */
-  div::-webkit-scrollbar-thumb:hover {
-    background: #14B4E0;
-  }
-</style>
+<link rel="stylesheet" type="text/css" href="/styles/edit_course.css">
 
 {{/section}}
 
@@ -281,6 +150,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.2/js/locales/vi.min.js"></script>
 
 <script>
+  $('form').submit(() => {
+    $('.overlay-fade').show();
+    $('.loading').show();
+  })
+
   $("#thumbnail").fileinput({
     theme: "fas",
     showClose: false,

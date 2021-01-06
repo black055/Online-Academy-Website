@@ -63,5 +63,9 @@ module.exports = {
         return await Category.find()
                             .sort({soldInWeek: -1})
                             .limit(4);
+    },
+
+    getAllCategories() {
+        return Category.find().sort({ name: 1 });
     }
 }

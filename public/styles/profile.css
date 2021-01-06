@@ -55,6 +55,9 @@ body{
     background: rgb(135, 214, 33);
     color: #ffffff;
 }
+.profile-add-btn:hover>a{
+    color: #ffffff;
+}
 .proile-rating{
     font-size: 12px;
     color: #818182;

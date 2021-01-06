@@ -55,6 +55,8 @@ const course = new Schema({
     soldInWeek: Number,
     lastModified: Date,
     createdDate: Date,
+    require: String,
+    purpose: String
 })
 
 const category = Schema({

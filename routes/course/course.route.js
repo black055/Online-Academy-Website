@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
 
 
 router.get('/create', async (req, res) => {
-    const data = await categoryModel.getMenuCategory();
+    const data = await categoryModel.getAllCategories();
     req.session.referer = req.headers.referer
     res.render('course/create_course', {
         categoryList: data,
@@ -43,7 +43,8 @@ router.post('/add_course', async (req, res) => {
         soldInWeek: 0,
         lastModified: new Date(),
         createdDate: new Date(),
-        //comments: [],
+        require: '',
+        purpose: ''
     });
     await new_course.save();
 
@@ -101,6 +102,9 @@ router.post('/add_course', async (req, res) => {
             course.briefDes = req.body.briefDes;
             course.description = req.body.description;
             course.price = req.body.price;
+            course.require = req.body.require;
+            course.purpose = req.body.purpose;
+            course.saleOff = req.body.saleOff;
             course.teacher = req.session.user._id.toString();
             course.isFinished = req.body.isFinished ? true : false;
 
@@ -175,6 +179,8 @@ router.post('/update/:id', async (req, res) => {
             course.name = req.body.name;
             course.price = req.body.price;
             course.briefDes = req.body.briefDes;
+            course.require = req.body.require;
+            course.purpose = req.body.purpose;
             course.description = req.body.description;
             course.isFinished = req.body.isFinished ? true : false;
             course.saleOff = req.body.saleOff;
