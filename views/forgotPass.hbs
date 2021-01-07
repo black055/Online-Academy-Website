@@ -4,7 +4,7 @@
             <label for="otp">Nhập địa chỉ email</label>
             <input type="text" class="form-control" id="email" name="email">
         </div>
-        <button id="resetpass" type="submit" class="btn btn-success">Nhận mật khẩu qua email</button>
+        <button id="resetpass" type="submit" class="btn btn-success">Xác nhận</button>
     </form>
 </div>
 
@@ -34,7 +34,7 @@
                 });
 
                 if (isValid) {
-                    swal("Thành công!", "Mật khẩu mới đã được gửi qua email!", "success").then(() => e.currentTarget.submit());
+                    swal("Thành công!", "Vào mail để lấy đường link đổi mật khẩu mới!", "success").then(() => e.currentTarget.submit());
                 } else {
                     swal({
                         title: "Sorry !",
@@ -42,7 +42,8 @@
                         icon: "warning",
                         dangerMode: true,
                     });
-                    return false;}
+                    return false;
+                }
             }
             
         });

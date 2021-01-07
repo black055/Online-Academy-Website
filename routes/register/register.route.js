@@ -1,18 +1,9 @@
 const express = require('express');
 const {User, Teacher} = require('../../utils/db');
-const mailer = require('nodemailer');
 const router = express.Router();
 const bcrypt = require('bcrypt');
-
-var otp;
-
-const transporter = mailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: 'verifycourseonline@gmail.com',
-        pass: '22102000shch',
-    }
-});
+const sendMail = require('../../mailer');
+const linkAuth = require('../../middlewares/linkAuth.mdw');
 
 router.get('/', (req, res) => {
     res.render('register');
@@ -42,7 +33,7 @@ router.post('/', async (req, res) => {
                 console.log(err);
             }
         });
-        otp = Math.floor(Math.random() * 999999) + 100000;
+        let otp = Math.floor(Math.random() * 999999) + 100000;
         const user = new User({
             email: email, 
             name: name, 
@@ -61,15 +52,8 @@ router.post('/', async (req, res) => {
         });
         user.save();
         req.session.user_invalidated = user;
-        let mailOptions = {
-            from: 'verifycourseonline@gmail.com',
-            to: email,
-            subject: 'Welcome to our website, Please validate your account',
-            html: '<h3>Here is you OTP code: <strong style="font-size: 15px;">' + otp + '</strong></h3>',
-        }
-        transporter.sendMail(mailOptions, function (err, data) {
-            if (err) console.log(err);
-        })
+        const url = req.protocol + "://" + req.headers.host + "/register/" + user._id + "/" + otp;
+        sendMail(url, user._id, email, "Vui lòng xác thực tài khoản!");
         res.redirect('/register/OTP');
     } else {
         res.redirect('/register');
@@ -80,26 +64,29 @@ router.get('/OTP', (req, res) => {
     res.render('OTP');
 });
 
-router.post('/OTP',async (req, res) => {
+router.get('/:id/:otp', linkAuth, async (req, res) => {
     if (req.session.user_invalidated) {
         const user = await User.findOne({'email': req.session.user_invalidated.email});
-        if (req.body.otp == user.OTP) {
+        if (req.params.otp == user.OTP && req.params.id == user._id) {
             await User.updateOne({'email': user.email}, {OTP: null, isValidated: true});
             req.session.user_invalidated = null;
             res.redirect('/login');
         } else {
-            req.flash("err_OTP", "Mã xác thực không chính xác !");
+            req.flash("err_OTP", "Đường link xác thực không hợp lệ !");
             res.redirect('/register/OTP');
         }
     } else if (req.user) {
         const user = await User.findOne({'email': req.user.email});
-        if (req.body.otp == user.OTP) {
+        if (req.params.otp == user.OTP && req.params.id == user._id) {
             await User.updateOne({'email': user.email}, {OTP: null, isValidated: true});
             req.user.isValidated = true;
             req.user.OTP = null;
+            req.logIn(user, function(err) {
+                console.log(err);
+            });
             res.redirect('/');
         } else {
-            req.flash("err_OTP", "Mã xác thực không chính xác !");
+            req.flash("err_OTP", "Đường link xác thực không hợp lệ !");
             res.redirect('/register/OTP');
         }
     }
@@ -108,33 +95,19 @@ router.post('/OTP',async (req, res) => {
 router.get('/resendOTP', async (req, res) => {
     if (req.session.user_invalidated) {
         const user = await User.findOne({'email': req.session.user_invalidated.email});
-        otp = Math.floor(Math.random() * 999999) + 100000;
-        let mailOptions = {
-            from: 'verifycourseonline@gmail.com',
-            to: user.email,
-            subject: 'Welcome to our website, Please validate your account',
-            html: '<h3>Here is you OTP code: <strong style="font-size: 15px;">' + otp + '</strong></h3>',
-        }
-        transporter.sendMail(mailOptions, function (err, data) {
-            if (err) console.log(err);
-        });
+        let otp = Math.floor(Math.random() * 999999) + 100000;
         user.OTP = otp;
         user.save();
+        const url = req.protocol + "://" + req.headers.host + "/register/" + user._id + "/" + otp;
+        sendMail(url, user._id, user.email, "Vui lòng xác thực tài khoản!");
         res.send(true);
     } else if (req.user) {
         const user = await User.findOne({'email': req.user.email});
         otp = Math.floor(Math.random() * 999999) + 100000;
-        let mailOptions = {
-            from: 'verifycourseonline@gmail.com',
-            to: user.email,
-            subject: 'Welcome to our website, Please validate your account',
-            html: '<h3>Here is you OTP code: <strong style="font-size: 15px;">' + otp + '</strong></h3>',
-        }
-        transporter.sendMail(mailOptions, function (err, data) {
-            if (err) console.log(err);
-        });
         user.OTP = otp;
         user.save();
+        const url = req.protocol + "://" + req.headers.host + "/register/" + user._id + "/" + otp;
+        sendMail(url, user._id, user.email, "Vui lòng xác thực tài khoản!");
         res.send(true);
     }
 });
