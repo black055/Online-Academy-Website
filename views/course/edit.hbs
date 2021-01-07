@@ -1,26 +1,45 @@
-<form action="/course/update/{{course._id}}" method="POST" class="form" enctype="multipart/form-data">
+<div class="container-fluid mx-auto col-lg-10">
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="edit_menu_bar d-flex">
+        <button class="btn menu-item post-bar active">
+          <i class="fas fa-edit mr-1"></i>
+          Post
+        </button>
+        <button class="btn menu-item thumbnail-bar">
+          <i class="fas fa-image mr-1"></i>
+          Image
+        </button>
+        <button class="btn menu-item video-bar">
+          <i class="fas fa-video mr-1"></i>
+          Video
+        </button>
+        <button class="btn menu-item category-bar">
+          <i class="fas fa-hand-lizard mr-1"></i>
+          New Video
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<form action="/course/update/{{course._id}}" method="POST" class="form col-lg-10 mx-auto" enctype="multipart/form-data">
   <div class="edit h-100 w-100">
     <div class="edit_chapter_container">
       <div class="container-fluid mx-auto">
-        <div class="row">
-          <div class="col-lg-7">
+        <div class="row row-content post-row">
+          <div class="col-lg-8">
             <div class="edit_form">
-              <div class="edit_chapter_title">Sửa nội dung khóa học</div>
               <div>
-                <div class="form_title">Tên khóa học</div>
-                <input type="text" class="comment_input" name="name" value="{{course.name}}" required="required">
+                <input type="text" class="comment_input" placeholder="Tên khóa học" name="name" value="{{course.name}}" required="required">
               </div>
               <div>
-                <div class="form_title">Mô tả ngắn gọn</div>
-                <input type="text" class="comment_input" name="briefDes" value="{{course.briefDes}}" required="required">
+                <input type="text" class="comment_input" placeholder="Mô tả ngắn" name="briefDes" value="{{course.briefDes}}" required="required">
               </div>
               <div>
-                <div class="form_title">Yêu cầu của khóa học</div>
-                <input type="text" class="comment_input" name="require" value="{{course.require}}" required="required">
+                <input type="text" class="comment_input" placeholder="Yêu cầu" name="require" value="{{course.require}}" required="required">
               </div>
               <div>
-                <div class="form_title">Mục tiêu khóa học</div>
-                <input type="text" class="comment_input" name="purpose" value="{{course.purpose}}" required="required">
+                <input type="text" class="comment_input" placeholder="Mục tiêu" name="purpose" value="{{course.purpose}}" required="required">
               </div>
               <div>
                 <div class="form_title">Mô tả chi tiết</div>
@@ -33,20 +52,38 @@
               </div>
 
               <div>
-                <div class="form_title">Giá</div>
-                <input type="number" class="comment_input" name="price" min="0" value="{{course.price}}" required="required">
+                <div class="form_title">Giá hiện tại</div>
+                <input type="number" class="comment_input" name="price" min="0" value="{{course.saleOff}}" required="required">
               </div>
 
-              <div class="d-flex flex-column justify-content-center">
-                <label for="isFinished" class="form_title font-weight-bold">Hãy check nếu nội dung khóa học đã hoàn
-                  thành</label>
-                <div class="d-flex align-items-center">
-                  <input type="checkbox" name="isFinished" id="cbProgress" {{#if course.isFinished}}checked{{/if}}>
-                  <span id="cbProgText" class="font-weight-bold">Đã hoàn thành</span>
+              <div>
+                <div class="form_title">Tỉ lệ giảm giá</div>
+                <div class="number d-flex justify-content-center align-items-center">
+                  <div class="btn btn-outline-secondary minus-sale-off"><i class="fas fa-minus"></i></div>
+                  <input type="number" class="comment_input" name="saleOff" id="saleOff" min="0" max="100" value="0">
+                  <div class="btn btn-outline-secondary plus-sale-off"><i class="fas fa-plus"></i></div>
+                </div>
+                <input type="range" id="points-sale-off" min="0" max="100" class="w-100" value="0">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row row-content thumbnail-row" style="display: none;">
+          <div class="col-lg-8 text-center">
+
+            {{!-- Ảnh đại diện khóa học --}}
+            <div class="course_thumbnail">
+              <div class="edit_chapter_title">Ảnh đại diện của khóa học</div>
+              <div class="thumbnail_box d-flex w-100 justify-content-center">
+                <div class="file-loading">
+                  <input id="thumbnail" name="thumbnail" type="file" class="mt-1">
                 </div>
               </div>
             </div>
-
+          </div>
+        </div>
+        <div class="row row-content video-row" style="display: none;">
+          <div class="col-lg-8">
             <div class="upvideo">
               <div class="edit_chapter_title">
                 <div class="d-flex justify-content-between">
@@ -59,7 +96,12 @@
                   {{!-- Thêm ô input tên mỗi chương ở đây --}}
                 </div>
               </div>
-
+            </div>
+          </div>
+        </div>
+        <div class="row row-content category-row" style="display: none;">
+          <div class="col-lg-8">
+            <div class="upvideo">
               <div class="edit_chapter_title">
                 <div class="d-flex justify-content-between">
                   <div class="">Thêm chương mới</div>
@@ -78,31 +120,13 @@
               </div>
             </div>
           </div>
-
-          <div class="col-lg-5 text-center">
-
-            {{!-- Ảnh đại diện khóa học --}}
-            <div class="course_thumbnail">
-              <div class="edit_chapter_title">Ảnh đại diện của khóa học</div>
-              <div class="thumbnail_box d-flex w-100 justify-content-center">
-                <div class="file-loading">
-                  <input id="thumbnail" name="thumbnail" type="file" class="mt-1">
-                </div>
-              </div>
-              <div>
-                <div class="form_title">Thông tin giảm giá</div>
-                <div class="number d-flex justify-content-center align-items-center">
-                  <div class="btn btn-outline-secondary minus-sale-off"><i class="fas fa-minus"></i></div>
-                  <input type="number" class="comment_input" name="saleOff" id="saleOff" min="0" max="100" value="{{course.saleOff}}">
-                  <div class="btn btn-outline-secondary plus-sale-off"><i class="fas fa-plus"></i></div>
-                </div>
-                <input type="range" id="points-sale-off" min="0" max="100" class="w-100" value="0">
-              </div>
-            </div>
-          </div>
         </div>
-        <div class="d-flex justify-content-center">
-          <button type="submit" class="comment_button trans_200 mx-auto w-100">Đăng</button>
+        <div class="d-flex justify-content-between col-lg-8">
+          <div class="d-flex flex-column">
+            <input type="checkbox" name="isFinished" id="cbProgress" style="display: none;" {{#if course.isFinished}}checked{{/if}}>
+            <button type="button" class="btn btn-footer btn-progress font-weight-bold"><i class="fas fa-minus btn-prog-icon mr-1"></i>Tiến độ</button>
+          </div>
+          <div><button type="submit" class="btn btn-footer btn-submit-course font-weight-bold">Cập nhập</button></div>
         </div>
       </div>
     </div>
@@ -289,5 +313,64 @@
         .find('.btn-rm-chapter').show();
     })
   })
+  $('.menu-item').click(function () {
+    $('.menu-item').removeClass('active');
+    $(this).addClass('active');
+    $('.row-content').hide();
+    if ($(this).hasClass('post-bar')) $('.post-row').show();
+    if ($(this).hasClass('thumbnail-bar')) $('.thumbnail-row').show();
+    if ($(this).hasClass('video-bar')) $('.video-row').show();
+    if ($(this).hasClass('category-bar')) $('.category-row').show();
+  })
+  $('.category-item').click(function () {
+    $('.category-item').css({
+      "background-color": "",
+      "color": "",
+      "opacity": ""
+    })
+    $(this).css({
+      "background-color": "#24A0ED",
+      "color": "#fff",
+      "opacity": "0.8"
+    })
+    $('#category').val($(this).html())
+  })
+  $('#category').keyup(() => {
+    let input = $('#category').val().toUpperCase();
+    $('.category-item').each(function () {
+      if ($(this).html().toUpperCase().indexOf(input) > -1)
+        $(this).show()
+      else $(this).hide();
+      if ($(this).html().toUpperCase() !== input)
+        $(this).css({
+          "background-color": "",
+          "color": "",
+          "opacity": ""
+        })
+    })
+  })
+  $('.btn-progress').click(function() {
+    if ($(this).children('i').hasClass('fa-minus')) {
+      $('.btn-prog-icon').removeClass('fa-minus');
+      $('.btn-prog-icon').addClass('fa-check');
+      $(this).css({
+        "color": "#fff",
+        "background-color": "rgb(255, 84, 91)",
+        "border-color": "transparent"
+      })
+      $('#cbProgress').prop('checked', true);
+    }
+    else {
+      $('.btn-prog-icon').removeClass('fa-check');
+      $('.btn-prog-icon').addClass('fa-minus');
+      $(this).css({
+        "color": "",
+        "background-color": "",
+        "border-color": ""
+      })
+      $('#cbProgress').prop('checked', false);
+    }
+  })
+  {{#if course.isFinished}}$('.btn-progress').trigger('click'){{/if}}
 </script>
 {{/section}}
