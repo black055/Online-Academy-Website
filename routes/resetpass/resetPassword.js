@@ -3,15 +3,8 @@ const router = express.Router();
 const {User} = require('../../utils/db');
 const mailer = require('nodemailer');
 const bcrypt = require('bcrypt');
-
-const transporter = mailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: 'verifycourseonline@gmail.com',
-        pass: '22102000shch',
-    }
-});
-
+const sendMail = require('../../mailer');
+const { clearConfigCache } = require('prettier');
 
 router.get('/', (req, res) => {
     res.render('forgotPass');
@@ -26,20 +19,28 @@ router.get('/checkmail/:email', async (req, res) => {
 router.post('/', async (req, res) => {
     const email = req.body.email;
     let user = await User.findOne({"email": email});
-    let newPassword = Math.floor(Math.random() * 999999999) + 100000000;
-    let mailOptions = {
-        from: 'verifycourseonline@gmail.com',
-        to: email,
-        subject: 'Reset password',
-        html: '<h3>Here is your new password: <strong style="font-size: 15px;">' + newPassword + '</strong></h3>',
-    }
-    transporter.sendMail(mailOptions, function (err, data) {
-        if (err) console.log(err);
-    });
-    newPassword = bcrypt.hashSync(newPassword.toString(), 10);
-    user.password = newPassword;
+    let otp = Math.floor(Math.random() * 999999999) + 100000000;
+    const url = req.protocol + "://" + req.headers.host + "/forgotPassWord/" + user._id + "/" + otp;
+    sendMail(url, user._id, user.email, "Thay đổi mật khẩu tài khoản của bạn !", true);
+    user.OTP = otp;
     user.save();
     res.redirect('/login');
+});
+
+router.post('/reset/:id/', async (req, res) => {
+    let user = await User.findOne({"_id": req.params.id});
+    let hash = bcrypt.hashSync(req.body.pass1, 10);
+    user.password = hash;
+    user.save();
+    res.redirect('/login');
+});
+
+router.get('/:id/:otp', async (req, res) => {
+    let user = await User.findOne({"_id": req.params.id.toString()});
+    if (user && user.OTP == req.params.otp) {
+        user.save();
+        res.render("resetPass", {user: user});
+    } else  res.redirect('/');
 });
 
 module.exports = router;

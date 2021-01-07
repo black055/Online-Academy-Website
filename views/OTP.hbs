@@ -1,11 +1,5 @@
 <div class="container mx-auto col-3" style="margin:300px 0">
-    <form action="/register/OTP" method="post">
-        <div class="form-group">
-            <label for="otp">Nhập mã xác thực</label>
-            <input type="text" class="form-control" id="otp" name="otp">
-        </div>
-        <button type="submit" class="btn btn-danger">Xác thực</button>
-    </form>
+    <h1>Vui lòng xác thực tài khoản trước khi sử dụng</h1>
     <button id="resetOTP" style="margin-top: 20px; color: #28a745; background: none; border: none;">Gửi lại mã xác thực ?</button>
 </div>
 
@@ -27,7 +21,7 @@
 
         $("#resetOTP").on("click", function() {
             $.get('/register/resendOTP', function(data) {
-                swal("Thành công!", "Mã xác thực đã được gửi lại vào email đăng ký!", "success");
+                swal("Thành công!", "Link xác thực đã được gửi lại vào email đăng ký!", "success");
             });
         });
     </script>
