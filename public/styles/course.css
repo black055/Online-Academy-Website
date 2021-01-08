@@ -1909,3 +1909,37 @@ section
 	margin-right: 10px;
 	color: #eb8a2f
 }
+
+.features
+{
+	width: 100%;
+	background: #FFFFFF;
+	padding-top: 93px;
+	padding-bottom: 103px;
+}
+.features_row
+{
+	margin-top: 55px;
+}
+.feature
+{
+	height: 100%;
+	width: 100%;
+	background: #FFFFFF;
+	margin-top: 10px;
+	padding-right: 20px;
+	padding: 10px 20px 0 20px;
+}
+.feature_icon
+{
+	height: 55px;
+}
+.feature_icon img
+{
+	max-width: 100%;
+}
+.feature_title
+{
+	position: relative;
+	font-size: 16px;
+}

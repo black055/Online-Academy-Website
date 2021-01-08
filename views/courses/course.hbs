@@ -221,8 +221,8 @@
                         
                         {{else}}
                         <div class="row">
-                            <button class="btn btn-warning btn-lg col-10 register" style="width:100%; margin-right:10px">Đăng ký</button>
-                            <button class="btn btn-danger addToWL"><i class="fas fa-heart"></i></button>
+                            <button class="btn btn-warning btn-lg register" style="width: 80%; margin-right: 10px;">Đăng ký</button>
+                            <button class="btn btn-danger addToWL" style="width: 15%;"><i class="fas fa-heart"></i></button>
                             <button id="addToCart" class="btn btn-outline-success btn-lg cl-12 {{course._id}}" style="width:100%; margin-top:10px">Thêm vào giỏ</button>
                         </div>
                         {{/if}}
@@ -272,6 +272,13 @@
 {{#section 'css'}}
 <link rel="stylesheet" type="text/css" href="/styles/course.css">
 <link rel="stylesheet" type="text/css" href="/styles/course_responsive.css">
+<style>
+    @media only screen and (max-width: 1000px) {
+        .register {
+            width: 83% !important;
+        }
+    }
+</style>
 {{/section}}
 
 {{#section 'js'}}
