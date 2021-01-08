@@ -498,6 +498,17 @@ section
 	outline: none;
 	padding-left: 20px;
 }
+.category_input
+{
+	text-align: right;
+	width: 80%;
+	height: 40px;
+	outline: none;
+	border-radius: 0 10px;
+	border: none;
+	background-color: whitesmoke;
+	padding-left: 10px;
+}
 .header_search_button
 {
 	position: absolute;

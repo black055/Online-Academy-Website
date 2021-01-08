@@ -828,6 +828,7 @@ section
 }
 .courses_search_input
 {
+	display: block;
 	width: 240px;
 	height: 46px;
 	border: solid 1px #d9d9d9;

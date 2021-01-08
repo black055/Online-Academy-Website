@@ -22,6 +22,7 @@
         }
     </style>
     {{{_sections.jsHead}}}
+    <link rel="stylesheet" type="text/css" href="/styles/main_styles.css">
     {{{_sections.css}}}
     
 </head>
@@ -166,19 +167,48 @@
                 </div>
             </div>
             <div class="search">
-                <form action="#" class="header_search_form menu_mm">
-                    <input type="search" class="search_input menu_mm" placeholder="Search" required="required">
-                    <button class="header_search_button d-flex flex-column align-items-center justify-content-center menu_mm">
+                <form action="/courses/search" method="post" class="header_search_form menu_mm">
+                    <input type="search" name="keyword" class="search_input menu_mm" placeholder="Tìm kiếm..." required="required">
+                    <select name="category" id="categorySearch" class="category_input menu_mm">
+                            <option value="null" selected="selected">Lựa chọn lĩnh vực</option>
+                            {{#each session.categories}}
+                            <option value="{{this.name}}" class="parent">{{this.name}}</option>
+                            {{#if this.subCategory}} {{#each this.subCategory}}
+                            <option value="{{this.name}}">&nbsp;&nbsp;&nbsp;{{this.name}}</option>
+                            {{/each}} {{/if}}
+                            {{/each}}
+                        </select>
+                    <button type="submit" class="header_search_button d-flex flex-column align-items-center justify-content-center menu_mm">
                         <i class="fa fa-search menu_mm" aria-hidden="true"></i>
                     </button>
                 </form>
             </div>
             <nav class="menu_nav">
                 <ul class="menu_mm">
+                    {{#ifEquals session.user.userType "Admin"}}
+                    <ul class="main_nav">
+                        <li class="menu_mm" id="home"><a href="/">Trang chủ</a></li>
+                        <li class="menu_mm" id="categoryManagement"><a href="/admin/categoryManagement">Quản lý lĩnh vực</a></li>
+                        <li class="menu_mm" id="courseManagement"><a href="/admin/courseManagement">Quản lý khoá học</a></li>
+                        <li class="menu_mm" id="userManagement"><a href="/admin/userManagement">Quản lý người dùng</a></li>
+                    </ul>
+                    <div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>
+                    {{else}}
                     <li class="menu_mm" id="home"><a href="/">Trang chủ</a></li>
-                    <li class="menu_mm" id="about"><a href="/about">Về chúng tôi</a></li>
                     <li class="menu_mm" id="courses"><a href="/courses">Khóa học</a></li>
-                    <li class="menu_mm" id="contact"><a href="/contact">Contact</a></li>
+                    <li class="menu_mm">
+                        <a href="#categoriesMenu" data-toggle="collapse" aria-expanded="false" class="menu_mm">Lĩnh vực <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                        <ul class="collapse list-unstyled" id="categoriesMenu">
+                            {{#each session.categories}}
+                            <a class="dropdown-item" href="/category/{{this.name}}">{{this.name}} <i class="fa fa-angle-left" aria-hidden="true"></i></a>
+                            {{#if this.subCategory}} {{#each this.subCategory}}
+                            <a class="dropdown-item pr-5" href="/category/{{this.name}}">{{this.name}} <i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
+                            {{/each}} {{/if}}
+                            {{/each}}
+                        </ul>
+                    </li>
+                    <li class="menu_mm" id="about"><a href="/about">Về chúng tôi</a></li>
+                    {{/ifEquals}}
                 </ul>
             </nav>
         </div>

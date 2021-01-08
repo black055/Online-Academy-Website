@@ -1,19 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
-const mailer = require('nodemailer');
+const sendMail = require('../../mailer');
 const userModel = require('../../models/user.model');
 const teacherModel = require('../../models/teacher.model');
 const categoryModel = require('../../models/category.model')
 const {User} = require('../../utils/db');
 
-const transporter = mailer.createTransport({
-  service: 'gmail',
-  auth: {
-      user: 'verifycourseonline@gmail.com',
-      pass: '22102000shch',
-  }
-})
 
 router.get("/", async (req, res) => {
   const message = req.flash('message');
@@ -105,15 +98,8 @@ router.post("/changeEmail", async (req, res) => {
       req.session.user = req.user;
       user.save();
 
-      let mailOptions = {
-          from: 'verifycourseonline@gmail.com',
-          to: req.body.newEmail,
-          subject: 'You have change your email successfully!',
-          html: '<h3>Here is you OTP code: <strong style="font-size: 15px;">' + otp + '</strong></h3>',
-      }
-      transporter.sendMail(mailOptions, function (err, data) {
-          if (err) console.log(err);
-      })
+      const url = req.protocol + "://" + req.headers.host + "/register/" + user._id + "/" + otp;
+      sendMail(url, req.user._id, req.body.newEmail, "Vui lòng xác thực tài khoản!");
 
       res.redirect('/register/OTP');
     } else {
