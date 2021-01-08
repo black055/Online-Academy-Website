@@ -1,59 +1,84 @@
-<form action="/course/add_course" method="POST" class="form" enctype="multipart/form-data">
+<div class="container-fluid mx-auto col-lg-10">
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="edit_menu_bar d-flex">
+        <button class="btn menu-item post-bar active">
+          <i class="fas fa-edit mr-1"></i>
+          Post
+        </button>
+        <button class="btn menu-item thumbnail-bar">
+          <i class="fas fa-image mr-1"></i>
+          Image
+        </button>
+        <button class="btn menu-item video-bar">
+          <i class="fas fa-video mr-1"></i>
+          Video
+        </button>
+        <button class="btn menu-item category-bar">
+          <i class="fas fa-hand-lizard mr-1"></i>
+          Category
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<form action="/course/add_course" method="POST" class="form col-lg-10 mx-auto" enctype="multipart/form-data">
   <div class="edit h-100 w-100">
     <div class="edit_chapter_container">
       <div class="container-fluid mx-auto">
-        <div class="row">
-          <div class="col-lg-7">
+        <div class="row row-content post-row">
+          <div class="col-lg-8">
             <div class="edit_form">
-              <div class="edit_chapter_title">Đăng khóa học</div>
               <div>
-                <div class="form_title">Tên khóa học</div>
-                <input type="text" class="comment_input" name="name" required="required">
+                <input type="text" class="comment_input" placeholder="Tên khóa học" name="name" required="required">
               </div>
               <div>
-                <div class="form_title">Mô tả ngắn gọn nội dung khóa học</div>
-                <input type="text" class="comment_input" name="briefDes" required="required">
+                <input type="text" class="comment_input" placeholder="Mô tả ngắn" name="briefDes" required="required">
               </div>
               <div>
-                <div class="form_title">Yêu cầu của khóa học</div>
-                <input type="text" class="comment_input" name="require" required="required">
+                <input type="text" class="comment_input" placeholder="Yêu cầu" name="require" required="required">
               </div>
               <div>
-                <div class="form_title">Mục tiêu khóa học</div>
-                <input type="text" class="comment_input" name="purpose" required="required">
+                <input type="text" class="comment_input" placeholder="Mục tiêu" name="purpose" required="required">
               </div>
               <div>
                 <div class="form_title">Mô tả chi tiết nội dung khóa học</div>
                 <textarea id="descEditor" name="description"></textarea>
               </div>
 
-              <div class="form-group">
-                <label class="form_title" for="category">Lĩnh vực:</label>
-                <select name="category" class="form-control" id="category">
-                  {{#if categoryList}}
-                  {{#each categoryList as |c|}}
-                  <option {{#ifEquals c.parent "null" }}class="font-weight-bold" {{/ifEquals}}>{{c.name}}</option>
-                  {{/each}}
-                  {{else}}
-                  <option>Chưa có dữ liệu</option>
-                  {{/if}}
-                </select>
-              </div>
-
               <div>
                 <div class="form_title">Giá</div>
                 <input type="number" class="comment_input" name="price" min="0" value="0" required="required">
               </div>
-              <div class="d-flex flex-column justify-content-center">
-                <label for="isFinished" class="form_title font-weight-bold">Hãy check nếu nội dung khóa học đã hoàn
-                  thành</label>
-                <div class="d-flex align-items-center">
-                  <input type="checkbox" name="isFinished" id="cbProgress">
-                  <span id="cbProgText" class="font-weight-bold">Đã hoàn thành</span>
+
+              <div>
+                <div class="form_title">Tỉ lệ giảm giá</div>
+                <div class="number d-flex justify-content-center align-items-center">
+                  <div class="btn btn-outline-secondary minus-sale-off"><i class="fas fa-minus"></i></div>
+                  <input type="number" class="comment_input" name="saleOff" id="saleOff" min="0" max="100" value="0">
+                  <div class="btn btn-outline-secondary plus-sale-off"><i class="fas fa-plus"></i></div>
+                </div>
+                <input type="range" id="points-sale-off" min="0" max="100" class="w-100" value="0">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row row-content thumbnail-row" style="display: none;">
+          <div class="col-lg-8 text-center">
+
+            {{!-- Ảnh đại diện khóa học --}}
+            <div class="course_thumbnail">
+              <div class="edit_chapter_title">Ảnh đại diện của khóa học</div>
+              <div class="thumbnail_box d-flex w-100 justify-content-center">
+                <div class="file-loading">
+                  <input id="thumbnail" name="thumbnail" type="file" class="mt-1">
                 </div>
               </div>
             </div>
-
+          </div>
+        </div>
+        <div class="row row-content video-row" style="display: none;">
+          <div class="col-lg-8">
             <div class="upvideo">
               <div class="edit_chapter_title">
                 <div class="d-flex justify-content-between">
@@ -73,31 +98,32 @@
               </div>
             </div>
           </div>
-
-          <div class="col-lg-5 text-center">
-
-            {{!-- Ảnh đại diện khóa học --}}
-            <div class="course_thumbnail">
-              <div class="edit_chapter_title">Ảnh đại diện của khóa học</div>
-              <div class="thumbnail_box d-flex w-100 justify-content-center">
-                <div class="file-loading">
-                  <input id="thumbnail" name="thumbnail" type="file" class="mt-1">
-                </div>
+        </div>
+        <div class="row row-content category-row" style="display: none;">
+          <div class="col-lg-8">
+            <div class="form-group">
+              <label class="form_title" for="category">Lĩnh vực:</label>
+              <input type="text" class="comment_input" id="category" placeholder="Tìm lĩnh vực..." name="category"
+                required="required">
+              <div class="list-items">
+                {{#if categoryList}}
+                {{#each categoryList as |c|}}
+                <div class="category-item{{#ifEquals c.parent "null" }} font-weight-bold {{/ifEquals}}"
+                  >{{c.name}}</div>
+                {{/each}}
+                {{else}}
+                <div>Chưa có dữ liệu</div>
+                {{/if}}
               </div>
-            </div>
-            <div>
-              <div class="form_title">Thông tin giảm giá</div>
-              <div class="number d-flex justify-content-center align-items-center">
-                <div class="btn btn-outline-secondary minus-sale-off"><i class="fas fa-minus"></i></div>
-                <input type="number" class="comment_input" name="saleOff" id="saleOff" min="0" max="100" value="0">
-                <div class="btn btn-outline-secondary plus-sale-off"><i class="fas fa-plus"></i></div>
-              </div>
-              <input type="range" id="points-sale-off" min="0" max="100" class="w-100" value="0">
             </div>
           </div>
         </div>
-        <div class="d-flex justify-content-center">
-          <button type="submit" class="comment_button trans_200 mx-auto w-100">Đăng</button>
+        <div class="d-flex justify-content-between col-lg-8">
+          <div class="d-flex flex-column">
+            <input type="checkbox" name="isFinished" id="cbProgress" style="display: none;">
+            <button type="button" class="btn btn-footer btn-progress font-weight-bold"><i class="fas fa-minus btn-prog-icon mr-1"></i>Tiến độ</button>
+          </div>
+          <div><button type="submit" class="btn btn-footer btn-submit-course font-weight-bold">Đăng</button></div>
         </div>
       </div>
     </div>
@@ -206,8 +232,8 @@
       </div>
       <input type="text" class="comment_input" name="chapter_title" required>
       <input name="chapter" type="file" class="video_chapter">
-    </div>
-  </div>`)
+      </div>
+    </div>`)
 
     $('.video_chapter').fileinput({
       theme: "fas",
@@ -243,6 +269,63 @@
         .find('.btn-rm-chapter').show();
     })
   })
-
+  $('.menu-item').click(function () {
+    $('.menu-item').removeClass('active');
+    $(this).addClass('active');
+    $('.row-content').hide();
+    if ($(this).hasClass('post-bar')) $('.post-row').show();
+    if ($(this).hasClass('thumbnail-bar')) $('.thumbnail-row').show();
+    if ($(this).hasClass('video-bar')) $('.video-row').show();
+    if ($(this).hasClass('category-bar')) $('.category-row').show();
+  })
+  $('.category-item').click(function () {
+    $('.category-item').css({
+      "background-color": "",
+      "color": "",
+      "opacity": ""
+    })
+    $(this).css({
+      "background-color": "#24A0ED",
+      "color": "#fff",
+      "opacity": "0.8"
+    })
+    $('#category').val($(this).html())
+  })
+  $('#category').keyup(() => {
+    let input = $('#category').val().toUpperCase();
+    $('.category-item').each(function () {
+      if ($(this).html().toUpperCase().indexOf(input) > -1)
+        $(this).show()
+      else $(this).hide();
+      if ($(this).html().toUpperCase() !== input)
+        $(this).css({
+          "background-color": "",
+          "color": "",
+          "opacity": ""
+        })
+    })
+  })
+  $('.btn-progress').click(function() {
+    if ($(this).children('i').hasClass('fa-minus')) {
+      $('.btn-prog-icon').removeClass('fa-minus');
+      $('.btn-prog-icon').addClass('fa-check');
+      $(this).css({
+        "color": "#fff",
+        "background-color": "rgb(255, 84, 91)",
+        "border-color": "transparent"
+      })
+      $('#cbProgress').prop('checked', true);
+    }
+    else {
+      $('.btn-prog-icon').removeClass('fa-check');
+      $('.btn-prog-icon').addClass('fa-minus');
+      $(this).css({
+        "color": "",
+        "background-color": "",
+        "border-color": ""
+      })
+      $('#cbProgress').prop('checked', false);
+    }
+  })
 </script>
 {{/section}}

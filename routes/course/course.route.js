@@ -104,7 +104,7 @@ router.post('/add_course', async (req, res) => {
             course.price = req.body.price;
             course.require = req.body.require;
             course.purpose = req.body.purpose;
-            course.saleOff = req.body.saleOff;
+            course.saleOff = req.body.price - req.body.price * req.body.saleOff / 100;
             course.teacher = req.session.user._id.toString();
             course.isFinished = req.body.isFinished ? true : false;
 
@@ -183,7 +183,7 @@ router.post('/update/:id', async (req, res) => {
             course.purpose = req.body.purpose;
             course.description = req.body.description;
             course.isFinished = req.body.isFinished ? true : false;
-            course.saleOff = req.body.saleOff;
+            course.saleOff = req.body.price - req.body.price * req.body.saleOff / 100;
             course.lastModified = new Date();
 
             const chapter_title = req.body.chapter_title;
