@@ -238,6 +238,35 @@
 	{
 		top: 0px;
 	}
+	.courses_search_select.option-item {
+		margin: 0px
+	}
+	input.courses_search_input {
+		order: 1;
+		flex: 1;
+		margin-right: 0;
+	}
+	#category_select {
+		order: 3;
+		display: none;
+	}
+	#courses_search_select {
+		order: 4;
+		display: none;
+	}
+	.courses_search_button {
+		order: 2;
+	}
+	#courses_search_form {
+		flex-wrap: wrap;
+	}
+	.courses_search_container,
+	.courses_search_container #courses_search_form {
+		height: auto;
+	}
+	.filter_box {
+		display: flex;
+	}
 }
 
 /************
@@ -277,7 +306,23 @@
 
 @media only screen and (max-width: 539px)
 {
-	
+	.courses_search_input {
+		width: auto;
+	}
+	.courses_search_button span {
+		display: none;
+	}
+	.courses_search_button::after {
+		content: '\f002';
+		font-family: "Font Awesome 5 Free"; 
+		font-weight: 900;
+	}
+	.courses_search_button {
+		width: 50px;
+	}
+	.courses_search_container {
+		padding: 10px 20px;
+	}
 }
 
 /************

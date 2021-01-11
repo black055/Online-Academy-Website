@@ -63,6 +63,14 @@ $(document).ready(function()
 		{
 			header.removeClass('scrolled');
 		}
+		let previousScroll = 0;
+    $(window).scroll(function(){
+			 let currentScroll = $(this).scrollTop();
+       if (currentScroll < previousScroll){
+				$('.header').removeClass('scrolled');
+       }	
+       previousScroll = currentScroll;
+    });
 	}
 
 	/* 

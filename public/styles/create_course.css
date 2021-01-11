@@ -289,3 +289,13 @@ div::-webkit-scrollbar-thumb:hover {
   border: 1px solid transparent;
   color: #fff;
 }
+
+@media only screen and (max-width: 767px)
+{
+  .menu-item span{
+    display: none;
+  }
+  .header.scrolled {
+    top: -90px
+  }
+}

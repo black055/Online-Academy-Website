@@ -328,6 +328,9 @@
 	{
 		padding-left: 0px;
 	}
+	.header.scrolled {
+		top: -90px;
+	}
 }
 
 /************

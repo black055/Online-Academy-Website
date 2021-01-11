@@ -167,7 +167,7 @@
                 </div>
             </div>
             <div class="search">
-                <form action="/courses/search" method="post" class="header_search_form menu_mm">
+                <form action="/courses/search" method="post" class="header_search_form menu_mm d-flex flex-wrap">
                     <input type="search" name="keyword" class="search_input menu_mm" placeholder="Tìm kiếm..." required="required">
                     <select name="category" id="categorySearch" class="category_input menu_mm">
                             <option value="null" selected="selected">Lựa chọn lĩnh vực</option>
@@ -211,6 +211,24 @@
                     {{/ifEquals}}
                 </ul>
             </nav>
+            <div class="ml-auto row">
+                {{#if session.user}}
+                {{#ifEquals session.user.userType "Admin"}}
+                <div class="login_menu_nav" style="margin-right: 10px;"><a href="/admin"><i class="fas fa-user"
+                            style="margin-right: 10px;"></i>Admin</a></div>
+                {{else}}
+                <div class="login_menu_nav" style="margin-right: 10px;"><a href="/profile"><i class="fas fa-user"
+                            style="margin-right: 10px;"></i>{{session.user.name}}</a></div>
+                {{/ifEquals}}
+                <div class="login_menu_nav" style="margin-right: 10px;"><a href="/logout"><i class="fas fa-sign-out-alt"
+                            style="margin-right: 10px;"></i></a></div>
+                {{else}}
+                <div class="login_menu_nav" style="margin-right: 30px;"><a href="/register"><i class="fas fa-user-plus"
+                            style="margin-right: 10px;"></i>Đăng ký</a></div>
+                <div class="login_menu_nav" style="margin-right: 10px;"><a href="/login"><i class="fas fa-lock"
+                            style="margin-right: 10px;"></i>Đăng nhập</a></div>
+                {{/if}}
+            </div>
         </div>
 
         <div class="body_container">
