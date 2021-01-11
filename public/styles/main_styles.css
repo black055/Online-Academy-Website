@@ -1496,3 +1496,9 @@ option[class='parent']{
 	position: relative;
 	font-size: 16px;
 }
+.login_menu_nav a{
+	color: #000;
+	font-weight: 700;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+}

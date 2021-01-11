@@ -1725,3 +1725,32 @@ section
 	margin-right: 10px;
 	margin-left: 10px;
 }
+
+.filter_box {
+	display: none;
+	margin-top: 8px;
+}
+
+.dropdown-category-list, .dropdown-sort {
+	position: absolute;
+	top: 2.6rem;
+	background-color: #fff;
+	color: #000;
+	border-radius: 5px;
+	z-index: 1;
+	width: 220px;
+	box-shadow: 0 0 10px gray;
+	padding: 15px;
+	line-height: 1.5rem;
+}
+
+.dropdown-sort {
+	right: 0;
+}
+
+.category_box, .sort_box {
+	padding: 3px 8px 8px 0px;
+	font-family: 'Roboto Slab', serif;
+	letter-spacing: 0.05em;
+	font-size: 0.9rem;
+}
