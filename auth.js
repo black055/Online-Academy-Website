@@ -5,6 +5,8 @@ const bcrypt = require('bcrypt');
 const LogcalStrategy = require('passport-local').Strategy;
 const FacebookStrategy = require('passport-facebook').Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const TwitterStrategy = require('passport-twitter').Strategy;
+const GithubStrategy = require('passport-github2').Strategy;
 
 passport.use(new LogcalStrategy({ usernameField: 'email',passwordField: 'password'}, async (username, password, done) => {
     const user = await User.findOne({'email': username});
@@ -81,7 +83,32 @@ passport.use(new GoogleStrategy({
         user.save();
     }
     done(null, user);
-}))
+}));
+
+passport.use(new GithubStrategy({
+    clientID: "b9b9b2388724cfbd9211",
+    clientSecret: "11dde68a97695c8591348d175d5d31d0b8d978ad",
+    callbackURL: "http://localhost:3000/github",
+}, async (accessToken, refreshToken, profile, done) => {
+    console.log(profile);
+    let user = await User.findOne({'gitID': profile.id});
+    if(!user) {
+        user = new User({
+            email: "",
+            name: profile.displayName, 
+            password: "",
+            fbID: "", 
+            isValidated: true,
+            bthday: null,
+            ggID: "",
+            gitID: profile.id,
+            courses: [],
+            userType: 'Student',
+            watchList: [],})
+        user.save();
+    }
+    done(null, user);
+}));
 
 passport.serializeUser(function(user, done) {
     done(null, user);

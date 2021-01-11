@@ -20,5 +20,13 @@ module.exports = {
 
     async updateTime (id_user, id_course, time) {
         return await Process.findOneAndUpdate({"id_user": id_user, "id_course": id_course}, {$set: {"timeSave": time}});
+    },
+
+    async getAll() {
+        return await Process.find();
+    },
+
+    async deleteProcess(id) {
+        return await Process.findOneAndDelete({"id": id});
     }
 }

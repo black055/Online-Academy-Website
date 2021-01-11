@@ -25,6 +25,7 @@ const mdwIsLoged = require("./middlewares/Loged.mdw");
 const cartMiddleware = require('./middlewares/cart.mdw');
 const categoriesMiddleware = require('./middlewares/categories.mdw');
 const returnTomdw = require('./middlewares/returnTo.mdw');
+const clearProcmdw = require('./middlewares/clearProcess.mdw');
 
 // Script insert data
 const insertData = require('./script_insert');
@@ -121,6 +122,9 @@ app.use(cartMiddleware);
 // Middleware for get categories and course in cart for student
 app.use(categoriesMiddleware);
 
+// Middleware for clear process that does not exist
+app.use(clearProcmdw);
+
 app.use("/", mdwIsValidated, require('./routes/home/home.route'));
 
 app.get("/about", mdwIsValidated, async (req, res) => {
@@ -151,6 +155,12 @@ app.get("/facebook", passport.authenticate("facebook", {failureRedirect: "/login
 });
 app.get("/logingg", returnTomdw, passport.authenticate("google"));
 app.get("/google", passport.authenticate("google", {failureRedirect: "/login",}), function(req, res) {
+  res.redirect(req.session.returnTo || '/');
+  delete req.session.returnTo;
+});
+
+app.get("/logingithub", returnTomdw, passport.authenticate("github"));
+app.get("/github", passport.authenticate("github", {failureRedirect: "/login",}), function(req, res) {
   res.redirect(req.session.returnTo || '/');
   delete req.session.returnTo;
 });
