@@ -243,6 +243,8 @@
 	}
 	input.courses_search_input {
 		order: 1;
+		flex: 1;
+		margin-right: 0;
 	}
 	#category_select {
 		order: 3;

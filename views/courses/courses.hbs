@@ -319,6 +319,7 @@
         $(`#courses_search_select option[value="${$(this).data('value')}"]`).attr('selected', true);
         $('.dropdown-sort').hide()
         $('.sort_box').css('color', $(this).css('color'))
+        $('.option-item').trigger('change')
     })
 </script>
 {{/section}}
