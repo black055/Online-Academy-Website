@@ -1,8 +1,8 @@
 <div style="display: flex;margin: 150px 100px 100px 100px;" id="lecture">
     <div class="video">
         <div class="course_title">{{course.name}}</div>
-        <h3>Giáo viên: <a href="#" id="teacher">Lê Thành Việt</a></h3>
-        <h4 style="margin-bottom: 20px;">Lĩnh vực: <a href="#" id="category">Lập trình Web</a></h4>
+        <h3>Giáo viên: <a href="/{{teacher._id}}" id="teacher">{{teacher.name}}</a></h3>
+        <h4 style="margin-bottom: 20px;">Lĩnh vực: <a href="#" id="category">{{course.category}}</a></h4>
         <video controls crossorigin playsinline poster={{course.thumbnail}} class="js-player" id="video_chapter" autoplay>
             <source src="{{url}}" type="video/mp4" />
         </video>
@@ -29,7 +29,7 @@
 <link rel="stylesheet" type="text/css" href="/styles/course_responsive.css">
 <style>
     .plyr {
-        width: 1200px;
+        width: 950px;
         margin-bottom: 20px;
     }
 
@@ -53,7 +53,7 @@
         color: #14bdee;
     }
 
-    @media only screen and (max-width: 1530px) {
+    @media only screen and (max-width: 1000px) {
         #lecture {
             display: block !important;
         }
@@ -95,15 +95,101 @@
     })
 
     if ('{{session.user}}') {
-        var video = document.getElementById('video_chapter');
-        const item = '{{session.user._id}}' + '{{url}}';
-        if (localStorage.hasOwnProperty(item)) {
-            video.currentTime = localStorage.getItem(item);
-        }
-
-        setInterval(() => {
-            localStorage.setItem(item, video.currentTime);
-        },1000);
+        let timer;
+        let saveTime;
+        let video = document.getElementById('video_chapter');
+        video.currentTime = {{timeSave}};
+        $('#video_chapter').bind('play', function() {
+            saveTime = setInterval(() => {
+                let time = video.currentTime;
+                $.post(`/courses/process/{{course._id}}/{{id_lecture}}/${time}`, function(data) {});
+                if (video.currentTime == video.duration) {
+                    clearInterval(saveTime);
+                }
+            },1000);
+        });
     }
+
+    {{#if registered}} 
+        {{#if isEnded}}
+        {{else}}
+            $('#video_chapter').on('ended', function() {
+                let text = "Bài tiếp theo sẽ được phát trong #1 giây nữa ...";
+                let count = 5;
+                timer = setInterval(() => {
+                    console.log(count);
+                    --count;
+                    if (count >= 0) {
+                        $('.swal-text').text(text.replace(/#1/, count));
+                    }
+                    if (count < 0) {
+                        window.location = `/courses/{{course._id}}/{{nextChapter}}`;
+                    }
+                }, 1000);
+                swal({
+                    title: 'Hoàn thành bài học !',
+                    text: text.replace(/#1/, count),
+                    type: 'question',
+                    showCancelButton: true,
+                    buttons: {cancel: "Cancel", confirm: "OK"},
+                }).then(result => {
+                    if (result)
+                        window.location = `/courses/{{course._id}}/{{nextChapter}}`;
+                    else {
+                        //count = 5;
+                        clearInterval(timer);
+                    }
+                });
+            });
+        {{/if}}
+    {{else}}
+        let nextChapter = {{nextChapter}};
+        if (nextChapter < 2) {
+            $('#video_chapter').on('ended', function() {
+                let text = "Bài tiếp theo sẽ được phát trong #1 giây nữa ...";
+                let count = 5;
+                timer = setInterval(() => {
+                    console.log(count);
+                    --count;
+                    if (count >= 0) {
+                        $('.swal-text').text(text.replace(/#1/, count));
+                    }
+                    if (count < 0) {
+                        window.location = `/courses/{{course._id}}/{{nextChapter}}`;
+                    }
+                }, 1000);
+                swal({
+                    title: 'Hoàn thành bài học !',
+                    text: text.replace(/#1/, count),
+                    type: 'question',
+                    showCancelButton: true,
+                    buttons: {cancel: "Cancel", confirm: "OK"},
+                }).then(result => {
+                    if (result)
+                        window.location = `/courses/{{course._id}}/{{nextChapter}}`;
+                    else {
+                        //count = 5;
+                        clearInterval(timer);
+                    }
+                });
+            });
+        } else if (nextChapter == 2) {
+            $('#video_chapter').on('ended', function() {
+                swal({
+                    title: "Đã xem hết video miễn phí !",
+                    text: "Bạn cần đăng ký khóa học để xem phần còn lại.",
+                    icon: "warning",
+                    buttons: true,
+                    showCancelButton: false,
+                }).then((accept) => {
+                    if (accept) {
+                        window.location = `/courses/{{course._id}}`;
+                    }
+                });
+            });
+        } else {
+            window.location = `/courses/{{course._id}}`;
+        }
+    {{/if}}
 </script>
 {{/section}}

@@ -4,6 +4,7 @@ const router = express.Router();
 const coursesModel = require('../../models/courses.model');
 const userModel = require('../../models/user.model');
 const teacherModel = require('../../models/teacher.model');
+const processModel = require('../../models/process.model');
 const { clearConfigCache } = require('prettier');
 
 router.get('/', async (req, res) => {
@@ -78,6 +79,7 @@ router.get('/registerAllCourses', async (req, res) => {
             let newCourse = {};
             newCourse[cart[i]] = {rate: 0, comment: []};
             arrCourses.push(newCourse);
+            await processModel.addNewProcess(student._id, course._id);
         }
         student.courses = arrCourses;
         student.cart = [];
@@ -132,30 +134,35 @@ router.get('/register/:id', async (req, res) => {
     } else {
         let student = await userModel.getUser(req.user._id);
         let courseReg = await coursesModel.getCourse(req.params.id);
-        courseReg.students += 1;
-        courseReg.soldInWeek += 1;
-        courseReg.save();
-        categoryModel.updateSoldInWeek(req.params.id);
-        let courses = student.courses;
+        if (typeof student.courses[courseReg._id] != 'undefined') {
+            res.redirect(`/courses/${req.params.id}`);
+        } else {
+            courseReg.students += 1;
+            courseReg.soldInWeek += 1;
+            courseReg.save();
+            categoryModel.updateSoldInWeek(req.params.id);
+            await processModel.addNewProcess(student._id, courseReg._id);
+            let courses = student.courses;
 
-        let cart = [];
-        cart = student.cart;
-        const course = {};
-        course[req.params.id] = {rate: 0, comment: []};
-        courses.push(course);
-        if (cart.includes(req.params.id))
-            cart = cart.filter(course => course.toString() != req.params.id);
-        await userModel.addCourse(req.user._id, courses);
-        await userModel.addCart(req.user._id, cart);
-        student = await userModel.getUser(req.user._id);
-        student.save(function(err) {
-            if (err) console.log(err);
-            req.session.user = student;
-            req.logIn(student, function(e) {
-                if (e) console.log(e);
-                res.redirect(`/courses/${req.params.id}`);
-            })
-        });
+            let cart = [];
+            cart = student.cart;
+            const course = {};
+            course[req.params.id] = {rate: 0, comment: []};
+            courses.push(course);
+            if (cart.includes(req.params.id))
+                cart = cart.filter(course => course.toString() != req.params.id);
+            await userModel.addCourse(req.user._id, courses);
+            await userModel.addCart(req.user._id, cart);
+            student = await userModel.getUser(req.user._id);
+            student.save(function(err) {
+                if (err) console.log(err);
+                req.session.user = student;
+                req.logIn(student, function(e) {
+                    if (e) console.log(e);
+                    res.redirect(`/courses/${req.params.id}`);
+                })
+            });
+        }
     }
 });
 
@@ -336,8 +343,20 @@ router.post('/search', async (req, res) => {
     });
 });
 
+router.post('/process/:id_course/:id_lecture/:time', async (req, res) => {
+    if (req.user) {
+        let process = await processModel.getProcess(req.user._id, req.params.id_course);
+        let arr = [...process.timeSave];
+        arr[req.params.id_lecture] = req.params.time;
+        process = await processModel.updateTime(req.user._id, req.params.id_course, arr);
+        process.save();
+        res.send(true);
+    } else res.send(false);
+});
+
 router.get('/:id_course/:id_lecture', async (req, res) => {
     const course = await coursesModel.getCourse(req.params.id_course);
+    const teacher = await teacherModel.getTeacher(course.teacher);
     const url = course.chapters[Number(req.params.id_lecture)].video;
     const title = course.chapters[Number(req.params.id_lecture)].title;
     let isRegistered = false;
@@ -350,7 +369,31 @@ router.get('/:id_course/:id_lecture', async (req, res) => {
             }
         }
     };
-    res.render('courses/chapter', {course: course, url: url, title: title, registered: isRegistered});
+    let nextChapter = 0;
+    let timeSave = 0;
+    let isEnded = false;
+    if (req.user) {
+        let process = await processModel.getProcess(req.user._id, req.params.id_course);
+        process.currentChapter = req.params.id_lecture;
+        process.save();
+        timeSave = process.timeSave[req.params.id_lecture];
+        nextChapter = process.currentChapter >= (course.chapters.length - 1) ? process.currentChapter : (process.currentChapter + 1);
+        isEnded = nextChapter == process.currentChapter ? true : false;
+    } else {
+        nextChapter = +req.params.id_lecture;
+        nextChapter++;
+    }
+    res.render('courses/chapter', {
+        course: course, 
+        url: url, 
+        title: title, 
+        registered: isRegistered,
+        teacher: teacher,
+        timeSave: timeSave,
+        id_lecture: req.params.id_lecture,
+        nextChapter: nextChapter,
+        isEnded: isEnded,
+    });
 });
 
 router.get('/:id_course', async (req, res) => {
@@ -414,6 +457,13 @@ router.get('/:id_course', async (req, res) => {
     info_teacher.email = teacher.email;
     info_teacher.numCourse = (await coursesModel.getCourseOfTeacher(course.teacher)).length;
     info_teacher.phone = teacher.phone;
+    let currentChapter = 0;
+    if (req.user) {
+        const process = await processModel.getProcess(req.user._id, course._id);
+        if (process != null) {
+            currentChapter = process.currentChapter;
+        }
+    }
     res.render('courses/course', {
         course: course, 
         registered: isRegistered, 
@@ -423,6 +473,7 @@ router.get('/:id_course', async (req, res) => {
         comments: allComments,
         sameCourses: sameCourses,
         teacher: info_teacher,
+        currentChapter: currentChapter,
     });
 });
 

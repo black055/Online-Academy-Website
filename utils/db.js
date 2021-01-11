@@ -57,6 +57,13 @@ const course = new Schema({
     createdDate: Date,
     require: String,
     purpose: String
+});
+
+const process = new Schema({
+    id_user: String,
+    currentChapter: Number,
+    id_course: String,
+    timeSave: Array,
 })
 
 const category = Schema({
@@ -74,4 +81,5 @@ module.exports = {
     Admin: mongoose.model('Admin', admin),
     Course: mongoose.model('Course', course),
     Category: mongoose.model('Category', category),
+    Process: mongoose.model('Process', process),
 };

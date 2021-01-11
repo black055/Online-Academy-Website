@@ -1496,3 +1496,20 @@ option[class='parent']{
 	position: relative;
 	font-size: 16px;
 }
+
+.total_price {
+	margin: 10px 24px 10px 24px; 
+	border-top: 1px solid; 
+	font-size: 20px;
+	color: #000;
+	font-weight: 700;
+}
+
+.swal-button--cancel {
+	background-color: #dc3545;
+	color: #fff;
+}
+
+.swal-button--cancel:hover {
+	background-color: #dc3545ab !important
+}

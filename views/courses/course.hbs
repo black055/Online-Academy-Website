@@ -315,13 +315,13 @@
                                     <img class="col-3" style="padding-left:0px; padding-right:0px; width: 100px !important; max-width: none !important;" src="${data[i].thumbnail}" alt="">
                                     <div class="col-9" style="display: block;">
                                         <h5 style="margin-bottom: 0px !important;">${data[i].name}</h5>
-                                        <p>Giá :$${price}</p>
+                                        <p style="color:#17a2b8">Giá :$${price}</p>
                                     </div>
                                 </div>
                             </button>`
                     total_price += price;
                 }
-                cart += `<p style="margin: 10px 24px 10px 24px; border-top: 1px solid; font-size: 20px;">Tổng tiền: $${total_price}</p>`
+                cart += `<p class="total_price">Tổng tiền: $${total_price}</p>`
                 cart += `<button class="dropdown-item btn btn-danger mx-auto col-4 text-center pay" type="button" style="background-color: #bd2130; color: #fff; padding: 7px 7px;">Thanh toán</button>`;
                 $('.cart').html(cart);
             } else {
@@ -343,13 +343,13 @@
                                     <img class="col-3" style="padding-left:0px; padding-right:0px; width: 100px !important; max-width: none !important;" src="${data[i].thumbnail}" alt="">
                                     <div class="col-9" style="display: block;">
                                         <h5 style="margin-bottom: 0px !important;">${data[i].name}</h5>
-                                        <p>Giá : $${price}</p>
+                                        <p style="color:#17a2b8">Giá : $${price}</p>
                                     </div>
                                 </div>
                             </button>`
                     total_price += price;
                 }
-                cart += `<p style="margin: 10px 24px 10px 24px; border-top: 1px solid; font-size: 20px;">Tổng tiền: $${total_price}</p>`
+                cart += `<p class="total_price">Tổng tiền: $${total_price}</p>`
                 cart += `<button class="dropdown-item btn btn-danger mx-auto col-4 text-center pay" type="button" style="background-color: #bd2130; color: #fff; padding: 7px 7px;">Thanh toán</button>`;
                 $('.cart').html(cart);
             } else {
@@ -399,16 +399,7 @@
 
     $('body').on('click','.watch', function() {
         if ("{{course.chapters}}") {
-            if ("{{course.chapters.0.video}}") {
-                window.location = `/courses/{{course._id}}/0`
-            } else {
-                swal({
-                    title: "Sorry !",
-                    text: "Khóa học chưa được bổ sung nội dung !",
-                    icon: "warning",
-                    dangerMode: true,
-                });
-            }
+            window.location = `/courses/{{course._id}}/{{currentChapter}}`;
         } else {
             swal({
                 title: "Sorry !",

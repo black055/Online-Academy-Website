@@ -379,14 +379,14 @@
                         <img class="col-3" style="padding-left:0px; padding-right:0px; padding-right:0px; width: 100px !important; max-width: none !important;" src="{{this.thumbnail}}" alt="">
                         <div class="col-9" style="display: block;">
                             <h5 style="margin-bottom: 0px !important;">{{this.name}}</h5>
-                            <p>Giá : $${price}</p>
+                            <p style="color:#17a2b8">Giá : $${price}</p>
                         </div>
                     </div>
                 </button>
             </a>`
             total_price += price;
             {{/each}}
-            cart += `<p style="margin: 10px 24px 10px 24px; border-top: 1px solid; font-size: 20px;">Tổng tiền: $${total_price}</p>`
+            cart += `<p class="total_price">Tổng tiền: $${total_price}</p>`
             cart += `<button class="dropdown-item btn btn-danger mx-auto col-4 text-center pay" type="button" style="background-color: #bd2130; color: #fff; padding: 7px 7px;">Thanh toán</button>`;
             $('.cart').html(cart);
         } else {
