@@ -164,6 +164,13 @@ app.get("/github", passport.authenticate("github", {failureRedirect: "/login",})
   res.redirect(req.session.returnTo || '/');
   delete req.session.returnTo;
 });
+
+app.get("/logintwitter", returnTomdw, passport.authenticate("twitter"));
+app.get("/twitter", passport.authenticate("twitter", {failureRedirect: "/login",}), function(req, res) {
+  res.redirect(req.session.returnTo || '/');
+  delete req.session.returnTo;
+});
+
 app.get("/logout", (req, res) => {
   req.logOut();
   req.session.destroy();

@@ -205,6 +205,16 @@
 
                                 <!-- Feature -->
                                 <div class="feature d-flex flex-row align-items-center justify-content-start">
+                                    <div class="feature_title"><i class="fas fa-tasks"></i><span>Trạng thái</span></div>
+                                    {{#if course.isFinished}}
+                                        <div class="feature_text ml-auto">Đã hoàn chỉnh</div>
+                                    {{else}}
+                                        <div class="feature_text ml-auto">Đang cập nhật</div>
+                                    {{/if}}
+                                </div>
+
+                                <!-- Feature -->
+                                <div class="feature d-flex flex-row align-items-center justify-content-start">
                                     <div class="feature_title"><i class="fas fa-pen"></i><span>Lần cập nhật cuối</span></div>
                                     <div class="feature_text ml-auto lastModified">{{course.lastModified}}</div>
                                 </div>

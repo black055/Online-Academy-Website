@@ -10,6 +10,7 @@ const user = new Schema({
     fbID: String,
     ggID: String,
     gitID: String,
+    twID: String,
     isValidated: Boolean,
     OTP: Number,
     bthday: Date,

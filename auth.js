@@ -48,15 +48,22 @@ passport.use(new FacebookStrategy({
         user = new User({
             email: email,
             name: last_name + first_name, 
+            phone: "",
+            gender: "",
             password: "",
             fbID: id, 
             isValidated: true,
             bthday: null,
             ggID: '',
             gitID: "",
+            twID: "",
+            OTP: null,
+            bthday: null,
             courses: [],
             userType: 'Student',
-            watchList: [],})
+            watchList: [],
+            cart: [],
+        })
         user.save();
     }
     done(null, user);
@@ -73,15 +80,22 @@ passport.use(new GoogleStrategy({
         user = new User({
             email: profile.emails[0].value,
             name: profile.displayName, 
+            phone: "",
+            gender: "",
             password: "",
             fbID: "", 
             isValidated: true,
             bthday: null,
             ggID: profile.id,
             gitID: "",
+            twID: "",
+            OTP: null,
+            bthday: null,
             courses: [],
             userType: 'Student',
-            watchList: [],})
+            watchList: [],
+            cart: [],
+        })
         user.save();
     }
     done(null, user);
@@ -97,15 +111,53 @@ passport.use(new GithubStrategy({
         user = new User({
             email: "",
             name: profile.displayName, 
+            phone: "",
+            gender: "",
             password: "",
             fbID: "", 
             isValidated: true,
             bthday: null,
             ggID: "",
             gitID: profile.id,
+            twID: "",
+            OTP: null,
+            bthday: null,
             courses: [],
             userType: 'Student',
-            watchList: [],})
+            watchList: [],
+            cart: [],
+        })
+        user.save();
+    }
+    done(null, user);
+}));
+
+passport.use(new TwitterStrategy({
+    consumerKey: "wu7mjJFb20U6vuMgqzy2JuFmp",
+    consumerSecret: "hXCuwxkt0ADDPYocdHGBFzUInEVdW7F9rl2iEPzecYrix69bP9",
+    callbackURL: "http://localhost:3000/twitter",
+}, async (accessToken, refreshToken, profile, done) => {
+    let user = await User.findOne({'twID': profile.id});
+    if(!user) {
+        user = new User({
+            email: "",
+            name: profile.displayName, 
+            phone: "",
+            gender: "",
+            password: "",
+            fbID: "", 
+            isValidated: true,
+            bthday: null,
+            ggID: "",
+            gitID: "",
+            twID: profile.id,
+            OTP: null,
+            bthday: null,
+            courses: [],
+            userType: 'Student',
+            watchList: [],
+            cart: [],
+        })
         user.save();
     }
     done(null, user);
