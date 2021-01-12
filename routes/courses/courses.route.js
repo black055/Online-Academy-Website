@@ -168,6 +168,7 @@ router.get('/register/:id', async (req, res) => {
 
 router.get('/addToWatchList/:id_course', async (req, res) => {
     let user = await userModel.getUser(req.user._id);
+    console.log(req.params.id_course);
     if (!user.watchList.includes(req.params.id_course))
     {
         user.watchList.push(req.params.id_course);

@@ -20,16 +20,15 @@ module.exports = {
 
     getCoursesByCategory(category) {
         return new Promise( async (resolve, reject) => {
-            result = await Course.find({ 'category': `${category.name}` });
+            result = await Course.find({ "category": `${category.name}` });
             if (category.parent === 'null') {
                 subcategories = await Category.find( {"parent" : `${category.name}`} );
-                result= [];
                 for (const subcategory of subcategories) {
-                    subcourses = await Course.find({ 'category': `${subcategory.name}` });
+                    subcourses = await Course.find({ "category": `${subcategory.name}` });
                     result = result.concat(subcourses);
                 }
                 resolve(result);
-            } 
+            }
             resolve(result);
         });
     },

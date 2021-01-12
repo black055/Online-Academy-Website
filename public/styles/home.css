@@ -225,6 +225,7 @@
 .milestone, .category
 {
 	text-align: center;
+	margin-bottom: 30px;
 }
 .milestone:not(:last-child)::after, .category:not(:last-child)::after
 {

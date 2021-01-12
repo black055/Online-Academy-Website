@@ -79,6 +79,10 @@
 	{
 		display: none;
 	}
+	.category:not(:last-child)::after
+	{
+		display: none;
+	}
 	.team_image
 	{
 		width: 160px;
@@ -110,6 +114,10 @@
 
 @media only screen and (max-width: 991px)
 {
+	.top_bar
+	{
+		display: none;
+	}
 	.main_nav,
 	.search_button
 	{
@@ -250,6 +258,9 @@
 	{
 		font-size: 13px;
 	}
+	.body_container {
+		margin-top: 90px;
+	}
 }
 
 /************
@@ -285,10 +296,6 @@
 
 @media only screen and (max-width: 767px)
 {
-	.top_bar
-	{
-		display: none;
-	}
 	.bestseller_slider_nav
 	{
 		display: none;

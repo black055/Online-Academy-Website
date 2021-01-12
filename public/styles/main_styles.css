@@ -501,12 +501,12 @@ section
 .category_input
 {
 	text-align: right;
-	width: 80%;
+	width: 100%;
 	height: 40px;
 	outline: none;
 	border-radius: 0 10px;
 	border: none;
-	background-color: whitesmoke;
+	background-color: transparent;
 	padding-left: 10px;
 }
 .header_search_button
@@ -515,7 +515,7 @@ section
 	top: 0;
 	right: 0;
 	width: 40px;
-	height: 100%;
+	height: 40px;
 	border: none;
 	outline: none;
 	cursor: pointer;
@@ -1334,6 +1334,7 @@ option[class='parent']{
 }
 .bestseller
 {
+	border-bottom: 1px solid rgb(255, 226, 226);
 	width: 100%;
 	height: 600px;
 	background: url('/images/courses_background.jpg');
@@ -1518,4 +1519,11 @@ option[class='parent']{
 	font-weight: 700;
 	letter-spacing: 0.1em;
 	text-transform: uppercase;
+}
+.filter-icon {
+	position: absolute;
+	font-size: 12px;
+	top: 53px;
+	left: 10px;
+	color: #000000;
 }

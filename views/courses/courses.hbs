@@ -28,31 +28,7 @@
                             <option value="priceDes">Giá giảm dần</option>
                             <option value="priceInc">Giá tăng dần</option>
                         </select>
-                        <button action="submit" class="courses_search_button ml-auto"><span>Tìm kiếm</span></button>
-                        <div class="filter_box w-100 justify-content-between order-3">
-                            <div class="btn category_box">
-                                <i class="fas fa-filter"></i>
-                                <span>Lọc</span>
-                            </div>
-                            <div class="dropdown-category-list" style="display: none;">
-                                {{#each session.categories}}
-                                <div data-value="{{this.name}}" class="parent font-weight-bold">{{this.name}}</div>
-                                {{#if this.subCategory}} {{#each this.subCategory}}
-                                <div data-value="{{this.name}}">&nbsp;&nbsp;&nbsp;{{this.name}}</div>
-                                {{/each}} {{/if}}
-                                {{/each}}
-                            </div>
-                            <div class="btn sort_box">
-                                <i class="fas fa-sort"></i>
-                                Sắp xếp
-                            </div>
-                            <div class="dropdown-sort" style="display: none;">
-                                <div data-value="rateInc" style="color: #f88f01;">Điểm đánh giá tăng dần</div>
-                                <div data-value="rateDes" style="color: #6a492b;">Điểm đánh giá giảm dần</div>
-                                <div data-value="priceDes" style="color: #58391c;">Giá giảm dần</div>
-                                <div data-value="priceInc" style="color: #e27802;">Giá tăng dần</div>
-                            </div>
-                        </div>
+                        <button action="submit" class="courses_search_button ml-auto">Tìm kiếm</button>
                     </form>
                 </div>
                 <div class="courses_container">
@@ -291,35 +267,5 @@
     $('.mostCourses').html(newCourses);
 
     console.log(courses);
-
-    $(document).click(function(e) {
-        if (!$(e.target).closest('.dropdown-category-list').length
-            && !$(e.target).hasClass('category_box')) {
-            $('.dropdown-category-list').hide()
-        }
-        if (!$(e.target).closest('.dropdown-sort').length
-            && !$(e.target).hasClass('sort_box')) {
-            $('.dropdown-sort').hide()
-        }
-    })
-    $('.category_box').click(() => {
-        $('.dropdown-category-list').toggle()
-    })
-    $('.sort_box').click(() => {
-        $('.dropdown-sort').toggle()
-    })
-    $('.dropdown-category-list').find('*').click(function() {
-        $(`#category_select option`).attr('selected', false)
-        $(`#category_select option[value="${$(this).data('value')}"]`).attr('selected', true);
-        $('.dropdown-category-list').hide()
-        $('.category_box').children('span').html($(this).data('value'))
-    })
-    $('.dropdown-sort').find('*').click(function() {
-        $(`#courses_search_select option`).attr('selected', false)
-        $(`#courses_search_select option[value="${$(this).data('value')}"]`).attr('selected', true);
-        $('.dropdown-sort').hide()
-        $('.sort_box').css('color', $(this).css('color'))
-        $('.option-item').trigger('change')
-    })
 </script>
 {{/section}}
