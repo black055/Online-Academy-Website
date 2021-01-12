@@ -308,9 +308,10 @@
             total_price = 0;
             price = 0;
             if (`${data}`) {
+                let count_length = data.length;
                 for (let i = 0; i < data.length; i++) {
                     price = data[i].saleOff || data[i].price;
-                    cart += `<button class="dropdown-item" type="button">
+                    cart += `<a href="/courses/${data[i]._id}"><button class="dropdown-item" type="button">
                                 <div class="col-12" style="display:flex; padding-left:0px !important; padding-right: 40px;">
                                     <img class="col-3" style="padding-left:0px; padding-right:0px; width: 100px !important; max-width: none !important;" src="${data[i].thumbnail}" alt="">
                                     <div class="col-9" style="display: block;">
@@ -318,14 +319,16 @@
                                         <p style="color:#17a2b8">Giá :$${price}</p>
                                     </div>
                                 </div>
-                            </button>`
+                            </button></a>`
                     total_price += price;
                 }
                 cart += `<p class="total_price">Tổng tiền: $${total_price}</p>`
                 cart += `<button class="dropdown-item btn btn-danger mx-auto col-4 text-center pay" type="button" style="background-color: #bd2130; color: #fff; padding: 7px 7px;">Thanh toán</button>`;
                 $('.cart').html(cart);
+                $('#lblCartCount').text(count_length);
             } else {
                 $('.cart').html('<p style="text-align: center;">Giỏ hàng đang trống</p>');
+                $('#lblCartCount').text(0);
             }
         });
     });
@@ -336,24 +339,29 @@
             let cart = '';
             total_price = 0;
             if (`${data}`) {
+                let count_length = data.length;
                 for (let i = 0; i < data.length; i++) {
                     price = data[i].saleOff || data[i].price;
-                    cart += `<button class="dropdown-item" type="button">
-                                <div class="col-12" style="display:flex; padding-left:0px !important; padding-right: 40px;">
-                                    <img class="col-3" style="padding-left:0px; padding-right:0px; width: 100px !important; max-width: none !important;" src="${data[i].thumbnail}" alt="">
-                                    <div class="col-9" style="display: block;">
-                                        <h5 style="margin-bottom: 0px !important;">${data[i].name}</h5>
-                                        <p style="color:#17a2b8">Giá : $${price}</p>
-                                    </div>
-                                </div>
-                            </button>`
+                    cart += `<a href="/courses/${data[i]._id}">
+                    <button class="dropdown-item" type="button">
+                        <div class="col-12" style="display:flex; padding-left:0px !important; padding-right: 40px;">
+                            <img class="col-3" style="padding-left:0px; padding-right:0px; width: 100px !important; max-width: none !important;" src="${data[i].thumbnail}" alt="">
+                            <div class="col-9" style="display: block;">
+                                <h5 style="margin-bottom: 0px !important;">${data[i].name}</h5>
+                                <p style="color:#17a2b8">Giá : $${price}</p>
+                            </div>
+                        </div>
+                    </button>
+                    </a>`
                     total_price += price;
                 }
                 cart += `<p class="total_price">Tổng tiền: $${total_price}</p>`
                 cart += `<button class="dropdown-item btn btn-danger mx-auto col-4 text-center pay" type="button" style="background-color: #bd2130; color: #fff; padding: 7px 7px;">Thanh toán</button>`;
                 $('.cart').html(cart);
+                $('#lblCartCount').text(count_length);
             } else {
                 $('.cart').html('<p style="text-align: center;">Giỏ hàng đang trống</p>');
+                $('#lblCartCount').text(0);
             }
         });
     });
@@ -417,7 +425,6 @@
             text: `Tổng số tiền của các khóa học trong giỏ là $${total_price}!`,
             icon: "warning",
             buttons: true,
-            dangerMode: true,
         }).then((accept) => {
             if (accept) {
                 window.location = '/courses/registerAllCourses';
@@ -429,10 +436,11 @@
     });
 
     $('body').on('click', '.addToWL', function() {
-        if ({{registered}}) {
+
+        {{#if session.user}}
             $.get('/courses/addToWatchList/{{course._id}}', function(data) {
                 if (data == true) {
-                    swal("Good job!", "Khóa học đã được thêm vào watchlist!", "success");
+                    swal("Thành công!", "Khóa học đã được thêm vào watchlist!", "success");
                 } else {
                     swal({
                         title: "Sorry !",
@@ -442,7 +450,9 @@
                     });
                 }
             });
-        } else window.location = '/login';
+        {{else}}
+            window.location = '/login';
+        {{/if}}
         
     });
 

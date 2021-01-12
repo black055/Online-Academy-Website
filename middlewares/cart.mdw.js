@@ -4,6 +4,9 @@ const coursesModel = require('../models/courses.model');
 module.exports = async function(req, res, next) {
     if (typeof req.session.cart == 'undefined') 
       req.session.cart = [];
+
+    if (typeof req.session.cart_length == 'undefined') 
+      req.session.cart_length = 0;
   
     if (req.user && req.user.userType == 'Student') {
       for (let i = 0; i < req.session.cart.length; i++) {
@@ -32,6 +35,7 @@ module.exports = async function(req, res, next) {
       }
       req.session.cart = [];
       req.session.coursesInCart = [];
+      req.session.cart_length = req.user.cart.length;
     }
   
     if (req.session.cart.length > 0) {
@@ -41,6 +45,7 @@ module.exports = async function(req, res, next) {
         coursesInCart.push(course);
       }
       req.session.coursesInCart = coursesInCart;
+      req.session.cart_length = coursesInCart.length;
     }
   
     next();

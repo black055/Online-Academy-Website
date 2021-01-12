@@ -27,6 +27,6 @@ module.exports = {
     },
 
     async deleteProcess(id) {
-        return await Process.findOneAndDelete({"id": id});
+        return await Process.findByIdAndRemove(id);
     }
 }

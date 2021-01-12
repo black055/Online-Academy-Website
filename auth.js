@@ -53,6 +53,7 @@ passport.use(new FacebookStrategy({
             isValidated: true,
             bthday: null,
             ggID: '',
+            gitID: "",
             courses: [],
             userType: 'Student',
             watchList: [],})
@@ -77,6 +78,7 @@ passport.use(new GoogleStrategy({
             isValidated: true,
             bthday: null,
             ggID: profile.id,
+            gitID: "",
             courses: [],
             userType: 'Student',
             watchList: [],})
@@ -90,7 +92,6 @@ passport.use(new GithubStrategy({
     clientSecret: "11dde68a97695c8591348d175d5d31d0b8d978ad",
     callbackURL: "http://localhost:3000/github",
 }, async (accessToken, refreshToken, profile, done) => {
-    console.log(profile);
     let user = await User.findOne({'gitID': profile.id});
     if(!user) {
         user = new User({

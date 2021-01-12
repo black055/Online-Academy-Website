@@ -277,11 +277,22 @@ router.post('/search', async (req, res) => {
     let bestSeller = await coursesModel.bestSeller();
     let newest = await coursesModel.getNewest();
     let temp = [];
+    let count_bs = 0;
+    let count_new = 0;
     for (let i = 0; i < result.length; i++) {
         temp = bestSeller.filter(course => course._id.toString() == result[i]._id.toString());
-        if (temp.length > 0) result[i].isBestseller = true;
+        if (temp.length > 0) {
+            result[i].isBestseller = true;
+            if (count_bs < 3) count_bs++;
+        }
         temp = newest.filter(course => course._id.toString() == result[i]._id.toString());
-        if (temp.length > 0) result[i].isNewest = true;
+        if (temp.length > 0) {
+            result[i].isNewest = true;
+            if (count_new < 3) count_new++;
+        }
+
+        if (count_new >= 3 && count_bs >= 3)
+            break;
     }
     newest = newest.slice(0,3);
     bestSeller = await coursesModel.getBestSeller();
@@ -346,12 +357,26 @@ router.post('/search', async (req, res) => {
 
 router.post('/process/:id_course/:id_lecture/:time', async (req, res) => {
     if (req.user) {
-        let process = await processModel.getProcess(req.user._id, req.params.id_course);
-        let arr = [...process.timeSave];
-        arr[req.params.id_lecture] = req.params.time;
-        process = await processModel.updateTime(req.user._id, req.params.id_course, arr);
-        process.save();
-        res.send(true);
+        let isRegistered = false;
+        const course = await coursesModel.getCourse(req.params.id_course);
+        for(let index = 0; index < req.user.courses.length; index++) {
+            if (Object.keys(req.user.courses[index])[0] == course._id.toString())
+            {
+                isRegistered = true;
+                break;
+            }
+        }
+
+        if (!isRegistered) {
+            res.send(false);
+        } else {
+            let process = await processModel.getProcess(req.user._id, req.params.id_course);
+            let arr = [...process.timeSave];
+            arr[req.params.id_lecture] = req.params.time;
+            process = await processModel.updateTime(req.user._id, req.params.id_course, arr);
+            process.save();
+            res.send(true);
+        }
     } else res.send(false);
 });
 
@@ -373,7 +398,7 @@ router.get('/:id_course/:id_lecture', async (req, res) => {
     let nextChapter = 0;
     let timeSave = 0;
     let isEnded = false;
-    if (req.user) {
+    if (req.user && isRegistered) {
         let process = await processModel.getProcess(req.user._id, req.params.id_course);
         process.currentChapter = req.params.id_lecture;
         process.save();

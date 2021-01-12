@@ -94,7 +94,7 @@
         $('#video_chapter').prop('muted', false);
     })
 
-    if ('{{session.user}}') {
+    if ({{registered}}) {
         let timer;
         let saveTime;
         let video = document.getElementById('video_chapter');
@@ -149,7 +149,6 @@
                 let text = "Bài tiếp theo sẽ được phát trong #1 giây nữa ...";
                 let count = 5;
                 timer = setInterval(() => {
-                    console.log(count);
                     --count;
                     if (count >= 0) {
                         $('.swal-text').text(text.replace(/#1/, count));
@@ -168,7 +167,6 @@
                     if (result)
                         window.location = `/courses/{{course._id}}/{{nextChapter}}`;
                     else {
-                        //count = 5;
                         clearInterval(timer);
                     }
                 });

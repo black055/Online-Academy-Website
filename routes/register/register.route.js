@@ -45,6 +45,7 @@ router.post('/', async (req, res) => {
             OTP: otp,
             bthday: null,
             ggID: '',
+            gitID: "",
             courses: [],
             userType: 'Student',
             watchList: [],

@@ -141,8 +141,8 @@
             priceTag = saleOffPrice + `<span style="font-size:16px; margin-left:5px;">${{this.price}}</span>`;
         } else priceTag = {{this.price}}
 
-        if (`{{this.isBestseller}}`) special = `<span class="badge badge-warning" style="font-size: 18px; padding: 5px 10px;">Bestseller</span>`;
-        else if (`{{this.isNewest}}`) special = `<span class="badge badge-success" style="font-size: 18px; padding: 5px 10px;">Newest</span>`;
+        if (`{{this.isBestseller}}`) special = `<span class="badge badge-warning" style="font-size: 13px; padding: 5px 10px;">Bestseller</span>`;
+        else if (`{{this.isNewest}}`) special = `<span class="badge badge-success" style="font-size: 13px; padding: 5px 10px;">Newest</span>`;
 
     rating = isNaN(Number.parseFloat(rating).toFixed(1)) ? 0 : Number.parseFloat(rating).toFixed(1);
     courses.push({

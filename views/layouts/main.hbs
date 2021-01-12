@@ -121,7 +121,10 @@
                                     
                                     <div class="btn-group">
                                         <button type="button" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <div class="shopping_cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></div>
+                                            <div class="shopping_cart">
+                                                <i class="fa icon-cart" aria-hidden="true" style="font-size:24px">&#xf07a;</i>
+                                                <span class='badge badge-warning' id='lblCartCount'> {{session.cart_length}} </span>
+                                            </div>
                                         </button>
                                         <div class="dropdown-menu dropdown-menu-right cart" style="box-shadow: rgba(0, 0, 0, 0.12) 1px 1px 1px 1px; margin-top: 25px; border-top: none;"></div>
                                     </div>
