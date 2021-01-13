@@ -224,6 +224,63 @@
 10. 767px
 ************/
 
+@media only screen and (min-width: 768px)
+{
+	.top_bar
+	{
+		display: none;
+	}
+	.home
+	{
+		height: 140px;
+	}
+	.header.scrolled
+	{
+		top: 0px;
+	}
+	.courses_search_select.option-item {
+		margin: 0px
+	}
+	input.courses_search_input {
+		order: 1;
+		flex: 1;
+		margin-right: 4px;
+	}
+	#category_select {
+		order: 3;
+		display: none;
+	}
+	#courses_search_select {
+		order: 4;
+		display: none;
+	}
+	.courses_search_button {
+		order: 2;
+	}
+	#courses_search_form {
+		flex-wrap: wrap;
+	}
+	.courses_search_container,
+	.courses_search_container #courses_search_form {
+		height: auto;
+	}
+	.filter_box {
+		display: flex;
+	}
+	.dropdown-category-list div,
+	.dropdown-sort div {
+		cursor: pointer;
+		-webkit-transition: background-color 0.2s ease-out;
+		-moz-transition: background-color 0.2s ease-out;
+		-o-transition: background-color 0.2s ease-out;
+		transition: background-color 0.2s ease;
+	}
+	.dropdown-category-list div:hover,
+	.dropdown-sort div:hover {
+		background-color: #14BDEE;
+	}
+}
+
 @media only screen and (max-width: 767px)
 {
 	.top_bar
@@ -244,7 +301,7 @@
 	input.courses_search_input {
 		order: 1;
 		flex: 1;
-		margin-right: 0;
+		margin-right: 4px;
 	}
 	#category_select {
 		order: 3;
