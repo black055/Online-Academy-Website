@@ -26,6 +26,7 @@ const cartMiddleware = require('./middlewares/cart.mdw');
 const categoriesMiddleware = require('./middlewares/categories.mdw');
 const returnTomdw = require('./middlewares/returnTo.mdw');
 const clearProcmdw = require('./middlewares/clearProcess.mdw');
+const adminMdw = require('./middlewares/admin.mdw');
 
 // Script insert data
 const insertData = require('./script_insert');
@@ -183,7 +184,7 @@ app.use("/profile", mdwIsLoged, mdwIsValidated, require("./routes/profile/profil
 app.use('/register', returnTomdw, require('./routes/register/register.route'));
 app.use('/course', mdwIsLoged, require('./routes/course/course.route'));
 app.use('/category', require('./routes/category/category.route'));
-app.use('/admin', mdwIsLoged, require('./routes/admin/admin.route'));
+app.use('/admin', mdwIsLoged, adminMdw, require('./routes/admin/admin.route'));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
