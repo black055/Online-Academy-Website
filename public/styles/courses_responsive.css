@@ -226,20 +226,11 @@
 
 @media only screen and (min-width: 768px)
 {
-	.top_bar
-	{
-		display: none;
-	}
-	.home
-	{
-		height: 140px;
-	}
-	.header.scrolled
-	{
-		top: 0px;
-	}
 	.courses_search_select.option-item {
 		margin: 0px
+	}
+	input.courses_search_input, .courses_search_button {
+		margin-top: 20px;
 	}
 	input.courses_search_input {
 		order: 1;
@@ -302,6 +293,7 @@
 		order: 1;
 		flex: 1;
 		margin-right: 4px;
+		width: 100%;
 	}
 	#category_select {
 		order: 3;
