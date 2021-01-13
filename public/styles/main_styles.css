@@ -1554,3 +1554,8 @@ option[class='parent']{
 	padding: 0 !important;
 	margin: 0 !important;
 }
+
+.page-item.active .page-link {
+	background-color: #43c6ef !important;
+	border-color: #43c6ef !important;
+}

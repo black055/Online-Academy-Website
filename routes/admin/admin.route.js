@@ -155,8 +155,6 @@ router.post('/userManagement/add', async (req, res) => {
         gender: req.body.gender,
     });
     newTeacher.save();
-    console.log('Email: ' + req.body.email);
-    console.log('Password: ' + password);
 
     let mailOptions = {
         from: 'verifycourseonline@gmail.com',
@@ -220,7 +218,6 @@ router.post('/userManagement/remove', async (req, res) => {
     //Giảm số học sinh và các đánh giá của học sinh này trong các khóa học học sinh này tham gia
     for (i = 0; i < user.courses.length; i++) {
         course = await courseModel.getCourse(Object.keys(user.courses[i])[0]);
-        console.log(course);
         //Giảm số học sinh
         course.students = course.students - 1;
         //Nếu đã đánh giá khóa học thì xóa đánh giá ra khỏi csdl
@@ -228,7 +225,6 @@ router.post('/userManagement/remove', async (req, res) => {
         if (rate != 0) {
             course.rate[rate - 1] = course.rate[rate - 1] - 1;
         }
-        console.log(course);
         course.save();
     }
     await userModel.removeUser(req.body.id);

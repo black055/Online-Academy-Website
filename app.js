@@ -125,7 +125,7 @@ app.use(categoriesMiddleware);
 // Middleware for clear process that does not exist
 app.use(clearProcmdw);
 
-app.use("/", mdwIsValidated, require('./routes/home/home.route'));
+app.use("/", require('./routes/home/home.route'));
 
 app.get("/about", mdwIsValidated, async (req, res) => {
   res.render("about/about", { isAbout: true});
@@ -137,7 +137,7 @@ app.get("/contact", mdwIsValidated, async (req, res) => {
 
 app.use("/forgotPassWord", require('./routes/resetpass/resetPassword'));
 
-app.get("/login", mdwIsValidated, returnTomdw, (req, res) => {
+app.get("/login", mdwIsValidated,returnTomdw, (req, res) => {
   if (typeof req.user !== "undefined")
     res.redirect('/');
   else res.render("login");
@@ -173,6 +173,7 @@ app.get("/twitter", passport.authenticate("twitter", {failureRedirect: "/login",
 
 app.get("/logout", (req, res) => {
   req.logOut();
+  req.session.user_invalidated = null;
   req.session.destroy();
   res.redirect("/login");
 });

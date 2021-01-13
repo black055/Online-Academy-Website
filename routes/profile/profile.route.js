@@ -94,9 +94,11 @@ router.post("/changeEmail", async (req, res) => {
       otp = Math.floor(Math.random() * 999999) + 100000;
       user.isValidated = false; req.user.isValidated = false;
       user.OTP = otp; req.user.OTP = otp;
-      console.log(otp);
       req.session.user = req.user;
       user.save();
+      req.logIn(user, function(err){
+        console.log(err);
+      });
 
       const url = req.protocol + "://" + req.headers.host + "/register/" + user._id + "/" + otp;
       sendMail(url, req.user._id, req.body.newEmail, "Vui lòng xác thực tài khoản!");

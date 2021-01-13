@@ -4,8 +4,9 @@ const coursesModel = require('../../models/courses.model');
 const teacherModel = require('../../models/teacher.model');
 const userModel = require('../../models/user.model');
 const categoryModel = require('../../models/category.model');
+const mdwIsValidated = require('../../middlewares/validation.mdw');
 
-router.get('/', async (req, res) => {
+router.get('/', mdwIsValidated, async (req, res) => {
     const allCourses = await coursesModel.getAllCourses();
     const countStudent = await userModel.count();
     const countTeacher = await teacherModel.count();
