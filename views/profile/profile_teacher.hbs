@@ -95,6 +95,9 @@
                                         <th scope="col" class="border-0 bg-light">
                                             <div class="py-2 text-uppercase">tiến độ</div>
                                         </th>
+                                        <th scope="col" class="border-0 bg-light">
+                                            <div class="py-2 text-uppercase text-center">chỉnh sửa</div>
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody id="mycourse_list">
@@ -219,11 +222,11 @@
     {{#each courses}}
     courses.push(`<tr>
             <th scope="row" class="border-0">
-                <div class="p-2">
+                <div class="p-2 d-flex">
                     <img src="{{this.thumbnail}}" alt="thumbnail" width="70" class="img-fluid rounded shadow-sm">
                     <div class="ml-3 d-inline-block align-middle">
-                        <h5 class="mb-0 course_title_edit" title="Click để sửa khóa học">
-                            <a href="/course/edit/{{this._id}}" class="text-dark d-inline-block align-middle">{{this.name}}</a>
+                        <h5 class="mb-0 course_title_edit" title="Click để xem chi tiết">
+                            <a href="/courses/{{this._id}}" class="text-dark d-inline-block align-middle">{{this.name}}</a>
                         </h5>
                         <span class="text-muted font-weight-normal font-italic d-block">{{this.category}}</span>
                     </div>
@@ -240,6 +243,7 @@
                 Chưa xong
                 </strong></td>
                 {{/if}}
+                <td class="border-0 d-flex justify-content-center"><a href="/course/edit/{{this._id}}"><button class="btn btn-success" type="button"><i class="fas fa-edit"></i></button></a></td>
             </tr>`);
     {{/each}}
     length = Math.ceil({{ courses.length }} / 4);
