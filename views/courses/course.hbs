@@ -12,7 +12,7 @@
                         <!-- Course Info Item -->
                         <div class="course_info_item">
                             <div class="course_info_title">Giáo viên:</div>
-                            <div class="course_info_text"><a href="#">{{teacher.name}}</a></div>
+                            <div class="course_info_text"><a href="#teacher-info">{{teacher.name}}</a></div>
                         </div>
 
                         <!-- Course Info Item -->
@@ -48,7 +48,7 @@
                         <div class="tab_panels">
 
                             <!-- Description -->
-                            <div class="tab_panel active">
+                            <div id="teacher-info" class="tab_panel active">
                                 <div class="tab_panel_title">Giảng Viên</div>
                                 <div class="tab_panel_content" style="display: flex;margin-top: 10px">
                                     <img src="/images/user_avatar/student.png" alt="" style="width: 150px">
@@ -72,15 +72,13 @@
                                     <div class="tab_panel_section">
                                         <div class="tab_panel_subtitle">Yêu cầu</div>
                                         <ul class="tab_panel_bullets">
-                                            {{#each course.commands}}
-                                            <li>{{this}}</li>
-                                            {{/each}}
+                                            {{{course.require}}}
                                         </ul>
                                     </div>
                                     <div class="tab_panel_section">
                                         <div class="tab_panel_subtitle">Sau khi hoàn thành khóa học</div>
                                         <div class="tab_panel_text">
-                                            <p>{{course.target}}</p>
+                                            <p>{{course.purpose}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -140,25 +138,32 @@
                                 </div>
 
                                 <!-- Comments -->
-                                <div class="comments_container">
-                                    <ul class="comments_list"></ul>
-                                    <div class="add_comment_container">
-                                        <div class="add_comment_title">Nhận xét</div>
-                                    </div>
 
-                                    {{#if session.user}}
-                                        {{#if registered}}
-                                            <form action="/courses/comment/{{course._id}}" method="post">
-                                                <textarea class="form-control" name="comment" placeholder="Nhập comment ..." required></textarea>
-                                                <button type="submit" class="btn btn-success submit_comment" style="margin-top: 10px;">Nhận xét</button>
-                                            </form>
+                                {{#ifEquals session.user.userType "Student"}}
+                                    <div class="comments_container">
+                                        <ul class="comments_list"></ul>
+                                        <div class="add_comment_container">
+                                            <div class="add_comment_title">Nhận xét</div>
+                                        </div>
+
+                                        {{#if session.user}}
+                                            {{#if registered}}
+                                                <form action="/courses/comment/{{course._id}}" method="post">
+                                                    <textarea class="form-control" name="comment" placeholder="Nhập comment ..." required></textarea>
+                                                    <button type="submit" class="btn btn-success submit_comment" style="margin-top: 10px;">Nhận xét</button>
+                                                </form>
+                                            {{else}}
+                                                <div class="add_comment_text">Bạn phải <a href="/courses/register/{{course._id}}">đăng ký</a> khóa học để có thể nhận xét.</div>
+                                            {{/if}}
                                         {{else}}
-                                            <div class="add_comment_text">Bạn phải <a href="/courses/register/{{course._id}}">đăng ký</a> khóa học để có thể nhận xét.</div>
+                                            <div class="add_comment_text">Bạn phải <a href="/login">đăng nhập</a> để có thể nhận xét.</div>
                                         {{/if}}
-                                    {{else}}
-                                        <div class="add_comment_text">Bạn phải <a href="/login">đăng nhập</a> để có thể nhận xét.</div>
-                                    {{/if}}
-                                </div>
+                                    </div>
+                                {{else}}
+                                    <div class="comments_container">
+                                        <ul class="comments_list"></ul>
+                                    </div>
+                                {{/ifEquals}}
                             </div>
 
                         </div>
@@ -223,19 +228,21 @@
                     </div>
 
                     <div class="sidebar_section" id="register_button">
-                        {{#if registered}}
-                        <div class="row">
-                            <button class="btn btn-warning btn-lg col-10 watch" style="width:100%; margin-right:10px;">Xem khóa học</button>
-                            <button class="btn btn-danger addToWL"><i class="fas fa-heart"></i></button>
-                        </div>
-                        
-                        {{else}}
-                        <div class="row">
-                            <button class="btn btn-warning btn-lg register" style="width: 80%; margin-right: 10px;">Đăng ký</button>
-                            <button class="btn btn-danger addToWL" style="width: 15%;"><i class="fas fa-heart"></i></button>
-                            <button id="addToCart" class="btn btn-outline-success btn-lg cl-12 {{course._id}}" style="width:100%; margin-top:10px">Thêm vào giỏ</button>
-                        </div>
-                        {{/if}}
+                        {{#ifEquals session.user.userType "Student"}}
+                            {{#if registered}}
+                                <div class="row">
+                                    <button class="btn btn-warning btn-lg col-10 watch" style="width:100%; margin-right:10px;">Xem khóa học</button>
+                                    <button class="btn btn-danger addToWL"><i class="fas fa-heart"></i></button>
+                                </div>
+                                
+                                {{else}}
+                                <div class="row">
+                                    <button class="btn btn-warning btn-lg register" style="width: 80%; margin-right: 10px;">Đăng ký</button>
+                                    <button class="btn btn-danger addToWL" style="width: 15%;"><i class="fas fa-heart"></i></button>
+                                    <button id="addToCart" class="btn btn-outline-success btn-lg cl-12 {{course._id}}" style="width:100%; margin-top:10px">Thêm vào giỏ</button>
+                                </div>
+                            {{/if}}
+                        {{/ifEquals}}
                     </div>
 
                     <div class="sidebar_section">
@@ -293,6 +300,7 @@
 
 {{#section 'js'}}
 <script src="/js/course.js"></script>
+<script src="/js/animation_addCart.js"></script>
 <script>
 
     $('document').ready(function() {
@@ -346,6 +354,7 @@
     $('body').on('click', '#removeFromCart', function () {
         $(this).replaceWith(`<button id="addToCart" class="btn btn-outline-success btn-lg cl-12 {{course_id}}" style="width:100%; margin-top:10px">Thêm vào giỏ</button>`)
         $.get(`/courses/removeFromCart/{{course._id}}`, function (data, status) {
+            $('.shopping_cart').effect("shake", {distance: 7});
             let cart = '';
             total_price = 0;
             if (`${data}`) {
@@ -383,7 +392,7 @@
     $('.div_rating').rating(function(vote, event) {
         if ({{registered}}) {
             $.get(`/courses/rate/{{course._id}}/${vote}`, function(data, status) {
-                alert(data);
+                swal("Thành công!", data, "success");
             });
         }
     });
@@ -446,7 +455,6 @@
     });
 
     $('body').on('click', '.addToWL', function() {
-
         {{#if session.user}}
             $.get('/courses/addToWatchList/{{course._id}}', function(data) {
                 if (data == true) {

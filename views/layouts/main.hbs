@@ -59,7 +59,7 @@
                                     <div class="top_bar_login ml-auto row">
                                         {{#if session.user}}
                                         {{#ifEquals session.user.userType "Admin"}}
-                                            <div class="login_button" style="margin-right: 10px;"><a href="/admin"><i class="fas fa-user" style="margin-right: 10px;"></i>Admin</a></div>
+                                            <div class="login_button" style="margin-right: 10px;"><a href="#"><i class="fas fa-user" style="margin-right: 10px;"></i>Admin</a></div>
                                         {{else}}
                                             <div class="login_button" style="margin-right: 10px;"><a href="/profile"><i class="fas fa-user" style="margin-right: 10px;"></i>{{session.user.name}}</a></div>
                                         {{/ifEquals}}
@@ -119,15 +119,17 @@
                                     <!-- Hamburger -->
 
                                     
-                                    <div class="btn-group">
-                                        <button type="button" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <div class="shopping_cart">
-                                                <i class="fa icon-cart" aria-hidden="true" style="font-size:24px">&#xf07a;</i>
-                                                <span class='badge badge-warning' id='lblCartCount'> {{session.cart_length}} </span>
-                                            </div>
-                                        </button>
-                                        <div class="dropdown-menu dropdown-menu-right cart" style="box-shadow: rgba(0, 0, 0, 0.12) 1px 1px 1px 1px; margin-top: 25px; border-top: none;"></div>
-                                    </div>
+                                    {{#ifEquals session.user.userType "Student"}}
+                                        <div class="btn-group">
+                                            <button type="button" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <div class="shopping_cart">
+                                                    <i class="fa icon-cart" aria-hidden="true" style="font-size:24px">&#xf07a;</i>
+                                                    <span class='badge badge-warning' id='lblCartCount'> {{session.cart_length}} </span>
+                                                </div>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-right cart" style="box-shadow: rgba(0, 0, 0, 0.12) 1px 1px 1px 1px; margin-top: 25px; border-top: none;"></div>
+                                        </div>
+                                    {{/ifEquals}}
                                     <div class="hamburger menu_mm">
                                         <i class="fa fa-bars menu_mm" aria-hidden="true"></i>
                                     </div>
@@ -220,7 +222,7 @@
             <div class="ml-auto row">
                 {{#if session.user}}
                 {{#ifEquals session.user.userType "Admin"}}
-                <div class="login_menu_nav" style="margin-right: 10px;"><a href="/admin"><i class="fas fa-user"
+                <div class="login_menu_nav" style="margin-right: 10px;"><a href="#"><i class="fas fa-user"
                             style="margin-right: 10px;"></i>Admin</a></div>
                 {{else}}
                 <div class="login_menu_nav" style="margin-right: 10px;"><a href="/profile"><i class="fas fa-user"
@@ -332,7 +334,11 @@
     <script src="/js/custom.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.2/jquery.twbsPagination.js"
-        integrity="sha512-uzuo1GprrBscZGr+iQSv8+YQQsKY+rSHJju0FruVsGHV2CZNZPymW/4RkxoHxAxw3Lo5UQaxDMF8zINUfAsGeg==" crossorigin="anonymous"></script>
+        integrity="sha512-uzuo1GprrBscZGr+iQSv8+YQQsKY+rSHJju0FruVsGHV2CZNZPymW/4RkxoHxAxw3Lo5UQaxDMF8zINUfAsGeg==" 
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" 
+        integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" 
+        crossorigin="anonymous"></script>
     <script>
         {{#if isHome }}
         $('#home').addClass('active');

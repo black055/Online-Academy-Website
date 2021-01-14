@@ -27,6 +27,7 @@ const cartMiddleware = require('./middlewares/cart.mdw');
 const categoriesMiddleware = require('./middlewares/categories.mdw');
 const returnTomdw = require('./middlewares/returnTo.mdw');
 const clearProcmdw = require('./middlewares/clearProcess.mdw');
+const adminMdw = require('./middlewares/admin.mdw');
 
 // Script insert data
 const insertData = require('./script_insert');
@@ -126,7 +127,7 @@ app.use(categoriesMiddleware);
 // Middleware for clear process that does not exist
 app.use(clearProcmdw);
 
-app.use("/", mdwIsValidated, require('./routes/home/home.route'));
+app.use("/", require('./routes/home/home.route'));
 
 app.get("/about", mdwIsValidated, async (req, res) => {
   res.render("about/about", { isAbout: true});
@@ -138,7 +139,7 @@ app.get("/contact", mdwIsValidated, async (req, res) => {
 
 app.use("/forgotPassWord", require('./routes/resetpass/resetPassword'));
 
-app.get("/login", mdwIsValidated, returnTomdw, (req, res) => {
+app.get("/login", mdwIsValidated,returnTomdw, (req, res) => {
   if (typeof req.user !== "undefined")
     res.redirect('/');
   else res.render("login");
@@ -174,6 +175,7 @@ app.get("/twitter", passport.authenticate("twitter", {failureRedirect: "/login",
 
 app.get("/logout", (req, res) => {
   req.logOut();
+  req.session.user_invalidated = null;
   req.session.destroy();
   res.redirect("/login");
 });
@@ -183,7 +185,7 @@ app.use("/profile", mdwIsLoged, mdwIsValidated, require("./routes/profile/profil
 app.use('/register', returnTomdw, require('./routes/register/register.route'));
 app.use('/course', mdwIsLoged, require('./routes/course/course.route'));
 app.use('/category', require('./routes/category/category.route'));
-app.use('/admin', mdwIsLoged, require('./routes/admin/admin.route'));
+app.use('/admin', mdwIsLoged, adminMdw, require('./routes/admin/admin.route'));
 
 app.use((req, res, next) => {
   next({ status: 404, message: 'Not Found' });

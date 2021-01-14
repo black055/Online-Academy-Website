@@ -1463,10 +1463,8 @@ const course_data = [
                 NodeJS sinh ra là để xây dựng các ứng dụng thời gian thực (Real time) như ứng dụng chat, các dịch vụ mạng xã hội như Facebook, Twitter,…
                 Đối với thiết kế web: NodeJS xử lý mọi request trên cùng một process giúp cho việc xây dựng các bộ nhớ đệm chưa bao giờ đơn giản đến thế: Node.js có thể handle hàng nghìn kết nối đồng thời với chi phí tối thiểu trên 1 quá trình duy nhất.
                 NodeJS sử dụng ngôn ngữ JavaScript - một ngôn ngữ phổ biến, và chính điều này đã giúp node.js trở nên quen thuộc và dễ dàng được áp dụng rộng rãi hơn.`,
-        commands: ['Có hiểu biết cơ bản về lập trình', 
-        'Hiểu biết cơ bản về cấu trúc dữ liệu và giải thuật, các kiểu dữ liệu đơn giản',
-        'Có khả năng đọc hiểu tài liệu tiếng anh sẽ được cung cấp trong khóa học'],
-        target: 'Sau khi kết thúc khóa học bạn sẽ có những kiến thức cơ bản nhất về NodeJS, đủ kiến thức để xây dựng những web thương mại điện tử bằng NodeJS và ứng tuyển thực tập về NodeJS ở các công ty.',
+        require: 'Có hiểu biết cơ bản về lập trình, hiểu biết cơ bản về cấu trúc dữ liệu và giải thuật, các kiểu dữ liệu đơn giản, có khả năng đọc hiểu tài liệu tiếng anh sẽ được cung cấp trong khóa học',
+        purpose: 'Sau khi kết thúc khóa học bạn sẽ có những kiến thức cơ bản nhất về NodeJS, đủ kiến thức để xây dựng những web thương mại điện tử bằng NodeJS và ứng tuyển thực tập về NodeJS ở các công ty.',
     },{
         name: 'Khóa học Full-stack web developer',
         category: 'Lập trình Web',
@@ -1489,10 +1487,8 @@ const course_data = [
          chúng ta sẽ sử dụng NodeJS ở server-side và Express là chủ yếu, về Cơ sở dũ liệu, bạn học sẽ được hướng dẫn sử dụng MySQL,
          và No-SQL MongoDB. Ngoài ra khóa học cũng sẽ hướng dẫn hoàn thành một Project hoàn chỉnh về một trang thương mại điện tử, đồng
          thời cũng hướng dẫn bạn học deploy website của mình lên Heroku.`,
-        commands: ['Có hiểu biết cơ bản về lập trình', 
-        'Hiểu biết cơ bản về cấu trúc dữ liệu và giải thuật, các kiểu dữ liệu đơn giản',
-        'Có khả năng đọc hiểu tài liệu tiếng anh sẽ được cung cấp trong khóa học'],
-        target: `Sau khi kết thúc khóa học các bạn sẽ có một nền tảng vững chắc để trở thành một Full-stack developer.
+        require: 'Có hiểu biết cơ bản về lập trình, hiểu biết cơ bản về cấu trúc dữ liệu và giải thuật, các kiểu dữ liệu đơn giản, có khả năng đọc hiểu tài liệu tiếng anh sẽ được cung cấp trong khóa học',
+        purpose: `Sau khi kết thúc khóa học các bạn sẽ có một nền tảng vững chắc để trở thành một Full-stack developer.
         Có đầy đủ kiến thức về Front-end và Back-end để ứng tuyển thực tập ở các công ty.`,
     },{
         name: 'Khóa học NodeJS chuyên sâu',
@@ -1518,10 +1514,8 @@ const course_data = [
         Đây là khóa học nối tiếp của khóa học NodeJS cho người mới bắt đầu, sau khi đã có những kiến thức cơ bản 
         chúng ta sẽ tiếp tục tìm hiểu những kiến thức nâng cao hơn về NodeJS. Trong khóa học này bạn sẽ được học về Filesystem,
          Module, Deloy, Authentication,...`,
-        commands: ['Có hiểu biết cơ bản về lập trình', 
-        'Hiểu biết cơ bản về cấu trúc dữ liệu và giải thuật, các kiểu dữ liệu đơn giản',
-        'Có khả năng đọc hiểu tài liệu tiếng anh sẽ được cung cấp trong khóa học'],
-        target: 'Hoàn thiện và nâng cao kiến thức về NodeJS',
+        require: 'Có hiểu biết cơ bản về lập trình, hiểu biết cơ bản về cấu trúc dữ liệu và giải thuật, các kiểu dữ liệu đơn giản, có khả năng đọc hiểu tài liệu tiếng anh sẽ được cung cấp trong khóa học',
+        purpose: 'Hoàn thiện và nâng cao kiến thức về NodeJS',
     },{
         name: 'Khóa học MERN: MongoDB, Express, ReactJS, NodeJS',
         category: 'Lập trình Web',
@@ -1542,10 +1536,8 @@ const course_data = [
         Khóa học sẽ hướng dẫn bạn sử dụng NodeJS + Express để tạo một server và chạy trên chính máy tính của mình; sử dụng ReactJS để 
         code giao diện ở client-side, bên cạnh kiến thức cơ bản về React như Component, Router, ... khóa học còn cung cấp kiến thức về 
         Hook, Redux,...; cơ sở dữ liệu được dùng trong khóa học này như đã đề cập ở trên chính là MongoDB - một No-SQL.`,
-        commands: ['Có hiểu biết cơ bản về lập trình', 
-        'Hiểu biết cơ bản về cấu trúc dữ liệu và giải thuật, các kiểu dữ liệu đơn giản',
-        'Có khả năng đọc hiểu tài liệu tiếng anh sẽ được cung cấp trong khóa học'],
-        target: 'Hiểu biết về 4 thành phần của MEAN, có khả năng tự lập trình các website sử dụng những kiến thức đã học.',
+        require: 'Có hiểu biết cơ bản về lập trình, hiểu biết cơ bản về cấu trúc dữ liệu và giải thuật, các kiểu dữ liệu đơn giản, có khả năng đọc hiểu tài liệu tiếng anh sẽ được cung cấp trong khóa học',
+        purpose: 'Hiểu biết về 4 thành phần của MEAN, có khả năng tự lập trình các website sử dụng những kiến thức đã học.',
     },{
         name: 'Khóa học MEAN: MongoDB, Express, AngularJS, NodeJS',
         category: 'Lập trình Web',
@@ -1566,10 +1558,8 @@ const course_data = [
         Khóa học sẽ hướng dẫn bạn sử dụng NodeJS + Express để tạo một server và chạy trên chính máy tính của mình; sử dụng ReactJS để 
         code giao diện ở client-side, bên cạnh kiến thức cơ bản về React như Component, Router, ... khóa học còn cung cấp kiến thức về 
         Hook, Redux,...; cơ sở dữ liệu được dùng trong khóa học này như đã đề cập ở trên chính là MongoDB - một No-SQL.`,
-        commands: ['Có hiểu biết cơ bản về lập trình', 
-        'Hiểu biết cơ bản về cấu trúc dữ liệu và giải thuật, các kiểu dữ liệu đơn giản',
-        'Có khả năng đọc hiểu tài liệu tiếng anh sẽ được cung cấp trong khóa học'],
-        target: 'Hiểu biết về 4 thành phần của MEAN, có khả năng tự lập trình các website sử dụng những kiến thức đã học.',
+        require: 'Có hiểu biết cơ bản về lập trình, hiểu biết cơ bản về cấu trúc dữ liệu và giải thuật, các kiểu dữ liệu đơn giản, có khả năng đọc hiểu tài liệu tiếng anh sẽ được cung cấp trong khóa học',
+        purpose: 'Hiểu biết về 4 thành phần của MEAN, có khả năng tự lập trình các website sử dụng những kiến thức đã học.',
     },{
         name: 'Javascript Framework: ReactJS and AngularJS',
         category: 'Lập trình Web',
@@ -1586,10 +1576,8 @@ const course_data = [
         saleOff: 0,
         thumbnail: '/images/courses_thumbnail/6.png',
         description: '',
-        commands: ['Có hiểu biết cơ bản về lập trình', 
-        'Hiểu biết cơ bản về cấu trúc dữ liệu và giải thuật, các kiểu dữ liệu đơn giản',
-        'Có khả năng đọc hiểu tài liệu tiếng anh sẽ được cung cấp trong khóa học'],
-        target: '',
+        require: 'Có hiểu biết cơ bản về lập trình, hiểu biết cơ bản về cấu trúc dữ liệu và giải thuật, các kiểu dữ liệu đơn giản, có khả năng đọc hiểu tài liệu tiếng anh sẽ được cung cấp trong khóa học',
+        purpose: '',
     },{
         name: 'Khóa học GraphQL',
         category: 'Hệ thống thông tin',
@@ -1606,10 +1594,8 @@ const course_data = [
         saleOff: 0,
         thumbnail: '/images/courses_thumbnail/7.png',
         description: '',
-        commands: ['Có hiểu biết cơ bản về lập trình', 
-        'Hiểu biết cơ bản về cấu trúc dữ liệu và giải thuật, các kiểu dữ liệu đơn giản',
-        'Có khả năng đọc hiểu tài liệu tiếng anh sẽ được cung cấp trong khóa học'],
-        target: '',
+        require: 'Có hiểu biết cơ bản về lập trình, hiểu biết cơ bản về cấu trúc dữ liệu và giải thuật, các kiểu dữ liệu đơn giản, có khả năng đọc hiểu tài liệu tiếng anh sẽ được cung cấp trong khóa học',
+        purpose: '',
     },{
         name: 'Khóa học lập trình Web cơ bản',
         category: 'Lập trình Web',
@@ -1626,10 +1612,8 @@ const course_data = [
         saleOff: 0,
         thumbnail: '/images/courses_thumbnail/8.jpg',
         description: '',
-        commands: ['Có hiểu biết cơ bản về lập trình', 
-        'Hiểu biết cơ bản về cấu trúc dữ liệu và giải thuật, các kiểu dữ liệu đơn giản',
-        'Có khả năng đọc hiểu tài liệu tiếng anh sẽ được cung cấp trong khóa học'],
-        target: '',
+        require: 'Có hiểu biết cơ bản về lập trình, hiểu biết cơ bản về cấu trúc dữ liệu và giải thuật, các kiểu dữ liệu đơn giản, có khả năng đọc hiểu tài liệu tiếng anh sẽ được cung cấp trong khóa học',
+        purpose: '',
     },{
         name: 'Khóa học ExpressJS',
         category: 'Lập trình Web',
@@ -1646,10 +1630,8 @@ const course_data = [
         saleOff: 0,
         thumbnail: '/images/courses_thumbnail/9.png',
         description: '',
-        commands: ['Có hiểu biết cơ bản về lập trình', 
-        'Hiểu biết cơ bản về cấu trúc dữ liệu và giải thuật, các kiểu dữ liệu đơn giản',
-        'Có khả năng đọc hiểu tài liệu tiếng anh sẽ được cung cấp trong khóa học'],
-        target: '',
+        require: 'Có hiểu biết cơ bản về lập trình, hiểu biết cơ bản về cấu trúc dữ liệu và giải thuật, các kiểu dữ liệu đơn giản, có khả năng đọc hiểu tài liệu tiếng anh sẽ được cung cấp trong khóa học',
+        purpose: '',
     },{
         name: 'Khóa học React cơ bản',
         category: 'Lập trình Web',
@@ -1666,10 +1648,8 @@ const course_data = [
         saleOff: 0,
         thumbnail: '/images/courses_thumbnail/10.jpg',
         description: '',
-        commands: ['Có hiểu biết cơ bản về lập trình', 
-        'Hiểu biết cơ bản về cấu trúc dữ liệu và giải thuật, các kiểu dữ liệu đơn giản',
-        'Có khả năng đọc hiểu tài liệu tiếng anh sẽ được cung cấp trong khóa học'],
-        target: '',
+        require: 'Có hiểu biết cơ bản về lập trình, hiểu biết cơ bản về cấu trúc dữ liệu và giải thuật, các kiểu dữ liệu đơn giản, có khả năng đọc hiểu tài liệu tiếng anh sẽ được cung cấp trong khóa học',
+        purpose: '',
     },{
         name: 'Javascript cơ bản',
         category: 'Lập trình Web',
@@ -1686,10 +1666,8 @@ const course_data = [
         saleOff: 0,
         thumbnail: '/images/courses_thumbnail/11.png',
         description: '',
-        commands: ['Có hiểu biết cơ bản về lập trình', 
-        'Hiểu biết cơ bản về cấu trúc dữ liệu và giải thuật, các kiểu dữ liệu đơn giản',
-        'Có khả năng đọc hiểu tài liệu tiếng anh sẽ được cung cấp trong khóa học'],
-        target: '',
+        require: 'Có hiểu biết cơ bản về lập trình, hiểu biết cơ bản về cấu trúc dữ liệu và giải thuật, các kiểu dữ liệu đơn giản, có khả năng đọc hiểu tài liệu tiếng anh sẽ được cung cấp trong khóa học',
+        purpose: '',
     },{
         name: 'Javascript nâng cao',
         category: 'Lập trình Web',
@@ -1706,10 +1684,8 @@ const course_data = [
         saleOff: 0,
         thumbnail: '/images/courses_thumbnail/12.jpg',
         description: '',
-        commands: ['Có hiểu biết cơ bản về lập trình', 
-        'Hiểu biết cơ bản về cấu trúc dữ liệu và giải thuật, các kiểu dữ liệu đơn giản',
-        'Có khả năng đọc hiểu tài liệu tiếng anh sẽ được cung cấp trong khóa học'],
-        target: '',
+        require: 'Có hiểu biết cơ bản về lập trình, hiểu biết cơ bản về cấu trúc dữ liệu và giải thuật, các kiểu dữ liệu đơn giản, có khả năng đọc hiểu tài liệu tiếng anh sẽ được cung cấp trong khóa học',
+        purpose: '',
     },{
         name: 'Javascript ES6',
         category: 'Lập trình Web',
@@ -1726,10 +1702,8 @@ const course_data = [
         saleOff: 0,
         thumbnail: '/images/courses_thumbnail/13.png',
         description: '',
-        commands: ['Có hiểu biết cơ bản về lập trình', 
-        'Hiểu biết cơ bản về cấu trúc dữ liệu và giải thuật, các kiểu dữ liệu đơn giản',
-        'Có khả năng đọc hiểu tài liệu tiếng anh sẽ được cung cấp trong khóa học'],
-        target: '',
+        require: 'Có hiểu biết cơ bản về lập trình, hiểu biết cơ bản về cấu trúc dữ liệu và giải thuật, các kiểu dữ liệu đơn giản, có khả năng đọc hiểu tài liệu tiếng anh sẽ được cung cấp trong khóa học',
+        purpose: '',
     },{
         name: 'Khóa học NuxtJS',
         category: 'Hệ thống thông tin',
@@ -1746,10 +1720,8 @@ const course_data = [
         saleOff: 0,
         thumbnail: '/images/courses_thumbnail/14.jpeg',
         description: '',
-        commands: ['Có hiểu biết cơ bản về lập trình', 
-        'Hiểu biết cơ bản về cấu trúc dữ liệu và giải thuật, các kiểu dữ liệu đơn giản',
-        'Có khả năng đọc hiểu tài liệu tiếng anh sẽ được cung cấp trong khóa học'],
-        target: '',
+        require: 'Có hiểu biết cơ bản về lập trình, hiểu biết cơ bản về cấu trúc dữ liệu và giải thuật, các kiểu dữ liệu đơn giản, có khả năng đọc hiểu tài liệu tiếng anh sẽ được cung cấp trong khóa học',
+        purpose: '',
     },{
         name: 'Lập trình web với NodeJS',
         category: 'Lập trình Web',
@@ -1766,10 +1738,8 @@ const course_data = [
         saleOff: 0,
         thumbnail: '/images/courses_thumbnail/15.jpg',
         description: '',
-        commands: ['Có hiểu biết cơ bản về lập trình', 
-        'Hiểu biết cơ bản về cấu trúc dữ liệu và giải thuật, các kiểu dữ liệu đơn giản',
-        'Có khả năng đọc hiểu tài liệu tiếng anh sẽ được cung cấp trong khóa học'],
-        target: '',
+        require: 'Có hiểu biết cơ bản về lập trình, hiểu biết cơ bản về cấu trúc dữ liệu và giải thuật, các kiểu dữ liệu đơn giản, có khả năng đọc hiểu tài liệu tiếng anh sẽ được cung cấp trong khóa học',
+        purpose: '',
     },
 ]
 

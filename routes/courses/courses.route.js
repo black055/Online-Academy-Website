@@ -168,7 +168,6 @@ router.get('/register/:id', async (req, res) => {
 
 router.get('/addToWatchList/:id_course', async (req, res) => {
     let user = await userModel.getUser(req.user._id);
-    console.log(req.params.id_course);
     if (!user.watchList.includes(req.params.id_course))
     {
         user.watchList.push(req.params.id_course);
@@ -279,78 +278,34 @@ router.post('/search', async (req, res) => {
     let temp = [];
     let count_bs = 0;
     let count_new = 0;
-    for (let i = 0; i < result.length; i++) {
-        temp = bestSeller.filter(course => course._id.toString() == result[i]._id.toString());
-        if (temp.length > 0) {
-            result[i].isBestseller = true;
-            if (count_bs < 3) count_bs++;
-        }
-        temp = newest.filter(course => course._id.toString() == result[i]._id.toString());
-        if (temp.length > 0) {
-            result[i].isNewest = true;
-            if (count_new < 3) count_new++;
-        }
+    for (let i = 0; i < bestSeller.length; i++) {
+        result.forEach(course => {
+            if (course._id.toString() == bestSeller[i]._id.toString()) { 
+                if (count_bs < 3) {
+                    count_bs++;
+                    course.isBestseller = true;
+                }
+            }
+        })
+    }
 
-        if (count_new >= 3 && count_bs >= 3)
-            break;
+    for (let i = 0; i < newest.length; i++) {
+        result.forEach(course => {
+            if (course._id.toString() == newest[i]._id.toString()) { 
+                if (count_new < 3) {
+                    count_new++;
+                    course.isNewest = true;
+                }
+            }
+        })
     }
     newest = newest.slice(0,3);
     bestSeller = await coursesModel.getBestSeller();
     bestSeller = bestSeller.slice(0,3);
-    let rateInc = [...result].sort((course_1, course_2) => {
-        let rate1 = 0, rate2 = 0;
-        let sum1 = 0, sum2 = 0;
-        for (let i = 0; i < course_1.rate.length; i++) {
-          rate1 += course_1.rate[i] * (i+1);
-          sum1 += course_1.rate[i] * 5;
-        }
-        rate1 = (rate1 / sum1) * 5;
-        for (let i = 0; i < course_2.rate.length; i++) {
-          rate2 += course_2.rate[i] * (i+1);
-          sum2 += course_2.rate[i] * 5;
-        }
-        rate2 = (rate2 / sum2) * 5;
-        rate1 = rate1 || 0;
-        rate2 = rate2 || 0;
-        return rate1 - rate2;
-    });
-    let rateDes = [...result].sort((course_1, course_2) => {
-        let rate1 = 0, rate2 = 0;
-        let sum1 = 0, sum2 = 0;
-        for (let i = 0; i < course_1.rate.length; i++) {
-          rate1 += course_1.rate[i] * (i+1);
-          sum1 += course_1.rate[i] * 5;
-        }
-        rate1 = (rate1 / sum1) * 5;
-        for (let i = 0; i < course_2.rate.length; i++) {
-          rate2 += course_2.rate[i] * (i+1);
-          sum2 += course_2.rate[i] * 5;
-        }
-        rate2 = (rate2 / sum2) * 5;
-        rate1 = rate1 || 0;
-        rate2 = rate2 || 0;
-        return rate2 - rate1;
-    });
-
-    let priceInc = [...result].sort((course_1, course_2) => {
-        let price1 = course_1.saleOff || course_1.price;
-        let price2 = course_2.saleOff || course_2.price;
-        return price1 - price2;
-    });
-
-    let priceDes = [...result].sort((course_1, course_2) => {
-        let price1 = course_1.saleOff || course_1.price;
-        let price2 = course_2.saleOff || course_2.price;
-        return price2 - price1;
-    });
     res.render('courses/courses', {
         allCourses: result, 
         newestCourses: newest, 
         mostCourses: bestSeller, 
-        rateInc: rateInc,
-        rateDes: rateDes,
-        priceInc: priceInc,
-        priceDes: priceDes,
         title: `Kết quả cho: ${req.body.keyword}`,
     });
 });
@@ -455,7 +410,7 @@ router.get('/:id_course', async (req, res) => {
     course.views += 1;
     course.save();
     courseRate = (courseRate / sumRate) * 5;
-    if (typeof req.user !== 'undefined') {
+    if (typeof req.user !== 'undefined' && req.user.userType == 'Student') {
         for(let index = 0; index < req.user.courses.length; index++) {
             if (Object.keys(req.user.courses[index])[0] == course._id.toString())
             {

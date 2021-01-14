@@ -4,7 +4,7 @@ module.exports = function (req, res, next) {
     if (typeof req.headers.referer != 'undefined') {
         path = req.headers.referer.slice(homeUrl.length);
     }
-    if (path != '/login' && path != '/register' && path != '/register/OTP' && !path.includes('/forgotPassWord')) {
+    if (path != '/logout' && path != '/login' && path != '/register' && path != '/register/OTP' && !path.includes('/forgotPassWord')) {
         req.session.returnTo = req.headers.referer;
     }
     next();

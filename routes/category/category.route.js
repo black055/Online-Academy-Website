@@ -6,7 +6,6 @@ const categoryModel = require('../../models/category.model')
 router.get('/:category', async (req, res) => {
     const category = await categoryModel.getCategory(req.params.category);
     const coursesList = await courseModel.getCoursesByCategory(category);
-    console.log(coursesList);
     res.render('courses/courses', { isCategories: true, allCourses: coursesList, title: `Lĩnh vực: ${category.name}` });
 });
 
