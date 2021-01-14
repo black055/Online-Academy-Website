@@ -12,7 +12,7 @@
                         <!-- Course Info Item -->
                         <div class="course_info_item">
                             <div class="course_info_title">Giáo viên:</div>
-                            <div class="course_info_text"><a href="#">{{teacher.name}}</a></div>
+                            <div class="course_info_text"><a href="#teacher-info">{{teacher.name}}</a></div>
                         </div>
 
                         <!-- Course Info Item -->
@@ -48,7 +48,7 @@
                         <div class="tab_panels">
 
                             <!-- Description -->
-                            <div class="tab_panel active">
+                            <div id="teacher-info" class="tab_panel active">
                                 <div class="tab_panel_title">Giảng Viên</div>
                                 <div class="tab_panel_content" style="display: flex;margin-top: 10px">
                                     <img src="/images/user_avatar/student.png" alt="" style="width: 150px">
@@ -72,15 +72,13 @@
                                     <div class="tab_panel_section">
                                         <div class="tab_panel_subtitle">Yêu cầu</div>
                                         <ul class="tab_panel_bullets">
-                                            {{#each course.commands}}
-                                            <li>{{this}}</li>
-                                            {{/each}}
+                                            {{{course.require}}}
                                         </ul>
                                     </div>
                                     <div class="tab_panel_section">
                                         <div class="tab_panel_subtitle">Sau khi hoàn thành khóa học</div>
                                         <div class="tab_panel_text">
-                                            <p>{{course.target}}</p>
+                                            <p>{{course.purpose}}</p>
                                         </div>
                                     </div>
                                 </div>

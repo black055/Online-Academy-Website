@@ -34,10 +34,7 @@ router.get('/courseManagement', async (req, res) => {
     for (course of courses) {
         if (course.teacher != '') {
             teacher = await teacherModel.getTeacher(course.teacher);
-            courses.teacher = {
-                'id': teacher._id,
-                'name': teacher.name,
-            };
+            course.teacher = teacher.name;
         }
     }
 

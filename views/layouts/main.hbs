@@ -59,7 +59,7 @@
                                     <div class="top_bar_login ml-auto row">
                                         {{#if session.user}}
                                         {{#ifEquals session.user.userType "Admin"}}
-                                            <div class="login_button" style="margin-right: 10px;"><a href="/admin"><i class="fas fa-user" style="margin-right: 10px;"></i>Admin</a></div>
+                                            <div class="login_button" style="margin-right: 10px;"><a href="#"><i class="fas fa-user" style="margin-right: 10px;"></i>Admin</a></div>
                                         {{else}}
                                             <div class="login_button" style="margin-right: 10px;"><a href="/profile"><i class="fas fa-user" style="margin-right: 10px;"></i>{{session.user.name}}</a></div>
                                         {{/ifEquals}}
@@ -222,7 +222,7 @@
             <div class="ml-auto row">
                 {{#if session.user}}
                 {{#ifEquals session.user.userType "Admin"}}
-                <div class="login_menu_nav" style="margin-right: 10px;"><a href="/admin"><i class="fas fa-user"
+                <div class="login_menu_nav" style="margin-right: 10px;"><a href="#"><i class="fas fa-user"
                             style="margin-right: 10px;"></i>Admin</a></div>
                 {{else}}
                 <div class="login_menu_nav" style="margin-right: 10px;"><a href="/profile"><i class="fas fa-user"
