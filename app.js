@@ -35,7 +35,7 @@ const insertData = require('./script_insert');
 require("./auth");
 
 // Connect to database
-mongoose.connect("mongodb://localhost:27017/mydb", {
+mongoose.connect("mongodb+srv://lethanhviet:22102000@cluster0.dtarf.mongodb.net/mydb?retryWrites=true&w=majority", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
@@ -44,7 +44,7 @@ mongoose.connect("mongodb://localhost:27017/mydb", {
 mongoose.set("useCreateIndex", true);
 
 // Insert data user
-// insertData();
+ insertData();
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -186,7 +186,8 @@ app.use('/course', mdwIsLoged, require('./routes/course/course.route'));
 app.use('/category', require('./routes/category/category.route'));
 app.use('/admin', mdwIsLoged, adminMdw, require('./routes/admin/admin.route'));
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || '8080';
+app.set("port", PORT);
 app.listen(PORT, () => {
   console.log(`app is running at http://localhost:${PORT}`);
 });

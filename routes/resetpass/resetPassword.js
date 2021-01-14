@@ -4,7 +4,6 @@ const {User} = require('../../utils/db');
 const mailer = require('nodemailer');
 const bcrypt = require('bcrypt');
 const sendMail = require('../../mailer');
-const { clearConfigCache } = require('prettier');
 
 router.get('/', (req, res) => {
     res.render('forgotPass');

@@ -202,6 +202,7 @@
     
     let coursePerPage = 6;
     length = Math.ceil(courses.length / coursePerPage);
+    length = length > 0 ? length : 1;
     $('#pagination_list').twbsPagination({
         totalPages: length,
         visiblePages: 5,
@@ -213,6 +214,9 @@
             content = '';
             for (let i = (page - 1) * coursePerPage; i < courses.length && i < (page - 1) * coursePerPage + coursePerPage; i++) {
                 content += courses[i].html;
+            }
+            if (content.length == 0) {
+                content = `<h3 style="margin: auto;">Không có kết quả nào </h3>`;
             }
             $('.courses_row').html(content);
         }
