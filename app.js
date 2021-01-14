@@ -12,6 +12,7 @@ const MongoStore = require("connect-mongo")(session);
 const bcrypt = require('bcrypt');
 const hbs_section = require("express-handlebars-sections");
 const schedule = require('node-schedule');
+require('express-async-errors');
 
 // Declare for models
 const teacherModel = require('./models/teacher.model');
@@ -188,6 +189,16 @@ app.use('/admin', mdwIsLoged, adminMdw, require('./routes/admin/admin.route'));
 
 const PORT = process.env.PORT || '8080';
 app.set("port", PORT);
+app.use((req, res, next) => {
+  next({ status: 404, message: 'Not Found' });
+});
+
+app.use((err, req, res, next) => {
+  if (err.status === 404) {return res.status(404).render('404', {layout: false});}
+  if (err.status === 500) {return res.status(500).render('500', {layout: false});}
+  next();
+});
+
 app.listen(PORT, () => {
   console.log(`app is running at http://localhost:${PORT}`);
 });
