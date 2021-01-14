@@ -12,6 +12,7 @@ const MongoStore = require("connect-mongo")(session);
 const bcrypt = require('bcrypt');
 const hbs_section = require("express-handlebars-sections");
 const schedule = require('node-schedule');
+require('express-async-errors');
 
 // Declare for models
 const teacherModel = require('./models/teacher.model');
@@ -183,6 +184,16 @@ app.use('/register', returnTomdw, require('./routes/register/register.route'));
 app.use('/course', mdwIsLoged, require('./routes/course/course.route'));
 app.use('/category', require('./routes/category/category.route'));
 app.use('/admin', mdwIsLoged, require('./routes/admin/admin.route'));
+
+app.use((req, res, next) => {
+  next({ status: 404, message: 'Not Found' });
+});
+
+app.use((err, req, res, next) => {
+  if (err.status === 404) {return res.status(404).render('404', {layout: false});}
+  if (err.status === 500) {return res.status(500).render('500', {layout: false});}
+  next();
+});
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

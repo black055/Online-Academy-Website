@@ -298,4 +298,7 @@ div::-webkit-scrollbar-thumb:hover {
   .header.scrolled {
     top: -90px
   }
+  .loading {
+    top: 20px;
+  }
 }

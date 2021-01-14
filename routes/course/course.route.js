@@ -104,7 +104,7 @@ router.post('/add_course', async (req, res) => {
             course.price = req.body.price;
             course.require = req.body.require;
             course.purpose = req.body.purpose;
-            course.saleOff = req.body.price - req.body.price * req.body.saleOff / 100;
+            course.saleOff = (req.body.saleOff > 0) ? req.body.price - req.body.price * req.body.saleOff / 100 : 0;
             course.teacher = req.session.user._id.toString();
             course.isFinished = req.body.isFinished ? true : false;
 
@@ -179,11 +179,12 @@ router.post('/update/:id', async (req, res) => {
             course.name = req.body.name;
             course.price = req.body.price;
             course.briefDes = req.body.briefDes;
+            course.category = req.body.category;
             course.require = req.body.require;
             course.purpose = req.body.purpose;
             course.description = req.body.description;
             course.isFinished = req.body.isFinished ? true : false;
-            course.saleOff = req.body.price - req.body.price * req.body.saleOff / 100;
+            course.saleOff = (req.body.saleOff > 0) ? req.body.price - req.body.price * req.body.saleOff / 100 : 0;
             course.lastModified = new Date();
 
             const chapter_title = req.body.chapter_title;
@@ -203,8 +204,9 @@ router.post('/update/:id', async (req, res) => {
 
 router.get('/edit/:id', async (req, res) => {
     const course = await courseModel.getCourse(req.params.id);
+    const data = await categoryModel.getAllCategories();
     req.session.referer = req.headers.referer
-    res.render('course/edit', { course: course });
+    res.render('course/edit', { course: course, categoryList: data });
 });
 
 module.exports = router;

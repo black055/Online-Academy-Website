@@ -46,11 +46,6 @@
                 <textarea id="descEditor" name="description">{{course.description}}</textarea>
               </div>
 
-              <div class="form-group">
-                <label class="form_title" for="category">Lĩnh vực:</label>
-                <div class="form-control" id="category">{{course.category}}</div>
-              </div>
-
               <div>
                 <div class="form_title">Giá hiện tại</div>
                 <input type="number" class="comment_input" name="price" min="0" value="{{course.price}}" required="required">
@@ -97,10 +92,6 @@
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div class="row row-content category-row" style="display: none;">
-          <div class="col-lg-8">
             <div class="upvideo">
               <div class="edit_chapter_title">
                 <div class="d-flex justify-content-between flex-wrap">
@@ -119,6 +110,26 @@
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+        <div class="row row-content category-row" style="display: none;">
+          <div class="col-lg-8">
+            <div class="form-group">
+              <label class="form_title" for="category">Lĩnh vực:</label>
+              <input type="text" class="comment_input" id="category" placeholder="Lĩnh vực..." name="category"
+                required="required">
+              <div class="list-items">
+                {{#if categoryList}}
+                {{#each categoryList as |c|}}
+                <div class="category-item{{#ifEquals c.parent "null" }} font-weight-bold{{/ifEquals}}"
+                  >{{c.name}}</div>
+                {{/each}}
+                {{else}}
+                <div>Chưa có dữ liệu</div>
+                {{/if}}
+              </div>
+            </div>
+            
           </div>
         </div>
         <div class="d-flex justify-content-between col-lg-8">
@@ -333,21 +344,19 @@
       "color": "#fff",
       "opacity": "0.8"
     })
-    $('#category').val($(this).html())
+    $('input#category').val($(this).html())
   })
-  $('#category').keyup(() => {
-    let input = $('#category').val().toUpperCase();
-    $('.category-item').each(function () {
-      if ($(this).html().toUpperCase().indexOf(input) > -1)
-        $(this).show()
-      else $(this).hide();
-      if ($(this).html().toUpperCase() !== input)
-        $(this).css({
-          "background-color": "",
-          "color": "",
-          "opacity": ""
-        })
-    })
+  $('.category-item').each(function() {
+    {{#if course.category}}
+    if ($(this).html() == '{{course.category}}') {
+      $(this).css({
+        "background-color": "#24A0ED",
+        "color": "#fff",
+        "opacity": "0.8"
+      })
+      $('input#category').val($(this).html())
+    }
+    {{/if}}
   })
   $('.btn-progress').click(function() {
     if ($(this).children('i').hasClass('fa-minus')) {
