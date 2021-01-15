@@ -69,10 +69,14 @@ module.exports = {
     },
 
     async searchCourses(keyword, category) {
-        result = await Course.find( {$text: {$search: keyword}, 'category': `${category}`} );
-        subCategories = await Category.find({ 'parent': `${category}` });
-        for (subCategory of subCategories) {
-            result = result.concat(await Course.find( {$text: {$search: keyword}, 'category': `${subCategory.name}`} ));
+        if (category == 'null') {
+            result = await Course.find( {$text: {$search: keyword}});
+        } else {
+            result = await Course.find( {$text: {$search: keyword}, 'category': `${category}`} );
+            subCategories = await Category.find({ 'parent': `${category}` });
+            for (subCategory of subCategories) {
+                result = result.concat(await Course.find( {$text: {$search: keyword}, 'category': `${subCategory.name}`} ));
+            }
         }
         return result;
     }, 

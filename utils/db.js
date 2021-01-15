@@ -54,8 +54,6 @@ const course = new Schema({
     views: Number,
     saleOff: Number,
     thumbnail: String,
-    commands: Array,
-    target: String,
     soldInWeek: Number,
     lastModified: Date,
     createdDate: Date,
