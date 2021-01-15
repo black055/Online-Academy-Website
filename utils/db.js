@@ -18,6 +18,7 @@ const user = new Schema({
     userType: String,
     watchList: Array,
     cart: Array,
+    isAvailable: Boolean
 });
 
 const teacher = new Schema({
@@ -30,6 +31,7 @@ const teacher = new Schema({
     phone: String,
     gender: String,
     shortBio: String,
+    isAvailable: Boolean
 });
 
 const admin = new Schema({

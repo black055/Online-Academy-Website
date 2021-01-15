@@ -187,7 +187,7 @@ app.use('/course', mdwIsLoged, require('./routes/course/course.route'));
 app.use('/category', require('./routes/category/category.route'));
 app.use('/admin', mdwIsLoged, adminMdw, require('./routes/admin/admin.route'));
 
-const PORT = process.env.PORT || '8080';
+const PORT = process.env.PORT || 3000;
 app.set("port", PORT);
 app.use((req, res, next) => {
   next({ status: 404, message: 'Not Found' });

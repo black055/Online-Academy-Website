@@ -3,13 +3,13 @@ const {user_data, course_data, category_data, teacher_data} = require('./utils/i
 const bcrypt = require('bcrypt');
 
 module.exports = async function b() {
-    // for (let i = 0; i < user_data.length; i++) {
-    //     let user = await User.findOne({'email': user_data[i].email});
-    //     if (!user) {
-    //         user = new User(user_data[i]);
-    //         user.save();
-    //     }
-    // }
+    for (let i = 0; i < user_data.length; i++) {
+        let user = await User.findOne({'email': user_data[i].email});
+        if (!user) {
+            user = new User(user_data[i]);
+            user.save();
+        }
+    }
   
     // for (let i = 0; i < course_data.length; i++) {
     //   let course = await Course.findOne({ 'name': course_data[i].name});

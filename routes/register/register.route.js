@@ -14,7 +14,7 @@ router.get('/checkMail/:email', async (req, res) => {
     const teacher = await Teacher.findOne({'email': req.params.email});
     if (user || teacher) res.send(true);
     else res.send(false);
-})
+});
 
 router.post('/checkPassword', async (req, res) => {
     const user = await User.findOne({'email': req.body.email});
@@ -22,7 +22,7 @@ router.post('/checkPassword', async (req, res) => {
         res.send(true);
     }
     else res.send(false);
-})
+});
 
 router.post('/', async (req, res) => {
     const {email, name, password} = req.body;
@@ -49,6 +49,7 @@ router.post('/', async (req, res) => {
             twID: "",
             courses: [],
             userType: 'Student',
+            isAvailable: true,
             watchList: [],
             cart: []
         });

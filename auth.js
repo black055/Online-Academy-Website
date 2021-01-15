@@ -12,13 +12,18 @@ passport.use(new LogcalStrategy({ usernameField: 'email',passwordField: 'passwor
     const user = await User.findOne({'email': username});
     const teacher = await Teacher.findOne({'email': username});
     const admin = await Admin.findOne({'username': username});
+
     if (user) {
+        if (!user.isAvailable) 
+            return done(null, false, {message: "Tài khoản của bạn đã bị vô hiệu hóa !"});
         if (await bcrypt.compareSync(password, user.password)) {
             return done(null, user);
         } else {
             return done(null, false, {message: "Tên đăng nhập hoặc mật khẩu không đúng !"});
         }
     } else if (teacher) {
+        if (!teacher.isAvailable) 
+            return done(null, false, {message: "Tài khoản của bạn đã bị vô hiệu hóa !"});
         if (await bcrypt.compareSync(password, teacher.password)) {
             return done(null, teacher);
         } else {
@@ -44,6 +49,8 @@ passport.use(new FacebookStrategy({
     let {email, first_name, last_name, id} = profile._json;
     if (typeof email == 'undefined') email = '';
     let user = await User.findOne({'fbID': id});
+    if (user && !user.isAvailable) 
+        return done(null, false, {message: "Tài khoản của bạn đã bị vô hiệu hóa !"});
     if(!user) {
         user = new User({
             email: email,
@@ -76,6 +83,8 @@ passport.use(new GoogleStrategy({
     scope: ['profile', 'email'],
 },async (accessToken, refreshToken, profile, done) => {
     let user = await User.findOne({'ggID': profile.id});
+    if (user && !user.isAvailable) 
+        return done(null, false, {message: "Tài khoản của bạn đã bị vô hiệu hóa !"});
     if(!user) {
         user = new User({
             email: profile.emails[0].value,
@@ -107,6 +116,8 @@ passport.use(new GithubStrategy({
     callbackURL: "http://localhost:3000/github",
 }, async (accessToken, refreshToken, profile, done) => {
     let user = await User.findOne({'gitID': profile.id});
+    if (user && !user.isAvailable) 
+        return done(null, false, {message: "Tài khoản của bạn đã bị vô hiệu hóa !"});
     if(!user) {
         user = new User({
             email: "",
@@ -138,6 +149,8 @@ passport.use(new TwitterStrategy({
     callbackURL: "http://localhost:3000/twitter",
 }, async (accessToken, refreshToken, profile, done) => {
     let user = await User.findOne({'twID': profile.id});
+    if (user && !user.isAvailable) 
+        return done(null, false, {message: "Tài khoản của bạn đã bị vô hiệu hóa !"});
     if(!user) {
         user = new User({
             email: "",

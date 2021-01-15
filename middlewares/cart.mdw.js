@@ -51,6 +51,5 @@ module.exports = async function(req, res, next) {
     } else {
       req.session.coursesInCart = [];
     }
-    console.log(req.session.coursesInCart.length)
     next();
 };

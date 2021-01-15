@@ -13,6 +13,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -30,6 +31,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -47,6 +49,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -64,6 +67,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -81,6 +85,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -98,6 +103,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -115,6 +121,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -132,6 +139,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -149,6 +157,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -166,6 +175,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -183,6 +193,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -200,6 +211,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -217,6 +229,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -234,6 +247,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -251,6 +265,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -268,6 +283,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -285,6 +301,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -302,6 +319,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -319,6 +337,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -336,6 +355,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -353,6 +373,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -370,6 +391,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -387,6 +409,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -404,6 +427,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -421,6 +445,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -438,6 +463,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -455,6 +481,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -472,6 +499,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -489,6 +517,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -506,6 +535,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -523,6 +553,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -540,6 +571,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -557,6 +589,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -574,6 +607,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -591,6 +625,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -608,6 +643,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -625,6 +661,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -642,6 +679,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -659,6 +697,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -676,6 +715,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -693,6 +733,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -710,6 +751,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -727,6 +769,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -744,6 +787,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -761,6 +805,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -778,6 +823,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -795,6 +841,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -812,6 +859,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -829,6 +877,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -846,6 +895,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -863,6 +913,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -880,6 +931,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -897,6 +949,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -914,6 +967,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -931,6 +985,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -948,6 +1003,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -965,6 +1021,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -982,6 +1039,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -999,6 +1057,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -1016,6 +1075,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -1033,6 +1093,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -1050,6 +1111,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -1067,6 +1129,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -1084,6 +1147,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -1101,6 +1165,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -1118,6 +1183,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -1135,6 +1201,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -1152,6 +1219,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -1169,6 +1237,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -1186,6 +1255,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -1203,6 +1273,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -1220,6 +1291,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -1237,6 +1309,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -1254,6 +1327,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -1271,6 +1345,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -1288,6 +1363,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -1305,6 +1381,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -1322,6 +1399,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -1339,6 +1417,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -1356,6 +1435,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -1373,6 +1453,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -1390,6 +1471,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -1407,6 +1489,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }, {
@@ -1424,6 +1507,7 @@ const user_data = [{
     bthday: null,
     courses: [],
     userType: "Student",
+    isAvailable: true,
     watchList: [],
     cart: []
 }];
@@ -1807,7 +1891,8 @@ const teacher_data = [{
     bthday: new Date('1976-05-21'),
     password: '$2b$10$Fd0GDCRSSwpzsUaaAzSrz.tLxvBIWWX4G1WwRmekSvK7UdrS94z7a',
     courses: [],
-    userType: 'Teacher',
+    userType: "Teacher",
+    isAvailable: true,
     phone: '+84-555-527-787',
     gender: 'Nam',
     shortBio: `<p>Hiện tại đang l&agrave; Gi&aacute;m Đốc Điều H&agrave;nh Navigos Search thuộc tập đo&agrave;n Navigos<br />Hơn 25 năm kinh nghiệm, trong đ&oacute; c&oacute; 20 năm trong lĩnh vực ph&aacute;t triển kinh doanh v&agrave; điều h&agrave;nh doanh nghiệp với gần 10 năm trong lĩnh vực Nh&acirc;n sự. <br />Trước khi gia nhập Navigos, chị đươc biết đến với c&aacute;c vai tr&ograve;:<br />Trưởng văn ph&ograve;ng đại diện đầu ti&ecirc;n tại Việt Nam của Hiệp hội kế to&aacute;n c&ocirc;ng chứng Anh Quốc ACCA<br />Gi&aacute;m đốc ph&aacute;t triển kinh doanh của Deloitte Việt Nam<br />Tổng gi&aacute;m đốc của eSillicon Việt Nam</p>`,
@@ -1817,7 +1902,8 @@ const teacher_data = [{
     bthday: new Date('1979-08-08'),
     password: '$2b$10$gzYEFuBiuRsv51yy9zxRZur.mbAPN7DBBLHRSZwY4aEhyTwJl/9iW',
     courses: [],
-    userType: 'Teacher',
+    userType: "Teacher",
+    isAvailable: true,
     phone: '+84-555-515-816',
     gender: 'Nam',
     shortBio: '<p>- CEO Học viện Marketing Quốc tế TikTokVIP<br />- 5 năm kinh nghiệm l&agrave;m việc tại thị trường c&ocirc;ng nghệ Trung Quốc<br />- Được đ&agrave;o tạo chuy&ecirc;n s&acirc;u từ Douyin Trung Quốc trong 3 năm (Dou</p>',
@@ -1827,7 +1913,8 @@ const teacher_data = [{
     bthday: new Date('1979-11-01'),
     password: '$2b$10$qk7zGEBjc1uNHtgg8.qcQO6ezLLJ85awi6b6cB6G3L3YTp4Uwzfnq',
     courses: [],
-    userType: 'Teacher',
+    userType: "Teacher",
+    isAvailable: true,
     phone: '+84-355-510-723',
     gender: 'Nam',
     shortBio: '<h2>Th&ocirc;ng tin Giảng vi&ecirc;n</h2><p>Chuy&ecirc;n gia đ&agrave;o tạo, tư vấn v&agrave; triển khai giải ph&aacute;p về E-Commerce, E-Business, E-Marketing</p><h3>Học vấn:</h3><p>- Thạc sỹ quản trị kinh doanh quốc tế (MBA) chuy&ecirc;n ng&agrave;nh Business &amp; Marketing &ndash; Đại học Nice &ndash; Sofia Antipolis (2012)</p>',
@@ -1837,7 +1924,8 @@ const teacher_data = [{
     bthday: new Date('1984-01-19'),
     password: '$2b$10$FHwKig1gVky2zPmFtiXcsOnYf25BLnarl/NPQC6aDJN8LfbY3SlXS',
     courses: [],
-    userType: 'Teacher',
+    userType: "Teacher",
+    isAvailable: true,
     phone: '+84-355-548-131',
     gender: 'Nam',
     shortBio: '<p><strong>Founder Học Viện PAcademy, Trung T&acirc;m Đ&agrave;o Tạo Digital Marketing Thực Chiến</strong></p><p>- Quản Trị Vi&ecirc;n Cộng đồng Kinh doanh PGroup. Hỗ trợ c&aacute;c th&agrave;nh vi&ecirc;n triển khai đồng bộ Hệ thống k&ecirc;nh Marketing Online với m&ocirc; h&igrave;nh Kinh doanh mới nhất</p><p>- Kinh nghiệm chạy quảng c&aacute;o Facebook kết hợp c&aacute;c trang thương mại điện tử đa k&ecirc;nh Zalo, Instagram, Youtube...với số tiền đ&atilde; chi ti&ecirc;u hơn 20 tỷ VNĐ</p><p>- Kinh Doanh Online Thương mại điện tử c&aacute;c ng&agrave;nh h&agrave;ng: Gia dụng th&ocirc;ng minh, Thời trang, Giảm c&acirc;n, Tăng c&acirc;n, Mẹ b&eacute;, Mỹ phẩm, Dụng cụ thể dục thể thao, ...</p><p>- Ph&oacute; GĐ Ph&aacute;t triển Kinh doanh tại Jews Academy - Tổ hợp nh&agrave; h&agrave;ng, sự kiện.</p><p>- Tư&nbsp; vấn x&acirc;y dựng Fanpage, x&acirc;y dựng k&ecirc;nh Marketing Online cho h&agrave;ng trăm Shop online: thời trang, du lịch, ẩm thực, đồng hồ c&ocirc;ng nghệ,....</p><p>- Giảng vi&ecirc;n tr&ecirc;n c&aacute;c hệ thống gi&aacute;o dục trực tuyến h&agrave;ng đầu Việt Nam với số lượng học vi&ecirc;n đ&ocirc;ng đảo</p><p>&nbsp;</p><p>Phương ch&acirc;m: Chia sẻ chứ kh&ocirc;ng Dạy học, Quan điểm Kinh doanh cần xuất ph&aacute;t từ gốc rễ (chọn lựa sản phẩm ph&ugrave; hợp, nghi&ecirc;n cứu đối thủ, nghi&ecirc;n cứu kh&aacute;ch h&agrave;ng mục ti&ecirc;u, thiết lập v&agrave; tối ưu quảng c&aacute;o...). X&acirc;y dựng từ những điều cốt l&otilde;i, v&agrave; từng bước chi tiết gi&uacute;p bạn x&acirc;y dựng Hệ thống Kinh doanh b&agrave;i bản.</p>',
@@ -1847,7 +1935,8 @@ const teacher_data = [{
     bthday: null,
     password: '$2b$10$S9Cmb4KBjjXWkoqHNIz9NeI7H7gu0e/LwsyF94Gv2t0xptdbw9naS',
     courses: [],
-    userType: 'Teacher',
+    userType: "Teacher",
+    isAvailable: true,
     phone: '+84-955-559-959',
     gender: 'Nam',
     shortBio: '<p>Hiện tại đang l&agrave; Gi&aacute;m Đốc Điều H&agrave;nh Navigos Search thuộc tập đo&agrave;n Navigos<br />Hơn 25 năm kinh nghiệm, trong đ&oacute; c&oacute; 20 năm trong lĩnh vực ph&aacute;t triển kinh doanh v&agrave; điều h&agrave;nh doanh nghiệp với gần 10 năm trong lĩnh vực Nh&acirc;n sự. <br />Trước khi gia nhập Navigos, chị đươc biết đến với c&aacute;c vai tr&ograve;:<br />Trưởng văn ph&ograve;ng đại diện đầu ti&ecirc;n tại Việt Nam của Hiệp hội kế to&aacute;n c&ocirc;ng chứng Anh Quốc ACCA<br />Gi&aacute;m đốc ph&aacute;t triển kinh doanh của Deloitte Việt Nam<br />Tổng gi&aacute;m đốc của eSillicon Việt Nam</p>',
@@ -1857,7 +1946,8 @@ const teacher_data = [{
     bthday: new Date('1992-02-20'),
     password: '$2b$10$QC2iZAwoXFUIUb/a/OK0nOmF/FPeUoizQ5QohngAvfzypGhNSUmSO',
     courses: [],
-    userType: 'Teacher',
+    userType: "Teacher",
+    isAvailable: true,
     phone: '+84-855-509-460',
     gender: 'Nam',
     shortBio: '<h2>Th&ocirc;ng tin Giảng vi&ecirc;n</h2><p>Chuy&ecirc;n gia đ&agrave;o tạo, tư vấn v&agrave; triển khai giải ph&aacute;p về E-Commerce, E-Business, E-Marketing</p><h3>Học vấn:</h3><p>- Thạc sỹ quản trị kinh doanh quốc tế (MBA) chuy&ecirc;n ng&agrave;nh Business &amp; Marketing &ndash; Đại học Nice &ndash; Sofia Antipolis (2012)</p>',
@@ -1867,7 +1957,8 @@ const teacher_data = [{
     bthday: new Date('1977-02-01'),
     password: '$2b$10$N3Z0kfgwW82xC7Vl8DxfN.WnJ8JwmeJmVmm3TyQREwMNUcUba1OG.',
     courses: [],
-    userType: 'Teacher',
+    userType: "Teacher",
+    isAvailable: true,
     phone: '+84-555-534-391',
     gender: 'Nam',
     shortBio: '<p><strong>Chức vụ:</strong></p><p>Nguy&ecirc;n gi&aacute;m đốc Chiến lược C&ocirc;ng ty Chứng kho&aacute;n Mirea Asset (H&agrave;n Quốc)</p><p><strong>Học vấn:&nbsp;</strong></p><p>Thạc sỹ Quản trị kinh doanh&nbsp;</p><p><strong>Kinh nghiệm:</strong></p><p>2006 - 2016: Giảng vi&ecirc;n Giảng dạy Ph&acirc;n t&iacute;ch Kỹ thuật tại Vietway Edu</p><p>2012 - 2014:&nbsp;Trưởng ph&ograve;ng đầu tư quỹ ASHAHI</p>',
@@ -1877,7 +1968,8 @@ const teacher_data = [{
     bthday: new Date('1978-12-13'),
     password: '$2b$10$k6RGJS0f5GIZVHwVTkokRuhGpGuG9dEGPNX9knxhHAQ6QV2mvkYmi',
     courses: [],
-    userType: 'Teacher',
+    userType: "Teacher",
+    isAvailable: true,
     phone: '+84-555-539-007',
     gender: 'Nam',
     shortBio: '<p><strong>Founder Học Viện PAcademy, Trung T&acirc;m Đ&agrave;o Tạo Digital Marketing Thực Chiến</strong></p><p>- Quản Trị Vi&ecirc;n Cộng đồng Kinh doanh PGroup. Hỗ trợ c&aacute;c th&agrave;nh vi&ecirc;n triển khai đồng bộ Hệ thống k&ecirc;nh Marketing Online với m&ocirc; h&igrave;nh Kinh doanh mới nhất</p><p>- Kinh nghiệm chạy quảng c&aacute;o Facebook kết hợp c&aacute;c trang thương mại điện tử đa k&ecirc;nh Zalo, Instagram, Youtube...với số tiền đ&atilde; chi ti&ecirc;u hơn 20 tỷ VNĐ</p><p>- Kinh Doanh Online Thương mại điện tử c&aacute;c ng&agrave;nh h&agrave;ng: Gia dụng th&ocirc;ng minh, Thời trang, Giảm c&acirc;n, Tăng c&acirc;n, Mẹ b&eacute;, Mỹ phẩm, Dụng cụ thể dục thể thao, ...</p><p>- Ph&oacute; GĐ Ph&aacute;t triển Kinh doanh tại Jews Academy - Tổ hợp nh&agrave; h&agrave;ng, sự kiện.</p><p>- Tư&nbsp; vấn x&acirc;y dựng Fanpage, x&acirc;y dựng k&ecirc;nh Marketing Online cho h&agrave;ng trăm Shop online: thời trang, du lịch, ẩm thực, đồng hồ c&ocirc;ng nghệ,....</p><p>- Giảng vi&ecirc;n tr&ecirc;n c&aacute;c hệ thống gi&aacute;o dục trực tuyến h&agrave;ng đầu Việt Nam với số lượng học vi&ecirc;n đ&ocirc;ng đảo</p><p>&nbsp;</p><p>Phương ch&acirc;m: Chia sẻ chứ kh&ocirc;ng Dạy học, Quan điểm Kinh doanh cần xuất ph&aacute;t từ gốc rễ (chọn lựa sản phẩm ph&ugrave; hợp, nghi&ecirc;n cứu đối thủ, nghi&ecirc;n cứu kh&aacute;ch h&agrave;ng mục ti&ecirc;u, thiết lập v&agrave; tối ưu quảng c&aacute;o...). X&acirc;y dựng từ những điều cốt l&otilde;i, v&agrave; từng bước chi tiết gi&uacute;p bạn x&acirc;y dựng Hệ thống Kinh doanh b&agrave;i bản.</p>',
@@ -1887,7 +1979,8 @@ const teacher_data = [{
     bthday: new Date('1990-04-30'),
     password: '$2b$10$nYYV3jY6BHTPJOWZOsmrN.xCCVTxDGRWWaeQeB2VTHpQo7Ba5.o5C',
     courses: [],
-    userType: 'Teacher',
+    userType: "Teacher",
+    isAvailable: true,
     phone: '+84-855-574-073',
     gender: 'Nữ',
     shortBio: '<p>Hiện tại đang l&agrave; Gi&aacute;m Đốc Điều H&agrave;nh Navigos Search thuộc tập đo&agrave;n Navigos<br />Hơn 25 năm kinh nghiệm, trong đ&oacute; c&oacute; 20 năm trong lĩnh vực ph&aacute;t triển kinh doanh v&agrave; điều h&agrave;nh doanh nghiệp với gần 10 năm trong lĩnh vực Nh&acirc;n sự. <br />Trước khi gia nhập Navigos, chị đươc biết đến với c&aacute;c vai tr&ograve;:<br />Trưởng văn ph&ograve;ng đại diện đầu ti&ecirc;n tại Việt Nam của Hiệp hội kế to&aacute;n c&ocirc;ng chứng Anh Quốc ACCA<br />Gi&aacute;m đốc ph&aacute;t triển kinh doanh của Deloitte Việt Nam<br />Tổng gi&aacute;m đốc của eSillicon Việt Nam</p>',
@@ -1897,7 +1990,8 @@ const teacher_data = [{
     bthday: new Date('1992-08-20'),
     password: '$2b$10$gc7DdySTp7qW5T3qm6y99OtQ6nfusnf5RWQsVoaWOZMzvm2LJiFha',
     courses: [],
-    userType: 'Teacher',
+    userType: "Teacher",
+    isAvailable: true,
     phone: '+84-555-588-560',
     gender: 'Nam',
     shortBio: '<p>- CEO Học viện Marketing Quốc tế TikTokVIP<br />- 5 năm kinh nghiệm l&agrave;m việc tại thị trường c&ocirc;ng nghệ Trung Quốc<br />- Được đ&agrave;o tạo chuy&ecirc;n s&acirc;u từ Douyin Trung Quốc trong 3 năm (Douyin l&agrave; cha đẻ của TikTok)<br />- Người cố vấn đứng sau th&agrave;nh c&ocirc;ng của h&agrave;ng loạt c&aacute;c Tiktoker, k&ecirc;nh tiktok Triệu follow như L&ecirc; Ch&iacute; Linh, Thiết Kế Elkey, CEO Trần Oanh, B&ugrave;i Tiến Dũng<br />- Hơn 1 năm đ&agrave;o tạo, tư vấn chiến lược kinh doanh tr&ecirc;n TikTok<br />- Người tạo n&ecirc;n tr&agrave;o lưu TikTok Business</p>',
@@ -1907,7 +2001,8 @@ const teacher_data = [{
     bthday: new Date('1992-09-22'),
     password: '$2b$10$SC4f/inuSFwxbCeO1fh0hu75v2fXnyNrRhp7v0vTiZKuEC1vDuTUG',
     courses: [],
-    userType: 'Teacher',
+    userType: "Teacher",
+    isAvailable: true,
     phone: '+84-355-599-124',
     gender: 'Nữ',
     shortBio: '',
@@ -1917,7 +2012,8 @@ const teacher_data = [{
     bthday: new Date('1979-03-23'),
     password: '$2b$10$ixxXy9G/RseClaEyBIZuye6Ag3MZg8i800U9Ipuqhe2LS7wnHu1Du',
     courses: [],
-    userType: 'Teacher',
+    userType: "Teacher",
+    isAvailable: true,
     phone: '+84-755-573-570',
     gender: 'Nữ',
     shortBio: '<p>Hiện tại đang l&agrave; Gi&aacute;m Đốc Điều H&agrave;nh Navigos Search thuộc tập đo&agrave;n Navigos<br />Hơn 25 năm kinh nghiệm, trong đ&oacute; c&oacute; 20 năm trong lĩnh vực ph&aacute;t triển kinh doanh v&agrave; điều h&agrave;nh doanh nghiệp với gần 10 năm trong lĩnh vực Nh&acirc;n sự. <br />Trước khi gia nhập Navigos, chị đươc biết đến với c&aacute;c vai tr&ograve;:<br />Trưởng văn ph&ograve;ng đại diện đầu ti&ecirc;n tại Việt Nam của Hiệp hội kế to&aacute;n c&ocirc;ng chứng Anh Quốc ACCA<br />Gi&aacute;m đốc ph&aacute;t triển kinh doanh của Deloitte Việt Nam<br />Tổng gi&aacute;m đốc của eSillicon Việt Nam</p>',
@@ -1927,7 +2023,8 @@ const teacher_data = [{
     bthday: new Date('1979-08-21'),
     password: '$2b$10$CaY1vOpBX2Jt/51DWXl5Wu26k4UhO8EiEKbgUZ5bbwPnLawBuPbDy',
     courses: [],
-    userType: 'Teacher',
+    userType: "Teacher",
+    isAvailable: true,
     phone: '+84-855-519-220',
     gender: 'Nữ',
     shortBio: '<p>Bằng c&aacute;i "T&Acirc;M" y&ecirc;u nghề v&agrave; t&acirc;m huyết truyền đạt kiến thức cho thế hệ sau, đ&atilde; từng đ&agrave;o tạo khoảng tr&ecirc;n dưới 3 ng&agrave;n học vi&ecirc;n hiện đ&atilde; v&agrave; đang tham gia c&ocirc;ng t&aacute;c trong c&aacute;c doanh nghiệp v&agrave; c&aacute;c tổ chức kinh tế ch&iacute;nh trị x&atilde; hội.</p><p>C&ugrave;ng với đ&oacute;, giảng vi&ecirc;n đ&atilde; nhận được h&agrave;ng ng&agrave;n đ&aacute;nh gi&aacute; cao l&agrave; người thầy giảng dạy c&oacute; t&acirc;m v&agrave; nhiệt huyết trong c&ocirc;ng việc cũng như định hướng phương ph&aacute;p tự học cho học vi&ecirc;n đạt được hiệu quả cao nhất c&oacute; thể ph&ugrave; hợp với năng lực của từng học vi&ecirc;n.</p><p>Đ&atilde; từng học tập tại Nhật Bản từ th&aacute;ng 8/2009 - 12/2009</p><p>Đ&atilde; từng&nbsp; học tập tại Trung Quốc từ th&aacute;ng 1/2010 - 8/2010.</p><p>Đ&atilde; từng sống học tập v&agrave; l&agrave;m việc tại Đ&agrave;i Loan từ năm 2011 - 2014&nbsp;</p>',
@@ -1937,7 +2034,8 @@ const teacher_data = [{
     bthday: new Date('1984-02-17'),
     password: '$2b$10$58tOOrP32K27NomwTo2h4er767MDDHZ2ZbXUH9FxW/YADQ4rgMMwK',
     courses: [],
-    userType: 'Teacher',
+    userType: "Teacher",
+    isAvailable: true,
     phone: '+84-855-570-536',
     gender: 'Nữ',
     shortBio: '<p>Bằng c&aacute;i "T&Acirc;M" y&ecirc;u nghề v&agrave; t&acirc;m huyết truyền đạt kiến thức cho thế hệ sau, đ&atilde; từng đ&agrave;o tạo khoảng tr&ecirc;n dưới 3 ng&agrave;n học vi&ecirc;n hiện đ&atilde; v&agrave; đang tham gia c&ocirc;ng t&aacute;c trong c&aacute;c doanh nghiệp v&agrave; c&aacute;c tổ chức kinh tế ch&iacute;nh trị x&atilde; hội.</p><p>C&ugrave;ng với đ&oacute;, giảng vi&ecirc;n đ&atilde; nhận được h&agrave;ng ng&agrave;n đ&aacute;nh gi&aacute; cao l&agrave; người thầy giảng dạy c&oacute; t&acirc;m v&agrave; nhiệt huyết trong c&ocirc;ng việc cũng như định hướng phương ph&aacute;p tự học cho học vi&ecirc;n đạt được hiệu quả cao nhất c&oacute; thể ph&ugrave; hợp với năng lực của từng học vi&ecirc;n.</p><p>Đ&atilde; từng học tập tại Nhật Bản từ th&aacute;ng 8/2009 - 12/2009</p><p>Đ&atilde; từng&nbsp; học tập tại Trung Quốc từ th&aacute;ng 1/2010 - 8/2010.</p><p>Đ&atilde; từng sống học tập v&agrave; l&agrave;m việc tại Đ&agrave;i Loan từ năm 2011 - 2014&nbsp;</p>',
@@ -1947,7 +2045,8 @@ const teacher_data = [{
     bthday: new Date('1989-02-09'),
     password: '$2b$10$UIqDgiNZ61To16IBRlvYHOjYiRHN6RmW87UwZqZLlw8xBpSlY/KKy',
     courses: [],
-    userType: 'Teacher',
+    userType: "Teacher",
+    isAvailable: true,
     phone: '+84-355-589-871',
     gender: 'Nam',
     shortBio: '<p>Hiện tại đang l&agrave; Gi&aacute;m Đốc Điều H&agrave;nh Navigos Search thuộc tập đo&agrave;n Navigos<br />Hơn 25 năm kinh nghiệm, trong đ&oacute; c&oacute; 20 năm trong lĩnh vực ph&aacute;t triển kinh doanh v&agrave; điều h&agrave;nh doanh nghiệp với gần 10 năm trong lĩnh vực Nh&acirc;n sự. <br />Trước khi gia nhập Navigos, chị đươc biết đến với c&aacute;c vai tr&ograve;:<br />Trưởng văn ph&ograve;ng đại diện đầu ti&ecirc;n tại Việt Nam của Hiệp hội kế to&aacute;n c&ocirc;ng chứng Anh Quốc ACCA<br />Gi&aacute;m đốc ph&aacute;t triển kinh doanh của Deloitte Việt Nam<br />Tổng gi&aacute;m đốc của eSillicon Việt Nam</p>',
@@ -1957,7 +2056,8 @@ const teacher_data = [{
     bthday: new Date('1991-10-10'),
     password: '$2b$10$RIs0PEgBJ2lXhIqPuvdML..3ZUflD3mFrOW35uLv9bvWF8c7MlW8m',
     courses: [],
-    userType: 'Teacher',
+    userType: "Teacher",
+    isAvailable: true,
     phone: '+84-355-562-907',
     gender: 'Nam',
     shortBio: '<p>- CEO Học viện Marketing Quốc tế TikTokVIP<br />- 5 năm kinh nghiệm l&agrave;m việc tại thị trường c&ocirc;ng nghệ Trung Quốc<br />- Được đ&agrave;o tạo chuy&ecirc;n s&acirc;u từ Douyin Trung Quốc trong 3 năm (Douyin l&agrave; cha đẻ của TikTok)<br />- Người cố vấn đứng sau th&agrave;nh c&ocirc;ng của h&agrave;ng loạt c&aacute;c Tiktoker, k&ecirc;nh tiktok Triệu follow như L&ecirc; Ch&iacute; Linh, Thiết Kế Elkey, CEO Trần Oanh, B&ugrave;i Tiến Dũng<br />- Hơn 1 năm đ&agrave;o tạo, tư vấn chiến lược kinh doanh tr&ecirc;n TikTok<br />- Người tạo n&ecirc;n tr&agrave;o lưu TikTok Business</p>',
@@ -1967,7 +2067,8 @@ const teacher_data = [{
     bthday: new Date('1978-07-31'),
     password: '$2b$10$h0wa2NxYfAwr8yYvSlUnDeJB2u54jHwlfD9KirMnVji4U/Yqkukee',
     courses: [],
-    userType: 'Teacher',
+    userType: "Teacher",
+    isAvailable: true,
     phone: '+84-755-565-329',
     gender: 'Nam',
     shortBio: '<p>Bằng c&aacute;i "T&Acirc;M" y&ecirc;u nghề v&agrave; t&acirc;m huyết truyền đạt kiến thức cho thế hệ sau, đ&atilde; từng đ&agrave;o tạo khoảng tr&ecirc;n dưới 3 ng&agrave;n học vi&ecirc;n hiện đ&atilde; v&agrave; đang tham gia c&ocirc;ng t&aacute;c trong c&aacute;c doanh nghiệp v&agrave; c&aacute;c tổ chức kinh tế ch&iacute;nh trị x&atilde; hội.</p><p>C&ugrave;ng với đ&oacute;, giảng vi&ecirc;n đ&atilde; nhận được h&agrave;ng ng&agrave;n đ&aacute;nh gi&aacute; cao l&agrave; người thầy giảng dạy c&oacute; t&acirc;m v&agrave; nhiệt huyết trong c&ocirc;ng việc cũng như định hướng phương ph&aacute;p tự học cho học vi&ecirc;n đạt được hiệu quả cao nhất c&oacute; thể ph&ugrave; hợp với năng lực của từng học vi&ecirc;n.</p><p>Đ&atilde; từng học tập tại Nhật Bản từ th&aacute;ng 8/2009 - 12/2009</p><p>Đ&atilde; từng&nbsp; học tập tại Trung Quốc từ th&aacute;ng 1/2010 - 8/2010.</p><p>Đ&atilde; từng sống học tập v&agrave; l&agrave;m việc tại Đ&agrave;i Loan từ năm 2011 - 2014&nbsp;</p>',
@@ -1977,7 +2078,8 @@ const teacher_data = [{
     bthday: new Date('1981-05-20'),
     password: '$2b$10$OmlpS2jM/uX/vWHy2kDP7.Jc9hn/zmGo0LaS43OAt8lf8S7KaE0bG',
     courses: [],
-    userType: 'Teacher',
+    userType: "Teacher",
+    isAvailable: true,
     phone: '+84-355-509-262',
     gender: 'Nam',
     shortBio: '<p>Bằng c&aacute;i "T&Acirc;M" y&ecirc;u nghề v&agrave; t&acirc;m huyết truyền đạt kiến thức cho thế hệ sau, đ&atilde; từng đ&agrave;o tạo khoảng tr&ecirc;n dưới 3 ng&agrave;n học vi&ecirc;n hiện đ&atilde; v&agrave; đang tham gia c&ocirc;ng t&aacute;c trong c&aacute;c doanh nghiệp v&agrave; c&aacute;c tổ chức kinh tế ch&iacute;nh trị x&atilde; hội.</p><p>C&ugrave;ng với đ&oacute;, giảng vi&ecirc;n đ&atilde; nhận được h&agrave;ng ng&agrave;n đ&aacute;nh gi&aacute; cao l&agrave; người thầy giảng dạy c&oacute; t&acirc;m v&agrave; nhiệt huyết trong c&ocirc;ng việc cũng như định hướng phương ph&aacute;p tự học cho học vi&ecirc;n đạt được hiệu quả cao nhất c&oacute; thể ph&ugrave; hợp với năng lực của từng học vi&ecirc;n.</p><p>Đ&atilde; từng học tập tại Nhật Bản từ th&aacute;ng 8/2009 - 12/2009</p><p>Đ&atilde; từng&nbsp; học tập tại Trung Quốc từ th&aacute;ng 1/2010 - 8/2010.</p><p>Đ&atilde; từng sống học tập v&agrave; l&agrave;m việc tại Đ&agrave;i Loan từ năm 2011 - 2014&nbsp;</p>',
@@ -1987,7 +2089,8 @@ const teacher_data = [{
     bthday: new Date('1982-09-08'),
     password: '$2b$10$Pry0fjbUC5No4hKirI9BnuvZZiLkFqm8nB5zrWKOJ60M0y3xV7Gce',
     courses: [],
-    userType: 'Teacher',
+    userType: "Teacher",
+    isAvailable: true,
     phone: '+84-755-521-610',
     gender: 'Nam',
     shortBio: '<p>- CEO Học viện Marketing Quốc tế TikTokVIP<br />- 5 năm kinh nghiệm l&agrave;m việc tại thị trường c&ocirc;ng nghệ Trung Quốc<br />- Được đ&agrave;o tạo chuy&ecirc;n s&acirc;u từ Douyin Trung Quốc trong 3 năm (Douyin l&agrave; cha đẻ của TikTok)<br />- Người cố vấn đứng sau th&agrave;nh c&ocirc;ng của h&agrave;ng loạt c&aacute;c Tiktoker, k&ecirc;nh tiktok Triệu follow như L&ecirc; Ch&iacute; Linh, Thiết Kế Elkey, CEO Trần Oanh, B&ugrave;i Tiến Dũng<br />- Hơn 1 năm đ&agrave;o tạo, tư vấn chiến lược kinh doanh tr&ecirc;n TikTok<br />- Người tạo n&ecirc;n tr&agrave;o lưu TikTok Business</p>',
@@ -1997,7 +2100,8 @@ const teacher_data = [{
     bthday: new Date('1991-01-16'),
     password: '$2b$10$vfTth8ptjJKAYQT02G.CIec4g7Jnz1PKvrOQBPESYxwE/qWceNYW.',
     courses: [],
-    userType: 'Teacher',
+    userType: "Teacher",
+    isAvailable: true,
     phone: '+84-555-545-500',
     gender: 'Nữ',
     shortBio: '<p>Hiện tại đang l&agrave; Gi&aacute;m Đốc Điều H&agrave;nh Navigos Search thuộc tập đo&agrave;n Navigos<br />Hơn 25 năm kinh nghiệm, trong đ&oacute; c&oacute; 20 năm trong lĩnh vực ph&aacute;t triển kinh doanh v&agrave; điều h&agrave;nh doanh nghiệp với gần 10 năm trong lĩnh vực Nh&acirc;n sự. <br />Trước khi gia nhập Navigos, chị đươc biết đến với c&aacute;c vai tr&ograve;:<br />Trưởng văn ph&ograve;ng đại diện đầu ti&ecirc;n tại Việt Nam của Hiệp hội kế to&aacute;n c&ocirc;ng chứng Anh Quốc ACCA<br />Gi&aacute;m đốc ph&aacute;t triển kinh doanh của Deloitte Việt Nam<br />Tổng gi&aacute;m đốc của eSillicon Việt Nam</p>',
