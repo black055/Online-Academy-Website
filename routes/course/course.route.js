@@ -204,6 +204,10 @@ router.post('/update/:id', async (req, res) => {
 
 router.get('/edit/:id', async (req, res) => {
     const course = await courseModel.getCourse(req.params.id);
+    if (course.teacher !== req.user._id) {
+        req.flash('err_IDCourse', 'Bạn truy cập vào đường dẫn không hợp lệ')
+        res.redirect('/profile');
+    }
     const data = await categoryModel.getAllCategories();
     req.session.referer = req.headers.referer
     res.render('course/edit', { course: course, categoryList: data });
