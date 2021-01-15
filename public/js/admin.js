@@ -59,28 +59,60 @@ $("#courses_row").on('click', '.btnRemoveCourse', function() {
     $('#courseRemoveId').val($(this).data('id'));
 });
 
-$("#users_row").on('click', '.btnRemoveUser', function() {
-    $('#userRemoveId').val($(this).data('id'));
-});
-
-$("#users_row").on('click', '.btnRemoveTeacher', function() {
-    id = $(this).data('id');
-    $('#teacherRemoveId').val(id);
-    $.get(`/admin/getTeacherCourses/${id}`, function (data, status) {
-        $('#teacher-alert').html(`<i class="fas fa-exclamation-triangle"></i>
-        Giáo viên này hiện đang có ${data} khóa học. <br>
-        Bạn có chắc chắn muốn xóa người này?`);
+$("#users_row").on('click', '.btnDisableUser', function() {
+    userID = $(this).data('id');
+    $.get(`/admin/userManagement/setAvailableUser/${userID}`, function (data, status) {
+        if (data == false) {
+            alert('Có lỗi xảy ra khi khóa tài khoản này!')
+        }
     });
+    $(this).html(`<i class="fa fa-lock" aria-hidden="true"></i>`);
+    $(this).addClass('btn-danger');
+    $(this).removeClass('btn-success');
+    $(this).addClass('btnEnableUser');
+    $(this).removeClass('btnDisableUser');
 });
 
-$("#users_row").on('click', '.btnEditUser', function() {
-    $('#newName').val($(this).data('name'));
-    $('#newEmail').val($(this).data('email'));
-    $('#newBthday').val($(this).data('bthday'));
-    $('#newGender').val($(this).data('gender'));
-    $('#newPhone').val($(this).data('phone'));
-    $('#edtId').val($(this).data('id'));
-    $('#userType').val($(this).data('type'));
+$("#users_row").on('click', '.btnEnableUser', function() {
+    userID = $(this).data('id');
+    $.get(`/admin/userManagement/setAvailableUser/${userID}`, function (data, status) {
+        if (data == false) {
+            alert('Có lỗi xảy ra khi khóa tài khoản này!')
+        }
+    });
+    $(this).html(`<i class="fas fa-lock-open" aria-hidden="true"></i>`);
+    $(this).addClass('btn-success');
+    $(this).removeClass('btn-danger');
+    $(this).addClass('btnDisableUser');
+    $(this).removeClass('btnEnableUser');
+});
+
+$("#users_row").on('click', '.btnDisableTeacher', function() {
+    userID = $(this).data('id');
+    $.get(`/admin/userManagement/setAvailableTeacher/${userID}`, function (data, status) {
+        if (data == false) {
+            alert('Có lỗi xảy ra khi khóa tài khoản này!')
+        }
+    });
+    $(this).html(`<i class="fa fa-lock" aria-hidden="true"></i>`);
+    $(this).addClass('btn-danger');
+    $(this).removeClass('btn-success');
+    $(this).addClass('btnEnableTeacher');
+    $(this).removeClass('btnDisableTeacher');
+});
+
+$("#users_row").on('click', '.btnEnableTeacher', function() {
+    userID = $(this).data('id');
+    $.get(`/admin/userManagement/setAvailableTeacher/${userID}`, function (data, status) {
+        if (data == false) {
+            alert('Có lỗi xảy ra khi khóa tài khoản này!')
+        }
+    });
+    $(this).html(`<i class="fas fa-lock-open" aria-hidden="true"></i>`);
+    $(this).addClass('btn-success');
+    $(this).removeClass('btn-danger');
+    $(this).addClass('btnDisableTeacher');
+    $(this).removeClass('btnEnableTeacher');
 });
 
 $('#teacher-add-form').submit(function(e) {

@@ -52,7 +52,7 @@
         const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         if (!regex.test($('#email2').val().toLowerCase()) && $('#email2').val().toLowerCase() != 'admin') {
           swal({
-            title: "Sorry !",
+            title: "Đăng nhập không thành công!",
             text: "Tên đăng nhập không hợp lệ",
             icon: "warning",
             dangerMode: true,
@@ -65,7 +65,7 @@
 
   {{#if errorLogin}} 
     swal({
-        title: "Sorry !",
+        title: "Đăng nhập không thành công!",
         text: "{{errorLogin}}",
         icon: "warning",
         dangerMode: true,

@@ -7,3 +7,8 @@
 .img-row {
     width: 70px;
 }
+
+.btnEnableUser, .btnEnableTeacher, .btnDisableTeacher, .btnDisableUser {
+    height: 45px;
+    width: 45px;
+}

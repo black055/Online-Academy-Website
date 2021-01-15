@@ -115,23 +115,6 @@ router.post('/categoryManagement/remove', async (req, res) => {
     res.redirect('/admin/categoryManagement');
 });
 
-router.post('/userManagement/edit', async (req, res) => {
-    if (req.body.userType == "Student") user = await userModel.getUser(req.body.id);
-    else if (req.body.userType == "Teacher") user = await teacherModel.getTeacher(req.body.id);
-    user.name = req.body.name;
-    user.bthday = req.body.bthday;
-    user.gender = req.body.gender;
-    user.phone = req.body.phone;
-    await user.save();
-    req.flash('message', {
-        icon: 'success',
-        title: 'Cập nhật thành công!',
-        text: 'Cập nhật thông tin của người dùng thành công!'
-    } );
-
-    res.redirect('/admin/userManagement');
-});
-
 router.post('/userManagement/add', async (req, res) => {
     password = randomString({ length: 8, numeric: true, letters: true, special: false, });
     password += Math.floor(Math.random() * 9);
@@ -205,70 +188,26 @@ router.post('/courseManagement/remove', async (req, res) => {
     res.redirect('/admin/courseManagement');
 });
 
-router.get('/getTeacherCourses/:id', async (req, res) => {
-    courses = await courseModel.getCourseOfTeacher(req.params.id);
-    res.send(`${courses.length}`);
+router.get('/userManagement/setAvailableTeacher/:id', async (req, res) => {
+    teacher = await teacherModel.getTeacher(req.params.id);
+    if (teacher != null) {
+        teacher.isAvailable = !teacher.isAvailable;
+        teacher.save();
+        res.send(true);
+    } else {
+        res.send(false);
+    }
 });
 
-router.post('/userManagement/remove', async (req, res) => {
-    user = await userModel.getUser(req.body.id);
-    //Giảm số học sinh và các đánh giá của học sinh này trong các khóa học học sinh này tham gia
-    for (i = 0; i < user.courses.length; i++) {
-        course = await courseModel.getCourse(Object.keys(user.courses[i])[0]);
-        //Giảm số học sinh
-        course.students = course.students - 1;
-        //Nếu đã đánh giá khóa học thì xóa đánh giá ra khỏi csdl
-        rate = user.courses[i].rate
-        if (rate != 0) {
-            course.rate[rate - 1] = course.rate[rate - 1] - 1;
-        }
-        course.save();
+router.get('/userManagement/setAvailableUser/:id', async (req, res) => {
+    user = await userModel.getUser(req.params.id);
+    if (user != null) {
+        user.isAvailable = !user.isAvailable;
+        user.save();
+        res.send(true);
+    } else {
+        res.send(false);
     }
-    await userModel.removeUser(req.body.id);
-
-    req.flash('message', {
-        icon: 'success',
-        title: 'Xóa học sinh thành công!',
-        text: 'Đã xóa học sinh và các hoạt động của học sinh này ra khỏi cơ sở dữ liệu thành công!'
-    } );
-
-    res.redirect('/admin/userManagement');
-});
-
-router.post('/userManagement/removeTeacher', async (req, res) => {
-    courses = await courseModel.getCourseOfTeacher(req.body.id);
-    users = await userModel.getAllUser();
-    // Xóa các khóa học của giáo viên này
-    for (course of courses) {
-        for (user of users) {
-            // Xóa khóa học ra khỏi danh sách khóa học đã mua
-            for (i = 0; i < user.courses.length; i++) {
-                if (Object.keys(user.courses[i])[0] == course._id) {
-                    user.courses.splice(i, 1);
-                    user.save();
-                    break;
-                }
-            }
-            // Xóa khóa học ra khỏi danh sách khóa học đang theo dõi
-            for (i = 0; i < user.watchList.length; i++) {
-                if (Object.keys(user.watchList[i])[0] == course._id) {
-                    user.watchList.splice(i, 1);
-                    user.save();
-                    break;
-                }
-            }
-        }
-        await courseModel.removeCourse(course._id);
-    }
-    await teacherModel.removeTeacher(req.body.id);
-
-    req.flash('message', {
-        icon: 'success',
-        title: 'Xóa giáo viên thành công!',
-        text: 'Xóa giáo viên cùng các khóa học của giáo viên này ra khỏi cơ sở dữ liệu thành công!'
-    } );
-
-    res.redirect('/admin/userManagement');
 });
 
 module.exports = router;
