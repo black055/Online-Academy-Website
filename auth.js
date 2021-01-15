@@ -50,7 +50,7 @@ passport.use(new FacebookStrategy({
     if (typeof email == 'undefined') email = '';
     let user = await User.findOne({'fbID': id});
     if (user && !user.isAvailable) 
-        return done(null, false, {message: "Tài khoản của bạn đã bị vô hiệu hóa !"});
+        done(null, false, {message: "Tài khoản của bạn đã bị vô hiệu hóa !"});
     if(!user) {
         user = new User({
             email: email,
@@ -68,6 +68,7 @@ passport.use(new FacebookStrategy({
             bthday: null,
             courses: [],
             userType: 'Student',
+            isAvailable: true,
             watchList: [],
             cart: [],
         })
@@ -84,7 +85,7 @@ passport.use(new GoogleStrategy({
 },async (accessToken, refreshToken, profile, done) => {
     let user = await User.findOne({'ggID': profile.id});
     if (user && !user.isAvailable) 
-        return done(null, false, {message: "Tài khoản của bạn đã bị vô hiệu hóa !"});
+        done(null, false, {message: "Tài khoản của bạn đã bị vô hiệu hóa !"});
     if(!user) {
         user = new User({
             email: profile.emails[0].value,
@@ -102,6 +103,7 @@ passport.use(new GoogleStrategy({
             bthday: null,
             courses: [],
             userType: 'Student',
+            isAvailable: true,
             watchList: [],
             cart: [],
         })
@@ -117,7 +119,7 @@ passport.use(new GithubStrategy({
 }, async (accessToken, refreshToken, profile, done) => {
     let user = await User.findOne({'gitID': profile.id});
     if (user && !user.isAvailable) 
-        return done(null, false, {message: "Tài khoản của bạn đã bị vô hiệu hóa !"});
+        done(null, false, {message: "Tài khoản của bạn đã bị vô hiệu hóa !"});
     if(!user) {
         user = new User({
             email: "",
@@ -135,6 +137,7 @@ passport.use(new GithubStrategy({
             bthday: null,
             courses: [],
             userType: 'Student',
+            isAvailable: true,
             watchList: [],
             cart: [],
         })
@@ -150,7 +153,7 @@ passport.use(new TwitterStrategy({
 }, async (accessToken, refreshToken, profile, done) => {
     let user = await User.findOne({'twID': profile.id});
     if (user && !user.isAvailable) 
-        return done(null, false, {message: "Tài khoản của bạn đã bị vô hiệu hóa !"});
+        done(null, false, {message: "Tài khoản của bạn đã bị vô hiệu hóa !"});
     if(!user) {
         user = new User({
             email: "",
@@ -168,6 +171,7 @@ passport.use(new TwitterStrategy({
             bthday: null,
             courses: [],
             userType: 'Student',
+            isAvailable: true,
             watchList: [],
             cart: [],
         })
