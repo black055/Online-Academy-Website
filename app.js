@@ -45,7 +45,7 @@ mongoose.connect("mongodb+srv://lethanhviet:22102000@cluster0.dtarf.mongodb.net/
 mongoose.set("useCreateIndex", true);
 
 // Insert data user
- insertData();
+// insertData();
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
