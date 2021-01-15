@@ -30,13 +30,13 @@ const clearProcmdw = require('./middlewares/clearProcess.mdw');
 const adminMdw = require('./middlewares/admin.mdw');
 
 // Script insert data
-const insertData = require('./script_insert');
+// const insertData = require('./script_insert');
 
 // Authentication
 require("./auth");
 
 // Connect to database
-mongoose.connect("mongodb+srv://lethanhviet:22102000@cluster0.dtarf.mongodb.net/mydb?retryWrites=true&w=majority", {
+mongoose.connect("mongodb://localhost:27017/mydb", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
@@ -187,7 +187,7 @@ app.use('/course', mdwIsLoged, require('./routes/course/course.route'));
 app.use('/category', require('./routes/category/category.route'));
 app.use('/admin', mdwIsLoged, adminMdw, require('./routes/admin/admin.route'));
 
-const PORT = process.env.PORT || '8080';
+const PORT = process.env.PORT || '3000';
 app.set("port", PORT);
 app.use((req, res, next) => {
   next({ status: 404, message: 'Not Found' });
