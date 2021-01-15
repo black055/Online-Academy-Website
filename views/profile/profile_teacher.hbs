@@ -276,6 +276,14 @@
             "box-shadow": "none"
         })
     })
+    {{#if errorIDCourse}}
+    Swal.fire({
+        title: "Sorry !",
+        text: "{{errorIDCourse}}",
+        icon: "warning",
+        dangerMode: true,
+    });
+    {{/if}}
 </script>
 {{else}}
 <script>
@@ -288,6 +296,14 @@
                 </div>
             </th>
             </tr>`)
+    {{#if errorIDCourse}}
+    Swal.fire({
+        title: "Sorry !",
+        text: "{{errorIDCourse}}",
+        icon: "warning",
+        dangerMode: true,
+    });
+    {{/if}}
 </script>
 {{/if}}
 

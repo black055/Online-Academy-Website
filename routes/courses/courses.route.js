@@ -223,7 +223,7 @@ router.get('/addTocart/:id_course', async (req, res) => {
             })
         })
     } else {
-        req.session.cart = typeof req.session.cart === 'undefined' ? [] : req.session.cart;
+        req.session.cart = typeof req.session.cart == 'undefined' ? [] : req.session.cart;
         if (!req.session.cart.includes(req.params.id_course))
             req.session.cart.push(req.params.id_course);
         let cart = [];

@@ -36,8 +36,10 @@ module.exports = async function(req, res, next) {
       req.session.cart = [];
       req.session.coursesInCart = [];
       req.session.cart_length = req.user.cart.length;
+    } else {
+      req.session.cart_length = req.session.cart.length;
     }
-  
+    
     if (req.session.cart.length > 0) {
       let coursesInCart = [];
       for (let i = 0; i < req.session.cart.length; i++) {
@@ -46,7 +48,8 @@ module.exports = async function(req, res, next) {
       }
       req.session.coursesInCart = coursesInCart;
       req.session.cart_length = coursesInCart.length;
+    } else {
+      req.session.coursesInCart = [];
     }
-  
     next();
 };

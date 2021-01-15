@@ -45,7 +45,7 @@ mongoose.connect("mongodb://localhost:27017/mydb", {
 mongoose.set("useCreateIndex", true);
 
 // Insert data user
- insertData();
+// insertData();
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -69,6 +69,7 @@ app.use(function (req, res, next) {
   res.locals.session = req.session;
   res.locals.errorLogin = req.flash("error");
   res.locals.errorOTP = req.flash("err_OTP");
+  res.locals.errorIDCourse = req.flash("err_IDCourse");
   next();
 });
 
@@ -187,7 +188,7 @@ app.use('/course', mdwIsLoged, require('./routes/course/course.route'));
 app.use('/category', require('./routes/category/category.route'));
 app.use('/admin', mdwIsLoged, adminMdw, require('./routes/admin/admin.route'));
 
-const PORT = process.env.PORT || '3000';
+const PORT = process.env.PORT || 3000;
 app.set("port", PORT);
 app.use((req, res, next) => {
   next({ status: 404, message: 'Not Found' });

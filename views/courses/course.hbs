@@ -139,31 +139,44 @@
 
                                 <!-- Comments -->
 
-                                {{#ifEquals session.user.userType "Student"}}
+                                {{#if session.user}}
+                                    {{#ifEquals session.user.userType "Student"}}
+                                        <div class="comments_container">
+                                            <ul class="comments_list"></ul>
+                                            <div class="add_comment_container">
+                                                <div class="add_comment_title">Nhận xét</div>
+                                            </div>
+
+                                            {{#if session.user}}
+                                                {{#if registered}}
+                                                    <form action="/courses/comment/{{course._id}}" method="post">
+                                                        <textarea class="form-control" name="comment" placeholder="Nhập comment ..." required></textarea>
+                                                        <button type="submit" class="btn btn-success submit_comment" style="margin-top: 10px;">Nhận xét</button>
+                                                    </form>
+                                                {{else}}
+                                                    <div class="add_comment_text">Bạn phải <a href="/courses/register/{{course._id}}">đăng ký</a> khóa học để có thể nhận xét.</div>
+                                                {{/if}}
+                                            {{else}}
+                                                <div class="add_comment_text">Bạn phải <a href="/login">đăng nhập</a> để có thể nhận xét.</div>
+                                            {{/if}}
+                                        </div>
+                                    {{else}}
+                                        <div class="comments_container">
+                                            <ul class="comments_list"></ul>
+                                            <div class="add_comment_container">
+                                                <div class="add_comment_title">Nhận xét</div>
+                                            </div>
+                                        </div>
+                                    {{/ifEquals}}
+                                {{else}}
                                     <div class="comments_container">
                                         <ul class="comments_list"></ul>
                                         <div class="add_comment_container">
                                             <div class="add_comment_title">Nhận xét</div>
                                         </div>
-
-                                        {{#if session.user}}
-                                            {{#if registered}}
-                                                <form action="/courses/comment/{{course._id}}" method="post">
-                                                    <textarea class="form-control" name="comment" placeholder="Nhập comment ..." required></textarea>
-                                                    <button type="submit" class="btn btn-success submit_comment" style="margin-top: 10px;">Nhận xét</button>
-                                                </form>
-                                            {{else}}
-                                                <div class="add_comment_text">Bạn phải <a href="/courses/register/{{course._id}}">đăng ký</a> khóa học để có thể nhận xét.</div>
-                                            {{/if}}
-                                        {{else}}
-                                            <div class="add_comment_text">Bạn phải <a href="/login">đăng nhập</a> để có thể nhận xét.</div>
-                                        {{/if}}
                                     </div>
-                                {{else}}
-                                    <div class="comments_container">
-                                        <ul class="comments_list"></ul>
-                                    </div>
-                                {{/ifEquals}}
+                                    <div class="add_comment_text">Bạn phải <a href="/login">đăng nhập</a> để có thể nhận xét.</div>
+                                {{/if}}
                             </div>
 
                         </div>
@@ -187,7 +200,7 @@
                                 <!-- Feature -->
                                 <div class="feature d-flex flex-row align-items-center justify-content-start">
                                     <div class="feature_title"><i class="fas fa-clock"></i><span>Thời gian</span></div>
-                                    <div class="feature_text ml-auto">{{course.chapters.length}}</div>
+                                    <div class="feature_text ml-auto">{{course.chapters.length}} tuần</div>
                                 </div>
 
                                 <!-- Feature -->
