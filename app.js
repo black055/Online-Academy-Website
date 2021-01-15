@@ -69,6 +69,7 @@ app.use(function (req, res, next) {
   res.locals.session = req.session;
   res.locals.errorLogin = req.flash("error");
   res.locals.errorOTP = req.flash("err_OTP");
+  res.locals.errorIDCourse = req.flash("err_IDCourse");
   next();
 });
 
