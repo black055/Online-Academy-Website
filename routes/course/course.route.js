@@ -9,7 +9,7 @@ const courseModel = require('../../models/courses.model');
 
 router.get('/', (req, res) => {
     //nothing here
-    res.render('index');
+    res.redirect(req.headers.referer != null ? req.headers.referer: '/');
 });
 
 
@@ -86,7 +86,7 @@ router.post('/add_course', async (req, res) => {
     })
 
     const upload = multer({ storage });
-    await upload.fields([{
+    upload.fields([{
         name: 'thumbnail',
         maxCount: 1
     }, {
@@ -118,7 +118,7 @@ router.post('/add_course', async (req, res) => {
             }
 
             await course.save();
-            res.redirect(req.session.referer);
+            res.redirect(req.session.referer != null ? req.session.referer: '/');
         }
     })
 })
@@ -126,6 +126,10 @@ router.post('/add_course', async (req, res) => {
 router.post('/update/:id', async (req, res) => {
     const prevPage = req.session.referer;
     const course = await courseModel.getCourse(req.params.id);
+    if (!course) {
+        req.flash('err_IDCourse', 'Bạn truy cập vào đường dẫn không hợp lệ')
+        res.redirect(prevPage != null ? prevPage: '/');
+    }
 
     const storage = multer.diskStorage({
         destination: function (req, file, cb) {
@@ -165,7 +169,7 @@ router.post('/update/:id', async (req, res) => {
     })
 
     const upload = multer({ storage });
-    await upload.fields([{
+    upload.fields([{
         name: 'thumbnail',
         maxCount: 1
     }, {
@@ -197,7 +201,7 @@ router.post('/update/:id', async (req, res) => {
             }
 
             courseModel.updateCourse(course._id.toString(), course, (err, rs) => {if (err) console.log(err)});
-            res.redirect(prevPage);
+            res.redirect(prevPage != null ? prevPage: '/');
         }
     })
 })
