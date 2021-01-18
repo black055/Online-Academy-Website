@@ -454,6 +454,7 @@ router.get('/:id_course', async (req, res) => {
         sameCourses: sameCourses,
         teacher: info_teacher,
         currentChapter: currentChapter,
+        isOwned: req.session.user._id == course.teacher,
     });
 });
 

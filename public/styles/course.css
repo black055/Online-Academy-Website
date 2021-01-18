@@ -1943,3 +1943,16 @@ section
 	position: relative;
 	font-size: 16px;
 }
+.edit-course-btn {
+	width: 100%;
+	background-color: #FFC107;
+	border: 1px solid  #FFC107;
+	font-weight: 700;
+	-webkit-transition: background-color 0.4s ease-out;
+	-moz-transition: background-color 0.4s ease-out;
+	-o-transition: background-color 0.4s ease-out;
+	transition: background-color 0.4s ease-out;
+}
+.edit-course-btn:hover {
+	background-color: #fff;
+}
