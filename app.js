@@ -36,7 +36,7 @@ const adminMdw = require('./middlewares/admin.mdw');
 require("./auth");
 
 // Connect to database
-mongoose.connect("mongodb://localhost:27017/mydb", {
+mongoose.connect("mongodb+srv://lethanhviet:22102000@cluster0.dtarf.mongodb.net/mydb?retryWrites=true&w=majority", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,

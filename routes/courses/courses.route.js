@@ -444,6 +444,7 @@ router.get('/:id_course', async (req, res) => {
             currentChapter = process.currentChapter;
         }
     }
+    let isOwned = typeof req.user !== 'undefined' ? (req.user._id == course.teacher) : false;
     res.render('courses/course', {
         course: course, 
         registered: isRegistered, 
@@ -454,7 +455,7 @@ router.get('/:id_course', async (req, res) => {
         sameCourses: sameCourses,
         teacher: info_teacher,
         currentChapter: currentChapter,
-        isOwned: req.session.user._id == course.teacher,
+        isOwned: isOwned,
     });
 });
 
